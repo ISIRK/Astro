@@ -1,4 +1,4 @@
-# Astro
+# Astro - Discord Bot
 ![GitHub Logo](/astro.png)
-Format: ![Alt Text](url)
+<br>
 A Utilities Discord Bot with reliability and simplicity
