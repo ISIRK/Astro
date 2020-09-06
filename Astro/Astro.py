@@ -19,6 +19,10 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    if message.content.startswith('<@!751447995270168586>'):
+        mentionembed = discord.Embed(title="Astro", description="Prefix: `^`\nBot Info: `help` `info`", color=0x7289DA)
+        await message.channel.send(embed=mentionembed)
+
 @client.command()
 async def info(ctx):
 
@@ -33,6 +37,7 @@ async def info(ctx):
 async def help(ctx):
 
         helpembed = discord.Embed(title="Help", description="**Astro Bot** \n A Utilities Discord Bot with reliability and simplicity\n Made By isirk#0001", color=0x7289DA)
+        helpembed.add_field(name="Info", value="@Astro Mention Me for Info")
         helpembed.add_field(name="Prefix", value="`^` (Not Customizeable)", inline=False)
         helpembed.add_field(name="Bot", value="`help`\n`info`\n`ping`")
         helpembed.add_field(name="Mod", value="`kick`\n`ban`")

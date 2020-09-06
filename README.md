@@ -1,5 +1,5 @@
 # Astro - Discord Bot
-![GitHub Logo](Images/Astro_.jpg)
+![GitHub Logo](Images/astro.png)
 <br>
 A Utilities Discord Bot with reliability and simplicity
 <br>
