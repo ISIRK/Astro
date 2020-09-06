@@ -8,4 +8,5 @@ It is a WIP but you can support the development by going to our [Patreon](https:
 <br>
 [Support Discord Server](https://discord.gg/s5ZPSRe)
 <br>
-![GitHub Logo](Images/astro.png)
+
+![Astro Logo](Images/astro.png)
