@@ -23,7 +23,7 @@ async def on_message(message):
 async def info(ctx):
 
         infoembed = discord.Embed(title="Info", description="**Astro Bot** \n A Utilities Discord Bot with reliability and simplicity\n Made By isirk#0001", color=0x7289DA)
-        infoembed.add_field(name= ":gear: Updates", value="Version 0.5 \n :inbox_tray: Finished info, kick, ban commands \n :outbox_tray: Making Help Command", inline=True)
+        infoembed.add_field(name= ":gear: Updates", value="Version 0.5 \n :inbox_tray: Finished info, help, ping, kick, ban commands \n :outbox_tray: Making modlog", inline=True)
         infoembed.add_field(name= ":link: Links", value="[Bot Site](https://asksirk.com/Astro) \n [Github Repository](https://github.com/ISIRK/Astro) \n [Patreon](https://www.patreon.com/Astro_Bot)")
         infoembed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
 
