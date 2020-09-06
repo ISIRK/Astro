@@ -23,7 +23,7 @@ async def on_message(message):
 async def info(ctx):
 
         infoembed = discord.Embed(title="Info", description="**Astro Bot** \n A Utilities Discord Bot with reliability and simplicity\n Made By isirk#0001", color=0x7289DA)
-        infoembed.add_field(name= ":gear: Updates", value="Version 0.5 \n :inbox_tray: Finished info, help, ping, kick, ban commands \n :outbox_tray: Making modlog", inline=True)
+        infoembed.add_field(name= ":gear: Updates", value="Version 0.5 \n :inbox_tray: Finished info, help, ping, kick, ban, avatar commands \n :outbox_tray: Making modlog", inline=True)
         infoembed.add_field(name= ":link: Links", value="[Bot Site](https://asksirk.com/Astro) \n [Github Repository](https://github.com/ISIRK/Astro) \n [Patreon](https://www.patreon.com/Astro_Bot)")
         infoembed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
 
@@ -36,6 +36,7 @@ async def help(ctx):
         helpembed.add_field(name="Prefix", value="`^` (Not Customizeable)", inline=False)
         helpembed.add_field(name="Bot", value="`help`\n`info`\n`ping`")
         helpembed.add_field(name="Mod", value="`kick`\n`ban`")
+        helpembed.add_field(name="Utility", value="`avatar`")
         helpembed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
 
         await ctx.send(embed=helpembed)
@@ -73,5 +74,12 @@ async def ban(ctx, member:discord.Member = None):
 async def kick_error(ctx, error):
     if isinstance(error, commands.CheckFailure):
         await ctx.send("You are not allowed to ban people")
+
+@client.command()
+async def avatar(ctx, *, member: discord.Member=None): # set the member object to None
+    if not member: # if member is no mentioned
+        member = ctx.message.author # set member as the author
+    userAvatar = member.avatar_url
+    await ctx.send(userAvatar)
 
 client.run('')
