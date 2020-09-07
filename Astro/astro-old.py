@@ -3,7 +3,6 @@ from discord import Embed
 from discord.ext import commands
 from discord.user import User
 from discord.utils import get
-from discord.ext import menus
 
 client = commands.Bot(command_prefix='^')
 client.remove_command('help')
@@ -62,7 +61,7 @@ async def help(ctx):
 async def ping(ctx):
     pingembed = discord.Embed(color=0x7289DA)
     pingembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-    pingembed.add_field(name="Pong!", value=f'`{round(client.latency * 1000)}ms`')
+    pingembed.add_field(name="Pong!", value=f'```{round(client.latency * 1000)}ms```')
     await ctx.send(embed=pingembed)
 
 @client.command()
@@ -110,7 +109,8 @@ async def guilds(ctx):
     for guild in client.guilds:
         guildsembed.add_field(name=f'{guild.name}', value=f'`{guild.owner}`'f'<@!{guild.owner_id}>')
     await ctx.send(embed=guildsembed)
-    
+
 #Menu Pages
 
+        
 client.run('')
