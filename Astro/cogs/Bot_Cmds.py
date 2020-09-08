@@ -1,3 +1,4 @@
+from multiprocessing.connection import Client
 import discord
 from discord import Embed
 from discord.ext import commands
@@ -16,7 +17,7 @@ class Bot_Cmds(commands.Cog):
         await ctx.send(embed=infoembed)
 
     @commands.command()
-    async def help(self, ctx):
+    async def help1(self, ctx):
         helpembed = discord.Embed(title="Help", description="A Utilities Discord Bot with reliability and simplicity\n Made By isirk#0001", color=0x7289DA)
         helpembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         helpembed.add_field(name="Info", value="@Astro Mention Me for Info")
