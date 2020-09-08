@@ -22,7 +22,7 @@ class Bot_Cmds(commands.Cog):
         helpembed.add_field(name="Info", value="@Astro Mention Me for Info")
         helpembed.add_field(name="Prefix", value="`^` (Not Customizeable)", inline=False)
         helpembed.add_field(name="Bot", value="`help`\n`info`\n`ping`")
-        helpembed.add_field(name="Mod", value="`kick`\n`ban`")
+        helpembed.add_field(name="Mod", value="`kick`\n`ban`\n`mute`\n`unmute`")
         helpembed.add_field(name="Utility", value="`avatar`\n`slowmode`\n`clear`")
         helpembed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
 

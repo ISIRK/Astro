@@ -113,4 +113,4 @@ async def guilds(ctx):
 #Menu Pages
 
         
-client.run('')
+client.run('NzUxNDQ3OTk1MjcwMTY4NTg2.X1JOew.lob12gRm7WYnnoDl58SGIubTa5Y')
