@@ -2,7 +2,7 @@ import discord
 from discord import Embed
 from discord.ext import commands
 
-class info(commands.Cog):
+class Bot_Cmds(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -14,13 +14,6 @@ class info(commands.Cog):
         infoembed.add_field(name= ":link: Links", value="[Bot Site](https://asksirk.com/Astro) \n[Github Repository](https://github.com/ISIRK/Astro) \n[Patreon](https://www.patreon.com/Astro_Bot)")
         infoembed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         await ctx.send(embed=infoembed)
-
-def setup(bot):
-    bot.add_cog(info(bot))
-
-class help(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
 
     @commands.command()
     async def help(self, ctx):
@@ -35,13 +28,6 @@ class help(commands.Cog):
 
         await ctx.send(embed=helpembed)
 
-def setup(bot):
-    bot.add_cog(help(bot))
-
-class avatar(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
-
     @commands.command()
     async def avatar(self, ctx, *, member: discord.Member=None): # set the member object to None
         if not member: # if member is no mentioned
@@ -53,4 +39,4 @@ class avatar(commands.Cog):
         await ctx.send(embed=avatarembed)
 
 def setup(bot):
-    bot.add_cog(avatar(bot))
+    bot.add_cog(Bot_Cmds(bot))
