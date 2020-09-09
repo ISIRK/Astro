@@ -43,5 +43,5 @@ for filename in os.listdir('./Astro/cogs'):
     if filename.endswith('.py'):
         bot.load_extension(f'cogs.{filename[:-3]}')
 
-#19728
+#25285
 bot.run('')
