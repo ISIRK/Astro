@@ -8,7 +8,7 @@ bot.remove_command('help')
 @bot.event
 async def on_ready():
     print('{0.user} is up and running'.format(bot))
-    await bot.change_presence(activity=discord.Game(name="Astronomical"))
+    #await bot.change_presence(activity=discord.Game(name="Astronomical"))
 
 @bot.event
 async def on_message(message):
@@ -43,5 +43,7 @@ for filename in os.listdir('./Astro/cogs'):
     if filename.endswith('.py'):
         bot.load_extension(f'cogs.{filename[:-3]}')
 
-#25285
+bot.load_extension("jishaku")
+
+#11888
 bot.run('')
