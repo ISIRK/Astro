@@ -48,7 +48,7 @@ class Bot_Cmds(commands.Cog):
     async def ping(self, ctx):
         pingembed = discord.Embed(color=0x7289DA)
         pingembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        pingembed.add_field(name="Pong!", value=f'```{round(bot.latency * 1000)}ms```')
+        pingembed.add_field(name="Pong!", value=f'```{round(self.bot.latency * 1000)}ms```')
         await ctx.send(embed=pingembed)
 
 def setup(bot):
