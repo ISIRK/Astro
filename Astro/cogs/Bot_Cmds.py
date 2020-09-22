@@ -151,9 +151,8 @@ class Bot_Cmds(commands.Cog):
     async def credits(self , ctx):
         embed = discord.Embed(title="Credits", color=0x7289DA)
         embed.add_field(name="Bot Maker", value="isirk", inline=False)
-        embed.add_field(name="Coder", value="Code stolen lmao jk source code is here --> https://github.com/ISIRK/Astro", inline=False)
+        embed.add_field(name="Coder", value="isirk\nThe source code is here --> https://github.com/ISIRK/Astro", inline=False)
         await ctx.send(embed=embed)
-
 
 def setup(bot):
     bot.add_cog(Bot_Cmds(bot))
