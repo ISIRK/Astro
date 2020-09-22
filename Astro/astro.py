@@ -2,7 +2,8 @@ import discord
 import os
 from discord.ext import commands
 
-bot = commands.Bot(command_prefix = '^')
+list1 = ['^', '<@!751447995270168586> ', 'astro ']
+bot = commands.Bot(command_prefix = list1)
 
 bot.remove_command('help')
 
@@ -16,10 +17,6 @@ async def on_message(message):
     await bot.process_commands(message)
     if message.author == bot.user:
         return
-
-    if message.content.startswith('<@!751447995270168586>'):
-        mentionembed = discord.Embed(title="Astro", description="Prefix: `^`\nBot Info: `help` `info`", color=0x7289DA)
-        await message.channel.send(embed=mentionembed)
 
 @commands.is_owner()
 @bot.command()
@@ -46,5 +43,5 @@ for filename in os.listdir('./Astro/cogs'):
 
 bot.load_extension("jishaku")
 
-#11888
+#14950
 bot.run('')
