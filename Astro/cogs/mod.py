@@ -88,6 +88,7 @@ class Mod(commands.Cog):
     @commands.command()
     @commands.has_permissions(manage_channels=True)
     async def slowmode(self, ctx, seconds: int):
+        '''Change the slowmode in the current channel.'''
         await ctx.channel.edit(slowmode_delay=seconds)
         await ctx.send(f"Slowmode is now {seconds} seconds.")
 
