@@ -8,14 +8,8 @@ It is a WIP but you can support the development by going to Astro's Patreon or y
 
 [Patreon](https://www.patreon.com/Astro_Bot)
 
-<br>
-
 [Astro Site](https://asksirk.com/Astro/)
 
-<br>
-
 [Support Discord Server](https://discord.gg/s5ZPSRe)
-
-<br>
 
 ![Astro Logo](Images/astro.png)
