@@ -2,10 +2,12 @@
 <br>
 A **Private** Utilities Discord Bot with reliability and simplicity
 <br>
-This Bot is a Private Discord Bot but you can request Astro Bot for your server by DM'ing me @ isirk#001 (bot developer)
+This Bot is a Private Discord Bot but you can request Astro Bot for your server by DM'ing me @ isirk#001
+<br>
 You can also request some commands by joining our support discord server.
-
-Format for requesting Astro for your server:<br>
+<br>
+Format for requesting Astro for your server:
+<br>
 ` Name:(Discord Tag)`<br>
 ` Server Name:`<br>
 ` Server Invite:`<br>
