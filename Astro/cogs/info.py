@@ -10,7 +10,7 @@ import os
 import collections
 import time, datetime
 
-class botcmds(commands.Cog):
+class info(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -57,4 +57,4 @@ class botcmds(commands.Cog):
         await ctx.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(botcmds(bot))
+    bot.add_cog(info(bot))

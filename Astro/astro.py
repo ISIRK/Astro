@@ -46,5 +46,5 @@ for filename in os.listdir('./Astro/cogs'):
 
 bot.load_extension("jishaku")
 
-#20004
+#22690
 bot.run('')

@@ -70,6 +70,9 @@ class utility(commands.Cog):
         embed = discord.Embed(title=f"{member}", color=0x7289DA)
         embed.add_field(name='**General:**',
                         value=f'Name: `{member}`\n'
+                              f'Desktop Status: `{member.desktop_status}`\n'
+                              f'Mobile Status: `{member.mobile_status}`\n'
+                              f'Browser Status: `{member.web_status}`\n'
                               f'Account Created on: `{datetime.datetime.strftime(member.created_at, "%A %d %B %Y at %H:%M")}`', inline=False)
 
         embed.add_field(name='**Guild related information:**',
