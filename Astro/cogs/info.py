@@ -17,11 +17,11 @@ class info(commands.Cog):
     @commands.command()
     async def info(self, ctx):
         '''Get information about the bot.'''
-        infoembed = discord.Embed(title="Info", description="A Utilities Discord Bot with reliability and simplicity", color=0x7289DA)
+        infoembed = discord.Embed(title="<:info:758451109919981580> Info", description="A Utilities Discord Bot with reliability and simplicity", color=0x7289DA)
         infoembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        infoembed.add_field(name= "<:tabs:752603220945141852> Updates", value="Version 0.9 \n<:status_online:752277014668640296> Finished info, help, ping, kick, ban, avatar, mention, slowmode, clear commands \n<:status_idle:752277014651863070> Making welcome-leave message\n<:status_dnd:752277014345678989> Future things are reaction roles and modlog", inline=True)
+        infoembed.add_field(name= "<:check:758363543002808371> Updates", value="Version 1.0 \n<:translate:758449663517917195> Translators Needed.\nIf you can speak another language fluently or know someone who can DM isirk#001.", inline=True)
         infoembed.add_field(name= ":link: Links", value="[Bot Site](https://asksirk.com/Astro) \n[Github Repository](https://github.com/ISIRK/Astro) \n[Patreon](https://www.patreon.com/Astro_Bot)")
-        infoembed.add_field(name="About", value="<:python:757007320621252619> Made in Python with :heart: by isirk#0001", inline=False)
+        infoembed.add_field(name="About", value="<:code:758447982688862238> Made with :heart: in <:python:758139554670313493>\nOwned, Developed, and Run by isirk#0001", inline=False)
         infoembed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         await ctx.send(embed=infoembed)
 
