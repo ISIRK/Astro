@@ -2,8 +2,17 @@
 <br>
 A **Private** Utilities Discord Bot with reliability and simplicity
 <br>
-It is a WIP but you can support the development by going to Astro's Patreon or you can Dm me if you would like to contribute to the code.
+This Bot is a Private Discord Bot but you can request Astro Bot for your server by DM'ing me @ isirk#001 (bot developer)
+You can also request some commands by joining our support discord server.
 
+Format for requesting Astro for your server:<br>
+` Name:(Discord Tag)`<br>
+` Server Name:`<br>
+` Server Invite:`<br>
+` Ammount of Members:`<br>
+` Why you want Astro in your server:`<br>
+` (Optional)Any other thing you want me to know?`
+  
 <br>
 
 [Patreon](https://www.patreon.com/Astro_Bot)
