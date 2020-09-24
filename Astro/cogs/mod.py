@@ -16,7 +16,7 @@ class Mod(commands.Cog):
         else:
             await user.kick()
             embed = discord.Embed(title=f'User {user.name} has been kicked.', color=0x7289DA)
-            embed.add_field(name="Goodbye!", value=":boot:")
+            embed.add_field(name="Bai!", value=":wave:")
             embed.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=embed)
 
@@ -29,7 +29,7 @@ class Mod(commands.Cog):
         else:
             await user.ban()
             embed = discord.Embed(title=f'User {user.name} has been banned.', color=0x7289DA)
-            embed.add_field(name="Goodbye!", value=":hammer:")
+            embed.add_field(name="Bai!", value=":hammer:")
             embed.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=embed)
 
