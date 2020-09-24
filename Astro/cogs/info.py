@@ -17,12 +17,12 @@ class info(commands.Cog):
     @commands.command()
     async def info(self, ctx):
         '''Get information about the bot.'''
-        infoembed = discord.Embed(title="<:info:758451109919981580> Info", description="A Utilities Discord Bot with reliability and simplicity", color=0x7289DA)
+        infoembed = discord.Embed(title="Info", description="A Utilities Discord Bot with reliability and simplicity", color=0x7289DA)
         infoembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        infoembed.add_field(name= "<:check:758363543002808371> Updates", value="Version 1.0 \n<:translate:758449663517917195> Translators Needed.\nIf you can speak another language fluently or know someone who can DM isirk#001.", inline=True)
+        infoembed.add_field(name= "<:check:758363543002808371> News", value="<:translate:758449663517917195> Translators Needed.\nIf you can speak another language fluently or know someone who can DM isirk#001.", inline=True)
         infoembed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758451109919981580.png?v=1")
-        infoembed.add_field(name= ":link: Links", value="[Bot Site](https://asksirk.com/Astro) \n[Github Repository](https://github.com/ISIRK/Astro) \n[Patreon](https://www.patreon.com/Astro_Bot)")
-        infoembed.add_field(name="About", value="<:code:758447982688862238> Made with :heart: in <:python:758139554670313493>\nOwned, Developed, and Run by isirk#0001", inline=False)
+        infoembed.add_field(name= ":link: Links", value="[Bot Site](https://asksirk.com/Astro) \n[Github Repository](https://github.com/ISIRK/Astro) \n[Patreon](https://www.patreon.com/Astro_Bot)", inline=False)
+        infoembed.add_field(name="About", value="Version 1.0 \nMade with :heart: in <:python:758139554670313493>\nOwned, Developed, and Run by isirk#0001", inline=False)
         infoembed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         await ctx.send(embed=infoembed)
 
@@ -44,7 +44,8 @@ class info(commands.Cog):
         '''Get support information.'''
         supportembed = discord.Embed(title="Support", color=0x7289DA)
         supportembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        supportembed.add_field(name=":link: Links", value="[Bot Site](https://asksirk.com/Astro) \n[Github Repository](https://github.com/ISIRK/Astro) \n[Patreon](https://www.patreon.com/Astro_Bot)", inline=True)
+        supportembed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
+        supportembed.add_field(name=":link: Links", value="Bot Site: https://asksirk.com/Astro\nGithub Repository: https://github.com/ISIRK/Astro\nPatreon: https://www.patreon.com/Astro_Bot", inline=True)
         supportembed.add_field(name="Contact", value="To contact dm isirk#0001 or email me @ isirk@asksirk.com", inline=True)
         supportembed.set_footer(text="Use [prefix] help or info.")
         await ctx.send(embed=supportembed)
