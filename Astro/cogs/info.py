@@ -45,6 +45,7 @@ class info(commands.Cog):
         supportembed = discord.Embed(title="Support", color=0x7289DA)
         supportembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         supportembed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
+        supportembed.add_field(name="Support Server", value="Support Server: https://discord.gg/7yZqHfG", inline=False)
         supportembed.add_field(name="Contact", value="To contact dm isirk#0001 or email me @ isirk@asksirk.com", inline=False)
         supportembed.add_field(name=":link: Links", value="Bot Site: https://asksirk.com/Astro\nGithub Repository: https://github.com/ISIRK/Astro\nPatreon: https://www.patreon.com/Astro_Bot", inline=False)
         supportembed.set_footer(text="Use [prefix] help or info.")
