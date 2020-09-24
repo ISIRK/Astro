@@ -55,7 +55,7 @@ class info(commands.Cog):
     async def repo(self , ctx):
         '''Get the github repository for the bot.'''
         embed = discord.Embed(title="Astro Bot Repo", color=0x7289DA)
-        embed.add_field(name="GitHub Repository", value="https://github.com/ISIRK/Astro", inline=False)
+        embed.add_field(name="GitHub Repository:", value="https://github.com/ISIRK/Astro", inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/758729610237837372/astro.png")
         await ctx.send(embed=embed)
 
