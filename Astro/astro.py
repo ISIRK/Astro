@@ -2,7 +2,7 @@ import discord
 import os
 from discord.ext import commands
 
-list1 = ['^', '<@!751447995270168586> ', 'astro ']
+list1 = ['^', '<@!751447995270168586> ', 'astro ','Astro ']
 bot = commands.Bot(command_prefix = list1)
 
 #bot.remove_command('help')
