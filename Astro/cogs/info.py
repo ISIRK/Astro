@@ -52,10 +52,10 @@ class info(commands.Cog):
         await ctx.send(embed=supportembed)
     
     @commands.command()
-    async def repo(self , ctx):
-        '''Get the github repository for the bot.'''
-        embed = discord.Embed(title="Astro Bot Repo", color=0x7289DA)
-        embed.add_field(name="GitHub Repository:", value="https://github.com/ISIRK/Astro", inline=False)
+    async def invite(self , ctx):
+        '''Get the invite for the bot.'''
+        embed = discord.Embed(title="Invite", color=0x7289DA)
+        embed.add_field(name="Contact", value="Unfortunately Astro Bot is a Private Bot.\nIf You want to invite Astro into your server **DM isirk#0001 on discord with the format below**\n```\nName:(Discord Tag)\nServer Name:\nServer Invite:\nAmmount of Members:\nWhy you want Astro in your server:\n(Optional)Any other thing you want me to know?\n```", inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/758729610237837372/astro.png")
         await ctx.send(embed=embed)
 
