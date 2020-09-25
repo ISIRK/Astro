@@ -31,13 +31,6 @@ class admin(commands.Cog):
         embed=discord.Embed(title='Goodbye', color=0x7289DA)
         await ctx.send(embed=embed)
         await ctx.guild.leave()
-        
-    @commands.command()
-    @commands.has_permissions(manage_nicknames=True)
-    async def nickname(self, ctx: commands.Context, *, nickname: str = None):
-        """Sets the Bot's nickname."""
-            await ctx.guild.me.edit(nick=nickname)
-            await ctx.send(_("Done."))
 
 def setup(bot):
     bot.add_cog(admin(bot))
