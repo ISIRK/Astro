@@ -31,6 +31,7 @@ class utility(commands.Cog):
                               f'<:dnd:758139458598993921> **{statuses[discord.Status.dnd]:,}**\n'
                               f'<:offline:758139458611970088> **{statuses[discord.Status.offline]:,}**\n'
                               f'<:boost:758139554778578954> **Tier {ctx.guild.premium_tier}**\n'
+                              f'Region: **{ctx.guild.region}**\n'
                               f'Boosters: **{ctx.guild.premium_subscription_count}**\n'
                               f'Max File Size: **{round(ctx.guild.filesize_limit / 1048576)} MB**\n'
                               f'Bitrate: **{round(ctx.guild.bitrate_limit / 1000)} kbps**\n'
