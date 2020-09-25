@@ -31,6 +31,20 @@ class admin(commands.Cog):
         embed=discord.Embed(title='Goodbye', color=0x7289DA)
         await ctx.send(embed=embed)
         await ctx.guild.leave()
+        
+    @commands.command()
+    @commands.has_permissions(manage_nicknames=True)
+    async def nickname(self, ctx: commands.Context, *, nickname: str = None):
+        """Sets the Bot's nickname."""
+        try:
+            if len(nickname) > 32:
+                await ctx.send(_("Failed to change nickname. Must be 32 characters or fewer."))
+                return
+            await ctx.guild.me.edit(nick=nickname)
+        except discord.Forbidden:
+            await ctx.send(_("I do not have the permissions to change my own nickname."))
+        else:
+            await ctx.send(_("Done."))
 
 def setup(bot):
     bot.add_cog(admin(bot))
