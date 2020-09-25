@@ -105,31 +105,6 @@ class utility(commands.Cog):
         pingembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         pingembed.add_field(name="Pong!", value=f'```autohotkey\n{round(self.bot.latency * 1000)} ms```')
         await ctx.send(embed=pingembed)
-    
-    
-    @commands.command()
-    async def google(self, ctx, *, query: str):
-        channel = ctx.channel
-        qu, st = await self.client.bwordchecker.bwordcheck(query)
-        if qu == False:
-            reslist = await self.googlethingy.search(query, safesearch=True)
-            if len(reslist) == 0:
-                return await ctx.send("NO RESULTS")
-            else:
-                m = MyMenugoogle(reslist)
-                await m.start(ctx)
-        else:
-            if channel.is_nsfw():
-                reslist = await self.googlethingy.search(query)
-                if len(reslist) == 0:
-                    return await ctx.send("NO RESULTS")
-                else:
-                    m = MyMenugoogle(reslist)
-                    await m.start(ctx)
-            else:
-                return await ctx.send(
-                    f"You have used an NSFW command search query in a Safe for Work channel\n{st}"
-                )
 
 def setup(bot):
     bot.add_cog(utility(bot))
