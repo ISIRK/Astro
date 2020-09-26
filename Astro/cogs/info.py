@@ -59,18 +59,128 @@ class info(commands.Cog):
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/758729610237837372/astro.png")
         await ctx.send(embed=embed)
     
-    @commands.command()
-    async def about(self, ctx):
-        '''Shows the bot Stats'''
-        embed = discord.Embed(title="About", color=0x7289DA)
-        embed.add_field(name='**Info**',
-                        value=f'<:dev:759427919302492160> Developer: isirk#0001 \n'
-                              f'Library: Discord.PY 1.4.1\n'
-                              f'Support Server: https://discord.gg/7yZqHfG \n', inline=False)
-        embed.add_field(name='**Stats**',
-                        value=f'Bot Users: **{len(self.bot.users)}**\n'
-                              f'Commands: **{ctx.bot.commands}**\n', inline=False)
-        await ctx.send(embed=embed)
+    
+	@commands.command(pass_context=True)
+	async def about(self, ctx):
+		"""Lists some general stats about the bot."""
+		bot_member = self.bot.user if not ctx.guild else ctx.guild.get_member(self.bot.user.id)
+		color = bot_member if isinstance(bot_member,discord.Member) else None
+		message = await Message.EmbedText(title="Gathering info...", color=color).send(ctx)
+		
+		# Get guild count
+		guild_count = "{:,}".format(len(self.bot.guilds))
+		
+		# Try to do this more efficiently, and faster
+		total_members = [x.id for x in self.bot.get_all_members()]
+		unique_members = set(total_members)
+		if len(total_members) == len(unique_members):
+			member_count = "{:,}".format(len(total_members))
+		else:
+			member_count = "{:,} ({:,} unique)".format(len(total_members), len(unique_members))
+			
+		# Get commands/cogs count
+		cog_amnt  = 0
+		empty_cog = 0
+		for cog in self.bot.cogs:
+			visible = []
+			for c in self.bot.get_cog(cog).get_commands():
+				if c.hidden:
+					continue
+				visible.append(c)
+			if not len(visible):
+				empty_cog +=1
+				# Skip empty cogs
+				continue
+			cog_amnt += 1
+		
+		cog_count = "{:,} cog".format(cog_amnt)
+		# Easy way to append "s" if needed:
+		if not len(self.bot.cogs) == 1:
+			cog_count += "s"
+		if empty_cog:
+			cog_count += " [{:,} without commands]".format(empty_cog)
+
+		visible = []
+		for command in self.bot.commands:
+			if command.hidden:
+				continue
+			visible.append(command)
+			
+		command_count = "{:,}".format(len(visible))
+		
+		# Get localized created time
+		local_time = UserTime.getUserTime(ctx.author, self.settings, bot_member.created_at)
+		created_at = "{} {}".format(local_time['time'], local_time['zone'])
+		
+		# Get localized joined time if in a server
+		if isinstance(bot_member,discord.Member):
+			local_time = UserTime.getUserTime(ctx.author, self.settings, bot_member.joined_at)
+			joined_at = "{} {}".format(local_time['time'], local_time['zone'])
+		
+		# Get the current prefix
+		prefix = await self.bot.command_prefix(self.bot, ctx.message)
+		prefix = ", ".join([x for x in prefix if not x == "<@!{}> ".format(self.bot.user.id)])
+
+		# Get the owners
+		ownerList = self.settings.getGlobalStat('Owner',[])
+		owners = "Unclaimed..."
+		if len(ownerList):
+			userList = []
+			for owner in ownerList:
+				# Get the owner's name
+				user = self.bot.get_user(int(owner))
+				if not user:
+					userString = "Unknown User ({})".format(owner)
+				else:
+					userString = "{}#{}".format(user.name, user.discriminator)
+				userList.append(userString)
+			owners = ', '.join(userList)
+			
+		# Get bot's avatar url
+		avatar = bot_member.avatar_url
+		if not len(avatar):
+			avatar = bot_member.default_avatar_url
+		
+		# Build the embed
+		fields = [
+			{"name":"Members","value":member_count,"inline":True},
+			{"name":"Servers","value":guild_count,"inline":True},
+			{"name":"Commands","value":command_count + " (in {})".format(cog_count),"inline":True},
+			{"name":"Created","value":created_at,"inline":True},
+			{"name":"Owners","value":owners,"inline":True},
+			{"name":"Prefixes","value":prefix,"inline":True},
+			{"name":"Shard Count","value":self.bot.shard_count,"inline":True}
+		]
+		if isinstance(bot_member,discord.Member):
+			fields.append({"name":"Joined","value":joined_at,"inline":True})
+			# Get status
+			status_text = ":green_heart:"
+			if bot_member.status == discord.Status.offline:
+				status_text = ":black_heart:"
+			elif bot_member.status == discord.Status.dnd:
+				status_text = ":heart:"
+			elif bot_member.status == discord.Status.idle:
+				status_text = ":yellow_heart:"
+			fields.append({"name":"Status","value":status_text,"inline":True})
+
+			if bot_member.activity and bot_member.activity.name:
+				play_list = [ "Playing", "Streaming", "Listening to", "Watching" ]
+				try:
+					play_string = play_list[bot_member.activity.type]
+				except:
+					play_string = "Playing"
+				fields.append({"name":play_string,"value":str(bot_member.activity.name),"inline":True})
+				if bot_member.activity.type == 1:
+					# Add the URL too
+					fields.append({"name":"Stream URL","value":"[Watch Now]({})".format(bot_member.activity.url),"inline":True})
+		# Update the embed
+		await Message.Embed(
+			title=DisplayName.name(bot_member) + " Info",
+			color=color,
+			description="Current Bot Information",
+			fields=fields,
+			thumbnail=avatar
+		).edit(ctx, message)
 
 def setup(bot):
     bot.add_cog(info(bot))
