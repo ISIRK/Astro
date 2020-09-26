@@ -58,6 +58,19 @@ class info(commands.Cog):
         embed.add_field(name="Contact", value="Unfortunately Astro Bot is a Private Bot.\nIf You want to invite Astro into your server\n**DM isirk#0001 on discord with the format below:**\n```\nName:(Discord Tag)\nServer Name:\nServer Invite:\nAmmount of Members:\nWhy you want Astro in your server:\n(Optional)Any other thing you want me to know?\n```", inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/758729610237837372/astro.png")
         await ctx.send(embed=embed)
+    
+    @commands.command()
+    async def about(self, ctx):
+        '''Shows the bot Stats'''
+        embed = discord.Embed(title="About", color=0x7289DA)
+        embed.add_field(name='**Info**',
+                        value=f'<:dev:759427919302492160> Developer: isirk#0001 \n'
+                              f'Library: Discord.PY 1.4.1\n'
+                              f'Support Server: https://discord.gg/7yZqHfG \n', inline=False)
+        embed.add_field(name='**Stats**',
+                        value=f'Bot Users: **{ctx.bot.users}**\n'
+                              f'Commands: **{ctx.bot.commands}**\n', inline=False
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(info(bot))
