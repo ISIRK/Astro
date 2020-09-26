@@ -58,6 +58,50 @@ class info(commands.Cog):
         embed.add_field(name="Contact", value="Unfortunately Astro Bot is a Private Bot.\nIf You want to invite Astro into your server\n**DM isirk#0001 on discord with the format below:**\n```\nName:(Discord Tag)\nServer Name:\nServer Invite:\nAmmount of Members:\nWhy you want Astro in your server:\n(Optional)Any other thing you want me to know?\n```", inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/758729610237837372/astro.png")
         await ctx.send(embed=embed)
+    
+    @commands.command()
+    async def about(self, ctx):
+        """Tells you information about the bot itself."""
+
+        revision = self.get_last_commits()
+        embed = discord.Embed(description='Latest Changes:\n' + revision)
+        embed.title = 'Official Bot Server Invite'
+        embed.url = 'https://discord.gg/DWEaqMy'
+        embed.colour = discord.Colour.blurple()
+
+        owner = self.bot.get_user(self.bot.owner_id)
+        embed.set_author(name=str(owner), icon_url=owner.avatar_url)
+
+        # statistics
+        total_members = 0
+        total_unique = len(self.bot.users)
+
+        text = 0
+        voice = 0
+        guilds = 0
+        for guild in self.bot.guilds:
+            guilds += 1
+            total_members += guild.member_count
+            for channel in guild.channels:
+                if isinstance(channel, discord.TextChannel):
+                    text += 1
+                elif isinstance(channel, discord.VoiceChannel):
+                    voice += 1
+
+        embed.add_field(name='Members', value=f'{total_members} total\n{total_unique} unique')
+        embed.add_field(name='Channels', value=f'{text + voice} total\n{text} text\n{voice} voice')
+
+        memory_usage = self.process.memory_full_info().uss / 1024**2
+        cpu_usage = self.process.cpu_percent() / psutil.cpu_count()
+        embed.add_field(name='Process', value=f'{memory_usage:.2f} MiB\n{cpu_usage:.2f}% CPU')
+
+        version = pkg_resources.get_distribution('discord.py').version
+        embed.add_field(name='Guilds', value=guilds)
+        embed.add_field(name='Commands Run', value=sum(self.bot.command_stats.values()))
+        embed.add_field(name='Uptime', value=self.get_bot_uptime(brief=True))
+        embed.set_footer(text=f'Made with discord.py v{version}', icon_url='http://i.imgur.com/5BFecvA.png')
+        embed.timestamp = datetime.datetime.utcnow()
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(info(bot))
