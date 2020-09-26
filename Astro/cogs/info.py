@@ -69,7 +69,7 @@ class info(commands.Cog):
                               f'Support Server: https://discord.gg/7yZqHfG \n', inline=False)
         embed.add_field(name='**Stats**',
                         value=f'Bot Users: **{ctx.bot.users}**\n'
-                              f'Commands: **{ctx.bot.commands}**\n', inline=False
+                              f'Commands: **{ctx.bot.commands}**\n', inline=False)
         await ctx.send(embed=embed)
 
 def setup(bot):
