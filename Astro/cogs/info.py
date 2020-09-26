@@ -68,7 +68,7 @@ class info(commands.Cog):
                               f'Library: Discord.PY 1.4.1\n'
                               f'Support Server: https://discord.gg/7yZqHfG \n', inline=False)
         embed.add_field(name='**Stats**',
-                        value=f'Bot Users: **{ctx.bot.users}**\n'
+                        value=f'Bot Users: **{len(self.bot.users)}**\n'
                               f'Commands: **{ctx.bot.commands}**\n', inline=False)
         await ctx.send(embed=embed)
 
