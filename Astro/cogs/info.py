@@ -59,8 +59,7 @@ class info(commands.Cog):
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/758729610237837372/astro.png")
         await ctx.send(embed=embed)
     
-    
-	@commands.command()
+    @commands.command()
     async def about(self, ctx):
         """Tells you information about the bot itself."""
 
