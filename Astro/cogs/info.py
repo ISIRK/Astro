@@ -60,7 +60,7 @@ class info(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command()
-    async def about(self, ctx):
+        async def about(self, ctx):
         '''Shows the bot Stats'''
         embed = discord.Embed(title="About", color=0x7289DA)
         embed.add_field(name='**Info**',
