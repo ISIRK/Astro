@@ -10,8 +10,7 @@ bot = commands.Bot(command_prefix = list1)
 @bot.event
 async def on_ready():
     print('{0.user} is up and running'.format(bot))
-    #await bot.change_presence(activity=discord.Game(name="Astronomical"))
-
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=f"{len(bot.users)} users"))
 @bot.event
 async def on_message(message):
     await bot.process_commands(message)
@@ -46,5 +45,5 @@ for filename in os.listdir('./Astro/cogs'):
 
 bot.load_extension("jishaku")
 
-#24688
+#2418
 bot.run('')
