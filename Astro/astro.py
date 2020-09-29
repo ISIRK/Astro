@@ -13,7 +13,6 @@ async def on_ready():
 @bot.event
 async def on_message(message):
     await bot.process_commands(message)
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=f"{len(bot.users)} users"))
     if message.author == bot.user:
         return
 
@@ -45,5 +44,5 @@ for filename in os.listdir('./Astro/cogs'):
 
 bot.load_extension("jishaku")
 
-#2418
+#3549
 bot.run('')

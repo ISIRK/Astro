@@ -31,6 +31,13 @@ class admin(commands.Cog):
         embed=discord.Embed(title='Goodbye', color=0x7289DA)
         await ctx.send(embed=embed)
         await ctx.guild.leave()
+    
+    @commands.is_owner()
+    @commands.command(aliases=['us'])
+    async def updatestatus(self, ctx):
+        '''Update Status'''
+        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=f"{len(self.bot.users)} users"))
+        await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {len(self.bot.users)} users`')
 
 def setup(bot):
     bot.add_cog(admin(bot))
