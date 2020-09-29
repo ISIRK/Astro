@@ -31,4 +31,22 @@ You can also request some commands by joining our support discord server.<br>
 
 [Support Discord Server](https://discord.gg/s5ZPSRe)
 
-![Astro Logo](Images/astro.png)
+## Contribute
+1. Fork the repository
+2. Clone the repository & install required dependencies:
+```
+$ git clone git@github.com:YOUR_GITHUB_USERNAME/Astro
+$ npm install
+```
+3. Create a `./config.json` file in the root directory of the project paste the following code:
+```json
+{
+  "prefix": "!",
+  "token": "YOUR_BOT_TOKEN_HERE"
+}
+```
+and replace `YOUR_BOT_TOKEN_HERE` with a new bot token from https://discord.com/developers/applications
+
+### Prerequisites
+- [Python](https://www.python.org/)
+- [Discord.py](https://discordpy.readthedocs.io/en/latest/index.html)
