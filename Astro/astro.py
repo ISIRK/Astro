@@ -10,10 +10,10 @@ bot = commands.Bot(command_prefix = list1)
 @bot.event
 async def on_ready():
     print('{0.user} is up and running'.format(bot))
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=f"{len(bot.users)} users"))
 @bot.event
 async def on_message(message):
     await bot.process_commands(message)
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=f"{len(bot.users)} users"))
     if message.author == bot.user:
         return
 
