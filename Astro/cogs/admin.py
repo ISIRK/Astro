@@ -36,7 +36,7 @@ class admin(commands.Cog):
     @commands.command(aliases=['us'])
     async def updatestatus(self, ctx):
         '''Update Status'''
-        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=f"{len(self.bot.users)} users"))
+        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{len(self.bot.users)} users"))
         await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {len(self.bot.users)} users`')
 
 def setup(bot):
