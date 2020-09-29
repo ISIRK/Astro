@@ -1,6 +1,6 @@
 <img src="Images/astro.png" align="right" height=300 width=300>
 
-# Astro - Discord Bot
+# [Astro - Discord Bot](https://asksirk.com/Astro)
 <p>
   <img src="https://img.shields.io/discord/743121194911531110">
   <img src="https://img.shields.io/github/contributors/ISIRK/Astro?style=flat">
