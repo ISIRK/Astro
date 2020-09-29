@@ -1,4 +1,13 @@
+<img src="Images/astro.png" align="right" height=300 width=300>
+
 # Astro - Discord Bot
+<p>
+  <img src="https://img.shields.io/discord/743121194911531110">
+  <img src="https://img.shields.io/github/contributors/ISIRK/Astro?style=flat">
+  <img src="https://img.shields.io/github/last-commit/ISIRK/Astro">
+  <img src="https://img.shields.io/github/v/release/ISIRK/Astro?include_prereleases&style=flat">
+<p>
+
 <br>
 A Private Utilities Discord Bot with reliability and simplicity<br>
 This Bot is a Private Discord Bot but you can request Astro Bot for your server by DM'ing me @ isirk#0001<br>
