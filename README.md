@@ -33,11 +33,12 @@ You can also request some commands by joining our support discord server.<br>
 [Support Discord Server](https://discord.gg/s5ZPSRe)
 
 ## Contribute
+**Make sure that you have the latest version of [python](https://www.python.org/) downloaded**
 1. Fork the repository
 2. Clone the repository & install required dependencies:
 ```
 $ git clone git@github.com:YOUR_GITHUB_USERNAME/Astro
-$ npm install
+$ python -m pip install -U discord.py
 ```
 3. Create a `.json` file in the root directory of the project paste the following code:
 ```
