@@ -1,4 +1,4 @@
-<img src="Images/astro.png" align="right" height=300 width=300>
+<img src="Images/astro.png" align="right" align="right" height="200" />
 
 # [Astro - Discord Bot](https://asksirk.com/Astro)
 <p>
@@ -15,7 +15,7 @@ This Bot is a Private Discord Bot but you can request Astro Bot for your server 
 You can also request some commands by joining our support discord server.<br>
 <br>
 
-**Format for requesting Astro for your server:**
+## Format for requesting Astro for your server:
 
 ` Name:(Discord Tag)`<br>
 ` Server Name:`<br>
@@ -33,17 +33,34 @@ You can also request some commands by joining our support discord server.<br>
 [Support Discord Server](https://discord.gg/s5ZPSRe)
 
 ## Contribute
+**We suggest that instead of self-hosting Astro you have us Host it. To request Astro for your server see [here](https://github.com/ISIRK/Astro/blob/master/README.md#format-for-requesting-astro-for-your-server)**
+
+**If you wish to continue...**
+**Make sure that you have the latest version of [python](https://www.python.org/) downloaded**
 1. Fork the repository
 2. Clone the repository & install required dependencies:
 ```
 $ git clone git@github.com:YOUR_GITHUB_USERNAME/Astro
-$ npm install
+$ python -m pip install -U discord.py
 ```
-3. Create a `.env` file in the root directory of the project paste the following code:
-```env
-TOKEN="YOUR_BOT_TOKEN_HERE"
+3. Create a `.json` file in the root directory of the project paste the following code:
+```json
+{
+"TOKEN" : "YOUR_TOKEN_HERE",
+"PREFIX" : ["PREFIX" , "PREFIX" , "PREFIX"]
+}
 ```
-and replace `YOUR_BOT_TOKEN_HERE` with a new bot token from https://discord.com/developers/applications
+and replace `YOUR_TOKEN_HERE` with a new bot token from https://discord.com/developers/applications
+
+4. In Astro/astro.py line #7 (Lines Below); Change `tokenFile = "/home/pi/Astro/Astro/.json"` to the path leading to your `.json` file.
+```py
+##CONFIG
+tokenFile = "/home/pi/Astro/Astro/.json"
+with open(tokenFile) as f:
+    data = json.load(f)
+token = data['TOKEN']
+prefixes = data['PREFIX']
+```
 
 ### Prerequisites
 - [Python](https://www.python.org/)
