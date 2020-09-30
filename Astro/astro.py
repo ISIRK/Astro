@@ -1,6 +1,7 @@
 import discord
 import os
 from discord.ext import commands
+from dotenv import load_dotenv
 
 list1 = ['^', '<@!751447995270168586> ', 'astro ','Astro ']
 bot = commands.Bot(command_prefix = list1)
@@ -45,4 +46,4 @@ for filename in os.listdir('./Astro/cogs'):
 bot.load_extension("jishaku")
 
 #3549
-bot.run('')
+bot.run(os.getenv('TOKEN'))

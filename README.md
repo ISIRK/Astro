@@ -39,12 +39,9 @@ You can also request some commands by joining our support discord server.<br>
 $ git clone git@github.com:YOUR_GITHUB_USERNAME/Astro
 $ npm install
 ```
-3. Create a `./config.json` file in the root directory of the project paste the following code:
-```json
-{
-  "prefix": "!",
-  "token": "YOUR_BOT_TOKEN_HERE"
-}
+3. Create a `.env` file in the root directory of the project paste the following code:
+```env
+TOKEN="YOUR_BOT_TOKEN_HERE"
 ```
 and replace `YOUR_BOT_TOKEN_HERE` with a new bot token from https://discord.com/developers/applications
 
