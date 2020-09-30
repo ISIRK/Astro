@@ -15,7 +15,7 @@ This Bot is a Private Discord Bot but you can request Astro Bot for your server 
 You can also request some commands by joining our support discord server.<br>
 <br>
 
-**Format for requesting Astro for your server:**
+## Format for requesting Astro for your server:
 
 ` Name:(Discord Tag)`<br>
 ` Server Name:`<br>
@@ -33,7 +33,8 @@ You can also request some commands by joining our support discord server.<br>
 [Support Discord Server](https://discord.gg/s5ZPSRe)
 
 ## Contribute
-#### We suggest that instead of self-hosting Astro you have us Host it. To request Astro for your server see above.
+**We suggest that instead of self-hosting Astro you have us Host it. To request Astro for your server see above.**
+
 **Make sure that you have the latest version of [python](https://www.python.org/) downloaded**
 1. Fork the repository
 2. Clone the repository & install required dependencies:
