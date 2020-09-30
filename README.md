@@ -41,13 +41,22 @@ $ git clone git@github.com:YOUR_GITHUB_USERNAME/Astro
 $ python -m pip install -U discord.py
 ```
 3. Create a `.json` file in the root directory of the project paste the following code:
-```
+```json
 {
 "TOKEN" : "YOUR_TOKEN_HERE",
 "PREFIX" : ["PREFIX" , "PREFIX" , "PREFIX"]
 }
 ```
 and replace `YOUR_TOKEN_HERE` with a new bot token from https://discord.com/developers/applications
+4. In Astro/astro.py line #7 (Lines Below); Change `tokenFile = "/home/pi/Astro/Astro/.json"` to the path leading to your `.json` file.
+```py
+##CONFIG
+tokenFile = "/home/pi/Astro/Astro/.json"
+with open(tokenFile) as f:
+    data = json.load(f)
+token = data['TOKEN']
+prefixes = data['PREFIX']
+```
 
 ### Prerequisites
 - [Python](https://www.python.org/)
