@@ -2,11 +2,21 @@ import os
 
 import discord
 from discord.ext import commands
+import json
 
-list1 = ['^', '<@!751447995270168586> ', 'astro ','Astro ']
-bot = commands.Bot(command_prefix = list1 )
+##CONFIG
+tokenFile = "/home/pi/Astro/Astro/.json"
+with open(tokenFile) as f:
+    data = json.load(f)
+token = data['TOKEN']
+prefixes = data['PREFIX']
+
+bot = commands.Bot(command_prefix = prefixes)
 
 #bot.remove_command('help')
+
+
+
 
 @bot.event
 async def on_ready():
@@ -45,5 +55,5 @@ for filename in os.listdir('./Astro/cogs'):
 
 bot.load_extension("jishaku")
 
-#6849
-bot.run('')
+#7637
+bot.run(token)
