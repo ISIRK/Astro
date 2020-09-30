@@ -1,4 +1,4 @@
-<img src="Images/astro.png" align="right" height=300 width=300>
+<img src="Images/astro.png" align="right" align="right" height="200" />
 
 # [Astro - Discord Bot](https://asksirk.com/Astro)
 <p>
@@ -39,11 +39,14 @@ You can also request some commands by joining our support discord server.<br>
 $ git clone git@github.com:YOUR_GITHUB_USERNAME/Astro
 $ npm install
 ```
-3. Create a `.env` file in the root directory of the project paste the following code:
-```env
-TOKEN="YOUR_BOT_TOKEN_HERE"
+3. Create a `.json` file in the root directory of the project paste the following code:
 ```
-and replace `YOUR_BOT_TOKEN_HERE` with a new bot token from https://discord.com/developers/applications
+{
+"TOKEN" : "YOUR_TOKEN_HERE",
+"PREFIX" : ["PREFIX" , "PREFIX" , "PREFIX"]
+}
+```
+and replace `YOUR_TOKEN_HERE` with a new bot token from https://discord.com/developers/applications
 
 ### Prerequisites
 - [Python](https://www.python.org/)
