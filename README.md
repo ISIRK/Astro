@@ -48,6 +48,7 @@ $ python -m pip install -U discord.py
 }
 ```
 and replace `YOUR_TOKEN_HERE` with a new bot token from https://discord.com/developers/applications
+
 4. In Astro/astro.py line #7 (Lines Below); Change `tokenFile = "/home/pi/Astro/Astro/.json"` to the path leading to your `.json` file.
 ```py
 ##CONFIG
