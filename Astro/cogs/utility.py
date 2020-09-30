@@ -106,5 +106,11 @@ class utility(commands.Cog):
         pingembed.add_field(name="Pong!", value=f'```autohotkey\n{round(self.bot.latency * 1000)} ms```')
         await ctx.send(embed=pingembed)
 
+    @commands.command()
+    async def stats(self ,ctx):
+        '''Get the bot stats'''
+        await ctx.send(f'Astro is serving {len(self.bot.users)} users in {len(self.bot.guilds)} guilds.')
+
+
 def setup(bot):
     bot.add_cog(utility(bot))
