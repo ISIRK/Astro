@@ -33,6 +33,7 @@ You can also request some commands by joining our support discord server.<br>
 [Support Discord Server](https://discord.gg/s5ZPSRe)
 
 ## Contribute
+#### We suggest that instead of self-hosting Astro you have us Host it. To request Astro for your server see above.
 **Make sure that you have the latest version of [python](https://www.python.org/) downloaded**
 1. Fork the repository
 2. Clone the repository & install required dependencies:
