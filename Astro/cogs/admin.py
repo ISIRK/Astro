@@ -33,11 +33,18 @@ class admin(commands.Cog):
         await ctx.guild.leave()
     
     @commands.is_owner()
-    @commands.command(aliases=['us'])
-    async def updatestatus(self, ctx):
-        '''Update Status'''
-        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{len(self.bot.users)} users"))
-        await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {len(self.bot.users)} users`')
+    @commands.command(aliases=['ps'])
+    async def playingstatus(self, ctx, *, status):
+        '''Change playing Status'''
+        await self.bot.change_presence(activity=discord.Game(name=f"{status}"))
+        await ctx.send(f'<:online:758139458767290421> Changed status to `{status}`')
+    @commands.is_owner()
+    @commands.command(aliases=['ws'])
+    async def watchingstatus(self, ctx, *, status):
+        '''Change watching Status'''
+        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{status}"))
+        await ctx.send(f'<:online:758139458767290421> Changed status to `{status}`')
+
 
 def setup(bot):
     bot.add_cog(admin(bot))
