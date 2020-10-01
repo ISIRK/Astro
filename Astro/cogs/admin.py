@@ -48,9 +48,9 @@ class admin(commands.Cog):
     @commands.command(aliases=['bs'])
     async def botstatus(self, ctx):
         '''Change the bot status to bot stats'''
-        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name=f"{len(self.bot.users)} users in {len(self.bot.guilds)} guilds"))
-        await ctx.send(f'<:online:758139458767290421> Changed status to `{len(self.bot.users)} users in {len(self.bot.guilds)} guilds`')
-
+        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name=f"{len(self.bot.users)} users"))
+        await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {len(self.bot.users)} users`')
+        #guilds;  [in {len(self.bot.guilds)} guilds]
 
 def setup(bot):
     bot.add_cog(admin(bot))
