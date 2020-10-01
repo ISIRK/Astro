@@ -37,13 +37,13 @@ class admin(commands.Cog):
     async def playingstatus(self, ctx, *, status):
         '''Change playing Status'''
         await self.bot.change_presence(activity=discord.Game(name=f"{status}"))
-        await ctx.send(f'<:online:758139458767290421> Changed status to `{status}`')
+        await ctx.send(f'<:online:758139458767290421> Changed status to `Playing {status}`')
     @commands.is_owner()
     @commands.command(aliases=['ws'])
     async def watchingstatus(self, ctx, *, status):
         '''Change watching Status'''
         await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{status}"))
-        await ctx.send(f'<:online:758139458767290421> Changed status to `{status}`')
+        await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {status}`')
     @commands.is_owner()
     @commands.command(aliases=['bs'])
     async def botstatus(self, ctx):
