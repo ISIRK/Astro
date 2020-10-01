@@ -44,6 +44,12 @@ class admin(commands.Cog):
         '''Change watching Status'''
         await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{status}"))
         await ctx.send(f'<:online:758139458767290421> Changed status to `{status}`')
+    @commands.is_owner()
+    @commands.command(aliases=['bs'])
+    async def botstatus(self, ctx):
+        '''Change the bot status to bot stats'''
+        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name=f"{len(self.bot.users)} users in {len(self.bot.guilds)} guilds"))
+        await ctx.send(f'<:online:758139458767290421> Changed status to `{len(self.bot.users)} users in {len(self.bot.guilds)} guilds`')
 
 
 def setup(bot):
