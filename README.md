@@ -32,7 +32,9 @@ You can also request some commands by joining our support discord server.<br>
 
 [Support Discord Server](https://discord.gg/s5ZPSRe)
 
-## Contribute
+## Contribute/Self-Host
+**Note: YOU MUST CREDIT ME EITHER BY SAYING `ISIRK or Isaac Sirkin`**
+
 **We suggest that instead of self-hosting Astro you have us Host it. To request Astro for your server see [here](https://github.com/ISIRK/Astro/blob/master/README.md#format-for-requesting-astro-for-your-server)**
 
 **If you wish to continue...**
