@@ -62,7 +62,7 @@ class admin(commands.Cog):
     async def status_online(self, ctx):
         '''Change status to online'''
         await self.bot.change_presence(status=discord.Status.online)
-        await ctx.send(f'Changed status to <:online:758139458767290421>')
+        await ctx.send(f'Reset status to <:online:758139458767290421>')
         
 def setup(bot):
     bot.add_cog(admin(bot))
