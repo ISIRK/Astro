@@ -51,6 +51,30 @@ class admin(commands.Cog):
         await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name=f"{len(self.bot.users)} users"))
         await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {len(self.bot.users)} users`')
         #guilds;  [in {len(self.bot.guilds)} guilds]
+    @commands.is_owner()
+    @commands.command(aliases=['dnd'])
+    async def donotdisturb(self, ctx):
+        '''Change the bot status to dnd'''
+        await bot.change_presence(status=discord.Status.dnd)
+        await ctx.send(f'<:online:758139458767290421> Changed status to <:dnd:758139458598993921>')
+    @commands.is_owner()
+    @commands.command(aliases=['online'])
+    async def statusonline(self, ctx):
+        '''Change the bot status to online'''
+        await bot.change_presence(status=discord.Status.online)
+        await ctx.send(f'<:online:758139458767290421> Changed status to <:online:758139458767290421>')
+    @commands.is_owner()
+    @commands.command(aliases=['idle'])
+    async def statusidle(self, ctx):
+        '''Change the bot status to idle'''
+        await bot.change_presence(status=discord.Status.idle)
+        await ctx.send(f'<:online:758139458767290421> Changed status to <:idle:758139458406711307>')
+    @commands.is_owner()
+    @commands.command(aliases=['offline'])
+    async def statusoffline(self, ctx):
+        '''Change the bot status to idle'''
+        await bot.change_presence(status=discord.Status.offline)
+        await ctx.send(f'<:online:758139458767290421> Changed status to <:offline:758139458611970088>')    
 
 def setup(bot):
     bot.add_cog(admin(bot))
