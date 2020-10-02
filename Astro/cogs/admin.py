@@ -63,6 +63,15 @@ class admin(commands.Cog):
         '''Change status to online'''
         await self.bot.change_presence(status=discord.Status.online)
         await ctx.send(f'Changed status to <:online:758139458767290421>')
+    @commands.is_owner()
+    @commands.group(aliases=['rtfd'], invoke_without_command=True)
+    async def rtfm(self, ctx, *, obj: str = None):
+        """Gives you a documentation link for a discord.py entity.
+        Events, objects, and functions are all supported through a
+        a cruddy fuzzy algorithm.
+        """
+        key = self.transform_rtfm_language_key(ctx, 'latest')
+        await self.do_rtfm(ctx, key, obj)
         
 def setup(bot):
     bot.add_cog(admin(bot))
