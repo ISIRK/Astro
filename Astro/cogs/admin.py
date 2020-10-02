@@ -55,7 +55,7 @@ class admin(commands.Cog):
     @commands.command(aliases=['sl'])
     async def status_listening(self, ctx, *, status):
         '''Change watching Status'''
-        await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f"{status}"))
+        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f"{status}"))
         await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {status}`')
         
 def setup(bot):
