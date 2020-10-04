@@ -2,7 +2,10 @@
 
 # [Astro - Discord Bot](https://asksirk.com/Astro)
 <p>
-  <img src="https://img.shields.io/discord/743121194911531110">
+  
+  [![Support Server](https://img.shields.io/discord/743121194911531110.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge)](https://discord.gg/7yZqHfG)
+  
+  [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
   <img src="https://img.shields.io/github/contributors/ISIRK/Astro?style=flat">
   <img src="https://img.shields.io/github/last-commit/ISIRK/Astro">
   <img src="https://img.shields.io/github/v/release/ISIRK/Astro?include_prereleases&style=flat">
