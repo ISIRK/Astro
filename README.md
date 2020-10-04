@@ -3,7 +3,9 @@
 # [Astro - Discord Bot](https://asksirk.com/Astro)
 <p>
   
-  [![Support Server](https://img.shields.io/discord/743121194911531110.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge)](https://discord.gg/7yZqHfG) [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
+  [![Support Server](https://img.shields.io/discord/743121194911531110.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge)](https://discord.gg/7yZqHfG)
+  
+  [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
 <p>
 
 <br>
