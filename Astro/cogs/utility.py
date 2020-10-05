@@ -2,6 +2,7 @@ from multiprocessing.connection import Client
 import discord
 from discord import Embed
 from discord.ext import commands
+from discord.ext.commands import context
 from discord.shard import ShardInfo
 from discord.user import User
 from discord.utils import get
@@ -110,6 +111,16 @@ class utility(commands.Cog):
     async def stats(self ,ctx):
         '''Get the bot stats'''
         await ctx.send(f'Astro is serving {len(self.bot.users)} users in {len(self.bot.guilds)} guilds.')
+
+    @commands.is_owner()
+    @commands.command()
+    async def dm(self , ctx, user : discord.Member, *, content):
+        '''Dm a Member'''
+        embed = discord.Embed(color=0x7289DA)
+        embed.set_author(name=f"Sent from {ctx.author}", icon_url=ctx.author.avatar_url)
+        embed.add_field(name="Message:", value=f'{content}')
+        await user.send(embed=embed)
+
 
 
 def setup(bot):
