@@ -10,6 +10,7 @@ from datetime import datetime
 import os
 import collections
 import time, datetime
+from discord.ext.commands.cooldowns import BucketType
 
 class utility(commands.Cog):
     def __init__(self, bot):
@@ -112,15 +113,15 @@ class utility(commands.Cog):
         '''Get the bot stats'''
         await ctx.send(f'Astro is serving {len(self.bot.users)} users in {len(self.bot.guilds)} guilds.')
 
-    @commands.is_owner()
     @commands.command()
-    async def dm(self , ctx, user : discord.Member, *, content):
-        '''Dm a Member'''
+    async def contact(self , ctx, *, content):
+        '''Send a support notice'''
         embed = discord.Embed(color=0x7289DA)
         embed.set_author(name=f"Sent from {ctx.author}", icon_url=ctx.author.avatar_url)
         embed.add_field(name="Message:", value=f'{content}')
-        await user.send(embed=embed)
-        await ctx.send(f"<:check:758363543002808371> Message sent to {user}")
+        u = self.bot.get_user(542405601255489537)
+        await u.send(embed=embed)
+        await ctx.send(f"<:check:758363543002808371> Message sent to {u}")
 
 
 
