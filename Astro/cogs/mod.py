@@ -92,5 +92,16 @@ class Mod(commands.Cog):
         await ctx.channel.edit(slowmode_delay=seconds)
         await ctx.send(f"Slowmode is now {seconds} seconds.")
 
+    @commands.command()
+    @commands.has_permissions(kick_members=True)
+    async def warn(self , ctx, user : discord.Member, *, reason):
+        '''Warn a Member'''
+        guild = ctx.guild
+        embed = discord.Embed(color=0x7289DA)
+        embed.set_author(name=f"Warned By {ctx.author}", icon_url=ctx.author.avatar_url)
+        embed.add_field(name=f"You Have Been Warned in {guild}\nReason:", value=f'{reason}')
+        await user.send(embed=embed)
+        await ctx.send(f"<:help:758453150897799172> Warned {user}")
+
 def setup(bot):
     bot.add_cog(Mod(bot))
