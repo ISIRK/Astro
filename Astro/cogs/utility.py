@@ -120,6 +120,7 @@ class utility(commands.Cog):
         embed.set_author(name=f"Sent from {ctx.author}", icon_url=ctx.author.avatar_url)
         embed.add_field(name="Message:", value=f'{content}')
         await user.send(embed=embed)
+        await ctx.send(f"Message sent to {user}")
 
 
 
