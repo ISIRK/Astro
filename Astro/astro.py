@@ -47,7 +47,7 @@ async def reload(ctx, extension):
     '''Reload a cog.'''
     bot.unload_extension(f'cogs.{extension}')
     bot.load_extension(f'cogs.{extension}')
-    await ctx.send(f'{extension}' " reloaded")
+    await ctx.send(f':repeat: {extension}' " reloaded")
 
 for filename in os.listdir('./Astro/cogs'):
     if filename.endswith('.py'):
@@ -55,5 +55,5 @@ for filename in os.listdir('./Astro/cogs'):
 
 bot.load_extension("jishaku")
 
-#22899
+#26152
 bot.run(token)

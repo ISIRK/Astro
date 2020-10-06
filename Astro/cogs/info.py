@@ -23,7 +23,6 @@ class info(commands.Cog):
         infoembed.add_field(name= "<:news:758781954073821194> News", value="<:translate:758449663517917195> Translators Needed. <:translate:758449663517917195>\nIf you can speak another language fluently or know someone who can DM isirk#0001.", inline=True)
         infoembed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758451109919981580.png?v=1")
         infoembed.add_field(name= ":link: Links", value="[Bot Site](https://asksirk.com/Astro) \n[Github Repository](https://github.com/ISIRK/Astro) \n[Patreon](https://www.patreon.com/Astro_Bot)", inline=False)
-        infoembed.add_field(name="About", value="Version 1.0 **Public Beta**\nMade with :heart: in <:python:758139554670313493>\nOwned, Developed, and Run by isirk#0001", inline=False)
         infoembed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         await ctx.send(embed=infoembed)
 
@@ -66,14 +65,20 @@ class info(commands.Cog):
         helpembed1 = discord.Embed(title="Help", description="A Utilities Discord Bot with reliability and simplicity\n Made By isirk#0001", color=0x7289DA)
         helpembed1.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         helpembed1.add_field(name="Prefix", value="`@Astro ,Astro ,astro ,^`", inline=False)
-        #helpembed1.add_field(name="Bot", value="`help`\n`info`\n`ping`\n`support`")
-        #helpembed1.add_field(name="Mod", value="`kick`\n`ban`\n`mute`\n`unmute`")
-        #helpembed1.add_field(name="Utility", value="`avatar`\n`slowmode`\n`clear`\n`server`\n`user`")
+        helpembed1.add_field(name= "Help", value="React below to change the pages.", inline=False)
+        helpembed1.add_field(name="Pages", value="```yaml\n1) Utility\n```", inline=False)
+        helpembed1.add_field(name="About", value="Version 1.0 **Public Beta**\nMade with :heart: in <:python:758139554670313493>\nOwned, Developed, and Run by isirk#0001", inline=False)
         helpembed1.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+
+        utility = discord.Embed(title="Utility", description="Utiities Command Help", color=discord.Colour.blurple())
+        utility.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        utility.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        utility.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
+        utility.add_field(name="Commands:", value="`avatar|av <[o]mention>` - Get the avatar of the mentioned user.\n`contact` - Send a support notice to the admin.\n`ping` - Get the Bot Ping.\n`server` - Get Info About The Server.\n`stats` - Get the Bot Stats.\n`user <[o]mention>` - Get the Stats of the Mentioned User.", inline=False)
 
         embeds = [
             helpembed1,
-            Embed(title="test page 2", description="Nothing interesting here.", color=0x5599ff),
+            utility,
             Embed(title="test page 3", description="Why are you still here?", color=0x191638)
         ]
 
