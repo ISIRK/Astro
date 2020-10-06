@@ -63,16 +63,16 @@ class info(commands.Cog):
     @commands.command()
     async def newhelp(self, ctx):
 
-        helpembed = discord.Embed(title="Help", description="A Utilities Discord Bot with reliability and simplicity\n Made By isirk#0001", color=0x7289DA)
-        helpembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        helpembed.add_field(name="Prefix", value="`^` (Not Customizeable)", inline=False)
-        helpembed.add_field(name="Bot", value="`help`\n`info`\n`ping`\n`support`")
-        helpembed.add_field(name="Mod", value="`kick`\n`ban`\n`mute`\n`unmute`")
-        helpembed.add_field(name="Utility", value="`avatar`\n`slowmode`\n`clear`\n`server`\n`user`")
-        helpembed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        helpembed1 = discord.Embed(title="Help", description="A Utilities Discord Bot with reliability and simplicity\n Made By isirk#0001", color=0x7289DA)
+        helpembed1.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        helpembed1.add_field(name="Prefix", value="`@Astro ,Astro ,astro ,^` (Not Customizeable[For Now])", inline=False)
+        #helpembed1.add_field(name="Bot", value="`help`\n`info`\n`ping`\n`support`")
+        #helpembed1.add_field(name="Mod", value="`kick`\n`ban`\n`mute`\n`unmute`")
+        #helpembed1.add_field(name="Utility", value="`avatar`\n`slowmode`\n`clear`\n`server`\n`user`")
+        helpembed1.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
 
         embeds = [
-            helpembed,
+            helpembed1,
             Embed(title="test page 2", description="Nothing interesting here.", color=0x5599ff),
             Embed(title="test page 3", description="Why are you still here?", color=0x191638)
         ]
