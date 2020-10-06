@@ -65,7 +65,7 @@ class info(commands.Cog):
 
         helpembed1 = discord.Embed(title="Help", description="A Utilities Discord Bot with reliability and simplicity\n Made By isirk#0001", color=0x7289DA)
         helpembed1.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        helpembed1.add_field(name="Prefix", value="`@Astro ,Astro ,astro ,^` (Not Customizeable[For Now])", inline=False)
+        helpembed1.add_field(name="Prefix", value="`@Astro ,Astro ,astro ,^`", inline=False)
         #helpembed1.add_field(name="Bot", value="`help`\n`info`\n`ping`\n`support`")
         #helpembed1.add_field(name="Mod", value="`kick`\n`ban`\n`mute`\n`unmute`")
         #helpembed1.add_field(name="Utility", value="`avatar`\n`slowmode`\n`clear`\n`server`\n`user`")
