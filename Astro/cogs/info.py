@@ -9,6 +9,7 @@ from datetime import datetime
 import os
 import collections
 import time, datetime
+from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 
 class info(commands.Cog):
     def __init__(self, bot):
@@ -58,6 +59,26 @@ class info(commands.Cog):
         embed.add_field(name="Contact", value="Unfortunately Astro Bot is a Private Bot.\nIf You want to invite Astro into your server\n**DM isirk#0001 on discord with the format below:**\n```\nName:(Discord Tag)\nServer Name:\nServer Invite:\nAmmount of Members:\nWhy you want Astro in your server:\n(Optional)Any other thing you want me to know?\n```", inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/758729610237837372/astro.png")
         await ctx.send(embed=embed)
+
+    @commands.command()
+    async def newhelp(self, ctx):
+
+        helpembed = discord.Embed(title="Help", description="A Utilities Discord Bot with reliability and simplicity\n Made By isirk#0001", color=0x7289DA)
+        helpembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        helpembed.add_field(name="Prefix", value="`^` (Not Customizeable)", inline=False)
+        helpembed.add_field(name="Bot", value="`help`\n`info`\n`ping`\n`support`")
+        helpembed.add_field(name="Mod", value="`kick`\n`ban`\n`mute`\n`unmute`")
+        helpembed.add_field(name="Utility", value="`avatar`\n`slowmode`\n`clear`\n`server`\n`user`")
+        helpembed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+
+        embeds = [
+            helpembed,
+            Embed(title="test page 2", description="Nothing interesting here.", color=0x5599ff),
+            Embed(title="test page 3", description="Why are you still here?", color=0x191638)
+        ]
+
+        paginator = BotEmbedPaginator(ctx, embeds)
+        await paginator.run()
 
 def setup(bot):
     bot.add_cog(info(bot))
