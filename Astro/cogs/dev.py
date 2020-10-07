@@ -34,7 +34,7 @@ class dev(commands.Cog):
     
     @commands.is_owner()
     @commands.command()
-    async def status(self, ctx, type, *, status):
+    async def status(self, ctx, type, *, status=None):
         '''Change the Bot Status'''
         if type == "playing":
             await self.bot.change_presence(activity=discord.Game(name=f"{status}"))
