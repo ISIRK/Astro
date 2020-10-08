@@ -70,12 +70,12 @@ class info(commands.Cog):
         helpembed1.add_field(name="About", value="Version 1.0 **Public Beta**\nMade with :heart: in <:python:758139554670313493>\nOwned, Developed, and Run by isirk#0001", inline=False)
         helpembed1.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         
-        info = discord.Embed(title="Utility", description="Utiities Command Help", color=discord.Colour.blurple())
+        info = discord.Embed(title="Info", description="Information Commands", color=discord.Colour.blurple())
         info.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         info.add_field(name="Commands:", value="`info` - Get Info About the Bot.\n`invite` - Get the invite for Astro.\n`support` Get Support Information.", inline=False)
         info.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
 
-        utility = discord.Embed(title="Utility", description="Utiities Command Help", color=discord.Colour.blurple())
+        utility = discord.Embed(title="Utility", description="Utiity Commands", color=discord.Colour.blurple())
         utility.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         utility.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         utility.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
