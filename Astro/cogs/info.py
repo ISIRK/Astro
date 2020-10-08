@@ -90,6 +90,10 @@ class info(commands.Cog):
 
         paginator = BotEmbedPaginator(ctx, embeds)
         await paginator.run()
+     @bot.command()
+        async def get_prefix(bot, message):
+            extras = await prefixes_for(message.guild) # returns a list
+            return commands.when_mentioned_or(*extras)(bot, message)
 
 def setup(bot):
     bot.add_cog(info(bot))
