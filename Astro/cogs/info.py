@@ -80,12 +80,19 @@ class info(commands.Cog):
         utility.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         utility.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
         utility.add_field(name="Commands:", value="`avatar|av <[o]mention>` - Get the avatar of the mentioned user.\n`contact` - Send a support notice to the admin.\n`ping` - Get the Bot Ping.\n`server` - Get Info About The Server.\n`stats` - Get the Bot Stats.\n`user <[o]mention>` - Get the Stats of the Mentioned User.", inline=False)
+        
+        mod = discord.Embed(title="Mod", description="Moderation Commands", color=discord.Colour.blurple())
+        mod.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        mod.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        mod.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
+        mod.add_field(name="Commands:", value="`kick <user>` - Kick the mentioned User from the Server.\n`ban <user>` - Ban the mentioned User from the Server.\n`clear <number>` - Delete <number> of messages.\n`slowmode <seconds>` - Set the slowmode to an amout of seconds.\n`warn <user> <reason>` - Warns a User.\n~~`mute <user>` - Mutes a User~~\n~~`unmute <user>` - Unmutes a User.", inline=False)
 
         embeds = [
             helpembed1,
             info,
             utility,
-            Embed(title="test page 4", description="Why are you still here?", color=0x191638)
+            mod,
+            Embed(title="test page 5", description="Why are you still here?", color=0x191638)
         ]
 
         paginator = BotEmbedPaginator(ctx, embeds)
