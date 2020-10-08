@@ -27,19 +27,6 @@ class info(commands.Cog):
         await ctx.send(embed=infoembed)
 
     @commands.command()
-    async def help1(self, ctx):
-        '''Old/New help command that is being worked on right now.'''
-        helpembed = discord.Embed(title="Help", description="A Utilities Discord Bot with reliability and simplicity\n Made By isirk#0001", color=0x7289DA)
-        helpembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        helpembed.add_field(name="Prefix", value="`^` (Not Customizeable)", inline=False)
-        helpembed.add_field(name="Bot", value="`help`\n`info`\n`ping`\n`support`")
-        helpembed.add_field(name="Mod", value="`kick`\n`ban`\n`mute`\n`unmute`")
-        helpembed.add_field(name="Utility", value="`avatar`\n`slowmode`\n`clear`\n`server`\n`user`")
-        helpembed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
-
-        await ctx.send(embed=helpembed)
-
-    @commands.command()
     async def support(self, ctx):
         '''Get support information.'''
         supportembed = discord.Embed(title="Support", color=0x7289DA)
@@ -66,7 +53,7 @@ class info(commands.Cog):
         helpembed1.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         helpembed1.add_field(name="Prefix", value="`@Astro ,Astro ,astro ,^`", inline=False)
         helpembed1.add_field(name= "Help", value="React below to change the pages.", inline=False)
-        helpembed1.add_field(name="Pages", value="```yaml\n1) Info\n2) Utility\n```", inline=False)
+        helpembed1.add_field(name="Pages", value="```yaml\n1) Info\n2) Utility\n3) Mod\n```", inline=False)
         helpembed1.add_field(name="About", value="Version 1.0 **Public Beta**\nMade with :heart: in <:python:758139554670313493>\nOwned, Developed, and Run by isirk#0001", inline=False)
         helpembed1.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         
