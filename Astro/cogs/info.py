@@ -69,6 +69,11 @@ class info(commands.Cog):
         helpembed1.add_field(name="Pages", value="```yaml\n1) Utility\n```", inline=False)
         helpembed1.add_field(name="About", value="Version 1.0 **Public Beta**\nMade with :heart: in <:python:758139554670313493>\nOwned, Developed, and Run by isirk#0001", inline=False)
         helpembed1.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        
+        info = discord.Embed(title="Utility", description="Utiities Command Help", color=discord.Colour.blurple())
+        info.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        info.add_field(name="Commands:", value="`info` - Get Info About the Bot.\n`invite` - Get the invite for Astro.\n`support` Get Support Information.", inline=False)
+        info.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
 
         utility = discord.Embed(title="Utility", description="Utiities Command Help", color=discord.Colour.blurple())
         utility.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
@@ -78,6 +83,7 @@ class info(commands.Cog):
 
         embeds = [
             helpembed1,
+            info
             utility,
             Embed(title="test page 3", description="Why are you still here?", color=0x191638)
         ]
