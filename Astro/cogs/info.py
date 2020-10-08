@@ -71,8 +71,8 @@ class info(commands.Cog):
         mod = discord.Embed(title="Mod", description="Moderation Commands", color=discord.Colour.blurple())
         mod.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         mod.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
-        mod.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
-        mod.add_field(name="Commands:", value="`kick <user>` - Kick the mentioned User from the Server.\n`ban <user>` - Ban the mentioned User from the Server.\n`clear <number>` - Delete <number> of messages.\n`slowmode <seconds>` - Set the slowmode to an amout of seconds.\n`warn <user> <reason>` - Warns a User.\n~~`mute <user>` - Mutes a User~~\n~~`unmute <user>` - Unmutes a User.", inline=False)
+        mod.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n```", inline=False)
+        mod.add_field(name="Commands:", value="`kick <user>` - Kick the mentioned User from the Server.\n`ban <user>` - Ban the mentioned User from the Server.\n`clear <number>` - Delete <number> of messages.\n`slowmode <seconds>` - Set the slowmode to an amout of seconds.\n`warn <user> <reason>` - Warns a User.\n~~`mute <user>` - Mutes a User~~(Being Re-Worked)\n~~`unmute <user>` - Unmutes a User.~~(Being Re-Worked)", inline=False)
 
         embeds = [
             helpembed1,
