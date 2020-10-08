@@ -83,7 +83,7 @@ class info(commands.Cog):
 
         embeds = [
             helpembed1,
-            info
+            info,
             utility,
             Embed(title="test page 3", description="Why are you still here?", color=0x191638)
         ]
