@@ -68,18 +68,21 @@ class info(commands.Cog):
         utility.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
         utility.add_field(name="Commands:", value="`avatar|av <[o]mention>` - Get the avatar of the mentioned user.\n`contact` - Send a support notice to the admin.\n`ping` - Get the Bot Ping.\n`server` - Get Info About The Server.\n`stats` - Get the Bot Stats.\n`user <[o]mention>` - Get the Stats of the Mentioned User.", inline=False)
         
-        mod = discord.Embed(title="Mod", description="Moderation Commands", color=discord.Colour.blurple())
-        mod.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        mod.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
-        mod.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n```", inline=False)
-        mod.add_field(name="Commands:", value="`kick <user>` - Kick the mentioned User from the Server.\n`ban <user>` - Ban the mentioned User from the Server.\n`clear <number>` - Delete <number> of messages.\n`slowmode <seconds>` - Set the slowmode to an amout of seconds.\n`warn <user> <reason>` - Warns a User.\n~~`mute <user>` - Mutes a User~~(Being Re-Worked)\n~~`unmute <user>` - Unmutes a User.~~(Being Re-Worked)", inline=False)
+        dev = discord.Embed(title="Dev", description="Developer Commands\n***Note Only the Bot Owner Can Use These***", color=discord.Colour.blurple())
+        dev.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        dev.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        dev.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
+        dev.add_field(name="Commands:", value="`jsk` - Jishaku\n`dm <user> <message>` - Dm the mentioned User from the Server.\n`guilds` - Get the Servers the Bot is In.\n`leaveguild` - Leave the current server\n`status <type> <[o]status>` - Change the bot status.", inline=False)
+        
+        
 
         embeds = [
             helpembed1,
             info,
             utility,
             mod,
-            Embed(title="test page 5", description="Why are you still here?", color=0x191638)
+            dev,
+            Embed(title="test page 6", description="Why are you still here?", color=0x191638)
         ]
 
         paginator = BotEmbedPaginator(ctx, embeds)
