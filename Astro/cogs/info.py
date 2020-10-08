@@ -74,15 +74,13 @@ class info(commands.Cog):
         dev.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
         dev.add_field(name="Commands:", value="`jsk` - Jishaku\n`dm <user> <message>` - Dm the mentioned User from the Server.\n`guilds` - Get the Servers the Bot is In.\n`leaveguild` - Leave the current server\n`status <type> <[o]status>` - Change the bot status.", inline=False)
         
-        
 
         embeds = [
             helpembed1,
             info,
             utility,
             mod,
-            dev,
-            Embed(title="test page 6", description="Why are you still here?", color=0x191638)
+            dev
         ]
 
         paginator = BotEmbedPaginator(ctx, embeds)
