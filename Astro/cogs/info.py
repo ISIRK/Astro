@@ -22,7 +22,7 @@ class info(commands.Cog):
         infoembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         infoembed.add_field(name= "<:news:758781954073821194> News", value="<:translate:758449663517917195> Translators Needed. <:translate:758449663517917195>\nIf you can speak another language fluently or know someone who can DM isirk#0001.", inline=True)
         infoembed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758451109919981580.png?v=1")
-        infoembed.add_field(name= ":link: Links", value="[Bot Site](https://asksirk.com/Astro) \n[Github Repository](https://github.com/ISIRK/Astro) \n[Patreon](https://www.patreon.com/Astro_Bot)", inline=False)
+        infoembed.add_field(name= ":link: Links", value="[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)\n[Bot Site](https://asksirk.com/Astro) \n[Github Repository](https://github.com/ISIRK/Astro) \n[Patreon](https://www.patreon.com/Astro_Bot)", inline=False)
         infoembed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         await ctx.send(embed=infoembed)
 
@@ -42,7 +42,7 @@ class info(commands.Cog):
     async def invite(self , ctx):
         '''Get the invite for the bot.'''
         embed = discord.Embed(title="Invite", description="[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)", color=0x7289DA)
-        embed.add_field(name="Contact", value="To contact either dm @isirk#0001 or\nJoin Our [Discord Server](https://discord.gg/7yZqHfG)\nhttps://discord.gg/7yZqHfG", inline=False)
+        embed.add_field(name="Contact", value="To contact either dm @isirk#0001 or\nJoin Our [Discord Server](https://discord.gg/7yZqHfG)\n\nhttps://discord.gg/7yZqHfG", inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/758729610237837372/astro.png")
         await ctx.send(embed=embed)
 
