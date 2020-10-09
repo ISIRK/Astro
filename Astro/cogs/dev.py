@@ -38,7 +38,7 @@ class dev(commands.Cog):
             guildsembed
         ]
 
-        paginator = BotEmbedPaginator(ctx, embeds)
+        paginator = BotEmbedPaginator(self, ctx, embeds)
         await paginator.run()
 
     @commands.is_owner()
