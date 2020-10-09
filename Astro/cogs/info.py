@@ -41,8 +41,8 @@ class info(commands.Cog):
     @commands.command()
     async def invite(self , ctx):
         '''Get the invite for the bot.'''
-        embed = discord.Embed(title="Invite", color=0x7289DA)
-        embed.add_field(name="Contact", value="Unfortunately Astro Bot is a Private Bot.\nIf You want to invite Astro into your server\n**DM isirk#0001 on discord with the format below:**\n```\nName:(Discord Tag)\nServer Name:\nServer Invite:\nAmmount of Members:\nWhy you want Astro in your server:\n(Optional)Any other thing you want me to know?\n```", inline=False)
+        embed = discord.Embed(title="Invite", description="[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)", color=0x7289DA)
+        embed.add_field(name="Contact", value="To contact either dm @isirk#0001 or\nJoin Our [Discord Server](https://discord.gg/7yZqHfG)\nhttps://discord.gg/7yZqHfG", inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/758729610237837372/astro.png")
         await ctx.send(embed=embed)
 
