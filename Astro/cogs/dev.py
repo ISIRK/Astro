@@ -18,11 +18,27 @@ class dev(commands.Cog):
     @commands.command()
     async def guilds(self, ctx):
         '''Get the guilds the bot is in.'''
+        guildsembed1 = discord.Embed(title="Guilds", color=0x7289DA)
+
+        for guild in self.bot.guilds:
+            guildsembed1.add_field(name=f'{guild.name}', value=f'`{guild.owner}`'f'<@!{guild.owner_id}>')
+        await ctx.send(embed=guildsembed1)
+        
+    @bot.command()
+    async def getguilds(ctx):
         guildsembed = discord.Embed(title="Guilds", color=0x7289DA)
 
         for guild in self.bot.guilds:
             guildsembed.add_field(name=f'{guild.name}', value=f'`{guild.owner}`'f'<@!{guild.owner_id}>')
-        await ctx.send(embed=guildsembed)
+        
+        embeds = [
+            guildsembed,
+            guildsembed,
+            guildsembed
+        ]
+
+        paginator = BotEmbedPaginator(ctx, embeds)
+        await paginator.run()
 
     @commands.is_owner()
     @commands.command()
