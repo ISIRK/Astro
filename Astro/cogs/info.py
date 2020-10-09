@@ -72,8 +72,7 @@ class info(commands.Cog):
             helpembed1,
             info,
             utility,
-            mod,
-            dev
+            mod
         ]
 
         paginator = BotEmbedPaginator(ctx, embeds)
