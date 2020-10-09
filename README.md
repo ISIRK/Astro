@@ -11,21 +11,11 @@
 <br>
 A Utilities Discord Bot with reliability and simplicity<br>
 
+You can invite astro [here](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)
+
 <br>
 
-## Format for requesting Astro for your server:
-
-There are two ways to invite Astro Bot for your server. By DM'ing me the format below @ isirk#0001<br>
-Or going to https://top.gg <br>
-
-` Name:(Discord Tag)`<br>
-` Server Name:`<br>
-` Server Invite:`<br>
-` Ammount of Members:`<br>
-` Why you want Astro in your server:`<br>
-` (Optional)Any other thing you want me to know?`
-
-**To submit an Application please DM me on [Discord](https://discord.com) @ isirk#0001**
+[Invite Link](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)
 
 [Patreon](https://www.patreon.com/Astro_Bot)
 
