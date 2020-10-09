@@ -24,7 +24,8 @@ class dev(commands.Cog):
             guildsembed1.add_field(name=f'{guild.name}', value=f'`{guild.owner}`'f'<@!{guild.owner_id}>')
         await ctx.send(embed=guildsembed1)
         
-    @bot.command()
+    @commands.is_owner()    
+    @commands.command()
     async def getguilds(ctx):
         guildsembed = discord.Embed(title="Guilds", color=0x7289DA)
 
