@@ -26,7 +26,7 @@ class dev(commands.Cog):
         
     @commands.is_owner()    
     @commands.command()
-    async def getguilds(ctx):
+    async def getguilds(self, ctx):
         guildsembed = discord.Embed(title="Guilds", color=0x7289DA)
 
         for guild in self.bot.guilds:
