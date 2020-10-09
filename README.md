@@ -9,13 +9,14 @@
 <p>
 
 <br>
-A Private Utilities Discord Bot with reliability and simplicity<br>
+A Utilities Discord Bot with reliability and simplicity<br>
 
-This Bot is a Private Discord Bot but you can request Astro Bot for your server by DM'ing me @ isirk#0001<br>
-You can also request some commands by joining our support discord server.<br>
 <br>
 
 ## Format for requesting Astro for your server:
+
+There are two ways to invite Astro Bot for your server. By DM'ing me the format below @ isirk#0001<br>
+Or going to https://top.gg <br>
 
 ` Name:(Discord Tag)`<br>
 ` Server Name:`<br>
@@ -31,38 +32,6 @@ You can also request some commands by joining our support discord server.<br>
 [Astro Site](https://asksirk.com/Astro/)
 
 [Support Discord Server](https://discord.gg/s5ZPSRe)
-
-## Contribute/Self-Host
-**Note: YOU MUST CREDIT ME EITHER BY SAYING `ISIRK or Isaac Sirkin`**
-
-**We suggest that instead of self-hosting Astro you have us Host it. To request Astro for your server see [here](https://github.com/ISIRK/Astro/blob/master/README.md#format-for-requesting-astro-for-your-server)**
-
-**If you wish to continue...**
-**Make sure that you have the latest version of [python](https://www.python.org/) downloaded**
-1. Fork the repository
-2. Clone the repository & install required dependencies:
-```
-$ git clone git@github.com:YOUR_GITHUB_USERNAME/Astro
-$ python -m pip install -U discord.py
-```
-3. Create a `.json` file in the root directory of the project paste the following code:
-```json
-{
-"TOKEN" : "YOUR_TOKEN_HERE",
-"PREFIX" : ["PREFIX" , "PREFIX" , "PREFIX"]
-}
-```
-and replace `YOUR_TOKEN_HERE` with a new bot token from https://discord.com/developers/applications
-
-4. In Astro/astro.py line #7 (Lines Below); Change `tokenFile = "/home/pi/Astro/Astro/.json"` to the path leading to your `.json` file.
-```py
-##CONFIG
-tokenFile = "/home/pi/Astro/Astro/.json"
-with open(tokenFile) as f:
-    data = json.load(f)
-token = data['TOKEN']
-prefixes = data['PREFIX']
-```
 
 ### Prerequisites
 - [Python](https://www.python.org/)
