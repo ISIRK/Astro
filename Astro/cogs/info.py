@@ -84,6 +84,17 @@ class info(commands.Cog):
 
         paginator = BotEmbedPaginator(ctx, embeds)
         await paginator.run()
+        
+    @commands.command()
+    async def paginate(self, ctx):
+        embeds = [
+            Embed(title="test page 1", description="This is just some test content!", color=0x115599),
+            Embed(title="test page 2", description="Nothing interesting here.", color=0x5599ff),
+            Embed(title="test page 3", description="Why are you still here?", color=0x191638)
+        ]
+
+        paginator = BotEmbedPaginator(self, ctx, embeds)
+        await paginator.run()
      
 def setup(bot):
     bot.add_cog(info(bot))
