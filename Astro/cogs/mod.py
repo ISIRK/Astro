@@ -96,7 +96,7 @@ class Mod(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def warn(self , ctx, user : discord.Member, *, reason):
         '''Warn a Member'''
-        if reason == None:
+        if reason=None:
             await ctx.send("You need a reason.")
         else:
             guild = ctx.guild
