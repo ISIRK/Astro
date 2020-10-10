@@ -113,17 +113,5 @@ class utility(commands.Cog):
         '''Get the bot stats'''
         await ctx.send(f'Astro is serving {len(self.bot.users)} users in {len(self.bot.guilds)} guilds.')
 
-    @commands.command()
-    async def contact(self , ctx, *, content):
-        '''Send a support notice'''
-        embed = discord.Embed(color=0x7289DA)
-        embed.set_author(name=f"Sent from {ctx.author}", icon_url=ctx.author.avatar_url)
-        embed.add_field(name="Message:", value=f'{content}')
-        u = self.bot.get_user(542405601255489537)
-        await u.send(embed=embed)
-        await ctx.send(f"<:check:758363543002808371> Message sent to {u}")
-
-
-
 def setup(bot):
     bot.add_cog(utility(bot))
