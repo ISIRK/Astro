@@ -78,7 +78,7 @@ class info(commands.Cog):
         dev.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         dev.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         dev.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
-        dev.add_field(name="Commands:", value="`jsk` - Jishaku\n`dm <user> <message>` - Dm the mentioned User from the Server.\n`leaveguild` - Leave the current server\n`status <type> <[o]status>` - Change the bot status.", inline=False)
+        dev.add_field(name="Commands:", value="`jsk` - Jishaku\n`dm <user> <message>` - Dm the mentioned User from the Server.\n`leaveguild` - Leave the current server\n`status <type> <[o]status>` - Change the bot status.\n`say <message>` - Make the bot say a message.", inline=False)
         
         embeds = [
             helpembed1,
