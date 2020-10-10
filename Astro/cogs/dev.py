@@ -40,11 +40,11 @@ class dev(commands.Cog):
         elif type == "bot":
             await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name=f"{len(self.bot.users)} users"))
             await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {len(self.bot.users)} users`')
-        elif type == "rest":
+        elif type == "reset":
             await self.await bot.change_presence(status=discord.Status.online)
             await ctx.send("<:online:758139458767290421> Reset Status")
         else:
-            await ctx.send("Type needs to be either `playing|listening|watching|bot`")
+            await ctx.send("Type needs to be either `playing|listening|watching|bot|reset`")
 
     @commands.is_owner()
     @commands.command()
