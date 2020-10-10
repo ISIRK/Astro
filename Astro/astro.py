@@ -4,6 +4,8 @@ import discord
 from discord.ext import commands
 import json
 
+from disputils.pagination import BotEmbedPaginator
+
 ##CONFIG
 tokenFile = "/home/pi/Astro/Astro/.json"
 with open(tokenFile) as f:
@@ -55,5 +57,5 @@ for filename in os.listdir('./Astro/cogs'):
 
 bot.load_extension("jishaku")
 
-#895
+#4703
 bot.run(token)

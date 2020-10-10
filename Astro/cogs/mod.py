@@ -96,16 +96,13 @@ class Mod(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def warn(self , ctx, user : discord.Member, *, reason):
         '''Warn a Member'''
-        if user == self.bot.get_user(296862365503193098): #isirk is: 542405601255489537
-            await ctx.send("No Way Jose")
-        else:
-            guild = ctx.guild
-            embed = discord.Embed(color=0x7289DA)
-            embed.set_author(name=f"Warned By {ctx.author}", icon_url=ctx.author.avatar_url)
-            embed.add_field(name=f"You Have Been Warned in {guild}\n\nReason:", value=f'{reason}')
-            embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
-            await user.send(embed=embed)
-            await ctx.send(f"<:help:758453150897799172> Warned {user}")
+        guild = ctx.guild
+        embed = discord.Embed(color=0x7289DA)
+        embed.set_author(name=f"Warned By {ctx.author}", icon_url=ctx.author.avatar_url)
+        embed.add_field(name=f"You Have Been Warned in {guild}\n\nReason:", value=f'{reason}')
+        embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
+        await user.send(embed=embed)
+        await ctx.send(f"<:help:758453150897799172> Warned {user}")
 
 def setup(bot):
     bot.add_cog(Mod(bot))

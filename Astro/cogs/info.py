@@ -43,7 +43,7 @@ class info(commands.Cog):
         '''Get the invite for the bot.'''
         embed = discord.Embed(title="Invite", description="[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)", color=0x7289DA)
         embed.add_field(name="Contact", value="To contact either dm @isirk#0001 or\nJoin Our [Discord Server](https://discord.gg/7yZqHfG)\n\nhttps://discord.gg/7yZqHfG", inline=False)
-        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/758729610237837372/astro.png")
+        embed.set_thumbnail(url="https://cdn.discordapp.com/avatars/751447995270168586/103a763a727a393b9357df35102a638d.webp?size=1024")
         await ctx.send(embed=embed)
 
     @commands.command()
@@ -53,7 +53,7 @@ class info(commands.Cog):
         helpembed1.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         helpembed1.add_field(name="Prefix", value="`@Astro ,Astro ,astro ,^`", inline=False)
         helpembed1.add_field(name= "Help", value="React below to change the pages.", inline=False)
-        helpembed1.add_field(name="Pages", value="```yaml\n1) Info\n2) Utility\n3) Mod\n4) Dev\n```", inline=False)
+        helpembed1.add_field(name="Pages", value="```yaml\n1) Info\n2) Utility\n3) Mod\n```", inline=False)
         helpembed1.add_field(name="About", value="Version 1.0 **Public Beta**\nMade with :heart: in <:python:758139554670313493>\nOwned, Developed, and Run by isirk#0001", inline=False)
         helpembed1.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         
@@ -73,19 +73,13 @@ class info(commands.Cog):
         mod.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         mod.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n```", inline=False)
         mod.add_field(name="Commands:", value="`kick <user>` - Kick the mentioned user from the server.\n`ban <user>` - Ban the mentioned user from the server.\n`clear <#>` - Delete a number of messages.(Max 100)\n`slowmode <seconds>` - Change the Channel Slowmode to a specified number of seconds.\n~~~`mute <user>` - Mute a User.~~~ (Re-Working)\n~~~`unmute <user>` - Un-mutes a User.~~~ (Re-Working)", inline=False)
-        
-        dev = discord.Embed(title="Dev", description="Developer Commands\n***Note Only the Bot Owner Can Use These***", color=discord.Colour.blurple())
-        dev.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        dev.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
-        dev.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
-        dev.add_field(name="Commands:", value="`jsk` - Jishaku\n`dm <user> <message>` - Dm the mentioned User from the Server.\n`leaveguild` - Leave the current server\n`status <type> <[o]status>` - Change the bot status.\n`say <message>` - Make the bot say a message.", inline=False)
-        
+
         embeds = [
             helpembed1,
             info,
             utility,
             mod,
-            dev
+            Embed(title="End!", description="More to come...", color=discord.Colour.blurple())
         ]
 
         paginator = BotEmbedPaginator(ctx, embeds)
