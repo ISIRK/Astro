@@ -53,6 +53,11 @@ class dev(commands.Cog):
         embed.set_footer(text="To reply type 'astro contact <message>'")
         await user.send(embed=embed)
         await ctx.send(f"<:check:758363543002808371> Message sent to {user}")
+   
+    @commands.is_owner()
+    @commands.command()
+    async def say(self, ctx, *, content):
+        await ctx.send(content)
         
 def setup(bot):
     bot.add_cog(dev(bot))
