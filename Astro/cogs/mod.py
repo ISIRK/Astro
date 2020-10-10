@@ -96,9 +96,6 @@ class Mod(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def warn(self , ctx, user : discord.Member, *, reason):
         '''Warn a Member'''
-        if reason=None:
-            await ctx.send("You need a reason.")
-        else:
             guild = ctx.guild
             embed = discord.Embed(color=0x7289DA)
             embed.set_author(name=f"Warned By {ctx.author}", icon_url=ctx.author.avatar_url)
