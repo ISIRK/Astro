@@ -13,7 +13,7 @@ prefixes = data['PREFIX']
 
 bot = commands.Bot(command_prefix = prefixes)
 
-#bot.remove_command('help')
+bot.remove_command('help')
 
 
 
@@ -55,5 +55,5 @@ for filename in os.listdir('./Astro/cogs'):
 
 bot.load_extension("jishaku")
 
-#26152
+#895
 bot.run(token)

@@ -2,6 +2,7 @@ from multiprocessing.connection import Client
 import discord
 from discord import Embed
 from discord.ext import commands
+from discord.ext.commands import bot
 from discord.shard import ShardInfo
 from discord.user import User
 from discord.utils import get
@@ -9,37 +10,11 @@ from datetime import datetime
 import os
 import collections
 import time, datetime
+from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 
 class dev(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
-    @commands.is_owner()
-    @commands.command()
-    async def guilds(self, ctx):
-        '''Get the guilds the bot is in.'''
-        guildsembed1 = discord.Embed(title="Guilds", color=0x7289DA)
-
-        for guild in self.bot.guilds:
-            guildsembed1.add_field(name=f'{guild.name}', value=f'`{guild.owner}`'f'<@!{guild.owner_id}>')
-        await ctx.send(embed=guildsembed1)
-        
-    @commands.is_owner()    
-    @commands.command()
-    async def getguilds(self, ctx):
-        guildsembed = discord.Embed(title="Guilds", color=0x7289DA)
-
-        for guild in self.bot.guilds:
-            guildsembed.add_field(name=f'{guild.name}', value=f'`{guild.owner}`'f'<@!{guild.owner_id}>')
-        
-        embeds = [
-            guildsembed,
-            guildsembed,
-            guildsembed
-        ]
-
-        paginator = BotEmbedPaginator(self, ctx, embeds)
-        await paginator.run()
 
     @commands.is_owner()
     @commands.command()
