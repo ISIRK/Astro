@@ -1,4 +1,5 @@
 from multiprocessing.connection import Client
+from random import randint
 import discord
 from discord import Embed
 from discord.ext import commands
@@ -12,6 +13,7 @@ import collections
 import time, datetime
 from discord.ext.commands.cooldowns import BucketType
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
+import random
 
 class utility(commands.Cog):
     def __init__(self, bot):
