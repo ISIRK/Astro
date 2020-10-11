@@ -41,7 +41,7 @@ class info(commands.Cog):
     @commands.command()
     async def invite(self , ctx):
         '''Get the invite for the bot.'''
-        embed = discord.Embed(title="Invite", description="[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)", color=0x7289DA)
+        embed = discord.Embed(title="Invite", description="[Invite Link](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)", color=0x7289DA)
         embed.add_field(name="Contact", value="To contact either dm @isirk#0001 or\nJoin Our [Discord Server](https://discord.gg/7yZqHfG)\n\nhttps://discord.gg/7yZqHfG", inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/avatars/751447995270168586/103a763a727a393b9357df35102a638d.webp?size=1024")
         await ctx.send(embed=embed)
@@ -68,11 +68,11 @@ class info(commands.Cog):
         utility.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
         utility.add_field(name="Commands:", value="`avatar|av <[o]mention>` - Get the avatar of the mentioned user.\n`ping` - Get the Bot Ping.\n`server` - Get Info About The Server.\n`stats` - Get the Bot Stats.\n`user <[o]mention>` - Get the Stats of the Mentioned User.", inline=False)
         
-        mod = discord.Embed(title="Mod", description="Moderation Commands", color=discord.Colour.blurple())
+        mod = discord.Embed(title="Mod", description="Moderation Commands\***Note you need specific permissions for each command.***", color=discord.Colour.blurple())
         mod.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         mod.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
-        mod.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n```", inline=False)
-        mod.add_field(name="Commands:", value="`kick <user>` - Kick the mentioned user from the server.\n`ban <user>` - Ban the mentioned user from the server.\n`clear <#>` - Delete a number of messages.(Max 100)\n`slowmode <seconds>` - Change the Channel Slowmode to a specified number of seconds.\n~~~`mute <user>` - Mute a User.~~~ (Re-Working)\n~~~`unmute <user>` - Un-mutes a User.~~~ (Re-Working)", inline=False)
+        mod.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n(permission) - Required Permissions```", inline=False)
+        mod.add_field(name="Commands:", value="`kick <user>` - Kick the mentioned user from the server. (kick_members)\n`ban <user>` - Ban the mentioned user from the server. (ban_members)\n`clear <#>` - Delete a number of messages. **Max 100** (manage_messages)\n`slowmode <seconds>` - Change the Channel Slowmode to a specified number of seconds. (\n~~~`mute <user>` - Mute a User.~~~ (Re-Working)\n~~~`unmute <user>` - Un-mutes a User.~~~ (Re-Working)", inline=False)
 
         embeds = [
             helpembed1,

@@ -48,19 +48,27 @@ class dev(commands.Cog):
 
     @commands.is_owner()
     @commands.command()
-    async def dm(self , ctx, user : discord.Member, *, content):
+    async def dm(self , ctx, user : discord.Member=None, *, content=None):
         '''Dm a Member'''
-        embed = discord.Embed(color=0x7289DA)
-        embed.set_author(name=f"Sent from {ctx.author}", icon_url=ctx.author.avatar_url)
-        embed.add_field(name="Message:", value=f'{content}')
-        embed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
-        await user.send(embed=embed)
-        await ctx.send(f"<:check:758363543002808371> Message sent to {user}")
+        if user == None:
+            await ctx.send("User is a required argument that is missing.")
+        elif content == None:
+            await ctx.send("Message is a required argument that is missing.")
+        else:
+            embed = discord.Embed(color=0x7289DA)
+            embed.set_author(name=f"Sent from {ctx.author}", icon_url=ctx.author.avatar_url)
+            embed.add_field(name="Message:", value=f'{content}')
+            embed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+            await user.send(embed=embed)
+            await ctx.send(f"<:check:758363543002808371> Message sent to {user}")
    
     @commands.is_owner()
     @commands.command()
-    async def say(self, ctx, *, content):
-        await ctx.send(content)
+    async def say(self, ctx, *, content=None):
+        if content == None:
+            await ctx.send("Message is a required argument that is missing.")
+        else:
+            await ctx.send(content)
 
     @commands.is_owner()
     @commands.command()
