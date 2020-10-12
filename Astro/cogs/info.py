@@ -83,6 +83,13 @@ class info(commands.Cog):
 
         paginator = BotEmbedPaginator(ctx, embeds)
         await paginator.run()
+        
+    @commands.command()
+    async def privacy(self, ctx):
+        embed = discord.Embed(title="Privacy Policy for Astro", description="Astro strives to store not data to make astro as simple to use as possible. The warn, kick, and ban commands store a users ID for about 1 second. Other than that nothing is stored/recorded/or anything else.\n\n<:tab:758139554842148934> [Privacy Policy](https://asksirk.com/Astro/privacy/)", color=0x2F3136)
+        embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        embed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        await ctx.send(embed=embed)
      
 def setup(bot):
     bot.add_cog(info(bot))
