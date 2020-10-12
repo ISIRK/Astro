@@ -9,6 +9,7 @@
 <p>
 
 <br>
+
 **A minimalistic utilities bot for discord**
 
 Astro is a simple, easy to use, discord bot made to make your use of discord easy.
