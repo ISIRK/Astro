@@ -1,6 +1,6 @@
 <img src="Images/astronaut.jpg" align="right" align="right" height="200" />
 
-# [Astro - Discord Bot](https://asksirk.com/Astro)
+# Astro - Discord Bot
 <p>
   
   [![Support Server](https://img.shields.io/discord/743121194911531110.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge)](https://discord.gg/7yZqHfG)
