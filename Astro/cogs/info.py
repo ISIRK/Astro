@@ -18,7 +18,7 @@ class info(commands.Cog):
     @commands.command()
     async def info(self, ctx):
         '''Get information about the bot.'''
-        infoembed = discord.Embed(title="Info", description="A Utilities Discord Bot with reliability and simplicity", color=0x7289DA)
+        infoembed = discord.Embed(title="Info", description="A Utilities Discord Bot with reliability and simplicity", color=0x2F3136)
         infoembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         infoembed.add_field(name= "<:news:758781954073821194> News", value="<:translate:758449663517917195> Translators Needed. <:translate:758449663517917195>\nIf you can speak another language fluently or know someone who can DM isirk#0001.", inline=True)
         infoembed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758451109919981580.png?v=1")
@@ -29,7 +29,7 @@ class info(commands.Cog):
     @commands.command()
     async def support(self, ctx):
         '''Get support information.'''
-        supportembed = discord.Embed(title="Support", color=0x7289DA)
+        supportembed = discord.Embed(title="Support", color=0x2F3136)
         supportembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         supportembed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
         supportembed.add_field(name="Support Server", value="Support Server: https://discord.gg/7yZqHfG", inline=False)
@@ -41,7 +41,7 @@ class info(commands.Cog):
     @commands.command()
     async def invite(self , ctx):
         '''Get the invite for the bot.'''
-        embed = discord.Embed(title="Invite", description="[Invite Link](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)", color=0x7289DA)
+        embed = discord.Embed(title="Invite", description="[Invite Link](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)", color=0x2F3136)
         embed.add_field(name="Contact", value="To contact either dm @isirk#0001 or\nJoin Our [Discord Server](https://discord.gg/7yZqHfG)\n\nhttps://discord.gg/7yZqHfG", inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/avatars/751447995270168586/103a763a727a393b9357df35102a638d.webp?size=1024")
         await ctx.send(embed=embed)
@@ -49,7 +49,7 @@ class info(commands.Cog):
     @commands.command()
     async def help(self, ctx):
 
-        helpembed1 = discord.Embed(title="Help", description="A Utilities Discord Bot with reliability and simplicity\n Made By isirk#0001", color=0x7289DA)
+        helpembed1 = discord.Embed(title="Help", description="A Utilities Discord Bot with reliability and simplicity\n Made By isirk#0001", color=0x2F3136)
         helpembed1.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         helpembed1.add_field(name="Prefix", value="`@Astro ,Astro ,astro ,^`", inline=False)
         helpembed1.add_field(name= "Help", value="React below to change the pages.", inline=False)
@@ -57,18 +57,18 @@ class info(commands.Cog):
         helpembed1.add_field(name="About", value="Version 1.0 **Public Beta**\nMade with :heart: in <:python:758139554670313493>\nOwned, Developed, and Run by isirk#0001", inline=False)
         helpembed1.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         
-        info = discord.Embed(title="Info", description="Information Commands", color=discord.Colour.blurple())
+        info = discord.Embed(title="Info", description="Information Commands", color=0x2F3136)
         info.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         info.add_field(name="Commands:", value="`info` - Get Info About the Bot.\n`invite` - Get the invite for Astro.\n`support` Get Support Information.", inline=False)
         info.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
 
-        utility = discord.Embed(title="Utility", description="Utiity Commands", color=discord.Colour.blurple())
+        utility = discord.Embed(title="Utility", description="Utiity Commands", color=0x2F3136)
         utility.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         utility.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         utility.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
         utility.add_field(name="Commands:", value="`avatar|av <[o]mention>` - Get the avatar of the mentioned user.\n`ping` - Get the Bot Ping.\n`server` - Get Info About The Server.\n`stats` - Get the Bot Stats.\n`user <[o]mention>` - Get the Stats of the Mentioned User.", inline=False)
         
-        mod = discord.Embed(title="Mod", description="Moderation Commands\***Note you need specific permissions for each command.***", color=discord.Colour.blurple())
+        mod = discord.Embed(title="Mod", description="Moderation Commands\***Note you need specific permissions for each command.***", color=0x2F3136)
         mod.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         mod.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         mod.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n(permission) - Required Permissions```", inline=False)
