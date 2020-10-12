@@ -59,10 +59,11 @@ unmute <user> - Un-mutes a User. (Re-Working)
 
 **Info:**
 ```
-help - Get the commands for Astro.
 info - Get Info About the Bot.
 invite - Get the invite for Astro.
 support Get Support Information.
+privacy - Privacy Policy for Astro.
+help - Get the commands for Astro.
 ```
 
 **Prerequisites**
