@@ -1,4 +1,4 @@
-<img src="Images/astronaut.jpg" align="right" align="right" height="200" />
+<img src="https://cdn.discordapp.com/avatars/751447995270168586/103a763a727a393b9357df35102a638d.jpg" align="right"/>
 
 # Astro - Discord Bot
 <p>
@@ -19,9 +19,9 @@ If you have any questions please either dm isirk#0001 or join our support server
 
 [Privacy Policy](https://asksirk.com/Astro/privacy/)
 
+<br>
 
-
-### Modules:
+**Modules:**
 
 Utility - Utility Commands
 
@@ -37,7 +37,7 @@ Syntax:
 (permission) - Permission
 ```
 
-### Utility:
+**Utility:**
 ```
 avatar|av <[o]mention> - Get the avatar of the mentioned user.
 ping - Get the Bot Ping.
@@ -46,7 +46,7 @@ stats - Get the Bot Stats.
 user <[o]mention>` - Get the Stats of the Mentioned User.
 ```
 
-### Mod:
+**Mod:**
 ```
 kick <user> - Kick the mentioned user from the server. (kick_members)
 ban <user> - Ban the mentioned user from the server. (ban_members)
@@ -57,7 +57,7 @@ mute <user> - Mute a User. (Re-Working)
 unmute <user> - Un-mutes a User. (Re-Working)
 ```
 
-### Info:
+**Info:**
 ```
 help - Get the commands for Astro.
 info - Get Info About the Bot.
@@ -65,6 +65,6 @@ invite - Get the invite for Astro.
 support Get Support Information.
 ```
 
-### Prerequisites
+**Prerequisites**
 - [Python](https://www.python.org/)
 - [Discord.py](https://discordpy.readthedocs.io/en/latest/index.html)
