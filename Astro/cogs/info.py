@@ -72,7 +72,7 @@ class info(commands.Cog):
         mod.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         mod.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         mod.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n(permission) - Required Permissions```", inline=False)
-        mod.add_field(name="Commands:", value="`kick <user>` - Kick the mentioned user from the server. (kick_members)\n`ban <user>` - Ban the mentioned user from the server. (ban_members)\n`clear <#>` - Delete a number of messages. **Max 100** (manage_messages)\n`slowmode <seconds>` - Change the Channel Slowmode to a specified number of seconds. (\n~~~`mute <user>` - Mute a User.~~~ (Re-Working)\n~~~`unmute <user>` - Un-mutes a User.~~~ (Re-Working)", inline=False)
+        mod.add_field(name="Commands:", value="`kick <user>` - Kick the mentioned user from the server. (`kick_members`)\n`ban <user>` - Ban the mentioned user from the server. (`ban_members`)\n`warn <user> <reason>` - Warn A User for a Specified Reason.(`kick_members`)\n`clear <#>` - Delete a number of messages. **Max 100** (`manage_messages`)\n`slowmode <seconds>` - Change the Channel Slowmode to a specified number of seconds. (`manage_channels`)\n~~~`mute <user>` - Mute a User.~~~ (Re-Working)\n~~~`unmute <user>` - Un-mutes a User.~~~ (Re-Working)", inline=False)
 
         embeds = [
             helpembed1,
