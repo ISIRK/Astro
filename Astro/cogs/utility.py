@@ -25,7 +25,7 @@ class utility(commands.Cog):
 
         statuses = collections.Counter([m.status for m in ctx.guild.members])
 
-        embed = discord.Embed(title=f"{ctx.guild.name}", color=0x7289DA)
+        embed = discord.Embed(title=f"{ctx.guild.name}", color=0x2F3136)
         embed.description = ctx.guild.description if ctx.guild.description else None
         embed.add_field(name='**General:**',
                         value=f'Owner: **{ctx.guild.owner}**\n'
@@ -73,7 +73,7 @@ class utility(commands.Cog):
                     activity = '`None`'
         else:
             activity = '`None`'
-        embed = discord.Embed(title=f"{member}", color=0x7289DA)
+        embed = discord.Embed(title=f"{member}", color=0x2F3136)
         embed.add_field(name='**General:**',
                         value=f'Name: `{member}`\n'
                               f'Desktop Status: `{member.desktop_status}`\n'
@@ -98,7 +98,7 @@ class utility(commands.Cog):
         if not member: # if member is no mentioned
             member = ctx.message.author # set member as the author
         userAvatar = member.avatar_url
-        avatarembed = discord.Embed(title=f"Avatar for {member}", color=0x7289DA)
+        avatarembed = discord.Embed(title=f"Avatar for {member}", color=0x2F3136)
         avatarembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         avatarembed.set_image(url=userAvatar)
         await ctx.send(embed=avatarembed)
@@ -106,7 +106,7 @@ class utility(commands.Cog):
     @commands.command()
     async def ping(self, ctx):
         '''Get the bot ping'''
-        pingembed = discord.Embed(color=0x7289DA)
+        pingembed = discord.Embed(color=0x2F3136)
         pingembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         pingembed.add_field(name="Pong!", value=f'```autohotkey\n{round(self.bot.latency * 1000)} ms```')
         await ctx.send(embed=pingembed)
