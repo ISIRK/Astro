@@ -1,4 +1,4 @@
-<img src="https://cdn.discordapp.com/attachments/758138226874908705/765304758256271370/astronaut.jpg" align="right" height="200" width="200"/>
+<img src="https://asksirk.com/Astro/astronaut.jpg" align="right" height="200" width="200"/>
 
 # Astro - Discord Bot
 <p>
