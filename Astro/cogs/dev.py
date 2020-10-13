@@ -91,14 +91,5 @@ class dev(commands.Cog):
         paginator = BotEmbedPaginator(ctx, embeds)
         await paginator.run()
         
-    @commands.is_owner()
-    @commands.command()
-    async def botstats(self, ctx):
-        pid = os.getpid()
-        py = psutil.Process(pid)
-        memoryUse = py.memory_info()[0]/2.**30  # memory use in GB...I think
-        #print('memory use:', memoryUse)
-        await ctx.send('memory use:', memoryUse)
-        
 def setup(bot):
     bot.add_cog(dev(bot))
