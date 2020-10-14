@@ -108,14 +108,14 @@ class utility(commands.Cog):
         '''Get the bot ping'''                        
         pingembed = discord.Embed(color=0x2F3136)
         pingembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        pingembed.add_field(name="Bot", value=f'```autohotkey\n{(self.bot.latency * 1000)} ms```')
+        pingembed.add_field(name="Server", value=f'```autohotkey\n{round(self.bot.latency * 1000)} ms```')
                         
         start = time.perf_counter()
         message = await ctx.send("Ping...")
         end = time.perf_counter()
         duration = (end - start) * 1000
                         
-        pingembed.add_field(name="Typing", value='```autohotkey\n{:.2f} ms```'.format(duration))
+        pingembed.add_field(name="Typing", value='```autohotkey\n{round:.2f} ms```'.format(duration))
                         
         await message.edit(embed=pingembed)
 
