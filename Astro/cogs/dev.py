@@ -91,15 +91,5 @@ class dev(commands.Cog):
         paginator = BotEmbedPaginator(ctx, embeds)
         await paginator.run()
         
-    @commands.is_owner()
-    @commands.command()
-    async def typing(self, ctx):
-        
-        start = time.perf_counter()
-        message = await ctx.send("Ping...")
-        end = time.perf_counter()
-        duration = (end - start) * 1000
-        await message.edit(content='Pong! {:.2f}ms'.format(duration))
-        
 def setup(bot):
     bot.add_cog(dev(bot))
