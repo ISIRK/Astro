@@ -113,9 +113,9 @@ class utility(commands.Cog):
         start = time.perf_counter()
         message = await ctx.send("Ping...")
         end = time.perf_counter()
-        duration = {round(end - start) * 1000}
+        duration = (end - start) * 1000
                         
-        pingembed.add_field(name="Typing", value='```autohotkey\n{:.2f} ms```'.format(duration))
+        pingembed.add_field(name="Typing", value='```autohotkey\n{round{:.2f}} ms```'.format(duration))
                         
         await ctx.send(embed=pingembed)
 
