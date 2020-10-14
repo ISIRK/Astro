@@ -111,12 +111,13 @@ class utility(commands.Cog):
         pingembed.add_field(name="Server", value=f'```autohotkey\n{round(self.bot.latency * 1000)} ms```')
                         
         start = time.perf_counter()
+        message = await ctx.send("Ping...")
         end = time.perf_counter()
         duration = (end - start) * 1000
                         
         pingembed.add_field(name="Typing", value='```autohotkey\n{:.2f} ms```'.format(duration))
                         
-        await ctx.send(embed=pingembed)
+        await message.edit(embed=pingembed)
 
     @commands.command()
     async def stats(self ,ctx):
