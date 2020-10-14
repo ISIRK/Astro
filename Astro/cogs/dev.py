@@ -29,8 +29,8 @@ class dev(commands.Cog):
     @commands.command()
     async def status(self, ctx, type, *, status=None):
         '''Change the Bot Status'''
-        if status == None:
-            await ctx.send("Status is a required argument that is missing.")
+        if type == None:
+            await ctx.send("Type is a required argument that is missing.")
         else:
             if type == "playing":
                 await self.bot.change_presence(activity=discord.Game(name=f"{status}"))
