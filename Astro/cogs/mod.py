@@ -118,10 +118,10 @@ class Mod(commands.Cog):
             embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
             await user.send(embed=embed)
             await ctx.send(f"<:help:758453150897799172> Warned {user}")
-    @warn.error
-    async def warn_error(ctx, error):
-        if isinstance(error, commands.MissingPermissions):
-           return await ctx.send('You need kick permissions to run this command')
+    #@warn.error
+    #async def warn_error(ctx, error):
+        #if isinstance(error, commands.MissingPermissions):
+           #return await ctx.send('You need kick permissions to run this command')
 
 def setup(bot):
     bot.add_cog(Mod(bot))
