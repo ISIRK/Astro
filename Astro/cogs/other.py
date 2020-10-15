@@ -25,7 +25,7 @@ class other(commands.Cog):
         
     @commands.command()
     async def dice(self, ctx):
-        dice = ['1', '2', '3', '4', '5', '6', 'off the table...']
+        dice = ['1', '2', '3', '4', '5', '6', 'off the table...\n*You Found The Mystery!*']
         embed = discord.Embed(title="Dice", description=f'The Dice Rolled {random.choice(dice)}', color=0x2F3136)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/766312838910181421/unknown.png")
         await ctx.send(embed=embed)
