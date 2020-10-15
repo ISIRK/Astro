@@ -19,6 +19,8 @@ If you have any questions please either dm isirk#0001 or join our support server
 
 [Privacy Policy](https://asksirk.com/Astro/privacy/)
 
+[Documentation](https://isirk.gitbook.io/astro)
+
 <br>
 
 **Modules:**
