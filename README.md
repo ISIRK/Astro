@@ -29,6 +29,8 @@ Mod - Moderation Commands
 
 Info - Info Commands
 
+Other - Other Commands
+
 ```
 Syntax:
 <input> - Input for the Command
@@ -63,7 +65,12 @@ info - Get Info About the Bot.
 invite - Get the invite for Astro.
 support Get Support Information.
 privacy - Privacy Policy for Astro.
-help - Get the commands for Astro.
+help <[o]page name> - This Message or a specific Help Page
+```
+
+**Other:**
+```
+dice - Roll A Dice(You might even get a mystery!)
 ```
 
 **Prerequisites**
