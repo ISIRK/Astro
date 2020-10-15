@@ -70,7 +70,7 @@ help <[o]page name> - This Message or a specific Help Page
 
 **Other:**
 ```
-dice - Roll A Dice(You might even get a mystery!)
+dice - Roll A Dice (You might even get a mystery!)
 ```
 
 **Prerequisites**
