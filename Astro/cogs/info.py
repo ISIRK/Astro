@@ -46,8 +46,8 @@ class info(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def help(self, ctx):
-
+    async def help(self, ctx, *, page=None):
+        
         helpembed1 = discord.Embed(title="Help", description="A Utilities Discord Bot with reliability and simplicity\n Made By isirk#0001", color=0x2F3136)
         helpembed1.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         helpembed1.add_field(name="Prefix", value="`@Astro ,Astro ,astro ,^`", inline=False)
@@ -78,7 +78,16 @@ class info(commands.Cog):
         other.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         other.add_field(name="Commands:", value="`dice` - Roll A Dice (*There is a possibility you'll get a mystery.*)", inline=False)
         
-        embeds = [
+        if page == "info":
+            await ctx.send(embed=info)
+        elif page == "utility":
+            await ctx.send(embed=utility)
+        elif page == "mod":
+            await ctx.send(embed=mod)
+        elif page == "other":
+            await ctx.send(embed=other)
+        else:
+            embeds = [
             helpembed1,
             info,
             utility,
