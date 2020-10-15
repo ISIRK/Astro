@@ -25,8 +25,8 @@ class other(commands.Cog):
         
     @commands.command()
     async def dice(self, ctx):
-        foo = ['a', 'b', 'c', 'd', 'e']
-        await ctx.send(random.choice(foo))
+        dice = ['1', '2', '3', '4', '5', '6', 'off the table...']
+        await ctx.send(f'The Dice Rolled {random.choice(dice)}')
         
         
         
