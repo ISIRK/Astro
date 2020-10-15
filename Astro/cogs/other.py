@@ -5,16 +5,28 @@ from discord.ext.commands import context
 from discord.shard import ShardInfo
 from discord.user import User
 from discord.utils import get
-from datetime import datetime
-import os
-import collections
+
 import time, datetime
+from datetime import datetime
+
+import os
+
+import random
+
+import collections
+
+
 
 
 
 class other(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        
+    @commands.command()
+    async def dice(self, ctx):
+        foo = ['a', 'b', 'c', 'd', 'e']
+        await ctx.send(random.choice(foo))
         
         
         
