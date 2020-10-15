@@ -41,7 +41,10 @@ class info(commands.Cog):
     @commands.command()
     async def invite(self , ctx):
         '''Get the invite for the bot.'''
-        embed = discord.Embed(title="Invite", description="🌐 [Invite Link](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)\n\n\n<:discord:765251798629220382> [Support Server](https://discord.gg/7yZqHfG)\n\n\n<:info:758451109919981580> **Contact**\n\nTo contact either dm @isirk#0001, email us @isirk@asksirk.com or join our [Support Server.](https://discord.gg/7yZqHfG)", color=0x2F3136)
+        embed = discord.Embed(title="Invite", color=0x2F3136)
+        embed.add_field(title="Invite", value="🌐 [Invite Link](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)", inline=False)
+        embed.add_field(title="Support Server", value="<:discord:765251798629220382> [Support Server](https://discord.gg/7yZqHfG)", inline=False)
+        embed.add_field(title="<:info:758451109919981580> Contact", value="To contact either dm @isirk#0001, email us @isirk@asksirk.com or join our [Support Server.](https://discord.gg/7yZqHfG)", inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/avatars/751447995270168586/103a763a727a393b9357df35102a638d.webp?size=1024")
         await ctx.send(embed=embed)
 
