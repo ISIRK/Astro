@@ -46,7 +46,16 @@ class info(commands.Cog):
         embed.add_field(title="Support Server", value="<:discord:765251798629220382> [Support Server](https://discord.gg/7yZqHfG)", inline=False)
         embed.add_field(title="<:info:758451109919981580> Contact", value="To contact either dm @isirk#0001, email us @isirk@asksirk.com or join our [Support Server.](https://discord.gg/7yZqHfG)", inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/avatars/751447995270168586/103a763a727a393b9357df35102a638d.webp?size=1024")
-        await ctx.send(embed=embed)
+        
+        embed = discord.Embed(title="Invite", color=0x2F3136)
+        embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        embed.set_thumbnail(url="https://asksirk.com/Astro/astronaut.jpg")
+        embed.add_field(name="Invite", value="🌐 [Invite Link](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)", inline=False)
+        embed.add_field(name="Support", value="<:discord:765251798629220382> Support Server: https://discord.gg/7yZqHfG", inline=False)
+        embed.add_field(name="Contact", value="To contact dm isirk#0001 or email me @ isirk@asksirk.com", inline=False)
+        embed.set_footer(text="Use [prefix] help or info.")
+        await ctx.send(embed=supportembed)
+        #await ctx.send(embed=embed)
 
     @commands.command()
     async def help(self, ctx, *, page=None):
