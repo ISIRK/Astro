@@ -56,7 +56,7 @@ class info(commands.Cog):
         helpembed1 = discord.Embed(title="Help", description="A Utilities Discord Bot with reliability and simplicity\n Made By isirk#0001", color=0x2F3136)
         helpembed1.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         helpembed1.add_field(name="Prefix", value="`@Astro ,Astro ,astro ,^`", inline=False)
-        helpembed1.add_field(name= "Help", value="React below to change the pages.\n**Note: You can type `help <page name>` to just get a specific help page.**", inline=False)
+        helpembed1.add_field(name= "Help", value="React below to change the pages.\n**Note:\nYou can type `help <page name>` to get a specific help page.**", inline=False)
         helpembed1.add_field(name="Pages", value="```yaml\n1) Info\n2) Utility\n3) Mod\n4) Other\n```", inline=False)
         helpembed1.add_field(name="About", value="Version 1.0 **Public Beta**\nMade with :heart: in <:python:758139554670313493>\nOwned, Developed, and Run by isirk#0001", inline=False)
         helpembed1.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
