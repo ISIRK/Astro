@@ -12,11 +12,11 @@ import time, datetime
 
 
 
-class admin(commands.Cog):
+class other(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
         
         
 def setup(bot):
-    bot.add_cog(admin(bot))
+    bot.add_cog(other(bot))
