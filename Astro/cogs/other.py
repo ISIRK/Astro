@@ -57,7 +57,7 @@ class other(commands.Cog):
             await ctx.send('Timeout Error')
         else: 
             if q1.content != "417":
-                await ctx.send("Incorrect.\nIf you would like to try again type `^???`")
+                await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}???`")
             else:
                 await ctx.send("Correct!\n**Question 2: `How many letters are in the alphabet?`**\nType you answer below")
                 try:
@@ -66,7 +66,7 @@ class other(commands.Cog):
                     await ctx.send('Timeout Error')
                 else: 
                     if q2.content != "26":
-                        await ctx.send("Incorrect.\nIf you would like to try again type `^???`")
+                        await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}???`")
                     else:
                         await ctx.send("Correct.\n**Question 3: `(Approx)How many stars are in the sky?`**\n**A)10 Million**\n**B) 100 Million**\n**C) 1,000 Million**\n**D) 100,000 Million**\nType you answer below [Format: A|B|C|D]")
                         try:
@@ -75,7 +75,7 @@ class other(commands.Cog):
                             await ctx.send('Timeout Error')
                         else: 
                             if q3.content != "D":
-                                await ctx.send("Incorrect.\nIf you would like to try again type `^???`")
+                                await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}???`")
                             else:
                                 await ctx.send("Correct!\nThats All For Now! Come back again for more.")
         
