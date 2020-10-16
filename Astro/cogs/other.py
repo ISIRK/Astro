@@ -50,7 +50,7 @@ class other(commands.Cog):
                 await ctx.send("Incorrect.")'''
        
     @commands.command(name='???')
-    @commands.cooldown(1,60,BucketType) 
+    @commands.cooldown(1,60,BucketType.user) 
     async def questtest(self, ctx):
         await ctx.send("Quest Started!\n**Question 1: `What is 128+289?`**\nType you answer below")
         try:
