@@ -34,13 +34,13 @@ class other(commands.Cog):
     async def quest(self, ctx):
         await ctx.send("Quest Started!\nQuestion 1: `What is 128+289?`\nType you answer below")
         try:
-            q1 = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+            q1 = await self.bot.wait_for('message', timeout=30.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
         except asyncio.TimeoutError:
             await ctx.send('Timeout Error')
         else: 
             if q1.content != "417":
                 await ctx.send("Correct!\nQuestion 2: `How many letters are in the alphabet?\nType you answer below")
-                q2 = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+                q2 = await self.bot.wait_for('message', timeout=30.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
                 if q2.content == "26":
                     await ctx.send("Correct!")
                 else:
@@ -52,7 +52,7 @@ class other(commands.Cog):
     async def questtest(self, ctx):
         await ctx.send("Quest Started!\n**Question 1: `What is 128+289?`**\nType you answer below")
         try:
-            q1 = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+            q1 = await self.bot.wait_for('message', timeout=30.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
         except asyncio.TimeoutError:
             await ctx.send('Timeout Error')
         else: 
@@ -61,7 +61,7 @@ class other(commands.Cog):
             else:
                 await ctx.send("Correct!\n**Question 2: `How many letters are in the alphabet?`**\nType you answer below")
                 try:
-                    q2 = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+                    q2 = await self.bot.wait_for('message', timeout=30.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
                 except asyncio.TimeoutError:
                     await ctx.send('Timeout Error')
                 else: 
@@ -70,7 +70,7 @@ class other(commands.Cog):
                     else:
                         await ctx.send("Correct.\n**Question 3: `(Approx)How many stars are in the sky?`**\n**A)10 Million**\n**B) 100 Million**\n**C) 1,000 Million**\n**D) 100,000 Million**\nType you answer below [Format: A|B|C|D]")
                         try:
-                            q3 = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+                            q3 = await self.bot.wait_for('message', timeout=30.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
                         except asyncio.TimeoutError:
                             await ctx.send('Timeout Error')
                         else: 
