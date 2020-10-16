@@ -68,7 +68,16 @@ class other(commands.Cog):
                     if q2.content != "26":
                         await ctx.send("Incorrect.\nIf you would like to try again type `^???`")
                     else:
-                        await ctx.send("Correct.\nAnd that's all for now. Come back for more!")
+                        await ctx.send("Correct.\nQuestion 3: `(Approx)How many stars are in the sky?`\nA)10 Million\nB) 100 Million\nC) 1,000 Million\nD) 100,000 Million\Type you answer below [Format: A|B|C|D]")
+                        try:
+                            q3 = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+                        except asyncio.TimeoutError:
+                            await ctx.send('Timeout Error')
+                        else: 
+                            if q3.content != "D":
+                                await ctx.send("Incorrect.\nIf you would like to try again type `^???`")
+                            else:
+                                await ctx.send("Correct.\nThats All For Now! Come back again for more.")
         
 def setup(bot):
     bot.add_cog(other(bot))
