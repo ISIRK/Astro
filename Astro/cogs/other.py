@@ -56,8 +56,7 @@ class other(commands.Cog):
         except asyncio.TimeoutError:
             await ctx.send('Timeout Error')
         else:
-            q1a = ['417', '417.0']
-            if q1.content != f"{q1a}":
+            if q1.content != "417":
                 await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}???`")
             else:
                 await ctx.send("Correct!\n**Question 2: `How many letters are in the alphabet?`**\nType you answer below")
@@ -66,8 +65,7 @@ class other(commands.Cog):
                 except asyncio.TimeoutError:
                     await ctx.send('Timeout Error')
                 else: 
-                    q2a = ['26', '26.0']
-                    if q2.content != q2a:
+                    if q2.content != "26":
                         await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}???`")
                     else:
                         await ctx.send("Correct.\n**Question 3: `(Approx)How many stars are in the sky?`**\n**A)10 Million**\n**B) 100 Million**\n**C) 1,000 Million**\n**D) 100,000 Million**\nType you answer below [Format: A|B|C|D]")
@@ -76,8 +74,7 @@ class other(commands.Cog):
                         except asyncio.TimeoutError:
                             await ctx.send('Timeout Error')
                         else: 
-                            q3a = ['d', 'D', 'dee', 'Dee']
-                            if q3.content != q3a:
+                            if q3.content != "D":
                                 await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}???`")
                             else:
                                 await ctx.send("Correct!\nThats All For Now! Come back again for more.")
