@@ -57,7 +57,7 @@ class other(commands.Cog):
             await ctx.send('Timeout Error')
         else: 
             if q1.content != "417":
-                await ctx.send("Incorrect.")
+                await ctx.send("Incorrect.\nIf you would like to try again type `[prefix]???`")
             else:
                 await ctx.send("Correct!\nQuestion 2: `How many letters are in the alphabet?`\nType you answer below")
                 try:
@@ -66,9 +66,9 @@ class other(commands.Cog):
                     await ctx.send('Timeout Error')
                 else: 
                     if q2.content != "26":
-                        await ctx.send("Incorrect.")
+                        await ctx.send("Incorrect.\nIf you would like to try again type `[prefix]???`")
                     else:
-                        await ctx.send("Correct.")
+                        await ctx.send("Correct.\nAnd that's all for now. Come back for more!")
         
 def setup(bot):
     bot.add_cog(other(bot))
