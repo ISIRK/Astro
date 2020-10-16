@@ -83,7 +83,7 @@ class other(commands.Cog):
                                 await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}???`")
                             else:
                                 time_taken = time.time()- start_time
-                                await ctx.send("Correct!\nYou took **{:.2f} seconds!**".format(duration))
+                                await ctx.send(f"Correct!\nYou took {time_taken} seconds!")
         
 def setup(bot):
     bot.add_cog(other(bot))
