@@ -52,6 +52,11 @@ class other(commands.Cog):
     @commands.command(name='???')
     @commands.cooldown(1,60,BucketType.user) 
     async def questtest(self, ctx):
+        
+        start_time = time.time()
+        end_time = time.time()
+        time_taken = end_time - start_time
+        
         await ctx.send("Quest Started!\n**Question 1: `What is 128+289?`**\nType you answer below")
         try:
             q1 = await self.bot.wait_for('message', timeout=30.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
@@ -79,7 +84,7 @@ class other(commands.Cog):
                             if q3.content != "D":
                                 await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}???`")
                             else:
-                                await ctx.send("Correct!\nThats All For Now! Come back again for more.")
+                                await ctx.send(f"Correct!\nYou took {time_taken} seconds!")
         
 def setup(bot):
     bot.add_cog(other(bot))
