@@ -31,6 +31,17 @@ class other(commands.Cog):
         await ctx.send(embed=embed)
         
         
+    @commands.command()
+    async def quest(self, ctx):
+        await ctx.send("Quest Started!\nQuestion 1: `What is 128+289?`\nType you answer below")
+        try:
+            await bot.wait_for(message)
+        except asyncio.TimeoutError:
+            await channel.send('You took too long!\nTimeout Error')
+        else:
+            await channel.send('Correct!')
+        
+        
         
 def setup(bot):
     bot.add_cog(other(bot))
