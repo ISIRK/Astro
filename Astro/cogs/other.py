@@ -53,7 +53,7 @@ class other(commands.Cog):
     @commands.cooldown(1,60,BucketType.user) 
     async def questtest(self, ctx):
         
-        stary_time = time.time()
+        start_time = time.time()
         
         await ctx.send("Quest Started!\n**Question 1: `What is 128+289?`**\nType you answer below")
         try:
@@ -82,7 +82,7 @@ class other(commands.Cog):
                             if q3.content != "D":
                                 await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}???`")
                             else:
-                                time_taken = time.time()- start_time
+                                time_taken = time.time() - start_time
                                 await ctx.send(f"Correct!\nYou took {time_taken} seconds!")
         
 def setup(bot):
