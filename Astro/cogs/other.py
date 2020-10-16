@@ -35,12 +35,14 @@ class other(commands.Cog):
     async def quest(self, ctx):
         await ctx.send("Quest Started!\nQuestion 1: `What is 128+289?`\nType you answer below")
         try:
-            await bot.wait_for(message)
+            msg = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
         except asyncio.TimeoutError:
-            await channel.send('You took too long!\nTimeout Error')
-        else:
-            await channel.send('Correct!')
-        
+            await ctx.send('Timeout Error')
+        else: 
+            if msg.content == "1":
+                await ctx.send('Correct!')
+            else:
+                await ctx.send('Incorrect.')
         
         
 def setup(bot):
