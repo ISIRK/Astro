@@ -59,7 +59,7 @@ class other(commands.Cog):
             if q1.content != "417":
                 await ctx.send("Incorrect.")
             else:
-                await ctx.send("Correct!\nQuestion 2: `How many letters are in the alphabet?\nType you answer below")
+                await ctx.send("Correct!\nQuestion 2: `How many letters are in the alphabet?`\nType you answer below")
                 try:
                     q2 = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
                 except asyncio.TimeoutError:
