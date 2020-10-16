@@ -57,7 +57,7 @@ class other(commands.Cog):
             await ctx.send('Timeout Error')
         else:
             q1a = ['417', '417.0']
-            if q1.content != (q1a):
+            if q1.content != f"{q1a}":
                 await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}???`")
             else:
                 await ctx.send("Correct!\n**Question 2: `How many letters are in the alphabet?`**\nType you answer below")
