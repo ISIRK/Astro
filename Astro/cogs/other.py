@@ -49,7 +49,7 @@ class other(commands.Cog):
                 await ctx.send("Incorrect.")'''
        
     @commands.command()
-    async def questtest(self, ctx):
+    async def ???(self, ctx):
         await ctx.send("Quest Started!\nQuestion 1: `What is 128+289?`\nType you answer below")
         try:
             q1 = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
