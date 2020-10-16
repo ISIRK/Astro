@@ -50,7 +50,7 @@ class other(commands.Cog):
        
     @commands.command(name='???')
     async def questtest(self, ctx):
-        await ctx.send("Quest Started!\nQuestion 1: `What is 128+289?`\nType you answer below")
+        await ctx.send("Quest Started!\n**Question 1: `What is 128+289?`**\nType you answer below")
         try:
             q1 = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
         except asyncio.TimeoutError:
@@ -59,7 +59,7 @@ class other(commands.Cog):
             if q1.content != "417":
                 await ctx.send("Incorrect.\nIf you would like to try again type `^???`")
             else:
-                await ctx.send("Correct!\nQuestion 2: `How many letters are in the alphabet?`\nType you answer below")
+                await ctx.send("Correct!\n**Question 2: `How many letters are in the alphabet?`**\nType you answer below")
                 try:
                     q2 = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
                 except asyncio.TimeoutError:
@@ -68,7 +68,7 @@ class other(commands.Cog):
                     if q2.content != "26":
                         await ctx.send("Incorrect.\nIf you would like to try again type `^???`")
                     else:
-                        await ctx.send("Correct.\nQuestion 3: `(Approx)How many stars are in the sky?`\nA)10 Million\nB) 100 Million\nC) 1,000 Million\nD) 100,000 Million\Type you answer below [Format: A|B|C|D]")
+                        await ctx.send("Correct.\n**Question 3: `(Approx)How many stars are in the sky?`**\n**A)10 Million**\n**B) 100 Million**\n**C) 1,000 Million**\n**D) 100,000 Million**\nType you answer below [Format: A|B|C|D]")
                         try:
                             q3 = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
                         except asyncio.TimeoutError:
@@ -77,7 +77,7 @@ class other(commands.Cog):
                             if q3.content != "D":
                                 await ctx.send("Incorrect.\nIf you would like to try again type `^???`")
                             else:
-                                await ctx.send("Correct.\nThats All For Now! Come back again for more.")
+                                await ctx.send("Correct!\nThats All For Now! Come back again for more.")
         
 def setup(bot):
     bot.add_cog(other(bot))
