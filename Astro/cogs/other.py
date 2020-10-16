@@ -55,7 +55,7 @@ class other(commands.Cog):
         
         start = time.perf_counter()
         end = time.perf_counter()
-        duration = (end - start)
+        duration = (end - start) * 1000000
         
         await ctx.send("Quest Started!\n**Question 1: `What is 128+289?`**\nType you answer below")
         try:
