@@ -44,7 +44,7 @@ class other(commands.Cog):
                 if q2.content == "26":
                     await ctx.send("Correct!")
                 else:
-                    await ctx.send("Incorrect."
+                    await ctx.send("Incorrect.")
             else:
                 await ctx.send("Incorrect.")
        
@@ -57,7 +57,7 @@ class other(commands.Cog):
             await ctx.send('Timeout Error')
         else: 
             if q1.content != "417":
-                await ctx.send("Incorrect."):
+                await ctx.send("Incorrect.")
             else:
                 await ctx.send("Correct!\nQuestion 2: `How many letters are in the alphabet?\nType you answer below")
                     try:
@@ -66,7 +66,7 @@ class other(commands.Cog):
                         await ctx.send('Timeout Error')
                     else: 
                         if q2.content != "26":
-                            await ctx.send("Incorrect."):
+                            await ctx.send("Incorrect.")
                         else:
                             await ctx.send("Correct.")
         
