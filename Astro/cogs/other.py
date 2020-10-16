@@ -30,7 +30,7 @@ class other(commands.Cog):
         await ctx.send(embed=embed)
         
         
-    @commands.command()
+    '''@commands.command()
     async def quest(self, ctx):
         await ctx.send("Quest Started!\nQuestion 1: `What is 128+289?`\nType you answer below")
         try:
@@ -46,7 +46,7 @@ class other(commands.Cog):
                 else:
                     await ctx.send("Incorrect.")
             else:
-                await ctx.send("Incorrect.")
+                await ctx.send("Incorrect.")'''
        
     @commands.command()
     async def questtest(self, ctx):
@@ -60,15 +60,15 @@ class other(commands.Cog):
                 await ctx.send("Incorrect.")
             else:
                 await ctx.send("Correct!\nQuestion 2: `How many letters are in the alphabet?\nType you answer below")
-                    try:
-                        q2 = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
-                    except asyncio.TimeoutError:
-                        await ctx.send('Timeout Error')
-                    else: 
-                        if q2.content != "26":
-                            await ctx.send("Incorrect.")
-                        else:
-                            await ctx.send("Correct.")
+                try:
+                    q2 = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+                except asyncio.TimeoutError:
+                    await ctx.send('Timeout Error')
+                else: 
+                    if q2.content != "26":
+                        await ctx.send("Incorrect.")
+                    else:
+                        await ctx.send("Correct.")
         
 def setup(bot):
     bot.add_cog(other(bot))
