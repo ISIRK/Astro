@@ -100,7 +100,7 @@ def setup(bot):
 
 
 
-
+#https://github.com/platform-discord/travis-bott/blob/master/cogs/utils/ErrorHandler.py
 
 
 
