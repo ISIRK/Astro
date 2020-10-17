@@ -35,8 +35,8 @@ class other(commands.Cog):
     @commands.cooldown(1,60,BucketType.user) 
     async def quest(self, ctx):
         data = {
-            "`What was Halloween originally called?`": "Hallows Eve",
-            "`What was candy corn originally called?`": "Chicken Feed",
+            "`What was Halloween originally called?`": "Eve",
+            "`What was candy corn originally called?`": "Feed",
             "`(Approx)How much money does the average American spend on Halloween every year?`\n**A) $45\nB) $60\nC) $85\nD) $100**": "C"
         }
         total_questions = len(data)
@@ -60,7 +60,7 @@ class other(commands.Cog):
             await ctx.send(content)
 
             try:
-                message = await self.bot.wait_for(str, timeout=30.0, check=check)
+                message = await self.bot.wait_for("message", timeout=30.0, check=check)
             except asyncio.TimeoutError:
                 return await ctx.send("Timeout Error")
 
