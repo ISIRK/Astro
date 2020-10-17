@@ -67,7 +67,7 @@ class ErrorHandler(Cog):
 
         # Discord Forbidden, usually if bot doesn't have permissions
         elif isinstance(error, discord.Forbidden):
-            return await self.send_to_ctx_or_author(ctx, f"Error. This is most likely due to a permissions error or because I cannot kick/ban myself.")
+            return await self.send_to_ctx_or_author(ctx, f"Astro could not complete this command. This is most likely a permissions error or because I cannot kick/ban myself.")
 
         # User who invoked command is not owner
         elif isinstance(error, commands.NotOwner):
