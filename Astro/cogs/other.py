@@ -34,18 +34,18 @@ class other(commands.Cog):
     @commands.command(aliases=['q'])
     @commands.cooldown(1,60,BucketType.user) 
     async def quest(self, ctx):
-        data = {
+        qa = {
             "`What was Halloween originally called?`": "e",
             "`What was candy corn originally called?`": "e",
             "`(Approx)How much money does the average American spend on Halloween every year?`\n**A) $45\nB) $60\nC) $85\nD) $100**": "C"
         }
-        total_questions = len(data)
+        total_questions = len(qa)
         start_time = time.time()
 
         def check(message):
             return ctx.author == message.author and ctx.channel == message.channel
 
-        for i, (question, answer) in enumerate(data.items()):
+        for i, (question, answer) in enumerate(qa.items()):
             content = ""
             append = "Type your answer below"
 
