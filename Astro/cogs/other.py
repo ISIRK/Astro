@@ -32,7 +32,7 @@ class other(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command(alieases=['cal'])
-    asyc def calculate(self, ctx, *, equation:str):
+    asyc def calculate(self, ctx, *, equation):
         await ctx.send(eval(f"{equation}")
        
     @commands.command(aliases=['q'])
