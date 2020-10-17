@@ -14,10 +14,15 @@ token = data['TOKEN']
 prefixes = data['PREFIX']
 
 bot = commands.Bot(command_prefix = prefixes)
-
+bot.owner_ids = {542405601255489537}
 bot.remove_command('help')
 
 
+os.environ["JISHAKU_NO_UNDERSCORE"] = "True"
+
+# also 
+os.environ["JISHAKU_NO_DM_TRACEBACK"] = "True" 
+os.environ["JISHAKU_HIDE"] = "True"
 
 
 @bot.event
@@ -57,5 +62,5 @@ for filename in os.listdir('./Astro/cogs'):
 
 bot.load_extension("jishaku")
 
-#14248
+#19889
 bot.run(token)

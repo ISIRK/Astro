@@ -1,122 +1,77 @@
-"""
-If you are not using this inside a cog, add the event decorator e.g:
-@bot.event
-async def on_command_error(ctx, error)
-For examples of cogs see:
-https://gist.github.com/EvieePy/d78c061a4798ae81be9825468fe146be
-For a list of exceptions:
-https://discordpy.readthedocs.io/en/latest/ext/commands/api.html#exceptions
-"""
 import discord
-import traceback
-import sys
 from discord.ext import commands
+from discord.ext.commands import Cog
 
+import typing
 
-class CommandErrorHandler(commands.Cog):
-
+# noinspection PyRedundantParentheses
+class ErrorHandler(Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.Cog.listener()
-    async def on_command_error(self, ctx, error):
-        """The event triggered when an error is raised while invoking a command.
-        Parameters
-        ------------
-        ctx: commands.Context
-            The context used for command invocation.
-        error: commands.CommandError
-            The Exception raised.
-        """
+    """Pretty much from here:
+    https://github.com/4Kaylum/DiscordpyBotBase/blob/master/cogs/error_handler.py"""
 
-        # This prevents any commands with local handlers being handled here in on_command_error.
-        if hasattr(ctx.command, 'on_error'):
-            return
+    async def send_to_ctx_or_author(self, ctx, text: str = None, *args, **kwargs) -> typing.Optional[discord.Message]:
+        """Tries to send the given text to ctx, but failing that, tries to send it to the author
+        instead. If it fails that too, it just stays silent."""
 
-        # This prevents any cogs with an overwritten cog_command_error being handled here.
-        cog = ctx.cog
-        if cog:
-            if cog._get_overridden_method(cog.cog_command_error) is not None:
-                return
-
-        ignored = (commands.CommandNotFound, )
-
-        # Allows us to check for original exceptions raised and sent to CommandInvokeError.
-        # If nothing is found. We keep the exception passed to on_command_error.
-        error = getattr(error, 'original', error)
-
-        # Anything in ignored will return and prevent anything happening.
-        if isinstance(error, ignored):
-            return
-
-        if isinstance(error, commands.DisabledCommand):
-            await ctx.send(f'{ctx.command} has been disabled.')
-
-        elif isinstance(error, commands.NoPrivateMessage):
+        try:
+            return await ctx.send(text, *args, **kwargs)
+        except discord.Forbidden:
             try:
-                await ctx.author.send(f'{ctx.command} can not be used in Private Messages.')
-            except discord.HTTPException:
+                return await ctx.author.send(text, *args, **kwargs)
+            except discord.Forbidden:
                 pass
+        except discord.NotFound:
+            pass
+        return None
 
-        # For this error example we check to see where it came from...
-        elif isinstance(error, commands.BadArgument):
-            if ctx.command.qualified_name == 'tag list':  # Check if the command being invoked is 'tag list'
-                await ctx.send('I could not find that member. Please try again.')
+    @Cog.listener()
+    async def on_command_error(self, ctx, error):
+        ignored_errors = (commands.CommandNotFound)
 
-        else:
-            # All other Errors not returned come here. And we can just print the default TraceBack.
-            print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
-            traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
+        if isinstance(error, ignored_errors):
+            return
 
-    """Below is an example of a Local Error Handler for our command do_repeat"""
+        setattr(ctx, "original_author_id", getattr(ctx, "original_author_id", ctx.author.id))
+        owner_reinvoke_errors = (
+            commands.MissingAnyRole, commands.MissingPermissions,
+            commands.MissingRole, commands.CommandOnCooldown, commands.DisabledCommand
+        )
 
-    @commands.command(name='repeat', aliases=['mimic', 'copy'])
-    async def do_repeat(self, ctx, *, inp: str):
-        """A simple command which repeats your input!
-        Parameters
-        ------------
-        inp: str
-            The input you wish to repeat.
-        """
-        await ctx.send(inp)
+        if ctx.original_author_id in self.bot.owner_ids and isinstance(error, owner_reinvoke_errors):
+            return await ctx.reinvoke()
 
-    @do_repeat.error
-    async def do_repeat_handler(self, ctx, error):
-        """A local Error Handler for our command do_repeat.
-        This will only listen for errors in do_repeat.
-        The global on_command_error will still be invoked after.
-        """
+        # Command is on Cooldown
+        elif isinstance(error, commands.CommandOnCooldown):
+            return await self.send_to_ctx_or_author(ctx, f"This command is on cooldown. **`{int(error.retry_after)}` seconds**", delete_after=5.0)
 
-        # Check if our required argument inp is missing.
-        if isinstance(error, commands.MissingRequiredArgument):
-            if error.param.name == 'inp':
-                await ctx.send("You forgot to give me input to repeat!")
+        # Missing argument
+        elif isinstance(error, commands.MissingRequiredArgument):
+            # message = utils.embed_message(title="Missing Argument.",
+            #                               message=f"You're missing the required argument: `{error.param.name}`",
+            #                               footer_icon=self.bot.user.avatar_url)
+            # return await ctx.send(embed=message, delete_after=2)
+            return await ctx.send_help(ctx.command)
 
+        # Missing Permissions
+        elif isinstance(error, commands.MissingPermissions):
+            return await self.send_to_ctx_or_author(ctx, f"You're missing the required permission: `{error.missing_perms[0]}`")
+
+        # Missing Permissions
+        elif isinstance(error, commands.BotMissingPermissions):
+            return await self.send_to_ctx_or_author(ctx, f"Astro is missing the required permission: `{error.missing_perms[0]}`")
+
+        # Discord Forbidden, usually if bot doesn't have permissions
+        elif isinstance(error, discord.Forbidden):
+            return await self.send_to_ctx_or_author(ctx, f"I was unable to complete this action, this is most likely due to permissions.")
+
+        # User who invoked command is not owner
+        elif isinstance(error, commands.NotOwner):
+            return await self.send_to_ctx_or_author(ctx, f"You must be the owner of the bot to run this.")
+        
+        raise error
 
 def setup(bot):
-    bot.add_cog(CommandErrorHandler(bot))
-
-
-
-
-
-#https://github.com/platform-discord/travis-bott/blob/master/cogs/utils/ErrorHandler.py
-
-
-
-
-
-
-
-
-
-#test
-@client.event
-async def on_command_error(ctx, error):
-    if hasattr(ctx.command, 'on_error'):
-        return
-    ignored = (commands.MissingRequiredArgument, commands.BadArgument, commands.NoPrivateMessage, commands.CheckFailure, commands.CommandNotFound, commands.DisabledCommand, commands.CommandInvokeError, commands.TooManyArguments, commands.UserInputError, commands.CommandOnCooldown, commands.NotOwner, commands.MissingPermissions, commands.BotMissingPermissions)
-    error = getattr(error, 'original', error)
-           
-    if isinstance(error, commands.CommandNotFound)
-           #do stuff
+    bot.add_cog(ErrorHandler(bot))

@@ -15,6 +15,7 @@ from discord.ext.commands.cooldowns import BucketType
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 import random
 
+
 class utility(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -98,8 +99,8 @@ class utility(commands.Cog):
         if not member: # if member is no mentioned
             member = ctx.message.author # set member as the author
         userAvatar = member.avatar_url
-        avatarembed = discord.Embed(title=f"Avatar for {member}", color=0x2F3136)
-        avatarembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        avatarembed = discord.Embed( color=0x2F3136)
+        avatarembed.set_author(name=f"Avatar for {member}", icon_url=ctx.author.avatar_url)
         avatarembed.set_image(url=userAvatar)
         await ctx.send(embed=avatarembed)
 
