@@ -67,14 +67,17 @@ class dev(commands.Cog):
             embed.set_author(name=f"Sent from {ctx.author}", icon_url=ctx.author.avatar_url)
             embed.add_field(name="Message:", value=f'{content}')
             embed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+            embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/726779670514630667.png?v=1")
             await user.send(embed=embed)
             await ctx.send(f"<:comment:726779670514630667> Message sent to {user}")
    
     @commands.is_owner()
     @commands.command()
-    async def say(self, ctx, *, content=None):
-        if content is None:
-            await ctx.send("Message is a required argument that is missing.")
+    async def say(self, ctx, channel : discord.Channel=None, *, content=None):
+        if channel is None:
+            channel = ctx.channel
+        elif content is None:
+            await ctx.channel.send("Message is a required argument that is missing.")
         else:
             await ctx.send(content)
 
