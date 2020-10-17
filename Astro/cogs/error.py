@@ -30,6 +30,8 @@ class ErrorHandler(Cog):
     @Cog.listener()
     async def on_command_error(self, ctx, error):
         ignored_errors = (commands.CommandNotFound,)
+        
+        error = getattr(error, "original", error)
 
         if isinstance(error, ignored_errors):
             return
