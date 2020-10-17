@@ -74,8 +74,8 @@ class dev(commands.Cog):
     @commands.is_owner()
     @commands.command()
     async def say(self, ctx, channel : typing.Optional[discord.Channel], content: str):
-        send_ctx = channel or ctx
-        await send_ctx.send(content)
+            send_ctx = channel or ctx
+            await send_ctx.send(content)
         
     @commands.is_owner()
     @commands.command()
