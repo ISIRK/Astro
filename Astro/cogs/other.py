@@ -52,19 +52,19 @@ class other(commands.Cog):
     @commands.command(aliases=['q'])
     @commands.cooldown(1,60,BucketType.user) 
     async def quest(self, ctx):
-        
+
         start_time = time.time()
-        
-        await ctx.send("Quest Started!\n**Question 1: `What is Halloween originally called?`**\nType your answer below")
+
+        await ctx.send("Quest Started!\n**Question 1: `What is 128+289?`**\nType you answer below")
         try:
             q1 = await self.bot.wait_for('message', timeout=30.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
         except asyncio.TimeoutError:
             await ctx.send('Timeout Error')
         else:
-            if q1.content != "D":
+            if q1.content != "417":
                 await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}???`")
             else:
-                await ctx.send("Correct!\n**Question 2: `How many letters are in the alphabet?`**\nType your answer below")
+                await ctx.send("Correct!\n**Question 2: `How many letters are in the alphabet?`**\nType you answer below")
                 try:
                     q2 = await self.bot.wait_for('message', timeout=30.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
                 except asyncio.TimeoutError:
@@ -73,7 +73,7 @@ class other(commands.Cog):
                     if q2.content != "26":
                         await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}???`")
                     else:
-                        await ctx.send("Correct.\n**Question 3: `(Approx)How many stars are in the sky?`**\n**A)100 Million**\n**B) 1,000 Million**\n**C) 10,000 Million**\n**D) 100,000 Million**\nType your answer below [Format: A|B|C|D]")
+                        await ctx.send("Correct.\n**Question 3: `(Approx)How many stars are in the sky?`**\n**A)100 Million**\n**B) 1,000 Million**\n**C) 10,000 Million**\n**D) 100,000 Million**\nType you answer below [Format: A|B|C|D]")
                         try:
                             q3 = await self.bot.wait_for('message', timeout=30.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
                         except asyncio.TimeoutError:
