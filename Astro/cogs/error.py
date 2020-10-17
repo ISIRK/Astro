@@ -51,7 +51,7 @@ class ErrorHandler(Cog):
 
         # Missing argument
         elif isinstance(error, commands.MissingRequiredArgument):#{error.param.name}
-            return await self.send_to_ctx_or_author(ctx, f"You're missing the required argument: `{str(error)}`.")
+            return await self.send_to_ctx_or_author(ctx, f"You're missing the required argument: `{error.param.name}`.")
 
         # Missing Permissions
         elif isinstance(error, commands.MissingPermissions):
