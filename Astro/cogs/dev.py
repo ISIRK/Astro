@@ -58,13 +58,13 @@ class dev(commands.Cog):
     @commands.command()
     async def dm(self , ctx, user : discord.Member, *, content):
         '''Dm a Member'''
-            embed = discord.Embed(color=0x2F3136)
-            embed.set_author(name=f"Sent from {ctx.author}", icon_url=ctx.author.avatar_url)
-            embed.add_field(name="Message:", value=f'{content}')
-            embed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
-            embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/726779670514630667.png?v=1")
-            await user.send(embed=embed)
-            await ctx.send(f"<:comment:726779670514630667> Message sent to {user}")
+        embed = discord.Embed(color=0x2F3136)
+        embed.set_author(name=f"Sent from {ctx.author}", icon_url=ctx.author.avatar_url)
+        embed.add_field(name="Message:", value=f'{content}')
+        embed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/726779670514630667.png?v=1")
+        await user.send(embed=embed)
+        await ctx.send(f"<:comment:726779670514630667> Message sent to {user}")
    
     @commands.is_owner()
     @commands.command()
