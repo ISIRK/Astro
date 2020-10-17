@@ -73,7 +73,7 @@ class dev(commands.Cog):
    
     @commands.is_owner()
     @commands.command()
-    async def say(self, ctx, *, content=None):
+    async def say(self, ctx, *, content:str):
             await ctx.send(content)
         
     @commands.is_owner()
