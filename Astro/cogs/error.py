@@ -50,12 +50,8 @@ class ErrorHandler(Cog):
             return await self.send_to_ctx_or_author(ctx, f"This command is on cooldown. **Try in `{int(error.retry_after)}` seconds**", delete_after=10.0)
 
         # Missing argument
-        elif isinstance(error, commands.MissingRequiredArgument):
-            # message = utils.embed_message(title="Missing Argument.",
-            #                               message=f"You're missing the required argument: `{error.param.name}`",
-            #                               footer_icon=self.bot.user.avatar_url)
-            # return await ctx.send(embed=message, delete_after=2)
-            return await ctx.send_help(ctx.command)
+        elif isinstance(error, commands.MissingRequiredArgument):#{error.param.name}
+            return await ctx.send_to_ctx_or_author(ctx, f"You're missing the required argument: `{str(error)}`.")
 
         # Missing Permissions
         elif isinstance(error, commands.MissingPermissions):
