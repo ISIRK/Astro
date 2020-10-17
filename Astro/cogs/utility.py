@@ -1,19 +1,26 @@
-from multiprocessing.connection import Client
-from random import randint
 import discord
+
 from discord import Embed
-from discord.ext import commands
-from discord.ext.commands import context
-from discord.shard import ShardInfo
 from discord.user import User
 from discord.utils import get
-from datetime import datetime
-import os
-import collections
-import time, datetime
+from discord.ext import commands
+from discord.shard import ShardInfo
+from discord.ext.commands import context
 from discord.ext.commands.cooldowns import BucketType
-from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
+
+import os
+
+import collections
+
 import random
+from random import randint
+
+import time, datetime
+from datetime import datetime
+
+from multiprocessing.connection import Client
+
+from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 
 
 class utility(commands.Cog):
