@@ -68,7 +68,7 @@ class dev(commands.Cog):
             embed.add_field(name="Message:", value=f'{content}')
             embed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
             await user.send(embed=embed)
-            await ctx.send(f"<:check:758363543002808371> Message sent to {user}")
+            await ctx.send(f"<:comment:726779670514630667> Message sent to {user}")
    
     @commands.is_owner()
     @commands.command()
