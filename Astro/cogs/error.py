@@ -66,6 +66,10 @@ class ErrorHandler(Cog):
         # Discord Forbidden, usually if bot doesn't have permissions
         elif isinstance(error, discord.Forbidden):
             return await self.send_to_ctx_or_author(ctx, f"I was unable to complete this action, this is most likely due to permissions.")
+        
+        #Command Not Found
+        elif isinstance(error, commands.CommandNotFound):
+            return await self.send_to_ctx_or_author(ctx, f"Not a valid command. For a list of commands type `{ctx.prefix}help`.")
 
         # User who invoked command is not owner
         elif isinstance(error, commands.NotOwner):
