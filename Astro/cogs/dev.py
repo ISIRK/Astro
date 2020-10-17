@@ -79,7 +79,7 @@ class dev(commands.Cog):
         elif content is None:
             await ctx.channel.send("Message is a required argument that is missing.")
         else:
-            await ctx.send(content)
+            await channel.send(content)
 
     @commands.is_owner()
     @commands.command()
