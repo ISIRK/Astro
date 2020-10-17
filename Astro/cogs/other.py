@@ -33,7 +33,7 @@ class other(commands.Cog):
     
     @commands.command(alieases=['cal'])
     asyc def calculate(self, ctx, num1, equation, num2):
-        await ctx.send(eval(f"{num1}{equation}{num2}")
+        await ctx.send(exec(f"{num1}{equation}{num2}")
        
     @commands.command(aliases=['q'])
     @commands.cooldown(1,60,BucketType.user) 
