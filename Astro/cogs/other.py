@@ -33,10 +33,10 @@ class other(commands.Cog):
        
     @commands.command(aliases=['q'])
     @commands.cooldown(1,60,BucketType.user) 
-    async def quest(self, ctx):
+    async def quiz(self, ctx):
         qa = {
             "`What was Halloween originally called?`": "HALLOWS EVE",
-            "`What was candy corn originally called?`": "Chicken Feed",
+            "`What was candy corn originally called?`": "CHICKEN FEED",
             "`(Approx)How much money does the average American spend on Halloween every year?`\n**A) $45\nB) $60\nC) $85\nD) $100**": "C"
         }
         total_questions = len(qa)
