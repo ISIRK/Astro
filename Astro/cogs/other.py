@@ -36,7 +36,7 @@ class other(commands.Cog):
     async def quiz(self, ctx):
         qa = {
             "`What was Halloween originally called?`": "HALLOWS EVE",
-            "`What was candy corn originally called?`": "1",
+            "`What was candy corn originally called?`": "chicken feed",
             "`(Approx)How much money does the average American spend on Halloween every year?`\n**A) $45\nB) $60\nC) $85\nD) $100**": "C"
         }
         total_questions = len(qa)
