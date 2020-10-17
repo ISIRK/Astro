@@ -45,7 +45,7 @@ class ErrorHandler(Cog):
 
         # Command is on Cooldown
         elif isinstance(error, commands.CommandOnCooldown):
-            return await self.send_to_ctx_or_author(ctx, f"This command is on cooldown. **`{int(error.retry_after)}` seconds**", delete_after=5.0)
+            return await self.send_to_ctx_or_author(ctx, f"This command is on cooldown. **Try in `{int(error.retry_after)}` seconds**", delete_after=10.0)
 
         # Missing argument
         elif isinstance(error, commands.MissingRequiredArgument):
@@ -69,7 +69,7 @@ class ErrorHandler(Cog):
 
         # User who invoked command is not owner
         elif isinstance(error, commands.NotOwner):
-            return await self.send_to_ctx_or_author(ctx, f"You must be the owner of the bot to run this.")
+            return await self.send_to_ctx_or_author(ctx, f"You must be the owner of the bot to run this command.")
         
         raise error
 
