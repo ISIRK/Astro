@@ -49,9 +49,9 @@ class other(commands.Cog):
             else:
                 await ctx.send("Incorrect.")'''
        
-    @commands.command(name='???')
+    @commands.command(aliases=['q'])
     @commands.cooldown(1,60,BucketType.user) 
-    async def questtest(self, ctx):
+    async def quest(self, ctx):
         
         start_time = time.time()
         
