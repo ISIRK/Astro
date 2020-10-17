@@ -61,7 +61,7 @@ class other(commands.Cog):
         except asyncio.TimeoutError:
             await ctx.send('Timeout Error')
         else:
-            if q1.content != ['d', 'D']:
+            if q1.content != "D":
                 await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}???`")
             else:
                 await ctx.send("Correct!\n**Question 2: `How many letters are in the alphabet?`**\nType your answer below")
