@@ -11,7 +11,7 @@ class Mod(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, user : discord.Member=None):
         """Kicks a user from the server."""
-        if user == None:
+        if user is None:
             await ctx.send("User is a required argument that is missing.")
         elif ctx.author == user:
             await ctx.send("You cannot kick yourself.")
@@ -26,7 +26,7 @@ class Mod(commands.Cog):
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, user : discord.Member=None):
         """Bans a user from the server."""
-        if user == None:
+        if user is None:
             await ctx.send("User is a required argument that is missing.")
         if ctx.author == user:
             await ctx.send("You cannot ban yourself.")
@@ -85,7 +85,7 @@ class Mod(commands.Cog):
     @commands.has_permissions(manage_messages=True)
     async def clear(self, ctx, count: int=None):
         """Deletes a specified amount of messages. (Max 100)"""
-        if count == None:
+        if count is None:
             await ctx.send("Number is a required argument that is missing.")
         else:
             if count>100:
@@ -96,7 +96,7 @@ class Mod(commands.Cog):
     @commands.has_permissions(manage_channels=True)
     async def slowmode(self, ctx, seconds: int=None):
         '''Change the slowmode in the current channel.'''
-        if seconds == None:
+        if seconds is None:
             await ctx.send("Seconds is a required argument that is missing.")
         else:
             await ctx.channel.edit(slowmode_delay=seconds)
@@ -106,9 +106,9 @@ class Mod(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def warn(self , ctx, user : discord.Member=None, *, reason=None):
         '''Warn a Member'''
-        if user == None:
+        if user is None:
             await ctx.send("User is a required argument that is missing.")
-        elif reason == None:
+        elif reason is None:
             await ctx.send("Reason is a required argument that is missing.")
         else:
             guild = ctx.guild

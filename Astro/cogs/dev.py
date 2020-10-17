@@ -51,9 +51,9 @@ class dev(commands.Cog):
     @commands.command()
     async def dm(self , ctx, user : discord.Member=None, *, content=None):
         '''Dm a Member'''
-        if user == None:
+        if user is None:
             await ctx.send("User is a required argument that is missing.")
-        elif content == None:
+        elif content is None:
             await ctx.send("Message is a required argument that is missing.")
         else:
             embed = discord.Embed(color=0x2F3136)
@@ -66,7 +66,7 @@ class dev(commands.Cog):
     @commands.is_owner()
     @commands.command()
     async def say(self, ctx, *, content=None):
-        if content == None:
+        if content is None:
             await ctx.send("Message is a required argument that is missing.")
         else:
             await ctx.send(content)
