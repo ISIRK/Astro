@@ -82,8 +82,13 @@ class other(commands.Cog):
                             if q3.content != "D":
                                 await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}???`")
                             else:
+<<<<<<< HEAD
                                 time_taken = time.time()- start_time
                                 await ctx.send(f"Correct!\nYou took **{time_taken:,.2f} seconds!**")
+=======
+                                time_taken = time.time() - start_time
+                                await ctx.send(f"Correct!\nYou took {time_taken} seconds!")
+>>>>>>> 0ddb8787172e259e35dbb0db3824c9e86641bf49
         
 def setup(bot):
     bot.add_cog(other(bot))
