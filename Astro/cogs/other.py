@@ -60,7 +60,7 @@ class other(commands.Cog):
             await ctx.send(content)
 
             try:
-                message = await self.bot.wait_for(*, "message", timeout=30.0, check=check)
+                message = await self.bot.wait_for(str, timeout=30.0, check=check)
             except asyncio.TimeoutError:
                 return await ctx.send("Timeout Error")
 
