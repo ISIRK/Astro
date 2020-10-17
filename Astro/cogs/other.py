@@ -35,7 +35,7 @@ class other(commands.Cog):
     @commands.cooldown(1,60,BucketType.user) 
     async def quest(self, ctx):
         data = {
-            "`What was Halloween originally called?`": "Hallows Eve",
+            "`What was Halloween originally called?`": "2",
             "`What was candy corn originally called?`": "Chicken Feed",
             "`(Approx)How much money does the average American spend on Halloween every year?`\n**A) $45\nB) $60\nC) $85\nD) $100**": "C"
         }
