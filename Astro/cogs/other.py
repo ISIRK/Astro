@@ -30,6 +30,10 @@ class other(commands.Cog):
         embed = discord.Embed(title="Dice", description=f'The Dice Rolled {random.choice(dice)}', color=0x2F3136)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/766312838910181421/unknown.png")
         await ctx.send(embed=embed)
+    
+    @commands.command(alieases=['cal'])
+    asyc def calculate(self, ctx, *, equation:str):
+        await ctx.send(eval(equation)
        
     @commands.command(aliases=['q'])
     @commands.cooldown(1,60,BucketType.user) 
