@@ -29,25 +29,6 @@ class other(commands.Cog):
         embed = discord.Embed(title="Dice", description=f'The Dice Rolled {random.choice(dice)}', color=0x2F3136)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/766312838910181421/unknown.png")
         await ctx.send(embed=embed)
-        
-        
-    '''@commands.command()
-    async def quest(self, ctx):
-        await ctx.send("Quest Started!\nQuestion 1: `What is 128+289?`\nType you answer below")
-        try:
-            q1 = await self.bot.wait_for('message', timeout=30.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
-        except asyncio.TimeoutError:
-            await ctx.send('Timeout Error')
-        else: 
-            if q1.content != "417":
-                await ctx.send("Correct!\nQuestion 2: `How many letters are in the alphabet?\nType you answer below")
-                q2 = await self.bot.wait_for('message', timeout=30.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
-                if q2.content == "26":
-                    await ctx.send("Correct!")
-                else:
-                    await ctx.send("Incorrect.")
-            else:
-                await ctx.send("Incorrect.")'''
        
     @commands.command(aliases=['q'])
     @commands.cooldown(1,60,BucketType.user) 
@@ -83,7 +64,7 @@ class other(commands.Cog):
                 return await ctx.send("Timeout Error")
 
             if message.content.upper() != answer:
-                return await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}???`")
+                return await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}quest`")
         time_taken = time.time()- start_time
         await ctx.send(f"Correct!\nYou took **{time_taken:,.2f} seconds!**")
 
