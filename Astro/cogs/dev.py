@@ -56,13 +56,8 @@ class dev(commands.Cog):
 
     @commands.is_owner()
     @commands.command()
-    async def dm(self , ctx, user : discord.Member=None, *, content=None):
+    async def dm(self , ctx, user : discord.Member, *, content):
         '''Dm a Member'''
-        if user is None:
-            await ctx.send("User is a required argument that is missing.")
-        elif content is None:
-            await ctx.send("Message is a required argument that is missing.")
-        else:
             embed = discord.Embed(color=0x2F3136)
             embed.set_author(name=f"Sent from {ctx.author}", icon_url=ctx.author.avatar_url)
             embed.add_field(name="Message:", value=f'{content}')
