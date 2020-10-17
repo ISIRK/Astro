@@ -35,9 +35,9 @@ class other(commands.Cog):
     @commands.cooldown(1,60,BucketType.user) 
     async def quest(self, ctx):
         data = {
-            "`What is 128+289?`": "417",
-            "`How many letters are in the alphabet?`": "26",
-            "`(Approx)How many stars are in the sky?`\n**A) 100 Million\nB) 1,000 Million\nC) 10,000 Million\nD) 100,000 Million**": "D"
+            "`What was Halloween originally called?`": "Hallows Eve",
+            "`What was candy corn originally called?`": "Chicken Feed",
+            "`(Approx)How much money does the average American spend on Halloween every year?`\n**A) $45\nB) $60\nC) $85\nD) $100**": "C"
         }
         total_questions = len(data)
         start_time = time.time()
