@@ -74,17 +74,16 @@ class utility(commands.Cog):
                     activity = '`None`'
         else:
             activity = '`None`'
-        embed = discord.Embed(title=f"{member}", color=0x2F3136)
-        embed.add_field(name='**General:**',
-                        value=f'Name: `{member}`\n'
-                        statuses = {
+    statuses = {
                         "online": "<:online:758139458767290421>",
                         "idle": "<:idle:758139458406711307>",
                         "dnd": "<:dnd:758139458598993921>",
                         "offline": "<:offline:758139458611970088>"
                         }
-                        status = statuses[str(member.status)]
-                              f'Status: {status}\n'
+        embed = discord.Embed(title=f"{member}", color=0x2F3136)
+        embed.add_field(name='**General:**',
+                        value=f'Name: `{member}`\n' 
+                              f'Status: {statuses[str(member.status)]}\n'
                               f'Account Created on: `{datetime.datetime.strftime(member.created_at, "%A %d %B %Y at %H:%M")}`', inline=False)
 
         embed.add_field(name='**Guild related information:**',
