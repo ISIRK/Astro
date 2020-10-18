@@ -88,7 +88,7 @@ class info(commands.Cog):
         other = discord.Embed(title="Other", description="Other Commands", color=0x2F3136)
         other.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         other.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
-        other.add_field(name="Commands:", value="`dice` - Roll A Dice (*There is a possibility you'll get a mystery.*)\n`quiz|q` - A Haloween Quest\n`meme` - Get a random meme\n`joke` - Get a randome joke\n`binary <text>` - Turn text into binary", inline=False)
+        other.add_field(name="Commands:", value="`dice` - Roll A Dice (*There is a possibility you'll get a mystery.*)\n`quiz|q` - A Haloween Quest\n`meme` - Get a random meme\n`joke` - Get a randome joke\n`binary <text>` - Turn text into binary\n`text <binary>` - Turn Binary into text", inline=False)
         
         if page == "info":
             await ctx.send(embed=info)
