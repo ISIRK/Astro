@@ -80,10 +80,10 @@ class other(commands.Cog):
     @commands.cooldown(1,10,BucketType.user) 
     async def memetest(self, ctx):
         async with aiohttp.ClientSession() as session:
-          async with session.get('https://some-random-api.ml/meme') as resp:
+          async with session.get('https://meme-api.herokuapp.com/gimme') as resp:
             resp = await resp.json()
         embed = discord.Embed(title=resp['title'], color=0x2F3136)
-        embed.set_image(url=resp['preview'])
+        embed.set_image(url=resp['url'])
         await ctx.send(embed=embed)
 
        
