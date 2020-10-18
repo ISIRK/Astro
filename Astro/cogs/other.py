@@ -52,7 +52,7 @@ class other(commands.Cog):
         
     @commands.command()
     @commands.cooldown(1,10,BucketType.user)
-    async def binary(self, ctx, text: str):
+    async def binary(self, ctx, *, text: str):
         async with aiohttp.ClientSession() as session:
           async with session.get(f'https://some-random-api.ml/binary?text={text}') as resp:
             resp = await resp.json()
@@ -60,7 +60,7 @@ class other(commands.Cog):
         
     @commands.command()
     @commands.cooldown(1,10,BucketType.user)
-    async def text(self, ctx, binary: str):
+    async def text(self, ctx, *, binary: str):
         async with aiohttp.ClientSession() as session:
           async with session.get(f'https://some-random-api.ml/binary?decode={binary}') as resp:
             resp = await resp.json()
