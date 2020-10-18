@@ -48,6 +48,7 @@ class other(commands.Cog):
         await ctx.send(resp['binary'])
         
     @commands.command()
+    @commands.cooldown(1,60,BucketType.user) 
     async def meme(self, ctx):
         async with aiohttp.ClientSession() as session:
           async with session.get('https://some-random-api.ml/meme') as resp:
