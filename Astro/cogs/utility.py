@@ -36,7 +36,7 @@ class utility(commands.Cog):
                               f'<:idle:758139458406711307> **{statuses[discord.Status.idle]:,}**\n'
                               f'<:dnd:758139458598993921> **{statuses[discord.Status.dnd]:,}**\n'
                               f'<:offline:758139458611970088> **{statuses[discord.Status.offline]:,}**\n'
-                              f'<:boost:758139554778578954> **Tier {ctx.guild.premium_tier}**\n'
+                              f'<:boost4:724328585137225789> **Tier {ctx.guild.premium_tier}**\n'
                               f'Region: **{ctx.guild.region}**\n'
                               f'Boosters: **{ctx.guild.premium_subscription_count}**\n'
                               f'Max File Size: **{round(ctx.guild.filesize_limit / 1048576)} MB**\n'
@@ -44,8 +44,8 @@ class utility(commands.Cog):
                               f'Max Emojis: **{ctx.guild.emoji_limit}**\n', inline=False)
 
         embed.add_field(name='**Channel Information:**',
-                        value=f'`AFK timeout:` **{int(ctx.guild.afk_timeout / 60)}m**\n'
-                              f'`AFK channel:` **{ctx.guild.afk_channel}**\n'
+                        value=f'AFK timeout: **{int(ctx.guild.afk_timeout / 60)}m**\n'
+                              f'AFK channel: **{ctx.guild.afk_channel}**\n'
                               f'<:textchannel:724637677395116072> Text channels: **{len(ctx.guild.text_channels)}**\n'
                               f'<:voicechannel:724637677130875001> Voice channels: **{len(ctx.guild.voice_channels)}**\n', inline = False)
 
