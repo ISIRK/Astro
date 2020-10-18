@@ -27,6 +27,7 @@ class other(commands.Cog):
         self.bot = bot
         
     @commands.command()
+    @commands.cooldown(1,10,BucketType.user) 
     async def dice(self, ctx):
         dice = ['1', '2', '3', '4', '5', '6', 'off the table...\n*You Found The Mystery!*']
         embed = discord.Embed(title="Dice", description=f'The Dice Rolled {random.choice(dice)}', color=0x2F3136)
