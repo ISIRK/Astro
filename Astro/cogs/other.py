@@ -43,6 +43,14 @@ class other(commands.Cog):
         await ctx.send(resp['joke'])
         
     @commands.command()
+    @commands.cooldown(1,10,BucketType.user) 
+    async def token(self, ctx):
+        async with aiohttp.ClientSession() as session:
+          async with session.get('https://some-random-api.ml/bottoken') as resp:
+            resp = await resp.json()
+        await ctx.send(resp['token'])
+        
+    @commands.command()
     @commands.cooldown(1,10,BucketType.user)
     async def binary(self, ctx, text: str):
         async with aiohttp.ClientSession() as session:
