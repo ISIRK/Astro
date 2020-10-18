@@ -46,6 +46,13 @@ class other(commands.Cog):
           async with session.get(f'https://some-random-api.ml/binary?text={text}') as resp:
             resp = await resp.json()
         await ctx.send(resp['binary'])
+        
+    @commands.command()
+    async def meme(self, ctx):
+        async with aiohttp.ClientSession() as session:
+            async with session.get('https://some-random-api.ml/meme') as resp:
+                resp = await resp.json()
+            await ctx.send(resp['meme'])
 
        
     @commands.command(aliases=['q'])
