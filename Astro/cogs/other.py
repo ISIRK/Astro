@@ -53,7 +53,7 @@ class other(commands.Cog):
           async with session.get('https://some-random-api.ml/meme') as resp:
             resp = await resp.json()
         embed = discord.Embed(title=resp['caption'], color=0x2F3136)
-        embed.set.image(url=resp['url'])
+        embed.set_image(url=resp['url'])
         await ctx.send(embed=embed)
 
        
