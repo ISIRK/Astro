@@ -55,7 +55,7 @@ class other(commands.Cog):
         async with aiohttp.ClientSession() as session:
           async with session.get(f'https://some-random-api.ml/binary?decode={text}') as resp:
             resp = await resp.json()
-        await ctx.send(resp['binary'])
+        await ctx.send(resp['text'])
         
     @commands.command()
     @commands.cooldown(1,10,BucketType.user) 
