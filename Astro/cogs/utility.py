@@ -74,7 +74,7 @@ class utility(commands.Cog):
                     activity = '`None`'
         else:
             activity = '`None`'
-    statuses = {
+            statuses = {
                         "online": "<:online:758139458767290421>",
                         "idle": "<:idle:758139458406711307>",
                         "dnd": "<:dnd:758139458598993921>",
