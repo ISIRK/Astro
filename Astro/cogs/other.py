@@ -67,6 +67,17 @@ class other(commands.Cog):
         await ctx.send(resp['text'])
         
     @commands.command()
+    @commands.cooldown(1,10,BucketType.user)
+    async def roast(self, ctx, user: discord.Member=None):
+        if not user:
+            member = ctx.message.author
+        else:
+            async with aiohttp.ClientSession() as session:
+              async with session.get(f'https://insult.mattbas.org/api/insult.json?who={user}') as resp:
+                resp = await resp.json()
+            await ctx.send(resp['insult'])
+        
+    @commands.command()
     @commands.cooldown(1,10,BucketType.user) 
     async def meme(self, ctx):
         async with aiohttp.ClientSession() as session:
