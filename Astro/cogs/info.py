@@ -39,7 +39,7 @@ class info(commands.Cog):
         supportembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         supportembed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
         supportembed.add_field(name="Support Server", value="<a:igloading:737723292768796713> Support Server: https://discord.gg/7yZqHfG", inline=False)
-        supportembed.add_field(name="Contact", value="To contact dm isirk#0001 or email me @ isirk@asksirk.com", inline=False)
+        supportembed.add_field(name="Contact", value="To contact dm [isirk#0001](https://discord.com/users/542405601255489537) or email me @ isirk@asksirk.com", inline=False)
         #supportembed.add_field(name=":link: Links", value="Bot Site: https://asksirk.com/Astro\nGithub Repository: https://github.com/ISIRK/Astro\nPatreon: https://www.patreon.com/Astro_Bot", inline=False)
         supportembed.set_footer(text=f"Use {ctx.prefix}help or info.")
         await ctx.send(embed=supportembed)
@@ -52,14 +52,14 @@ class info(commands.Cog):
         embed.set_thumbnail(url="https://asksirk.com/Astro/astronaut.jpg")
         embed.add_field(name="Invite Link:", value="🌐 [Invite Link](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)", inline=False)
         embed.add_field(name="Support Server:", value="<a:igloading:737723292768796713> [Support Server](https://discord.gg/7yZqHfG)", inline=False)
-        embed.add_field(name="Contact:", value="To contact dm isirk#0001 or email me @ isirk@asksirk.com", inline=False)
+        embed.add_field(name="Contact:", value="To contact dm [isirk#0001](https://discord.com/users/542405601255489537) or email me @ isirk@asksirk.com", inline=False)
         embed.set_footer(text=f"Use {ctx.prefix}help or info.")
         await ctx.send(embed=embed)
 
     @commands.command()
     async def help(self, ctx, *, page=None):
         
-        helpembed1 = discord.Embed(title="Help", description="A Utilities Discord Bot with reliability and simplicity\n Made By isirk#0001", color=0x2F3136)
+        helpembed1 = discord.Embed(title="Help", description="A Utilities Discord Bot with reliability and simplicity\n Made By [isirk#0001](https://discord.com/users/542405601255489537)", color=0x2F3136)
         helpembed1.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         helpembed1.add_field(name="Prefix", value="`@Astro ,Astro ,astro ,^`", inline=False)
         helpembed1.add_field(name= "Help", value="React below to change the pages.\n**Note:**\nYou can type `help <page name>` to get a specific help page.", inline=False)
