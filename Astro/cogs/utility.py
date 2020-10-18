@@ -46,8 +46,8 @@ class utility(commands.Cog):
         embed.add_field(name='**Channel Information:**',
                         value=f'AFK timeout: **{int(ctx.guild.afk_timeout / 60)}m**\n'
                               f'AFK channel: **{ctx.guild.afk_channel}**\n'
-                              f'<:textchannel:724637677395116072> Text channels: **{len(ctx.guild.text_channels)}**\n'
-                              f'<:voicechannel:724637677130875001> Voice channels: **{len(ctx.guild.voice_channels)}**\n', inline = False)
+                              f'<:textchannel:724637677395116072> **{len(ctx.guild.text_channels)}**\n'
+                              f'<:voicechannel:724637677130875001> **{len(ctx.guild.voice_channels)}**\n', inline = False)
 
         embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         embed.set_thumbnail(url=ctx.guild.icon_url)
