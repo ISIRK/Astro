@@ -118,7 +118,7 @@ class utility(commands.Cog):
                         
         pingembed.add_field(name="<a:typing:765946280601059349> Typing", value='```autohotkey\n{:.2f} ms```'.format(duration))
                         
-        await message.edit(content=f"{embed=pingembed}")
+        await message.edit(content=f"{pingembed}")
 
     @commands.command()
     async def stats(self ,ctx):
