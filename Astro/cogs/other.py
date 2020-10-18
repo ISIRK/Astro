@@ -72,7 +72,7 @@ class other(commands.Cog):
         async with aiohttp.ClientSession() as session:
           async with session.get('https://meme-api.herokuapp.com/gimme') as resp:
             resp = await resp.json()
-        embed = discord.Embed(title=resp['title'], url=resp['postlink'], color=0x2F3136)
+        embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=0x2F3136)
         embed.set_image(url=resp['url'])
         await ctx.send(embed=embed)
 
