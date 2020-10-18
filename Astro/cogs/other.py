@@ -34,6 +34,7 @@ class other(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
+    @commands.cooldown(1,10,BucketType.user) 
     async def joke(self, ctx):
         async with aiohttp.ClientSession() as session:
           async with session.get('https://some-random-api.ml/joke') as resp:
@@ -41,6 +42,7 @@ class other(commands.Cog):
         await ctx.send(resp['joke'])
         
     @commands.command()
+    @commands.cooldown(1,10,BucketType.user)
     async def binary(self, ctx, text: str):
         async with aiohttp.ClientSession() as session:
           async with session.get(f'https://some-random-api.ml/binary?text={text}') as resp:
@@ -48,7 +50,15 @@ class other(commands.Cog):
         await ctx.send(resp['binary'])
         
     @commands.command()
-    @commands.cooldown(1,60,BucketType.user) 
+    @commands.cooldown(1,10,BucketType.user)
+    async def text(self, ctx, text: str):
+        async with aiohttp.ClientSession() as session:
+          async with session.get(f'https://some-random-api.ml/binary?decode={text}') as resp:
+            resp = await resp.json()
+        await ctx.send(resp['binary'])
+        
+    @commands.command()
+    @commands.cooldown(1,10,BucketType.user) 
     async def meme(self, ctx):
         async with aiohttp.ClientSession() as session:
           async with session.get('https://some-random-api.ml/meme') as resp:
