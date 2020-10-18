@@ -52,7 +52,9 @@ class other(commands.Cog):
         async with aiohttp.ClientSession() as session:
           async with session.get('https://some-random-api.ml/meme') as resp:
             resp = await resp.json()
-        await ctx.send(resp['meme'])
+        embed = discord.Embed(title=resp['caption'], color=0x2F3136)
+        embed.set.image(url=resp['url']
+        await ctx.send(embed=embed)
 
        
     @commands.command(aliases=['q'])
