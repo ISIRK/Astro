@@ -15,6 +15,8 @@ import os
 
 import asyncio
 
+import aiohttp
+
 import random
 
 import collections
@@ -30,6 +32,14 @@ class other(commands.Cog):
         embed = discord.Embed(title="Dice", description=f'The Dice Rolled {random.choice(dice)}', color=0x2F3136)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/766312838910181421/unknown.png")
         await ctx.send(embed=embed)
+
+    @commands.command()
+    async def joke(self, ctx):
+        async with aiohttp.ClientSession() as session:
+          async with session.get('https://some-random-api.ml/joke') as resp:
+            resp = await resp.json()
+        await ctx.send(resp['joke'])
+
        
     @commands.command(aliases=['q'])
     @commands.cooldown(1,60,BucketType.user) 
