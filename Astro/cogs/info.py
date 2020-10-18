@@ -56,26 +56,6 @@ class info(commands.Cog):
         embed.set_footer(text=f"Use {ctx.prefix}help or info.")
         await ctx.send(embed=embed)
         
-    @commands.command()
-    async def source(self, ctx, *, command=None):
-        """Links the source of the command. If command source cannot be retrieved,
-        links the root of the bot's source tree."""
-
-        url = 'https://github.com/ISIRK/Astro'
-        branch = 'master'
-        if command is not None:
-            src = command.callback.__code__.co_filename
-            module = command.callback.__module__.replace('.', os.path.sep)
-            if module in src:
-                lines, start = inspect.getsourcelines(command.callback)
-                sourcefile = src[src.index(module):].replace('\\', '/')
-                end = start + len(lines) - 1
-                if command.cog and command.cog.__cog_name__ == 'Jishaku':
-                    url = 'https://github.com/Gorialis/jishaku'
-                    branch = jsk_ver
-                url = f'{url}/blob/{branch}/{sourcefile}#L{start}-L{end}'
-        await ctx.send(f'<{url}>')
-
 
     @commands.command()
     async def help(self, ctx, *, page=None):
