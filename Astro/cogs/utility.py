@@ -74,12 +74,12 @@ class utility(commands.Cog):
                     activity = '`None`'
         else:
             activity = '`None`'
-            statuses = {
-                        "online": "<:online:758139458767290421>",
-                        "idle": "<:idle:758139458406711307>",
-                        "dnd": "<:dnd:758139458598993921>",
-                        "offline": "<:offline:758139458611970088>"
-                        }
+        statuses = {
+                    "online": "<:online:758139458767290421>",
+                    "idle": "<:idle:758139458406711307>",
+                    "dnd": "<:dnd:758139458598993921>",
+                    "offline": "<:offline:758139458611970088>"
+                    }
         embed = discord.Embed(title=f"{member}", color=0x2F3136)
         embed.add_field(name='**General:**',
                         value=f'Name: `{member}`\n' 
