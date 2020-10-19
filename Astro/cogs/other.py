@@ -77,8 +77,10 @@ class other(commands.Cog):
         async with aiohttp.ClientSession() as session:
           async with session.get('https://meme-api.herokuapp.com/gimme') as resp:
             resp = await resp.json()
-        if r['nsfw'] == True and not ctx.channel.is_nsfw:
-        return await ctx.send(f"{emotes.warning} This meme is marked as NSFW and I cannot let you see it in non-nsfw channel.")
+            
+          if resp['nsfw'] == True and not ctx.channel.is_nsfw:
+            return await ctx.send(f"{emotes.warning} This meme is marked as NSFW and I cannot let you see it in non-nsfw channel.")
+        
         embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=0x2F3136)
         embed.set_image(url=resp['url'])
         await ctx.send(embed=embed)
