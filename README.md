@@ -74,6 +74,11 @@ help <[o]page name> - This Message or a specific Help Page
 ```
 dice - Roll A Dice (You might even get a mystery!)
 quiz|q - Take the Halloween Quiz! (Limited Time Only)
+meme - Get a random meme
+joke - Get a random joke
+binary <text> - Turn text into binary
+text <binary> - Turn binary into text
+token - Get a fake bot token
 ```
 
 **Prerequisites**
