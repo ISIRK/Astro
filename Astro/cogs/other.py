@@ -92,7 +92,7 @@ class other(commands.Cog):
           async with session.get(f'https://some-random-api.ml/lyrics?title={title}') as resp:
             resp = await resp.json()
         embed=discord.Embed(title=resp['title'], url=resp['links'], description=f"Author: {resp['author']}")
-        embed.add_field(title="Lyrics:", value=resp['lyrics'])
+        embed.add_field(name="Lyrics:", value=resp['lyrics'])
         embed.set_image(url=resp['genius'])
         await ctx.send(resp['binary'])
             
