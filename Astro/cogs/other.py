@@ -92,8 +92,7 @@ class other(commands.Cog):
           async with session.get(f'https://some-random-api.ml/mc?username={username}') as resp:
             resp = await resp.json()
         embed=discord.Embed(title=f"Stats for {resp['username']}", description=f"ID: {resp['uuid']}")
-        for "name" in resp['name_history":
-            embed.add_field(name="Name History:", value=resp['name_history'])
+        embed.add_field(name="Name History:", value=resp['name_history'])
         await ctx.send(embed=embed)
             
     @commands.command(aliases=['q'])
