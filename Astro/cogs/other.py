@@ -84,6 +84,21 @@ class other(commands.Cog):
             embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=0x2F3136)
             embed.set_image(url=resp['url'])
             await ctx.send(embed=embed)
+            
+    @commands.command()
+    @commands.cooldown(1,10,BucketType.user)
+    async def memes(self, ctx):
+        """ Make your life a little bit funnier with memes """
+
+        async with self.bot.session.get('https://meme-api.herokuapp.com/gimme/dankmemes') as r:
+            r = await r.json()
+        
+        if r['nsfw'] == True and not ctx.channel.is_nsfw:
+            return await ctx.send(f"{emotes.warning} This meme is marked as NSFW and I cannot let you see it in non-nsfw channel.")
+        embed = discord.Embed(title=f"**{r['title']}**", url=r['postLink'])
+        embed.set_image(url=r['url'])
+
+        await ctx.send(embed=embed)
 
        
     @commands.command(aliases=['q'])
