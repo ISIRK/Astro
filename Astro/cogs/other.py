@@ -93,7 +93,6 @@ class other(commands.Cog):
             resp = await resp.json()
         embed=discord.Embed(title=resp['title'], url=resp['links'], description=f"Author: {resp['author']}")
         embed.add_field(name="Lyrics:", value=resp['lyrics'])
-        embed.set_image(url=resp['thumbnail'])
         await ctx.send(embed=embed)
             
     @commands.command(aliases=['q'])
