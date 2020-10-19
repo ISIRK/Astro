@@ -61,10 +61,15 @@ class other(commands.Cog):
     @commands.command()
     @commands.cooldown(1,10,BucketType.user)
     async def text(self, ctx, *, binary: str):
-        async with aiohttp.ClientSession() as session:
-          async with session.get(f'https://some-random-api.ml/binary?decode={binary}') as resp:
-            resp = await resp.json()
-        await ctx.send(resp['text'])
+        if "010000000110010101110110011001010111001001111001011011110110111001100101" in binary:
+            await ctx.send('Please refrain from using `@everyone`.
+        elif "0100000001101000011001010111001001100101" in binary:
+            await ctx.send('Please refrain from using `@here`.
+        else:
+            async with aiohttp.ClientSession() as session:
+              async with session.get(f'https://some-random-api.ml/binary?decode={binary}') as resp:
+                resp = await resp.json()
+            await ctx.send(resp['text'])
         
     @commands.command()
     @commands.cooldown(1,10,BucketType.user) 
