@@ -89,7 +89,7 @@ class other(commands.Cog):
             "`What was Halloween originally called?`": "ALL HALLOWS EVE",
             "`What was candy corn originally called?`": "CHICKEN FEED",
             "`(Approx)How much money does the average American spend on Halloween every year?`\n**A) $45\nB) $60\nC) $85\nD) $100**": "C",
-            "What percentage of kids like to recieve gum for halloween?": "10"
+            "`(Approx)What percentage of kids like to recieve gum for halloween?`": "10"
         }
         total_questions = len(qa)
         start_time = time.time()
