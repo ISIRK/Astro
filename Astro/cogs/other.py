@@ -80,10 +80,10 @@ class other(commands.Cog):
             
           if resp['nsfw'] == True and not ctx.channel.is_nsfw:
             return await ctx.send("⚠️ This meme is marked as NSFW and I can't post it in a non-nsfw channel.")
-        
-        embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=0x2F3136)
-        embed.set_image(url=resp['url'])
-        await ctx.send(embed=embed)
+          else:
+            embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=0x2F3136)
+            embed.set_image(url=resp['url'])
+            await ctx.send(embed=embed)
 
        
     @commands.command(aliases=['q'])
