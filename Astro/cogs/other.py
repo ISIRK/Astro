@@ -91,7 +91,7 @@ class other(commands.Cog):
             "`(Approx)How much money does the average American spend on Halloween every year?`\n**A) $45\nB) $60\nC) $85\nD) $100**": "C",
             "`(Approx)What percentage of kids like to recieve gum for halloween?`": "10",
             "`When is Halloween?`": "OCTOBER 31",
-            "`What country was Trick-or-treating first done?`": "Canada"
+            "`What country was Trick-or-treating first done?`": "CANADA"
         }
         total_questions = len(qa)
         start_time = time.time()
@@ -114,7 +114,7 @@ class other(commands.Cog):
             await ctx.send(content)
 
             try:
-                message = await self.bot.wait_for("message", timeout=30.0, check=check)
+                message = await self.bot.wait_for("message", timeout=45.0, check=check)
             except asyncio.TimeoutError:
                 return await ctx.send("Timeout Error")
 
