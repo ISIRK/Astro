@@ -10,11 +10,9 @@ class Mod(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
-    async def kick(self, ctx, user : discord.Member=None):
+    async def kick(self, ctx, user : discord.Member):
         """Kicks a user from the server."""
-        if user is None:
-            await ctx.send("User is a required argument that is missing.")
-        elif ctx.author == user:
+        if ctx.author == user:
             await ctx.send("You cannot kick yourself.")
         else:
             await user.kick()
@@ -25,10 +23,8 @@ class Mod(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
-    async def ban(self, ctx, user : discord.Member=None):
+    async def ban(self, ctx, user : discord.Member):
         """Bans a user from the server."""
-        if user is None:
-            await ctx.send("User is a required argument that is missing.")
         if ctx.author == user:
             await ctx.send("You cannot ban yourself.")
         else:
@@ -84,41 +80,30 @@ class Mod(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(manage_messages=True)
-    async def clear(self, ctx, count: int=None):
+    async def clear(self, ctx, count: int):
         """Deletes a specified amount of messages. (Max 100)"""
-        if count is None:
-            await ctx.send("Number is a required argument that is missing.")
-        else:
-            if count>100:
-                count = 100
-            await ctx.message.channel.purge(limit=count+1, bulk=True)
+        if count>100:
+            count = 100
+        await ctx.message.channel.purge(limit=count+1, bulk=True)
 
     @commands.command()
     @commands.has_permissions(manage_channels=True)
-    async def slowmode(self, ctx, seconds: int=None):
+    async def slowmode(self, ctx, seconds: int):
         '''Change the slowmode in the current channel.'''
-        if seconds is None:
-            await ctx.send("Seconds is a required argument that is missing.")
-        else:
-            await ctx.channel.edit(slowmode_delay=seconds)
-            await ctx.send(f"Slowmode is now {seconds} seconds.")
+        await ctx.channel.edit(slowmode_delay=seconds)
+        await ctx.send(f"Slowmode is now {seconds} seconds.")
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
-    async def warn(self , ctx, user : discord.Member=None, *, reason=None):
+    async def warn(self , ctx, user : discord.Member, *, reason):
         '''Warn a Member'''
-        if user is None:
-            await ctx.send("User is a required argument that is missing.")
-        elif reason is None:
-            await ctx.send("Reason is a required argument that is missing.")
-        else:
-            guild = ctx.guild
-            embed = discord.Embed(color=0x2F3136)
-            embed.set_author(name=f"Warned By {ctx.author}", icon_url=ctx.author.avatar_url)
-            embed.add_field(name=f"You Have Been Warned in {guild}\n\nReason:", value=f'{reason}')
-            embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
-            await user.send(embed=embed)
-            await ctx.send(f"<:help:758453150897799172> Warned {user}")
+        guild = ctx.guild
+        embed = discord.Embed(color=0x2F3136)
+        embed.set_author(name=f"Warned By {ctx.author}", icon_url=ctx.author.avatar_url)
+        embed.add_field(name=f"You Have Been Warned in {guild}\n\nReason:", value=f'{reason}')
+        embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
+        await user.send(embed=embed)
+        await ctx.send(f"<:help:758453150897799172> Warned {user}")
     #@warn.error
     #async def warn_error(ctx, error):
         #if isinstance(error, commands.MissingPermissions):
