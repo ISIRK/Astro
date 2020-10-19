@@ -92,7 +92,7 @@ class other(commands.Cog):
           async with session.get(f'https://some-random-api.ml/mc?username={username}') as resp:
             resp = await resp.json()
         embed=discord.Embed(title=f"Stats for {resp['username']}", description=f"ID: {resp['uuid']}")
-        embed.add_field(name="Name History:", value=f"Name history for {resp['username']}"])
+        embed.add_field(name="Name History:", value=f"Name history for {resp['username']}")
         embed.add_field(name=resp['name'], value=resp['changedToAt'])
         await ctx.send(embed=embed)
             
