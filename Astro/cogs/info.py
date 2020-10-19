@@ -75,7 +75,7 @@ class info(commands.Cog):
         info = discord.Embed(title="Info", description="Information Commands", color=0x2F3136)
         info.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         info.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
-        info.add_field(name="Commands:", value="`info` - Get Info About the Bot.\n`invite` - Get the invite for Astro.\n`support` Get Support Information.\n`privacy` - Privacy Policy for Astro.\n`help <[o]page name>` - This Message *or* a specific Help Page", inline=False)
+        info.add_field(name="Commands:", value="`source` - See Astro's Source Code\n`info` - Get Info About the Bot.\n`invite` - Get the invite for Astro.\n`support` Get Support Information.\n`privacy` - Privacy Policy for Astro.\n`help <[o]page name>` - This Message *or* a specific Help Page", inline=False)
         info.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
 
         utility = discord.Embed(title="Utility", description="Utiity Commands", color=0x2F3136)
