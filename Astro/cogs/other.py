@@ -91,9 +91,9 @@ class other(commands.Cog):
         async with aiohttp.ClientSession() as session:
           async with session.get(f'https://some-random-api.ml/lyrics?title={title}') as resp:
             resp = await resp.json()
-        embed=discord.Embed(title=resp['title'], description=f"Author: {resp['author']}")
-        embed.add_field(name="Lyrics:", value=resp['lyrics'])
-        await ctx.send(embed=embed)
+        '''embed=discord.Embed(title=resp['title'], description=f"Author: {resp['author']}")
+        embed.add_field(name="Lyrics:", value=resp['lyrics'])'''
+        await ctx.send(resp['lyrics'])
             
     @commands.command(aliases=['q'])
     @commands.cooldown(1,60,BucketType.user) 
