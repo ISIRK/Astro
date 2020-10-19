@@ -94,7 +94,7 @@ class other(commands.Cog):
         embed=discord.Embed(title=resp['title'], url=resp['links'], description=f"Author: {resp['author']}")
         embed.add_field(name="Lyrics:", value=resp['lyrics'])
         embed.set_image(url=resp['thumbnail'])
-        await ctx.send(resp['binary'])
+        await ctx.send(embed=embed)
             
     @commands.command(aliases=['q'])
     @commands.cooldown(1,60,BucketType.user) 
