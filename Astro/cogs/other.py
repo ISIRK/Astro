@@ -101,7 +101,8 @@ class other(commands.Cog):
         async with aiohttp.ClientSession() as session:
           async with session.get(f'http://mcapi.xdefcon.com/server/{server}/full/json') as resp:
             resp = await resp.json()
-        embed=discord.Embed(title=f"Stats for {server}", description=f"IP: {resp['serverip']}\nStatus: {resp['serverStatus']}\nVersion: {resp['version']}\nPlayers: {resp['players']}\nMax Players: {resp['maxplayers']}", color=0x2F3136)
+        embed=discord.Embed(title=f"Stats for {server}", description=f"IP: {resp['serverip']}\nStatus: {resp['serverStatus']}\nPing: {resp['ping']}\nVersion: {resp['version']}\nPlayers: {resp['players']}\nMax Players: {resp['maxplayers']}", color=0x2F3136)
+        embed.set_image(url=resp['icon'])
         await ctx.send(embed=embed)
             
     @commands.command(aliases=['q'])
