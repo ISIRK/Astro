@@ -85,15 +85,16 @@ class other(commands.Cog):
             embed.set_image(url=resp['url'])
             await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(aliases=['mc'])
     @commands.cooldown(1,10,BucketType.user)
-    async def lyrics(self, ctx, *, title):
+    async def minecraft(self, ctx, *, username):
         async with aiohttp.ClientSession() as session:
-          async with session.get(f'https://some-random-api.ml/lyrics?title={title}') as resp:
+          async with session.get(f'https://some-random-api.ml/mc?username={username}') as resp:
             resp = await resp.json()
-        '''embed=discord.Embed(title=resp['title'], description=f"Author: {resp['author']}")
-        embed.add_field(name="Lyrics:", value=resp['lyrics'])'''
-        await ctx.send(resp['lyrics'])
+        embed=discord.Embed(title=f"Stats for {resp['username']}", description=f"ID: {resp['uuid']}")
+        for "name" in resp['name_history":
+            embed.add_field(name="Name History:", value=resp['name_history'])
+        await ctx.send(embed=embed)
             
     @commands.command(aliases=['q'])
     @commands.cooldown(1,60,BucketType.user) 
