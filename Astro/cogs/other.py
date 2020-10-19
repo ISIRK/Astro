@@ -84,6 +84,17 @@ class other(commands.Cog):
             embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=0x2F3136)
             embed.set_image(url=resp['url'])
             await ctx.send(embed=embed)
+
+    @commands.command()
+    @commands.cooldown(1,10,BucketType.user)
+    async def lyrics(self, ctx, *, title: str):
+        async with aiohttp.ClientSession() as session:
+          async with session.get(f'https://some-random-api.ml/lyrics?title={title}') as resp:
+            resp = await resp.json()
+        embed=discord.Embed(title=resp['title'], description=f"Author: {resp['author']}
+        embed.add_field(title="Lyrics:", value=resp['lyrics'])
+        embed.set_image(url=resp['genius'])
+        await ctx.send(resp['binary'])
             
     @commands.command(aliases=['q'])
     @commands.cooldown(1,60,BucketType.user) 
