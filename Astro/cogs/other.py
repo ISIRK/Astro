@@ -43,6 +43,14 @@ class other(commands.Cog):
         await ctx.send(resp['joke'])
         
     @commands.command()
+    @commands.cooldown(1,10,BucketType.user)
+    async def dadjoke(self, ctx):
+        async with aiohttp.ClientSession() as session:
+            async with session.get("https://dadjoke-api.herokuapp.com/api/v1/dadjoke") as r:
+                resp = await r.json()
+        await ctx.send(resp['joke'])
+        
+    @commands.command()
     @commands.cooldown(1,10,BucketType.user) 
     async def token(self, ctx):
         async with aiohttp.ClientSession() as session:
