@@ -101,7 +101,7 @@ class other(commands.Cog):
             resp = await resp.json()
         embed=discord.Embed(title=f"Stats for {resp['username']}", description=f"ID: `{resp['uuid']}`", color=0x2F3136)
         embed.add_field(name="Name history", value=resp['name_history'])
-        embed.set_thumbnail(url=f"https://minotar.net/avatar/{username}.png")
+        embed.set_thumbnail(url=f"https://minotar.net/helm/{username}/100.png")
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['mcs'])
