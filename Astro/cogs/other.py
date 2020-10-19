@@ -75,7 +75,7 @@ class other(commands.Cog):
     @commands.cooldown(1,10,BucketType.user) 
     async def meme(self, ctx):
         async with aiohttp.ClientSession() as session:
-          async with session.get('https://meme-api.herokuapp.com/gimme') as resp:
+          async with session.get('https://meme-api.herokuapp.com/gimme/dankmemes') as resp:
             resp = await resp.json()
             
           if resp['nsfw'] == True and not ctx.channel.is_nsfw:
