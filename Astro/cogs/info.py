@@ -22,6 +22,10 @@ class info(commands.Cog):
         self.bot = bot
 
     @commands.command()
+    async def source(self, ctx):
+        await ctx.send("<:python:758139554670313493> You can see my source here -> https://asksirk.com/Astro/github.html")
+        
+    @commands.command()
     async def info(self, ctx):
         '''Get information about the bot.'''
         infoembed = discord.Embed(title="Info", description="A Utilities Discord Bot with reliability and simplicity", color=0x2F3136)
