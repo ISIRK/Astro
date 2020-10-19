@@ -90,8 +90,8 @@ class other(commands.Cog):
     async def memes(self, ctx):
         """ Make your life a little bit funnier with memes """
 
-        async with self.bot.session.get('https://meme-api.herokuapp.com/gimme/dankmemes') as r:
-            r = await r.json()
+        async with session.get('https://meme-api.herokuapp.com/gimme/dankmemes') as r:
+            r = await resp.json()
         
         if r['nsfw'] == True and not ctx.channel.is_nsfw:
             return await ctx.send(f"{emotes.warning} This meme is marked as NSFW and I cannot let you see it in non-nsfw channel.")
