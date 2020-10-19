@@ -41,7 +41,7 @@ class info(commands.Cog):
         supportembed.add_field(name="Support Server", value="<a:igloading:737723292768796713> Support Server: https://discord.gg/7yZqHfG", inline=False)
         supportembed.add_field(name="Contact", value="To contact dm [isirk#0001](https://discord.com/users/542405601255489537) or email me @ isirk@asksirk.com", inline=False)
         #supportembed.add_field(name=":link: Links", value="Bot Site: https://asksirk.com/Astro\nGithub Repository: https://github.com/ISIRK/Astro\nPatreon: https://www.patreon.com/Astro_Bot", inline=False)
-        supportembed.set_footer(text=f"Use {ctx.prefix}help or info.")
+        supportembed.set_footer(text=f"Use {ctx.prefix}help or info for more")
         await ctx.send(embed=supportembed)
     
     @commands.command()
@@ -53,7 +53,7 @@ class info(commands.Cog):
         embed.add_field(name="Invite Link:", value="🌐 [Invite Link](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)", inline=False)
         embed.add_field(name="Support Server:", value="<a:igloading:737723292768796713> [Support Server](https://discord.gg/7yZqHfG)", inline=False)
         embed.add_field(name="Contact:", value="To contact dm [isirk#0001](https://discord.com/users/542405601255489537) or email me @ isirk@asksirk.com", inline=False)
-        embed.set_footer(text=f"Use {ctx.prefix}help or info.")
+        embed.set_footer(text=f"Use {ctx.prefix}help or info for more")
         await ctx.send(embed=embed)
         
 
