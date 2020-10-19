@@ -91,9 +91,8 @@ class other(commands.Cog):
         async with aiohttp.ClientSession() as session:
           async with session.get(f'https://some-random-api.ml/mc?username={username}') as resp:
             resp = await resp.json()
-        embed=discord.Embed(title=f"Stats for {resp['username']}", description=f"ID: {resp['uuid']}")
-        embed.add_field(name="Name History:", value=f"Name history for {resp['username']}")
-        embed.add_field(name=resp['name'], value=resp['changedToAt'])
+        embed=discord.Embed(title=f"Stats for {resp['username']}", description=f"ID: {resp['uuid']}", color=0x2F3136)
+        embed.add_field(name="Name History:", value=resp['name_history'])
         await ctx.send(embed=embed)
             
     @commands.command(aliases=['q'])
