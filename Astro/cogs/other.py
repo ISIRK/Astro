@@ -94,6 +94,15 @@ class other(commands.Cog):
         embed=discord.Embed(title=f"Stats for {resp['username']}", description=f"ID: {resp['uuid']}", color=0x2F3136)
         embed.add_field(name="Name history", value=resp['name_history'])
         await ctx.send(embed=embed)
+
+    @commands.command(aliases=['mcs'])
+    @commands.cooldown(1,10,BucketType.user)
+    async def minecraftserver(self, ctx, *, server):
+        async with aiohttp.ClientSession() as session:
+          async with session.get(f'http://mcapi.xdefcon.com/server/{server}/full/json') as resp:
+            resp = await resp.json()
+        embed=discord.Embed(title=f"Stats for {server}", description=f"IP: {resp['serverip']}\nStatus: {resp['serverstatus']}\nVersion: {resp['version']}\nPlayers: {resp['players']}\nMax Players: {resp['maxplayers']}", color=0x2F3136)
+        await ctx.send(embed=embed)
             
     @commands.command(aliases=['q'])
     @commands.cooldown(1,60,BucketType.user) 
