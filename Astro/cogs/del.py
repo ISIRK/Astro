@@ -1,4 +1,4 @@
-mport discord, aiohttp, json
+import discord, aiohttp, json
 from discord.ext import tasks, commands
 
 class DEL(commands.Cog):
