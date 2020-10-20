@@ -34,10 +34,10 @@ class dev(commands.Cog):
     
     @commands.is_owner()
     @commands.command()
-    async def status(self, ctx, type, emoji=None, *, status=None):
+    async def status(self, ctx, type, *, status=None):
         '''Change the Bot Status'''
         if type == "playing":
-            await self.bot.change_presence(activity=discord.Game(name=f"{status}", emoji=f"{emoji}"))
+            await self.bot.change_presence(activity=discord.Game(name=f"{status}"))
             await ctx.send(f'<:online:758139458767290421> Changed status to `Playing {status}`')
         elif type == "listening":
             await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f"{status}"))
