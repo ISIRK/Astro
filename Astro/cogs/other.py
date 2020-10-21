@@ -91,7 +91,7 @@ class other(commands.Cog):
           else:
             embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=0x2F3136)
             embed.set_image(url=resp['url'])
-            embed.set_footer("r/Dankmemes")
+            embed.set_footer(text="r/Dankmemes")
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['ph'])
