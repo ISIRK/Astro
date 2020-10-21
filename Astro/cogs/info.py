@@ -93,7 +93,7 @@ class info(commands.Cog):
         other = discord.Embed(title="Other", description="Other Commands", color=0x2F3136)
         other.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         other.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
-        other.add_field(name="Commands:", value="`dice` - Roll A Dice (*There is a possibility you'll get a mystery.*)\n`joke` - Get a Joke\n`dadjoke` - Get a dadjoke\n`token` - Get a Fake Bot Token\n`binary <text>` - Turn text into Binary\n`text <binary>` - Turn Binary into Text\n`meme` - Get a Meme\n`minecraft|mc <user>` - Get stats about a minecraft user.\n`minecraftserver|mcs <server ip>` - Get info about a Minecraft server\n`quiz|q` - Take the Halloween Quiz", inline=False)
+        other.add_field(name="Commands:", value="`dice` - Roll A Dice (*There is a possibility you'll get a mystery.*)\n`joke` - Get a Joke\n`dadjoke` - Get a dadjoke\n`token` - Get a Fake Bot Token\n`binary <text>` - Turn text into Binary\n`text <binary>` - Turn Binary into Text\n`meme` - Get a Meme\n`programmerhumor|ph` - Get a Programming Meme\n`minecraft|mc <user>` - Get stats about a minecraft user.\n`minecraftserver|mcs <server ip>` - Get info about a Minecraft server\n`quiz|q` - Take the Halloween Quiz", inline=False)
         
         if page == "info":
             await ctx.send(embed=info)
