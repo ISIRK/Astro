@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 
 from asyncio import sleep
+import typing
 
 class Mod(commands.Cog):
     """Commands for managing Discord servers."""
@@ -23,12 +24,17 @@ class Mod(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
-    async def ban(self, ctx, user : discord.Member):
+    async def ban(self, ctx: discord.Context, user: typing.Union[discord.Member, discord.User]):
         """Bans a user from the server."""
         if ctx.author == user:
             await ctx.send("You cannot ban yourself.")
         else:
-            await user.ban()
+            # If user is not in the guild ban the user's object
+            if isinstance(user, discord.User):
+                user = discord.Object(user.id)
+
+            await ctx.guild.ban(user)
+            
             embed = discord.Embed(title=f'User {user.name} has been banned.', color=0x2F3136)
             embed.add_field(name="Bai!", value=":hammer:")
             embed.set_thumbnail(url=user.avatar_url)
