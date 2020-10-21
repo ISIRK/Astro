@@ -91,7 +91,19 @@ class other(commands.Cog):
           else:
             embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=0x2F3136)
             embed.set_image(url=resp['url'])
+            embed.set_footer("r/Dankmemes")
             await ctx.send(embed=embed)
+
+    @commands.command(aliases=['ph'])
+    @commands.cooldown(1,10,BucketType.user) 
+    async def programmerhumor(self, ctx):
+        async with aiohttp.ClientSession() as session:
+          async with session.get('https://meme-api.herokuapp.com/gimme/ProgrammerHumor') as resp:
+            resp = await resp.json()
+        embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=0x2F3136)
+        embed.set_image(url=resp['url'])
+        embed.set_footer(text="r/ProgrammerHumor")
+        await ctx.send(embed=embed)
 
     @commands.command(aliases=['mc'])
     @commands.cooldown(1,10,BucketType.user)
