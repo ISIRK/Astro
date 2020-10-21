@@ -24,7 +24,7 @@ class Mod(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
-    async def ban(self, ctx: discord.Context, user: typing.Union[discord.Member, discord.User]):
+    async def ban(self, ctx, user: typing.Union[discord.Member, discord.User]):
         """Bans a user from the server."""
         if ctx.author == user:
             await ctx.send("You cannot ban yourself.")
