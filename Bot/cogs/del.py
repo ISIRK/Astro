@@ -1,6 +1,11 @@
 import discord, aiohttp, json
 from discord.ext import tasks, commands
 
+tokenFile = "/home/pi/Discord/Astro/Bot/config.json"
+with open(tokenFile) as f:
+    data = json.load(f)
+deltoken = data['DELTOKEN']
+
 class DEL(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -9,13 +14,14 @@ class DEL(commands.Cog):
     def cog_unload(self):
         self.del_update_stats.cancel()
 
+
     @tasks.loop(minutes=30.0)
     async def del_update_stats(self):
         """ This automatically updates your server count to Discord Extreme List every 30 minutes. """
         await self.bot.wait_until_ready()
         async with aiohttp.ClientSession() as session:
             async with session.post(f'https://api.discordextremelist.xyz/v2/bot/{self.bot.user.id}/stats',
-            headers={'Authorization': 'DELAPI_63c6a6c40c666a6c1213187d8db52940-751447995270168586', # Make sure you put your API Token Here
+            headers={'Authorization': deltoken , # Make sure you put your API Token Here
             "Content-Type": 'application/json'},
             data=json.dumps({'guildCount': len(self.bot.guilds)# Remove this line if you don't have shards on your bot
             })) as r:

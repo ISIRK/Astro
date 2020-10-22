@@ -7,13 +7,16 @@ import json
 from disputils.pagination import BotEmbedPaginator
 
 ##CONFIG
-tokenFile = "/home/pi/Astro/Astro/.json"
+tokenFile = "/home/pi/Discord/Astro/Bot/config.json"
 with open(tokenFile) as f:
     data = json.load(f)
 token = data['TOKEN']
 prefixes = data['PREFIX']
 
-bot = commands.Bot(command_prefix = prefixes)
+intents = discord.Intents.defualt()
+intents.members = True
+bot = commands.Bot(command_prefix = prefixes, intents=intents)
+
 bot.owner_ids = {542405601255489537}
 bot.remove_command('help')
 
@@ -56,7 +59,7 @@ async def reload(ctx, extension):
     bot.load_extension(f'cogs.{extension}')
     await ctx.send(f':repeat: {extension}' " reloaded")
 
-for filename in os.listdir('./Astro/cogs'):
+for filename in os.listdir('./Bot/cogs'):
     if filename.endswith('.py'):
         bot.load_extension(f'cogs.{filename[:-3]}')
 
