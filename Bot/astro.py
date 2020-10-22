@@ -13,7 +13,8 @@ with open(tokenFile) as f:
 token = data['TOKEN']
 prefixes = data['PREFIX']
 
-intents = discord.Intents.defualt()
+intents = discord.Intents.default()
+intents.presences = True
 intents.members = True
 bot = commands.Bot(command_prefix = prefixes, intents=intents)
 
@@ -65,5 +66,5 @@ for filename in os.listdir('./Bot/cogs'):
 
 bot.load_extension("jishaku")
 
-#23815
+#3293
 bot.run(token)
