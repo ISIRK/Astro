@@ -72,13 +72,17 @@ help <[o]page name> - This Message or a specific Help Page
 
 **Other:**
 ```
-dice - Roll A Dice (You might even get a mystery!)
-quiz|q - Take the Halloween Quiz! (Limited Time Only)
-meme - Get a random meme
-joke - Get a random joke
-binary <text> - Turn text into binary
-text <binary> - Turn binary into text
-token - Get a fake bot token
+dice - Roll A Dice (There is a possibility you'll get a mystery.)
+joke - Get a Joke
+dadjoke - Get a dadjoke
+token - Get a Fake Bot Token
+binary <text> - Turn text into Binary
+text <binary> - Turn Binary into Text
+meme - Get a Meme
+programmerhumor|ph - Get a Programming Meme
+minecraft|mc <user> - Get stats about a minecraft user.
+minecraftserver|mcs <server ip> - Get info about a Minecraft server
+quiz|q - Take the Halloween Quiz
 ```
 
 **Prerequisites**
