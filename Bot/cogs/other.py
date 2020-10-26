@@ -68,7 +68,7 @@ class other(commands.Cog):
         else:
             async with aiohttp.ClientSession() as session:
                 async with session.get(f'https://some-random-api.ml/binary?text={text}') as resp:
-                resp = await resp.json()
+                    resp = await resp.json()
             await ctx.send(resp['binary'])
         
     @commands.command()
