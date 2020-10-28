@@ -68,7 +68,7 @@ class info(commands.Cog):
         
 
     @commands.command()
-    async def help(self, ctx, *, page=None):
+    async def help1(self, ctx, *, page=None):
         
         helpembed1 = discord.Embed(title="Astro", description="A Utilities Discord Bot with reliability and simplicity\n Made By [isirk#0001](https://discord.com/users/542405601255489537)", color=0x2F3136)
         helpembed1.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)

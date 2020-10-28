@@ -19,8 +19,7 @@ intents.members = True
 bot = commands.Bot(command_prefix = prefixes, intents=intents)
 
 bot.owner_ids = {542405601255489537}
-bot.remove_command('help')
-
+#bot.remove_command('help')
 
 os.environ["JISHAKU_NO_UNDERSCORE"] = "True"
 
@@ -66,5 +65,5 @@ for filename in os.listdir('./Bot/cogs'):
 
 bot.load_extension("jishaku")
 
-#15982
+#19846
 bot.run(token)
