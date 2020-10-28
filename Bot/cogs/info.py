@@ -23,7 +23,7 @@ class info(commands.Cog):
         
     @commands.command()
     async def source(self, ctx):
-        await ctx.send("<:python:758139554670313493> Source: https://asksirk.com/Astro/github.html\nPlease make sure to credit @isirk if you are copying code.")
+        await ctx.send("<:python:758139554670313493> Source: https://asksirk.com/Astro/github.html\nPlease make sure to credit [@isirk#0001](https://discord.com/users/542405601255489537) if you are copying code.")
         
     @commands.command()
     async def info(self, ctx):
