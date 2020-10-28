@@ -35,6 +35,12 @@ class info(commands.Cog):
         infoembed.add_field(name= ":link: Links", value="[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)\n[Bot Site](https://asksirk.com/Astro) \n[Github Repository](https://github.com/ISIRK/Astro) \n[Patreon](https://www.patreon.com/Astro_Bot)", inline=False)
         infoembed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
         await ctx.send(embed=infoembed)
+        
+    @commands.command()
+    async def credits(self, ctx):
+        '''See the credits for Astro'''
+        embed = discord.Embed(title="Credits", description="**<@!542405601255489537> - Developer**\n**<@!555709231697756160> - API Usage**\n**<@!668906205799907348> - Bot Optimizations**\n**<@!296862365503193098> - Optimizations**\n", color=0x2F3136)
+        await ctx.send(embed=embed)
 
     @commands.command()
     async def support(self, ctx):
