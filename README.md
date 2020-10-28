@@ -67,6 +67,7 @@ info - Get Info About the Bot.
 invite - Get the invite for Astro.
 support Get Support Information.
 privacy - Privacy Policy for Astro.
+credits - See the credits for Astro.
 help <[o]page name> - This Message or a specific Help Page
 ```
 
