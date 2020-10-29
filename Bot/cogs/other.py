@@ -19,15 +19,12 @@ import aiohttp
 
 import random
 
-import googletrans
-
 import collections
 
 
 class other(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.trans = googletrans.Translator()
         
     @commands.command()
     @commands.cooldown(1,10,BucketType.user) 
@@ -135,23 +132,6 @@ class other(commands.Cog):
         embed.set_thumbnail(url=f"https://api.minetools.eu/favicon/{server}/25565")
         await ctx.send(embed=embed)
 
-    @commands.command(hidden=True)
-    async def translate(self, ctx, *, message: commands.clean_content):
-        """Translates a message to English using Google translate."""
-
-        loop = self.bot.loop
-
-        try:
-            ret = await loop.run_in_executor(None, self.trans.translate, message)
-        except Exception as e:
-            return await ctx.send(f'An error occurred: {e.__class__.__name__}: {e}')
-
-        embed = discord.Embed(title='Translated', colour=0x4284F3)
-        src = googletrans.LANGUAGES.get(ret.src, '(auto-detected)').title()
-        dest = googletrans.LANGUAGES.get(ret.dest, 'Unknown').title()
-        embed.add_field(name=f'From {src}', value=ret.origin, inline=False)
-        embed.add_field(name=f'To {dest}', value=ret.text, inline=False)
-        await ctx.send(embed=embed)
             
     @commands.command(aliases=['q'])
     @commands.cooldown(1,60,BucketType.user) 
