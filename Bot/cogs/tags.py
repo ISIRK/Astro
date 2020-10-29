@@ -19,7 +19,7 @@ class tags(commands.Cog):
     """
     _custom_commands = {}
 
-    @commands.command(name='add tag')
+    @commands.command(name='add_tag')
     async def add_tag(self, ctx, name, *, output):
         # First check if there's a custom command with that name already
         existing_command = self._custom_commands.get(name)
@@ -45,7 +45,7 @@ class tags(commands.Cog):
             self._custom_commands[name] = {ctx.guild.id: output}
         await ctx.send(f"Added a command called {name}")
 
-    @commands.command(name='remove tag')
+    @commands.command(name='remove_tag')
     async def remove_tag(self, ctx, name):
         # Make sure it's actually a custom command, to avoid removing a real command
         if name not in self._custom_commands or ctx.guild.id not in self._custom_commands[name]:
