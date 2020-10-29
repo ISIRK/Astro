@@ -128,7 +128,7 @@ class utility(commands.Cog):
     @commands.command()
     async def stats(self ,ctx):
         '''Get the bot stats'''
-        await ctx.send(f'Sirk is serving {len(self.bot.users)} users in {len(self.bot.guilds)} guilds!\nCPU Usage: {psutil.cpu_percent()}')
+        await ctx.send(f'Sirk is serving {len(self.bot.users)} users in {len(self.bot.guilds)} guilds!\nCPU Usage: {psutil.cpu_percent()}%')
 
 def setup(bot):
     bot.add_cog(utility(bot))
