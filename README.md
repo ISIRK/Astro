@@ -87,6 +87,7 @@ quiz|q - Take the Halloween Quiz
 ```
 
 **Upcomming Features**
+- Help Command
 - Custom Prefix
 - Music Commands
 - Poll Command
