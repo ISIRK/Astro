@@ -67,7 +67,7 @@ class dev(commands.Cog):
         embed = discord.Embed(color=0x2F3136)
         embed.set_author(name=f"Sent from {ctx.author}", icon_url=ctx.author.avatar_url)
         embed.add_field(name="Message:", value=f'{content}')
-        embed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        embed.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
         embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/726779670514630667.png?v=1")
         await user.send(embed=embed)
         await ctx.send(f"<:comment:726779670514630667> Message sent to {user}")
@@ -83,7 +83,7 @@ class dev(commands.Cog):
 
         dev = discord.Embed(title="Dev", description="Developer Commands\n***Note Only the Bot Owner Can Use These***", color=0x2F3136)
         dev.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        dev.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        dev.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
         dev.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
         dev.add_field(name="Commands:", value="`jsk` - Jishaku\n`dm <user> <message>` - Dm the mentioned User from the Server.\n`leaveguild` - Leave the current server\n`status <type> <[o]status>` - Change the bot status.\n`say <message>` - Make the bot say a message.", inline=False)
 
