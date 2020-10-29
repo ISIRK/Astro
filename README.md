@@ -1,4 +1,4 @@
-<img src="https://cdn.discordapp.com/attachments/767447347659014197/771376601488556062/ship_1.png" align="right" height="200" width="200"/>
+<img src="https://asksirk.com/Astro/sirk.png" align="right" height="200" width="200"/>
 
 # Astro - Discord Bot
 <p>
@@ -85,6 +85,12 @@ minecraft|mc <user> - Get stats about a minecraft user.
 minecraftserver|mcs <server ip> - Get info about a Minecraft server
 quiz|q - Take the Halloween Quiz
 ```
+
+**Upcomming Features**
+- Custom Prefix
+- Music Commands
+- Poll Command
+- Optimizations
 
 **Prerequisites**
 - [Python](https://www.python.org/)
