@@ -30,15 +30,15 @@ class info(commands.Cog):
         '''Get information about the bot.'''
         infoembed = discord.Embed(title="Info", description="A Utilities Discord Bot with reliability and simplicity", color=0x2F3136)
         infoembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        infoembed.add_field(name= "<:news:758781954073821194> News", value=f"**<:dev:759427919302492160> <@751447995270168586> Is Now PUBLIC! <:dev:759427919302492160>**\nTo invite Astro either click [here](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify), [here](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify), or [here](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify).\nOr you can type `{ctx.prefix}invite` to get invite info!", inline=True)
+        infoembed.add_field(name= "<:news:758781954073821194> News", value=f"**<:dev:759427919302492160> <@751447995270168586> Is Now PUBLIC! <:dev:759427919302492160>**\nTo invite Sirk either click [here](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify), [here](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify), or [here](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify).\nOr you can type `{ctx.prefix}invite` to get invite info!", inline=True)
         infoembed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758451109919981580.png?v=1")
         infoembed.add_field(name= ":link: Links", value="[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)\n[Bot Site](https://asksirk.com/Astro) \n[Github Repository](https://github.com/ISIRK/Astro) \n[Patreon](https://www.patreon.com/Astro_Bot)", inline=False)
-        infoembed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        infoembed.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
         await ctx.send(embed=infoembed)
         
     @commands.command()
     async def credits(self, ctx):
-        '''See the credits for Astro'''
+        '''See the credits for Sirk'''
         embed = discord.Embed(title="Credits", description="**<@!542405601255489537> - Developer**\n**<@!555709231697756160> - API Usage**\n**<@!668906205799907348> - Bot Optimizations**\n**<@!296862365503193098> - Optimizations and Advice**\n", color=0x2F3136)
         await ctx.send(embed=embed)
 
@@ -70,35 +70,35 @@ class info(commands.Cog):
     @commands.command()
     async def help1(self, ctx, *, page=None):
         
-        helpembed1 = discord.Embed(title="Astro", description="A Utilities Discord Bot with reliability and simplicity\n Made By [isirk#0001](https://discord.com/users/542405601255489537)", color=0x2F3136)
+        helpembed1 = discord.Embed(title="Sirk", description="A Utilities Discord Bot with reliability and simplicity\n Made By [isirk#0001](https://discord.com/users/542405601255489537)", color=0x2F3136)
         helpembed1.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         helpembed1.add_field(name="Prefix", value="`@Astro ,Astro ,astro ,^`", inline=False)
         helpembed1.add_field(name= "Help", value="React below to change the pages.\n**Note:**\nYou can type `help <page name>` to get a specific help page.", inline=False)
         helpembed1.add_field(name="Pages", value="```yaml\n1) Info\n2) Utility\n3) Mod\n4) Other\n```", inline=False)
         helpembed1.add_field(name="<a:settings:768181060734812230> About", value="Version 1.0 **Public Beta**\nMade with :heart: in <:python:758139554670313493>\nOwned, Developed, and Run by isirk#0001", inline=False)
-        helpembed1.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        helpembed1.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
         
         info = discord.Embed(title="Info", description="Information Commands", color=0x2F3136)
         info.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         info.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
-        info.add_field(name="Commands:", value="`source` - See Astro's Source Code\n`info` - Get Info About the Bot.\n`invite` - Get the invite for Astro.\n`support` Get Support Information.\n`privacy` - Privacy Policy for Astro.\n`credits` - See the credits for Astro.\n`help <[o]page name>` - This Message *or* a specific Help Page", inline=False)
-        info.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        info.add_field(name="Commands:", value="`source` - See Sirks's Source Code\n`info` - Get Info About the Bot.\n`invite` - Get the invite for Astro.\n`support` Get Support Information.\n`privacy` - Privacy Policy for Astro.\n`credits` - See the credits for Astro.\n`help <[o]page name>` - This Message *or* a specific Help Page", inline=False)
+        info.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
 
         utility = discord.Embed(title="Utility", description="Utiity Commands", color=0x2F3136)
         utility.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        utility.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        utility.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
         utility.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
         utility.add_field(name="Commands:", value="`avatar|av <[o]mention>` - Get the avatar of the mentioned user.\n`ping` - Get the Bot Ping.\n`server` - Get Info About The Server.\n`stats` - Get the Bot Stats.\n`user <[o]mention>` - Get the Stats of the Mentioned User.", inline=False)
         
         mod = discord.Embed(title="Mod", description="Moderation Commands\***Note you need specific permissions for each command.***", color=0x2F3136)
         mod.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        mod.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        mod.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
         mod.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n(permission) - Required Permissions```", inline=False)
         mod.add_field(name="Commands:", value="`kick <user>` - Kick the mentioned user from the server. (`kick_members`)\n`ban <user>` - Ban the mentioned user from the server. (`ban_members`)\n`warn <user> <reason>` - Warn A User for a Specified Reason.(`kick_members`)\n`clear <#>` - Delete a number of messages. **Max 100** (`manage_messages`)\n`slowmode <seconds>` - Change the Channel Slowmode to a specified number of seconds. (`manage_channels`)\n~~~`mute <user>` - Mute a User.~~~ (Re-Working)\n~~~`unmute <user>` - Un-mutes a User.~~~ (Re-Working)", inline=False)
         
         other = discord.Embed(title="Other", description="Other Commands", color=0x2F3136)
         other.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        other.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        other.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
         other.add_field(name="Commands:", value="`dice` - Roll A Dice (*There is a possibility you'll get a mystery.*)\n`joke` - Get a Joke\n`dadjoke` - Get a dadjoke\n`token` - Get a Fake Bot Token\n`binary <text>` - Turn text into Binary\n`text <binary>` - Turn Binary into Text\n`meme` - Get a Meme\n`programmerhumor|ph` - Get a Programming Meme\n`minecraft|mc <user>` - Get stats about a minecraft user.\n`minecraftserver|mcs <server ip>` - Get info about a Minecraft server\n`quiz|q` - Take the Halloween Quiz", inline=False)
         
         if page == "info":
@@ -124,9 +124,9 @@ class info(commands.Cog):
         
     @commands.command()
     async def privacy(self, ctx):
-        embed = discord.Embed(title="Privacy Policy for Astro", description="Astro strives to store no data to make astro as simple to use as possible.\nNothing is stored, recorded or anything of that sort.\n\n<:tab:758139554842148934> [Privacy Policy](https://asksirk.com/Astro/privacy/)", color=0x2F3136)
+        embed = discord.Embed(title="Privacy Policy for Sirk", description="Sirk strives to store no data to make Sirk as simple to use as possible.\nNothing is stored, recorded or anything of that sort.\n\n<:tab:758139554842148934> [Privacy Policy](https://asksirk.com/Astro/privacy/)", color=0x2F3136)
         embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        embed.set_footer(text="Astro Bot | discord.gg/7yZqHfG")
+        embed.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
         await ctx.send(embed=embed)
      
 def setup(bot):
