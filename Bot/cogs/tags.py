@@ -7,7 +7,7 @@ def guild_check(_custom_commands):
         return _custom_commands.get(ctx.command.qualified_name) and ctx.guild.id in _custom_commands.get(ctx.command.qualified_name)
     return commands.check(predicate)
 
-class cc(commands.Cog):
+class tags(commands.Cog):
 
     """ Each entry in _custom_commands will look like this:
     {
@@ -19,8 +19,8 @@ class cc(commands.Cog):
     """
     _custom_commands = {}
 
-    @commands.command()
-    async def add_command(self, ctx, name, *, output):
+    @commands.command(name=['add tag'])
+    async def add_tag(self, ctx, name, *, output):
         # First check if there's a custom command with that name already
         existing_command = self._custom_commands.get(name)
         # Check if there's a built in command, we don't want to override that
@@ -45,8 +45,8 @@ class cc(commands.Cog):
             self._custom_commands[name] = {ctx.guild.id: output}
         await ctx.send(f"Added a command called {name}")
 
-    @commands.command()
-    async def remove_command(self, ctx, name):
+    @commands.command(name=['remove tag'])
+    async def remove_tag(self, ctx, name):
         # Make sure it's actually a custom command, to avoid removing a real command
         if name not in self._custom_commands or ctx.guild.id not in self._custom_commands[name]:
             return await ctx.send(f"There is no custom command called {name}")
