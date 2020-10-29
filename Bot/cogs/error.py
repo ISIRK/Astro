@@ -59,7 +59,7 @@ class ErrorHandler(Cog):
 
         # Missing Permissions
         elif isinstance(error, commands.BotMissingPermissions):
-            return await self.send_to_ctx_or_author(ctx, f"Astro is missing the required permission: `{error.missing_perms[0]}`")
+            return await self.send_to_ctx_or_author(ctx, f"Sirk is missing the required permission: `{error.missing_perms[0]}`")
 
         # Discord Forbidden, usually if bot doesn't have permissions
         elif isinstance(error, discord.Forbidden):
