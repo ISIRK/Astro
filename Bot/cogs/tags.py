@@ -55,4 +55,4 @@ class tags(commands.Cog):
         await ctx.send(f"Removed a command called {name}")
 
 def setup(bot):
-    bot.add_cog(cc(bot))
+    bot.add_cog(tags(bot))
