@@ -27,7 +27,7 @@ class other(commands.Cog):
         self.bot = bot
         
     @commands.command()
-    @commands.cooldown(1,10,BucketType.user) 
+    @commands.cooldown(1,3,BucketType.user) 
     async def dice(self, ctx):
         dice = ['1', '2', '3', '4', '5', '6', 'off the table...\n*You Found The Mystery!*']
         embed = discord.Embed(title="Dice", description=f'The Dice Rolled {random.choice(dice)}', color=0x2F3136)
@@ -35,7 +35,7 @@ class other(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    @commands.cooldown(1,10,BucketType.user) 
+    @commands.cooldown(1,3,BucketType.user) 
     async def joke(self, ctx):
         async with aiohttp.ClientSession() as session:
           async with session.get('https://some-random-api.ml/joke') as resp:
@@ -43,7 +43,7 @@ class other(commands.Cog):
         await ctx.send(resp['joke'])
         
     @commands.command()
-    @commands.cooldown(1,10,BucketType.user)
+    @commands.cooldown(1,3,BucketType.user)
     async def dadjoke(self, ctx):
         async with aiohttp.ClientSession() as session:
             async with session.get("https://dadjoke-api.herokuapp.com/api/v1/dadjoke") as r:
@@ -51,7 +51,7 @@ class other(commands.Cog):
         await ctx.send(resp['joke'])
         
     @commands.command()
-    @commands.cooldown(1,10,BucketType.user) 
+    @commands.cooldown(1,3,BucketType.user) 
     async def token(self, ctx):
         async with aiohttp.ClientSession() as session:
           async with session.get('https://some-random-api.ml/bottoken') as resp:
@@ -59,7 +59,7 @@ class other(commands.Cog):
         await ctx.send(resp['token'])
         
     @commands.command()
-    @commands.cooldown(1,10,BucketType.user)
+    @commands.cooldown(1,3,BucketType.user)
     async def binary(self, ctx, *, text: str):
         if "@everyone" in text:
             await ctx.send('Please refrain from using `@everyone`.')
@@ -72,7 +72,7 @@ class other(commands.Cog):
             await ctx.send(resp['binary'])
         
     @commands.command()
-    @commands.cooldown(1,10,BucketType.user)
+    @commands.cooldown(1,3,BucketType.user)
     async def text(self, ctx, *, binary: str):
         if "010000000110010101110110011001010111001001111001011011110110111001100101" in binary:
             await ctx.send('Please refrain from using `@everyone`.')
@@ -85,7 +85,7 @@ class other(commands.Cog):
             await ctx.send(resp['text'])
         
     @commands.command()
-    @commands.cooldown(1,10,BucketType.user) 
+    @commands.cooldown(1,5,BucketType.user) 
     async def meme(self, ctx):
         async with aiohttp.ClientSession() as session:
           async with session.get('https://meme-api.herokuapp.com/gimme/dankmemes') as resp:
@@ -100,7 +100,7 @@ class other(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['ph'])
-    @commands.cooldown(1,10,BucketType.user) 
+    @commands.cooldown(1,5,BucketType.user) 
     async def programmerhumor(self, ctx):
         async with aiohttp.ClientSession() as session:
           async with session.get('https://meme-api.herokuapp.com/gimme/ProgrammerHumor') as resp:
@@ -111,7 +111,7 @@ class other(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['mc'])
-    @commands.cooldown(1,10,BucketType.user)
+    @commands.cooldown(1,3,BucketType.user)
     async def minecraft(self, ctx, *, username):
         async with aiohttp.ClientSession() as session:
           async with session.get(f'https://some-random-api.ml/mc?username={username}') as resp:
@@ -122,7 +122,7 @@ class other(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['mcs'])
-    @commands.cooldown(1,10,BucketType.user)
+    @commands.cooldown(1,3,BucketType.user)
     async def minecraftserver(self, ctx, *, server):
         async with aiohttp.ClientSession() as session:
           async with session.get(f'http://mcapi.xdefcon.com/server/{server}/full/json') as resp:
