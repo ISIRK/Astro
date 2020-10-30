@@ -4,8 +4,7 @@ from discord.ext import commands
 from asyncio import sleep
 import typing
 
-class Mod(commands.Cog):
-    """Commands for managing Discord servers."""
+class mod(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
 
@@ -116,4 +115,4 @@ class Mod(commands.Cog):
            #return await ctx.send('You need kick permissions to run this command')
 
 def setup(bot):
-    bot.add_cog(Mod(bot))
+    bot.add_cog(mod(bot))

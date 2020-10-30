@@ -1,22 +1,31 @@
 import os
 
+import asyncio
+
 import discord
-from discord.ext import commands
+from discord.ext import commands, menus
 import json
 
 from disputils.pagination import BotEmbedPaginator
 
+from utils.help import EmbedHelpCommand
+
 ##CONFIG
-tokenFile = "/home/pi/Discord/Astro/Bot/config.json"
+tokenFile = "/home/pi/Discord/Sirk/Bot/utils/config.json"
 with open(tokenFile) as f:
     data = json.load(f)
 token = data['TOKEN']
+
+prefixFile = "/home/pi/Discord/Sirk/Bot/utils/tools.json"
+with open(prefixFile) as f:
+    data = json.load(f)
 prefixes = data['PREFIX']
 
 intents = discord.Intents.default()
 intents.presences = True
 intents.members = True
 bot = commands.Bot(command_prefix = prefixes, intents=intents)
+bot.help_command = EmbedHelpCommand()
 
 bot.owner_ids = {542405601255489537}
 #bot.remove_command('help')
@@ -65,5 +74,5 @@ for filename in os.listdir('./Bot/cogs'):
 
 bot.load_extension("jishaku")
 
-#19846
+#24094
 bot.run(token)
