@@ -18,11 +18,13 @@ from multiprocessing.connection import Client
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 
 class info(commands.Cog):
+    '''Information Commands'''
     def __init__(self, bot):
         self.bot = bot
         
     @commands.command()
     async def source(self, ctx):
+        '''See the bots source'''
         await ctx.send("<:python:758139554670313493> Source: https://asksirk.com/Astro/github.html\nPlease make sure to credit @isirk if you are copying code.")
         
     @commands.command()
@@ -69,7 +71,7 @@ class info(commands.Cog):
 
     @commands.command()
     async def help1(self, ctx, *, page=None):
-        
+        '''Outdated help command'''
         helpembed1 = discord.Embed(title="Sirk", description="A Utilities Discord Bot with reliability and simplicity\n Made By [isirk#0001](https://discord.com/users/542405601255489537)", color=0x2F3136)
         helpembed1.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         helpembed1.add_field(name="Prefix", value="`@Astro ,Astro ,astro ,^`", inline=False)
@@ -124,6 +126,7 @@ class info(commands.Cog):
         
     @commands.command()
     async def privacy(self, ctx):
+        '''See the bots privacy policy'''
         embed = discord.Embed(title="Privacy Policy for Sirk", description="Sirk strives to store no data to make Sirk as simple to use as possible.\nNothing is stored, recorded or anything of that sort.\n\n<:tab:758139554842148934> [Privacy Policy](https://asksirk.com/Astro/privacy/)", color=0x2F3136)
         embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         embed.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
