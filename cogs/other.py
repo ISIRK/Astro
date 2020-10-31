@@ -23,11 +23,13 @@ import collections
 
 
 class other(commands.Cog):
+    '''Random Commands'''
     def __init__(self, bot):
         self.bot = bot
         
     @commands.command()
-    @commands.cooldown(1,3,BucketType.user) 
+    @commands.cooldown(1,3,BucketType.user)
+    '''Roll a dice'''
     async def dice(self, ctx):
         dice = ['1', '2', '3', '4', '5', '6', 'off the table...\n*You Found The Mystery!*']
         embed = discord.Embed(title="Dice", description=f'The Dice Rolled {random.choice(dice)}', color=0x2F3136)
@@ -36,6 +38,7 @@ class other(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1,3,BucketType.user) 
+    '''Get a joke'''
     async def joke(self, ctx):
         async with aiohttp.ClientSession() as session:
           async with session.get('https://some-random-api.ml/joke') as resp:
@@ -44,6 +47,7 @@ class other(commands.Cog):
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
+    '''Get a dad joke'''
     async def dadjoke(self, ctx):
         async with aiohttp.ClientSession() as session:
             async with session.get("https://dadjoke-api.herokuapp.com/api/v1/dadjoke") as r:
