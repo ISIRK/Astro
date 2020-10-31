@@ -39,7 +39,7 @@ class mod(commands.Cog):
             embed.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(hidden=True)
     @commands.has_permissions(kick_members=True)
     async def mute(self, ctx, user : discord.Member, time: int):
         """Prevents a user from speaking for a specified amount of time."""
@@ -71,7 +71,7 @@ class mod(commands.Cog):
             else:
                 await ctx.send(f'User {user.mention} is already muted.')
 
-    @commands.command()
+    @commands.command(hidden=True)
     @commands.has_permissions(kick_members=True)
     async def unmute(self, ctx, user: discord.Member):
         """Unmutes a user."""
