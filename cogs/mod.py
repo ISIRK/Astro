@@ -5,6 +5,7 @@ from asyncio import sleep
 import typing
 
 class mod(commands.Cog):
+    '''Moderation Commands'''
     def __init__(self,bot):
         self.bot = bot
 
