@@ -71,8 +71,6 @@ class mod(commands.Cog):
             else:
                 await ctx.send(f'User {user.mention} is already muted.')
 
-    bot.remove_command(mute)
-
     @commands.command()
     @commands.has_permissions(kick_members=True)
     async def unmute(self, ctx, user: discord.Member):
@@ -84,8 +82,6 @@ class mod(commands.Cog):
             embed.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=embed)
             await user.remove_roles(rolem)
-    bot.remove_command(unmute)
-
     @commands.command()
     @commands.has_permissions(manage_messages=True)
     async def clear(self, ctx, count: int):
@@ -119,3 +115,5 @@ class mod(commands.Cog):
 
 def setup(bot):
     bot.add_cog(mod(bot))
+    bot.remove_command(mute)
+    bot.remove_command(unmute)
