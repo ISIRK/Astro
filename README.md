@@ -9,13 +9,13 @@
 
 **A minimalistic utilities bot for discord**
 
-Astro is a simple, easy to use, discord bot made to make your use of discord easy.
+Sirk is a simple, easy to use, discord bot made to make your use of discord easy.
 
 If you have any questions please either dm isirk#0001 or join our support server below.
 
 [Discord](https://discord.gg/7yZqHfG)
 
-[Astro](https://asksirk.com/Astro)
+[Sirk](https://asksirk.com/Astro) (Yes I know it says astro on the site, please give us time to update)
 
 [Privacy Policy](https://asksirk.com/Astro/privacy/)
 
