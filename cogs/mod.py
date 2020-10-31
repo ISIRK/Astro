@@ -39,7 +39,7 @@ class mod(commands.Cog):
             embed.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=embed)
 
-    @commands.command()
+    '''@commands.command()
     @commands.has_permissions(kick_members=True)
     async def mute(self, ctx, user : discord.Member, time: int):
         """Prevents a user from speaking for a specified amount of time."""
@@ -70,7 +70,6 @@ class mod(commands.Cog):
                         print(f'User {user.name} could not be unmuted!')
             else:
                 await ctx.send(f'User {user.mention} is already muted.')
-            bot.remove_command(mute)
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
@@ -82,8 +81,7 @@ class mod(commands.Cog):
             embed.add_field(name="Welcome back!", value=":open_mouth:")
             embed.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=embed)
-            await user.remove_roles(rolem)
-     bot.remove_command(unmute)
+            await user.remove_roles(rolem)'''
 
     @commands.command()
     @commands.has_permissions(manage_messages=True)
