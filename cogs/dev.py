@@ -77,7 +77,7 @@ class dev(commands.Cog):
     @commands.command()
     async def say(self, ctx, *, content:str):
         '''Make the bot say something'''
-            await ctx.send(content)
+        await ctx.send(content)
         
     @commands.is_owner()
     @commands.command()
