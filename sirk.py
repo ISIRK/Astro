@@ -11,12 +11,12 @@ from disputils.pagination import BotEmbedPaginator
 from utils.help import EmbedHelpCommand
 
 ##CONFIG
-tokenFile = "/home/pi/Discord/Sirk/Bot/utils/config.json"
+tokenFile = "/home/pi/Discord/Sirk/utils/config.json"
 with open(tokenFile) as f:
     data = json.load(f)
 token = data['TOKEN']
 
-prefixFile = "/home/pi/Discord/Sirk/Bot/utils/tools.json"
+prefixFile = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(prefixFile) as f:
     data = json.load(f)
 prefixes = data['PREFIX']
@@ -68,11 +68,11 @@ async def reload(ctx, extension):
     bot.load_extension(f'cogs.{extension}')
     await ctx.send(f':repeat: {extension}' " reloaded")
 
-for filename in os.listdir('./Bot/cogs'):
+for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         bot.load_extension(f'cogs.{filename[:-3]}')
 
 bot.load_extension("jishaku")
 
-#26511
+#27037
 bot.run(token)

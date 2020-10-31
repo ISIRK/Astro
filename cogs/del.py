@@ -1,7 +1,7 @@
 import discord, aiohttp, json
 from discord.ext import tasks, commands
 
-tokenFile = "/home/pi/Discord/Sirk/Bot/utils/config.json"
+tokenFile = "/home/pi/Discord/Sirk/utils/config.json"
 with open(tokenFile) as f:
     data = json.load(f)
 deltoken = data['DELTOKEN']
