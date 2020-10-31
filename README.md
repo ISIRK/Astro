@@ -1,6 +1,6 @@
 <img src="https://asksirk.com/Astro/sirk.png" align="right" height="200" width="200"/>
 
-# Astro - Discord Bot
+# Sirk - Discord Bot
 <p>
   
   [![Support Server](https://img.shields.io/discord/743121194911531110.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge)](https://discord.gg/7yZqHfG)
