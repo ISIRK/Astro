@@ -74,5 +74,5 @@ for filename in os.listdir('./cogs'):
 
 bot.load_extension("jishaku")
 
-#27398
+#28736
 bot.run(token)
