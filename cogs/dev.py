@@ -21,6 +21,7 @@ from multiprocessing.connection import Client
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 
 class dev(commands.Cog):
+    '''Developer Commands'''
     def __init__(self, bot):
         self.bot = bot
 
@@ -75,26 +76,13 @@ class dev(commands.Cog):
     @commands.is_owner()
     @commands.command()
     async def say(self, ctx, *, content:str):
+        '''Make the bot say something'''
             await ctx.send(content)
-
-    @commands.is_owner()
-    @commands.command()
-    async def permissions(self, ctx, *, channel: discord.TextChannel = None):
-        """Shows the bot's permissions in a specific channel.
-        If no channel is given then it uses the current one.
-        This is a good way of checking if the bot has the permissions needed
-        to execute the commands it wants to execute.
-        To execute this command you must have Manage Roles permission.
-        You cannot use this in private messages.
-        """
-        channel = channel or ctx.channel
-        member = ctx.guild.me
-        await self.say_permissions(ctx, member, channel)
         
     @commands.is_owner()
     @commands.command()
     async def dev(self, ctx):
-
+        '''Dev help command (Outdated)'''
         dev = discord.Embed(title="Dev", description="Developer Commands\n***Note Only the Bot Owner Can Use These***", color=0x2F3136)
         dev.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         dev.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
