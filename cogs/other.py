@@ -188,7 +188,7 @@ class other(commands.Cog):
 
     @commands.command(aliases=['em'])
     @commands.cooldown(1,60,BucketType.user) 
-    async def embed(self, ctx):
+    async def embed(self, ctx, channel: discord.TextChannel):
         '''Make a custom embed and send it in any channel'''
         await ctx.send("Embed Maker Started\nWhat would you like the title to be?")
         try:
@@ -202,15 +202,8 @@ class other(commands.Cog):
             except asyncio.TimeoutError:
                 await ctx.send('Timeout Error')
             else:
-                await ctx.send('And what channel would you like to send this embed in?')
-                try:
-                    channels = await self.bot.wait_for('channel', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
-                except asyncio.TimeoutError:
-                    await ctx.send('Timeout Error')
-                else:
-                    embed = discord.Embed(title=title.content, description=description.content, color=0x2F3136)
-                    channels = channel
-                    await channel.send(embed=embed)
+                embed = discord.Embed(title=title.content, description=description.content, color=0x2F3136)
+                await channel.send(embed=embed)
 
 
 
