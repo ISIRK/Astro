@@ -27,24 +27,24 @@ class dev(commands.Cog):
 
     @commands.is_owner()
     @commands.command()
-    async def load(ctx, extension):
+    async def load(self, ctx, extension):
         '''Load a cog.'''
-        bot.load_extension(f'cogs.{extension}')
+        self.bot.load_extension(f'cogs.{extension}')
         await ctx.send(f'{extension}' " loaded")
 
     @commands.is_owner()
     @commands.command()
-    async def unload(ctx, extension):
+    async def unload(self, ctx, extension):
         '''Unload a cog.'''
-        bot.unload_extension(f'cogs.{extension}')
+        self.bot.unload_extension(f'cogs.{extension}')
         await ctx.send(f'{extension}' " unloaded")
 
     @commands.is_owner()
     @commands.command()
-    async def reload(ctx, extension):
+    async def reload(self, ctx, extension):
         '''Reload a cog.'''
-        bot.unload_extension(f'cogs.{extension}')
-        bot.load_extension(f'cogs.{extension}')
+        self.bot.unload_extension(f'cogs.{extension}')
+        self.bot.load_extension(f'cogs.{extension}')
         await ctx.send(f':repeat: {extension}' " reloaded")
 
     @commands.is_owner()
