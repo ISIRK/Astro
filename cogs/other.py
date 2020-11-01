@@ -187,7 +187,6 @@ class other(commands.Cog):
         await ctx.send(f"Correct!\nYou took **{time_taken:,.2f} seconds!**")
 
     @commands.command(aliases=['em'])
-    @commands.cooldown(1,60,BucketType.user) 
     async def embed(self, ctx, channel: discord.TextChannel):
         '''Make a custom embed and send it in any channel'''
         await ctx.send("Embed Maker Started\nWhat would you like the title to be?")
