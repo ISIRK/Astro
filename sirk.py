@@ -3,6 +3,7 @@ import os
 import asyncio
 
 import discord
+from discord import Embed
 from discord.ext import commands, menus
 import json
 
@@ -16,10 +17,10 @@ with open(tokenFile) as f:
     data = json.load(f)
 token = data['TOKEN']
 
-prefixFile = "/home/pi/Discord/Sirk/utils/tools.json"
+prefixFile = "/home/pi/Discord/Sirk/utils/prefixes.json"
 with open(prefixFile) as f:
     data = json.load(f)
-prefixes = data['PREFIX']
+prefixes = data['PREFIXES']
 
 intents = discord.Intents.default()
 intents.presences = True
@@ -45,6 +46,9 @@ async def on_message(message):
     await bot.process_commands(message)
     if message.author == bot.user:
         return
+    if message.content.startswith('<@!751447995270168586>'):
+        embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `sirk `, `Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
+        await message.channel.send(embed=embed)
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
@@ -52,5 +56,5 @@ for filename in os.listdir('./cogs'):
 
 bot.load_extension("jishaku")
 
-#28736
+#31533
 bot.run(token)
