@@ -70,9 +70,7 @@ class dev(commands.Cog):
                 try:
                     self.bot.reload_extension(f"cogs.{name}")
                 except Exception as e:
-                    error_collection.append(
-                        [file, default.traceback_maker(e, advance=False)]
-                    )
+            return await ctx.send(f"```py\n{e}```")
 
         if error_collection:
             output = "\n".join([f"**{g[0]}** ```diff\n- {g[1]}```" for g in error_collection])
