@@ -204,7 +204,7 @@ class other(commands.Cog):
             else:
                 await ctx.send('And what channel would you like to send this embed in?')
                 try:
-                    title = await self.bot.wait_for(channels, timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+                    channels = await self.bot.wait_for('channel', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
                 except asyncio.TimeoutError:
                     await ctx.send('Timeout Error')
                 else:
