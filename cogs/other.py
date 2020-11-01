@@ -186,8 +186,8 @@ class other(commands.Cog):
         time_taken = time.time()- start_time
         await ctx.send(f"Correct!\nYou took **{time_taken:,.2f} seconds!**")
 
-
-    @commands.command()
+    @commands.command(aliases=['em'])
+    @commands.cooldown(1,60,BucketType.user) 
     async def embed(self, ctx):
         await ctx.send("Embed Maker Started\nWhat would you like the title to be?")
         try:
