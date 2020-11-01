@@ -24,7 +24,7 @@ class EmbedHelpCommand(commands.HelpCommand):
 
     async def send_bot_help(self, mapping):
         embed = discord.Embed(title='Help', colour=self.COLOUR)
-        description = 'Help for Sirk Bot'
+        description = f'Commands for Sirk Bot.\nMade with ❤️ in <:python:758139554670313493> by [isirk#0001](https://discord.com/users/542405601255489537)'
         if description:
             embed.description = description
 
@@ -36,7 +36,7 @@ class EmbedHelpCommand(commands.HelpCommand):
                 if cog and cog.description:
                     value = '{0}\n{1}'.format(cog.description, value)
 
-                embed.add_field(name=name, value=value)
+                embed.add_field(name=name, value=value, inline=False)
 
         embed.set_footer(text=self.get_ending_note())
         await self.get_destination().send(embed=embed)

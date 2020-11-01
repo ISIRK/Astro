@@ -19,6 +19,7 @@ import psutil
 
 class utility(commands.Cog):
     def __init__(self, bot):
+        '''Utility commands for discord'''
         self.bot = bot
 
     @commands.command()

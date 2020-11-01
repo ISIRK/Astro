@@ -30,6 +30,7 @@ class other(commands.Cog):
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
     async def dice(self, ctx):
+        '''Roll a dice'''
         dice = ['1', '2', '3', '4', '5', '6', 'off the table...\n*You Found The Mystery!*']
         embed = discord.Embed(title="Dice", description=f'The Dice Rolled {random.choice(dice)}', color=0x2F3136)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/766312838910181421/unknown.png")
@@ -38,6 +39,7 @@ class other(commands.Cog):
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
     async def joke(self, ctx):
+        '''Get a joke'''
         async with aiohttp.ClientSession() as session:
           async with session.get('https://some-random-api.ml/joke') as resp:
             resp = await resp.json()
@@ -46,6 +48,7 @@ class other(commands.Cog):
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
     async def dadjoke(self, ctx):
+        '''Get a dad joke'''
         async with aiohttp.ClientSession() as session:
             async with session.get("https://dadjoke-api.herokuapp.com/api/v1/dadjoke") as r:
                 resp = await r.json()
@@ -54,6 +57,7 @@ class other(commands.Cog):
     @commands.command()
     @commands.cooldown(1,3,BucketType.user) 
     async def token(self, ctx):
+        '''Get a random Bot token'''
         async with aiohttp.ClientSession() as session:
           async with session.get('https://some-random-api.ml/bottoken') as resp:
             resp = await resp.json()
@@ -62,6 +66,7 @@ class other(commands.Cog):
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
     async def binary(self, ctx, *, text: str):
+        '''Change text into binary'''
         if "@everyone" in text:
             await ctx.send('Please refrain from using `@everyone`.')
         elif "@here" in text:
@@ -75,6 +80,7 @@ class other(commands.Cog):
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
     async def text(self, ctx, *, binary: str):
+        '''Change binary into text'''
         if "010000000110010101110110011001010111001001111001011011110110111001100101" in binary:
             await ctx.send('Please refrain from using `@everyone`.')
         elif "0100000001101000011001010111001001100101" in binary:
@@ -88,6 +94,7 @@ class other(commands.Cog):
     @commands.command()
     @commands.cooldown(1,5,BucketType.user) 
     async def meme(self, ctx):
+        '''Get a random meme'''
         async with aiohttp.ClientSession() as session:
           async with session.get('https://meme-api.herokuapp.com/gimme/dankmemes') as resp:
             resp = await resp.json()
@@ -103,6 +110,7 @@ class other(commands.Cog):
     @commands.command(aliases=['ph'])
     @commands.cooldown(1,5,BucketType.user) 
     async def programmerhumor(self, ctx):
+        '''Get a programmer humor meme'''
         async with aiohttp.ClientSession() as session:
           async with session.get('https://meme-api.herokuapp.com/gimme/ProgrammerHumor') as resp:
             resp = await resp.json()
@@ -114,6 +122,7 @@ class other(commands.Cog):
     @commands.command(aliases=['mc'])
     @commands.cooldown(1,3,BucketType.user)
     async def minecraft(self, ctx, *, username):
+        '''Get a minecraft users stats'''
         async with aiohttp.ClientSession() as session:
           async with session.get(f'https://some-random-api.ml/mc?username={username}') as resp:
             resp = await resp.json()
@@ -125,6 +134,7 @@ class other(commands.Cog):
     @commands.command(aliases=['mcs'])
     @commands.cooldown(1,3,BucketType.user)
     async def minecraftserver(self, ctx, *, server):
+        '''Get a minecraft servers stats'''
         async with aiohttp.ClientSession() as session:
           async with session.get(f'http://mcapi.xdefcon.com/server/{server}/full/json') as resp:
             resp = await resp.json()
@@ -137,6 +147,7 @@ class other(commands.Cog):
     @commands.command(aliases=['q'])
     @commands.cooldown(1,60,BucketType.user) 
     async def quiz(self, ctx):
+        '''Take a halloween quiz'''
         qa = {
             "`What was Halloween originally called?`": "ALL HALLOWS EVE",
             "`What was candy corn originally called?`": "CHICKEN FEED",

@@ -46,28 +46,6 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-@commands.is_owner()
-@bot.command()
-async def load(ctx, extension):
-    '''Load a cog.'''
-    bot.load_extension(f'cogs.{extension}')
-    await ctx.send(f'{extension}' " loaded")
-
-@commands.is_owner()
-@bot.command()
-async def unload(ctx, extension):
-    '''Unload a cog.'''
-    bot.unload_extension(f'cogs.{extension}')
-    await ctx.send(f'{extension}' " unloaded")
-
-@commands.is_owner()
-@bot.command()
-async def reload(ctx, extension):
-    '''Reload a cog.'''
-    bot.unload_extension(f'cogs.{extension}')
-    bot.load_extension(f'cogs.{extension}')
-    await ctx.send(f':repeat: {extension}' " reloaded")
-
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         bot.load_extension(f'cogs.{filename[:-3]}')

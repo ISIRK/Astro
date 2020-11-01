@@ -27,6 +27,28 @@ class dev(commands.Cog):
 
     @commands.is_owner()
     @commands.command()
+    async def load(ctx, extension):
+        '''Load a cog.'''
+        bot.load_extension(f'cogs.{extension}')
+        await ctx.send(f'{extension}' " loaded")
+
+    @commands.is_owner()
+    @commands.command()
+    async def unload(ctx, extension):
+        '''Unload a cog.'''
+        bot.unload_extension(f'cogs.{extension}')
+        await ctx.send(f'{extension}' " unloaded")
+
+    @commands.is_owner()
+    @commands.command()
+    async def reload(ctx, extension):
+        '''Reload a cog.'''
+        bot.unload_extension(f'cogs.{extension}')
+        bot.load_extension(f'cogs.{extension}')
+        await ctx.send(f':repeat: {extension}' " reloaded")
+
+    @commands.is_owner()
+    @commands.command()
     async def leaveguild(self, ctx):
         '''Leave the current server.'''
         embed=discord.Embed(title='Goodbye', color=0x2F3136)
