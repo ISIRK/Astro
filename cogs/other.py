@@ -201,8 +201,8 @@ class other(commands.Cog):
             except asyncio.TimeoutError:
                 await ctx.send('Timeout Error')
             else:
-                embed = discord.Embed(title=f"{title}", description=f"{description}", color=0x2F3136)
-                await ctx.send(embed=embed)
+        embed = discord.Embed(title=f"{title}", description=f"{description}", color=0x2F3136)
+        await ctx.send(embed=embed)
 
 
 
