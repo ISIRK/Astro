@@ -29,7 +29,7 @@ class dev(commands.Cog):
     @commands.is_owner()
     @commands.command()
     async def load(self, ctx, name: str):
-        """ Reloads an extension. """
+        """Loads an extension. """
         try:
             self.bot.load_extension(f"cogs.{name}")
         except Exception as e:
@@ -40,7 +40,7 @@ class dev(commands.Cog):
     @commands.is_owner()
     @commands.command()
     async def reload(self, ctx, name: str):
-        """ Reloads an extension. """
+        """Reloads an extension. """
 
         try:
             self.bot.reload_extension(f"cogs.{name}")
@@ -52,7 +52,7 @@ class dev(commands.Cog):
     @commands.is_owner()
     @commands.command()
     async def unload(self, ctx, name: str):
-        """ Reloads an extension. """
+        """Unloads an extension. """
         try:
             self.bot.unload_extension(f"cogs.{name}")
         except Exception as e:
@@ -62,7 +62,7 @@ class dev(commands.Cog):
     @commands.is_owner()
     @commands.command()
     async def reloadall(self, ctx):
-        """ Reloads all extensions. """
+        """Reloads all extensions. """
         error_collection = []
         for file in os.listdir("cogs"):
             if file.endswith(".py"):
