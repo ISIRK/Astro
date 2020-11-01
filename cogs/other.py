@@ -187,5 +187,24 @@ class other(commands.Cog):
         await ctx.send(f"Correct!\nYou took **{time_taken:,.2f} seconds!**")
 
 
+    @commands.command()
+    async def embed(self, ctx):
+        await ctx.send("Embed Maker Started\nWhat would you like the title to be?")
+        try:
+            q1 = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+        except asyncio.TimeoutError:
+            await ctx.send('Timeout Error')
+        else: 
+            await ctx.send("What would you like the description to be?")
+            try:
+                q2 = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+            except asyncio.TimeoutError:
+                await ctx.send('Timeout Error')
+            else:
+                embed = discord.Embed(title=q1, description=q2, color=0x2F3136)
+                await ctx.send(embed=embed)
+
+
+
 def setup(bot):
     bot.add_cog(other(bot))
