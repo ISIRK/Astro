@@ -204,12 +204,12 @@ class other(commands.Cog):
             else:
                 await ctx.send('And what channel would you like to send this embed in?')
                 try:
-                    title = await self.bot.wait_for(channels:discord.TextChannel, timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+                    title = await self.bot.wait_for(channels, timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
                 except asyncio.TimeoutError:
                     await ctx.send('Timeout Error')
                 else:
                     embed = discord.Embed(title=title.content, description=description.content, color=0x2F3136)
-                    channel = channels
+                    channels = channel
                     await channel.send(embed=embed)
 
 
