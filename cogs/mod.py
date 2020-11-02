@@ -5,7 +5,7 @@ from asyncio import sleep
 import typing
 
 class mod(commands.Cog):
-    '''Moderation Commands\n*Note: These commands required specific permissions to be completed.'''
+    '''Moderation Commands\n*Note: These commands required specific permissions.*'''
     def __init__(self,bot):
         self.bot = bot
 
