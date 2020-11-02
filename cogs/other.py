@@ -203,7 +203,8 @@ class other(commands.Cog):
             else:
                 embed = discord.Embed(title=title.content, description=description.content, color=0x2F3136)
                 await channel.send(embed=embed)
-                await ctx.send(f'Embed send in <#{channel}>')
+                channelid = get_channel(channel)
+                await ctx.send(f'Embed send in <#{channelid}>')
 
 
 
