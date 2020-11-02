@@ -17,7 +17,7 @@ class mod(commands.Cog):
         if ctx.author == user:
             await ctx.send("You cannot kick yourself.")
         elif user.top_role >= ctx.author.top_role:
-            await ctx.send("You can only warn people below you in role hierarchy.")
+            await ctx.send("You can only kick people below you in role hierarchy.")
             return
         else:
             await user.kick()
@@ -33,7 +33,7 @@ class mod(commands.Cog):
         if ctx.author == user:
             await ctx.send("You cannot ban yourself.")
         elif user.top_role >= ctx.author.top_role:
-            await ctx.send("You can only warn people below you in role hierarchy.")
+            await ctx.send("You can only ban people below you in role hierarchy.")
             return
         else:
             # If user is not in the guild ban the user's object
