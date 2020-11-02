@@ -126,26 +126,6 @@ class utility(commands.Cog):
                         
         await message.edit(embed=pingembed)
 
-    @commands.command(aliases=['em'])
-    @commands.has_permissions(manage_messages=True)
-    async def embed(self, ctx, channel: discord.TextChannel):
-        '''Make a custom embed and send it in any channel'''
-        await ctx.send("Embed Maker Started\nWhat would you like the title to be?")
-        try:
-            title = await self.bot.wait_for('message', timeout=60.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
-        except asyncio.TimeoutError:
-            await ctx.send('Timeout Error')
-        else: 
-            await ctx.send("What would you like the description to be?")
-            try:
-                description = await self.bot.wait_for('message', timeout=60.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
-            except asyncio.TimeoutError:
-                await ctx.send('Timeout Error')
-            else:
-                embed = discord.Embed(title=title.content, description=description.content, color=0x2F3136)
-                await channel.send(embed=embed)
-                await ctx.send(f'`{title.content}` Embed sent in #{channel}')
-
     @commands.command()
     async def stats(self ,ctx):
         '''Get the bot stats'''
