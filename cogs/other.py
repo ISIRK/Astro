@@ -191,13 +191,13 @@ class other(commands.Cog):
         '''Make a custom embed and send it in any channel'''
         await ctx.send("Embed Maker Started\nWhat would you like the title to be?")
         try:
-            title = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+            title = await self.bot.wait_for('message', timeout=30.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
         except asyncio.TimeoutError:
             await ctx.send('Timeout Error')
         else: 
             await ctx.send("What would you like the description to be?")
             try:
-                description = await self.bot.wait_for('message', timeout=10.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+                description = await self.bot.wait_for('message', timeout=30.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
             except asyncio.TimeoutError:
                 await ctx.send('Timeout Error')
             else:
