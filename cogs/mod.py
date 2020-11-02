@@ -114,7 +114,7 @@ class mod(commands.Cog):
 
     @commands.command(aliases=['em'])
     @commands.has_permissions(manage_messages=True)
-    async def embed(self, ctx):
+    async def embed(self, ctx, channel: discord.TextChannel):
         '''Make a custom embed and send it in any channel'''
         await ctx.send("Embed Maker Started\nWhat would you like the title to be?")
         try:
@@ -128,14 +128,14 @@ class mod(commands.Cog):
             except asyncio.TimeoutError:
                 await ctx.send('Timeout Error')
             else:
-                await ctx.send("What channel would you like to send the embed in?")
+                await ctx.send("What would you like the embed footer to be?")
                 try:
-                    channels = await self.bot.wait_for('channel', timeout=60.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+                    footer = await self.bot.wait_for('channel', timeout=30.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
                 except asyncio.TimeoutError:
                     await ctx.send('Timeout Error')
                 else:
-                    channel = channels.content
                     embed = discord.Embed(title=title.content, description=description.content, color=0x2F3136)
+                    embed.set_footer(text=footer.content)
                     await channel.send(embed=embed)
                     await ctx.send(f'`{title.content}` Embed sent in #{channel}')
 
