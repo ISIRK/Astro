@@ -128,16 +128,9 @@ class mod(commands.Cog):
             except asyncio.TimeoutError:
                 await ctx.send('Timeout Error')
             else:
-                await ctx.send("What would you like the embed footer to be?")
-                try:
-                    footer = await self.bot.wait_for('channel', timeout=30.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
-                except asyncio.TimeoutError:
-                    await ctx.send('Timeout Error')
-                else:
-                    embed = discord.Embed(title=title.content, description=description.content, color=0x2F3136)
-                    embed.set_footer(text='Test')
-                    await channel.send(embed=embed)
-                    await ctx.send(f'`{title.content}` Embed sent in #{channel}')
+                embed = discord.Embed(title=title.content, description=description.content, color=0x2F3136)
+                await channel.send(embed=embed)
+                await ctx.send(f'`{title.content}` Embed sent in #{channel}')
 
 def setup(bot):
     bot.add_cog(mod(bot))
