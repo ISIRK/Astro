@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 
+import asyncio
 from asyncio import sleep
 import typing
 
@@ -129,7 +130,7 @@ class mod(commands.Cog):
             else:
                 await ctx.send("What channel would you like to send the embed in?")
                 try:
-                    channels = await self.bot.wait_for(discord.TextChannel, timeout=60.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+                    channels = await self.bot.wait_for('channel', timeout=60.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
                 except asyncio.TimeoutError:
                     await ctx.send('Timeout Error')
                 else:
