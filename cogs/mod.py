@@ -134,10 +134,10 @@ class mod(commands.Cog):
                 except asyncio.TimeoutError:
                     await ctx.send('Timeout Error')
                 else:
-                embed = discord.Embed(title=title.content, description=description.content, color=0x2F3136)
-                embed.set_footer(text='Test')
-                await channel.send(embed=embed)
-                await ctx.send(f'`{title.content}` Embed sent in #{channel}')
+                    embed = discord.Embed(title=title.content, description=description.content, color=0x2F3136)
+                    embed.set_footer(text='Test')
+                    await channel.send(embed=embed)
+                    await ctx.send(f'`{title.content}` Embed sent in #{channel}')
 
 def setup(bot):
     bot.add_cog(mod(bot))
