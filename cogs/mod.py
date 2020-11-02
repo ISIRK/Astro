@@ -104,13 +104,17 @@ class mod(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def warn(self , ctx, user : discord.Member, *, reason):
         '''Warn a Member'''
-        guild = ctx.guild
-        embed = discord.Embed(color=0x2F3136)
-        embed.set_author(name=f"Warned By {ctx.author}", icon_url=ctx.author.avatar_url)
-        embed.add_field(name=f"You Have Been Warned in {guild}\n\nReason:", value=f'{reason}')
-        embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
-        await user.send(embed=embed)
-        await ctx.send(f"<:help:758453150897799172> Warned {user}")
+        if target.top_role >= ctx.author.top_role:
+            await ctx.send("You can only ban people below you")
+            return
+        else:
+            guild = ctx.guild
+            embed = discord.Embed(color=0x2F3136)
+            embed.set_author(name=f"Warned By {ctx.author}", icon_url=ctx.author.avatar_url)
+            embed.add_field(name=f"You Have Been Warned in {guild}\n\nReason:", value=f'{reason}')
+            embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
+            await user.send(embed=embed)
+            await ctx.send(f"<:help:758453150897799172> Warned {user}")
 
     @commands.command(aliases=['em'])
     @commands.has_permissions(manage_messages=True)
