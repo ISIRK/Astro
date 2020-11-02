@@ -16,6 +16,9 @@ class mod(commands.Cog):
         """Kicks a user from the server."""
         if ctx.author == user:
             await ctx.send("You cannot kick yourself.")
+        elif user.top_role >= ctx.author.top_role:
+            await ctx.send("You can only warn people below you in role hierarchy.")
+            return
         else:
             await user.kick()
             embed = discord.Embed(title=f'User {user.name} has been kicked.', color=0x2F3136)
@@ -29,6 +32,9 @@ class mod(commands.Cog):
         """Bans a user from the server."""
         if ctx.author == user:
             await ctx.send("You cannot ban yourself.")
+        elif user.top_role >= ctx.author.top_role:
+            await ctx.send("You can only warn people below you in role hierarchy.")
+            return
         else:
             # If user is not in the guild ban the user's object
             if isinstance(user, discord.User):
