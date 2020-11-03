@@ -19,13 +19,14 @@ from multiprocessing.connection import Client
 
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 
+listcolors = ['0x7289DA', '0x2F3136']
+COlORS = random.choice(listcolors)
+
 class info(commands.Cog):
     '''Information Commands'''
     def __init__(self, bot):
         self.bot = bot
     
-    listcolors = ['0x7289DA', '0x2F3136']
-    COlORS = random.choice(listcolors)
         
     @commands.command()
     async def source(self, ctx):
