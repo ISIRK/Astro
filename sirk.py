@@ -46,8 +46,8 @@ async def on_message(message):
     await bot.process_commands(message)
     if message.author == bot.user:
         return
-    if message.content.startswith('<@!751447995270168586>'):
-        embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `sirk `, `Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
+    if message.content.endswith('<@!751447995270168586>'):
+        embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `sirk `, `Sirk `, `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
         await message.channel.send(embed=embed)
 
 for filename in os.listdir('./cogs'):
@@ -56,5 +56,5 @@ for filename in os.listdir('./cogs'):
 
 bot.load_extension("jishaku")
 
-#31533
+#3586
 bot.run(token)
