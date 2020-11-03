@@ -9,6 +9,7 @@ class mod(commands.Cog):
     '''Moderation Commands\n*Note: These commands required specific permissions.*'''
     def __init__(self,bot):
         self.bot = bot
+        self.color = 0x2F3136
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
@@ -21,7 +22,7 @@ class mod(commands.Cog):
             return
         else:
             await user.kick()
-            embed = discord.Embed(title=f'User {user.name} has been kicked.', color=0x2F3136)
+            embed = discord.Embed(title=f'User {user.name} has been kicked.', color=self.color)
             embed.add_field(name="Bai!", value=":wave:")
             embed.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=embed)
@@ -42,7 +43,7 @@ class mod(commands.Cog):
 
             await ctx.guild.ban(user)
             
-            embed = discord.Embed(title=f'User {user.name} has been banned.', color=0x2F3136)
+            embed = discord.Embed(title=f'User {user.name} has been banned.', color=self.color)
             embed.add_field(name="Bai!", value=":hammer:")
             embed.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=embed)
@@ -115,7 +116,7 @@ class mod(commands.Cog):
             return
         else:
             guild = ctx.guild
-            embed = discord.Embed(color=0x2F3136)
+            embed = discord.Embed(color=self.color)
             embed.set_author(name=f"Warned By {ctx.author}", icon_url=ctx.author.avatar_url)
             embed.add_field(name=f"You Have Been Warned in {guild}\n\nReason:", value=f'{reason}')
             embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
@@ -138,7 +139,7 @@ class mod(commands.Cog):
             except asyncio.TimeoutError:
                 await ctx.send('Timeout Error')
             else:
-                embed = discord.Embed(title=title.content, description=description.content, color=0x2F3136)
+                embed = discord.Embed(title=title.content, description=description.content, color=self.color)
                 await channel.send(embed=embed)
                 await ctx.send(f'`{title.content}` Embed sent in #{channel}')
 
