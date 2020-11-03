@@ -23,7 +23,7 @@ class info(commands.Cog):
     '''Information Commands'''
     def __init__(self, bot):
         self.bot = bot
-        self.listcolors = ['0x7289DA', '0x2F3136']
+        self.listcolors = [0x7289DA, 0x2F3136]
         self.   COLORS = random.choice(listcolors)
         
     @commands.command()
