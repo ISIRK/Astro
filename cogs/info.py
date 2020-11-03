@@ -23,8 +23,7 @@ class info(commands.Cog):
     '''Information Commands'''
     def __init__(self, bot):
         self.bot = bot
-        self.listcolors = [0x7289DA, 0x2F3136]
-        self.COLORS = random.choice(self.listcolors)
+        self.COLORS = [0x7289DA, 0x2F3136]
         
     @commands.command()
     async def source(self, ctx):
@@ -34,7 +33,7 @@ class info(commands.Cog):
     @commands.command()
     async def about(self, ctx):
         '''Get information about the bot.'''
-        infoembed = discord.Embed(title="Info", description="A Utilities Discord Bot with reliability and simplicity", color=self.COLORS)
+        infoembed = discord.Embed(title="Info", description="A Utilities Discord Bot with reliability and simplicity", color=random.choice(self.COLORS))
         infoembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         infoembed.add_field(name= "<:news:758781954073821194> News", value=f"**<:dev:759427919302492160> <@751447995270168586> Is Now PUBLIC! <:dev:759427919302492160>**\nTo invite Sirk click [here](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot).\nOr you can type `{ctx.prefix}invite` to get invite info!", inline=True)
         infoembed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758451109919981580.png?v=1")
