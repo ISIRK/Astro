@@ -24,7 +24,7 @@ class dev(commands.Cog):
     '''Developer Commands'''
     def __init__(self, bot):
         self.bot = bot
-        self.color = 0x7289DA
+        self.color = 0x2F3136
         
     @commands.is_owner()
     @commands.command()
