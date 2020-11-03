@@ -134,27 +134,6 @@ class dev(commands.Cog):
     async def say(self, ctx, *, content:str):
         '''Make the bot say something'''
         await ctx.send(content)
-        
-    @commands.is_owner()
-    @commands.command()
-    async def dev(self, ctx):
-        '''Dev help command (Outdated)'''
-        dev = discord.Embed(title="Dev", description="Developer Commands\n***Note Only the Bot Owner Can Use These***", color=0x2F3136)
-        dev.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        dev.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
-        dev.add_field(name="Syntax:", value="```yaml\n<input> - Input for the Command\n[o] - Optional\n```", inline=False)
-        dev.add_field(name="Commands:", value="`jsk` - Jishaku\n`dm <user> <message>` - Dm the mentioned User from the Server.\n`leaveguild` - Leave the current server\n`status <type> <[o]status>` - Change the bot status.\n`say <message>` - Make the bot say a message.", inline=False)
-
-        jsk = discord.Embed(title="jsk", description="Commands:\ncancel - Cancels a task with the given index.\ncat - Read out a file, using syntax highlighting if detected.\ncurl - Download and display a text file from the internet.\ndebug - Run a command timing execution and catching exceptions.\ngit - Shortcut for 'jsk sh git'. Invokes the system shell.\nhide - Hides Jishaku from the help command.\nin - Run a command as if it were run in a different channel.\nload - Loads or reloads the given extension names.\npy - Direct evaluation of Python code.\npy - inspect Evaluation of Python code with inspect information.\nrepeat - Runs a command multiple times in a row.\nretain - Turn variable retention for REPL on or off.\nshell - Executes statements in the system shell.\nshow - Shows Jishaku in the help command.\nshutdown - Logs this bot out.\nsource - Displays the source code for a command.\nsu - Run a command as someone else.\nsudo - Run a command bypassing all checks and cooldowns.\ntasks - Shows the currently running jishaku tasks.\nunload - Unloads the given extension names.\nvoice - Voice-related commands.", color=0x2F3136)
-
-        embeds = [
-            dev,
-            jsk
-        ]
-
-        paginator = BotEmbedPaginator(ctx, embeds)
-        await paginator.run()
-        
             
 def setup(bot):
     bot.add_cog(dev(bot))
