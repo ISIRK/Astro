@@ -23,7 +23,7 @@ class info(commands.Cog):
     '''Information Commands'''
     def __init__(self, bot):
         self.bot = bot
-        self.color = 0x7289DA
+        self.color = 0x2F3136
         
     @commands.command()
     async def source(self, ctx):
