@@ -32,7 +32,7 @@ class info(commands.Cog):
         '''Get information about the bot.'''
         infoembed = discord.Embed(title="Info", description="A Utilities Discord Bot with reliability and simplicity", color=0x2F3136)
         infoembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        infoembed.add_field(name= "<:news:758781954073821194> News", value=f"**<:dev:759427919302492160> <@751447995270168586> Is Now PUBLIC! <:dev:759427919302492160>**\nTo invite Sirk either click [here](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify), [here](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify), or [here](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify).\nOr you can type `{ctx.prefix}invite` to get invite info!", inline=True)
+        infoembed.add_field(name= "<:news:758781954073821194> News", value=f"**<:dev:759427919302492160> <@751447995270168586> Is Now PUBLIC! <:dev:759427919302492160>**\nTo invite Sirk click [here](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot).\nOr you can type `{ctx.prefix}invite` to get invite info!", inline=True)
         infoembed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758451109919981580.png?v=1")
         infoembed.add_field(name= ":link: Links", value="[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)\n[Bot Site](https://asksirk.com/Astro) \n[Github Repository](https://github.com/ISIRK/Astro) \n[Patreon](https://www.patreon.com/Astro_Bot)", inline=False)
         infoembed.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
@@ -62,7 +62,7 @@ class info(commands.Cog):
         embed = discord.Embed(title="Invite", color=0x2F3136)
         embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         embed.set_thumbnail(url="https://asksirk.com/Astro/astronaut.jpg")
-        embed.add_field(name="Invite Link:", value="🌐 [Invite Link](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&redirect_uri=https%3A%2F%2Fastrobot.carrd.co%2F&response_type=code&scope=bot%20identify)", inline=False)
+        embed.add_field(name="Invite Link:", value="🌐 [Invite Link](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot)", inline=False)
         embed.add_field(name="Support Server:", value="<a:igloading:737723292768796713> [Support Server](https://discord.gg/7yZqHfG)", inline=False)
         embed.add_field(name="Contact:", value="To contact dm [isirk#0001](https://discord.com/users/542405601255489537) or email me @ isirk@asksirk.com", inline=False)
         embed.set_footer(text=f"Use {ctx.prefix}help or info for more")
