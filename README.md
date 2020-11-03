@@ -15,11 +15,9 @@ If you have any questions please either dm isirk#0001 or join our support server
 
 [Discord](https://discord.gg/7yZqHfG)
 
-[Sirk](https://asksirk.com/Astro) (Yes I know it says astro on the site, please give us time to update)
+[Sirk](https://asksirk.com/Astro) (Yes, I know it says astro on the site, please give us time to update our website.)
 
 [Privacy Policy](https://asksirk.com/Astro/privacy/)
-
-[Documentation](https://isirk.gitbook.io)
 
 <br>
 
@@ -40,6 +38,7 @@ Syntax for Sirk:
 "|" - Alias
 (permission) - Permission
 ```
+
 
 **Upcomming Features**
 - Help Command
