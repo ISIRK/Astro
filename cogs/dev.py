@@ -24,7 +24,7 @@ class dev(commands.Cog):
     '''Developer Commands'''
     def __init__(self, bot):
         self.bot = bot
-        
+        self.color = 0x7289DA
         
     @commands.is_owner()
     @commands.command()
@@ -85,7 +85,7 @@ class dev(commands.Cog):
     @commands.command()
     async def leaveguild(self, ctx):
         '''Leave the current server.'''
-        embed=discord.Embed(title='Goodbye', color=0x2F3136)
+        embed=discord.Embed(title='Goodbye', color=self.color)
         await ctx.send(embed=embed)
         await ctx.guild.leave()
     
@@ -121,7 +121,7 @@ class dev(commands.Cog):
     @commands.command()
     async def dm(self , ctx, user : discord.Member, *, content):
         '''Dm a Member'''
-        embed = discord.Embed(color=0x2F3136)
+        embed = discord.Embed(color=self.color)
         embed.set_author(name=f"Sent from {ctx.author}", icon_url=ctx.author.avatar_url)
         embed.add_field(name="Message:", value=f'{content}')
         embed.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
