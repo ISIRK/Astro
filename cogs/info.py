@@ -24,7 +24,7 @@ class info(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.listcolors = [0x7289DA, 0x2F3136]
-        self.   COLORS = random.choice(listcolors)
+        self.   COLORS = random.choice(self.listcolors)
         
     @commands.command()
     async def source(self, ctx):
