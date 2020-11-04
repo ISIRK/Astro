@@ -56,7 +56,7 @@ class info(commands.Cog):
     @commands.command()
     async def credits(self, ctx):
         '''See the credits for Sirk'''
-        embed = discord.Embed(title="Credits", description="<@!542405601255489537> (isirk#0001) - Developer and Owner\n<@!555709231697756160> (CraziiAce#0001) - API Usage\n<@!668906205799907348> (Cyrus#8315) - Bot Optimizations\n<@!296862365503193098> (LeSirH#0001) - Optimizations and Advice", color=color)
+        embed = discord.Embed(title="Credits", description="<@!542405601255489537> (isirk#0001)** - Developer and Owner**\n<@!555709231697756160> (CraziiAce#0001) - API Usage\n<@!668906205799907348> (Cyrus#8315)** - Bot Optimizations**\n<@!296862365503193098> (LeSirH#0001)** - Optimizations and Advice**", color=color)
         await ctx.send(embed=embed)
 
     @commands.command()
