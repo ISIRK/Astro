@@ -137,8 +137,8 @@ class dev(commands.Cog):
         '''Make the bot say something'''
         await ctx.send(content)
         
+    @commands.is_owner()    
     @commands.command()
-    @commands.is_owner()
     async def eval(self, ctx, *, code: str):
         cog = self.bot.get_cog("Jishaku")
         res = codeblock_converter(code)
