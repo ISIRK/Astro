@@ -1,5 +1,11 @@
 from discord.ext import commands
 import discord
+import json
+
+colorfile = "/home/pi/Discord/Sirk/utils/prefixes.json"
+with open(colorfile) as f:
+    data = json.load(f)
+color = int(data['COLORS'], 16)
 
 class EmbedHelpCommand(commands.HelpCommand):
     """This is an example of a HelpCommand that utilizes embeds.
@@ -14,7 +20,7 @@ class EmbedHelpCommand(commands.HelpCommand):
     bot = commands.Bot(help_command=EmbedHelpCommand())
     """
     # Set the embed colour here
-    COLOUR = 0x2F3136
+    COLOUR = color
 
     def get_ending_note(self):
         return 'Use {0}{1} [module] for more info on a module.\nUse {0}{1} [command] for more info on a command.'.format(self.clean_prefix, self.invoked_with)
