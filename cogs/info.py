@@ -8,6 +8,8 @@ from discord.shard import ShardInfo
 
 import os
 
+import json
+
 import random
 
 import collections
