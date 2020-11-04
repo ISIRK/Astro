@@ -18,6 +18,8 @@ from datetime import datetime
 
 from multiprocessing.connection import Client
 
+from jishaku.codeblocks import codeblock_converter
+
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 
 class dev(commands.Cog):
