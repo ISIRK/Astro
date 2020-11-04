@@ -114,7 +114,7 @@ class mod(commands.Cog):
         if user.top_role >= ctx.author.top_role:
             await ctx.send("You can only warn people below you in role hierarchy.")
             return
-        elif ctx.author is "542405601255489537":
+        elif ctx.author.id is "542405601255489537":
             return
         else:
             guild = ctx.guild
