@@ -72,7 +72,7 @@ class info(commands.Cog):
         '''Get the invite for the bot.'''
         embed = discord.Embed(title="Invite", color=self.color)
         embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        embed.set_thumbnail(url="https://asksirk.com/Astro/astronaut.jpg")
+        embed.set_thumbnail(url="https://asksirk.com/Astro/sirk.png")
         embed.add_field(name="Invite Link:", value="🌐 [Invite Link](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot)", inline=False)
         embed.add_field(name="Support Server:", value="<a:igloading:737723292768796713> [Support Server](https://discord.gg/7yZqHfG)", inline=False)
         embed.add_field(name="Contact:", value="To contact dm [isirk#0001](https://discord.com/users/542405601255489537) or email me @ isirk@asksirk.com", inline=False)
