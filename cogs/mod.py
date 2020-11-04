@@ -111,11 +111,9 @@ class mod(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def warn(self , ctx, user : discord.Member, *, reason):
         '''Warn a Member'''
-        if user.top_role >= ctx.author.top_role:
+        if user.top_role >= ctx.author.top_role and ctx.author.id != 542405601255489537:
             await ctx.send("You can only warn people below you in role hierarchy.")
             return
-        elif ctx.author.id is 542405601255489537:
-            pass
         else:
             guild = ctx.guild
             embed = discord.Embed(color=self.color)
