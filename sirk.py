@@ -17,7 +17,7 @@ with open(tokenFile) as f:
     data = json.load(f)
 token = data['TOKEN']
 
-prefixFile = "/home/pi/Discord/Sirk/utils/prefixes.json"
+prefixFile = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(prefixFile) as f:
     data = json.load(f)
 prefixes = data['PREFIXES']
