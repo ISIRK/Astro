@@ -13,6 +13,8 @@ from datetime import datetime
 
 import os
 
+import json
+
 import asyncio
 
 import aiohttp
@@ -21,19 +23,23 @@ import random
 
 import collections
 
+colorfile = "/home/pi/Discord/Sirk/utils/prefixes.json"
+with open(colorfile) as f:
+    data = json.load(f)
+color = int(data['COLORS'], 16)
+
 
 class other(commands.Cog):
     '''Random Commands'''
     def __init__(self, bot):
         self.bot = bot
-        self.color = 0x2F3136
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
     async def dice(self, ctx):
         '''Roll a dice'''
         dice = ['1', '2', '3', '4', '5', '6', 'off the table...\n*You Found The Mystery!*']
-        embed = discord.Embed(title="Dice", description=f'The Dice Rolled {random.choice(dice)}', color=self.color)
+        embed = discord.Embed(title="Dice", description=f'The Dice Rolled {random.choice(dice)}', color=color)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/766312838910181421/unknown.png")
         await ctx.send(embed=embed)
 
@@ -94,7 +100,7 @@ class other(commands.Cog):
           if resp['nsfw'] == True and not ctx.channel.is_nsfw():
             return await ctx.send("⚠️ This meme is marked as NSFW and I can't post it in a non-nsfw channel.")
           else:
-            embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=self.color)
+            embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=color)
             embed.set_image(url=resp['url'])
             embed.set_footer(text="r/Dankmemes")
             await ctx.send(embed=embed)
@@ -106,7 +112,7 @@ class other(commands.Cog):
         async with aiohttp.ClientSession() as session:
           async with session.get('https://meme-api.herokuapp.com/gimme/ProgrammerHumor') as resp:
             resp = await resp.json()
-        embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=self.color)
+        embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=color)
         embed.set_image(url=resp['url'])
         embed.set_footer(text="r/ProgrammerHumor")
         await ctx.send(embed=embed)
@@ -118,7 +124,7 @@ class other(commands.Cog):
         async with aiohttp.ClientSession() as session:
           async with session.get(f'https://some-random-api.ml/mc?username={username}') as resp:
             resp = await resp.json()
-        embed=discord.Embed(title=f"Stats for {resp['username']}", description=f"ID: `{resp['uuid']}`", color=self.color)
+        embed=discord.Embed(title=f"Stats for {resp['username']}", description=f"ID: `{resp['uuid']}`", color=color)
         embed.add_field(name="Name history", value=resp['name_history'])
         embed.set_thumbnail(url=f"https://minotar.net/helm/{username}/100.png")
         await ctx.send(embed=embed)
@@ -131,7 +137,7 @@ class other(commands.Cog):
           async with session.get(f'http://mcapi.xdefcon.com/server/{server}/full/json') as resp:
             resp = await resp.json()
                             
-        embed=discord.Embed(title=f"Stats for {server}", description=f"IP: {resp['serverip']}\nStatus: {resp['serverStatus']}\nPing: {resp['ping']}\nVersion: {resp['version']}\nPlayers: {resp['players']}\nMax Players: {resp['maxplayers']}", color=self.color)
+        embed=discord.Embed(title=f"Stats for {server}", description=f"IP: {resp['serverip']}\nStatus: {resp['serverStatus']}\nPing: {resp['ping']}\nVersion: {resp['version']}\nPlayers: {resp['players']}\nMax Players: {resp['maxplayers']}", color=color)
         embed.set_thumbnail(url=f"https://api.minetools.eu/favicon/{server}/25565")
         await ctx.send(embed=embed)
 
