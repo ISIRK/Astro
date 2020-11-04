@@ -23,7 +23,7 @@ import random
 
 import collections
 
-colorfile = "/home/pi/Discord/Sirk/utils/prefixes.json"
+colorfile = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(colorfile) as f:
     data = json.load(f)
 color = int(data['COLORS'], 16)
