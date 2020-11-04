@@ -21,11 +21,6 @@ from multiprocessing.connection import Client
 
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 
-colorfile = "/home/pi/Discord/Sirk/utils/prefixes.json"
-with open(colorfile) as f:
-    data = json.load(f)
-color = data['colors']
-
 class info(commands.Cog):
     '''Information Commands'''
     def __init__(self, bot):
@@ -40,7 +35,7 @@ class info(commands.Cog):
     @commands.command()
     async def about(self, ctx):
         '''Get information about the bot.'''
-        infoembed = discord.Embed(title="Info", description="A Utilities Discord Bot with reliability and simplicity", color=color)
+        infoembed = discord.Embed(title="Info", description="A Utilities Discord Bot with reliability and simplicity", color=self.color)
         infoembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         infoembed.add_field(name= "<:news:758781954073821194> News", value=f"**<:dev:759427919302492160> <@751447995270168586> Is Now on [top.gg](https://top.gg)! <:dev:759427919302492160>**\nMake sure to go check Sirk's listing [here](https://top.gg/bot/751447995270168586)\nMake sure to also [vote](https://top.gg/bot/751447995270168586/vote)", inline=True)
         infoembed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758451109919981580.png?v=1")
