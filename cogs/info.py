@@ -33,6 +33,11 @@ class info(commands.Cog):
         await ctx.send("<:python:758139554670313493> Source: https://asksirk.com/Astro/github.html\nPlease make sure to credit @isirk if you are copying code.")
         
     @commands.command()
+    async def vote(self, ctx):
+        '''Vote for Sirk Bot on top.gg'''
+        await ctx.send("**Vote for Sirk Bot [here](https://top.gg/bot/751447995270168586/vote)\nHave a cookie as well -> 🍪")
+        
+    @commands.command()
     async def about(self, ctx):
         '''Get information about the bot.'''
         infoembed = discord.Embed(title="Info", description="A Utilities Discord Bot with reliability and simplicity", color=self.color)
