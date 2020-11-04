@@ -115,7 +115,7 @@ class mod(commands.Cog):
             await ctx.send("You can only warn people below you in role hierarchy.")
             return
         elif ctx.author is "542405601255489537":
-            pass
+            return
         else:
             guild = ctx.guild
             embed = discord.Embed(color=self.color)
