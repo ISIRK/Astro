@@ -24,7 +24,7 @@ from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 colorfile = "/home/pi/Discord/Sirk/utils/prefixes.json"
 with open(colorfile) as f:
     data = json.load(f)
-colors = data['COLORS']
+colors = int(data['COLORS'], 16)
 
 class info(commands.Cog):
     '''Information Commands'''
