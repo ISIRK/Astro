@@ -134,6 +134,13 @@ class dev(commands.Cog):
     async def say(self, ctx, *, content:str):
         '''Make the bot say something'''
         await ctx.send(content)
+        
+    @commands.command()
+    @commands.is_owner()
+    async def eval(self, ctx, *, code: str):
+        cog = self.bot.get_cog("Jishaku")
+        res = codeblock_converter(code)
+        await cog.jsk_python(ctx, argument=res)
             
 def setup(bot):
     bot.add_cog(dev(bot))
