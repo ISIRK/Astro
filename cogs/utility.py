@@ -15,13 +15,17 @@ from discord.ext.commands.cooldowns import BucketType
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 import random
 import psutil
+import json
 
+colorfile = "/home/pi/Discord/Sirk/utils/prefixes.json"
+with open(colorfile) as f:
+    data = json.load(f)
+color = int(data['COLORS'], 16)
 
 class utility(commands.Cog):
     def __init__(self, bot):
         '''Utility commands for discord'''
         self.bot = bot
-        self.color = 0x2F3136
 
     @commands.command()
     async def server(self, ctx):
@@ -29,7 +33,7 @@ class utility(commands.Cog):
 
         statuses = collections.Counter([m.status for m in ctx.guild.members])
 
-        embed = discord.Embed(title=f"{ctx.guild.name}", color=self.color)
+        embed = discord.Embed(title=f"{ctx.guild.name}", color=color)
         embed.description = ctx.guild.description if ctx.guild.description else None
         embed.add_field(name='**General:**',
                         value=f'Owner: **{ctx.guild.owner}**\n'
@@ -83,7 +87,7 @@ class utility(commands.Cog):
                     "dnd": "<:dnd:758139458598993921>",
                     "offline": "<:offline:758139458611970088>"
                     }
-        embed = discord.Embed(title=f"{member}", color=self.color)
+        embed = discord.Embed(title=f"{member}", color=color)
         embed.add_field(name='**General:**',
                         value=f'Name: `{member}`\n' 
                               f'Status: {statuses[str(member.status)]}\n'
@@ -106,7 +110,7 @@ class utility(commands.Cog):
         if not member: # if member is no mentioned
             member = ctx.message.author # set member as the author
         userAvatar = member.avatar_url
-        avatarembed = discord.Embed( color=self.color)
+        avatarembed = discord.Embed( color=color)
         avatarembed.set_author(name=member, icon_url=ctx.author.avatar_url)
         avatarembed.set_image(url=userAvatar)
         await ctx.send(embed=avatarembed)
@@ -114,7 +118,7 @@ class utility(commands.Cog):
     @commands.command()
     async def ping(self, ctx):
         '''Get the bot ping'''                        
-        pingembed = discord.Embed(title="Pong!", color=self.color)
+        pingembed = discord.Embed(title="Pong!", color=color)
         pingembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         pingembed.add_field(name="<:server:765946903803854898> Server", value=f'```autohotkey\n{round(self.bot.latency * 1000)} ms```')
                         
