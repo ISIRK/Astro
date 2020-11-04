@@ -21,6 +21,11 @@ from multiprocessing.connection import Client
 
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 
+colorfile = "/home/pi/Discord/Sirk/utils/prefixes.json"
+with open(colorfile) as f:
+    data = json.load(f)
+colors = data['COLORS']
+
 class info(commands.Cog):
     '''Information Commands'''
     def __init__(self, bot):
@@ -35,7 +40,7 @@ class info(commands.Cog):
     @commands.command()
     async def vote(self, ctx):
         '''Vote for Sirk Bot on top.gg'''
-        embed=discord.Embed(title="Vote", description="**Vote for Sirk Bot [here](https://top.gg/bot/751447995270168586/vote)**\nHave a cookie as well -> 🍪", color=self.color)
+        embed=discord.Embed(title="Vote", description="**Vote for Sirk Bot [here](https://top.gg/bot/751447995270168586/vote)**\nHave a cookie as well -> 🍪", color=colors)
         await ctx.send(embed=embed)
         
     @commands.command()
