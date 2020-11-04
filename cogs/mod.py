@@ -17,7 +17,7 @@ class mod(commands.Cog):
         """Kicks a user from the server."""
         if ctx.author == user:
             await ctx.send("You cannot kick yourself.")
-        elif user.top_role >= ctx.author.top_role:
+        if user.top_role >= ctx.author.top_role and ctx.author.id != 542405601255489537:
             await ctx.send("You can only kick people below you in role hierarchy.")
             return
         else:
@@ -33,7 +33,7 @@ class mod(commands.Cog):
         """Bans a user from the server."""
         if ctx.author == user:
             await ctx.send("You cannot ban yourself.")
-        elif user.top_role >= ctx.author.top_role:
+        if user.top_role >= ctx.author.top_role and ctx.author.id != 542405601255489537:            
             await ctx.send("You can only ban people below you in role hierarchy.")
             return
         else:
