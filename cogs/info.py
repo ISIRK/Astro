@@ -34,7 +34,7 @@ class info(commands.Cog):
     @commands.command()
     async def source(self, ctx):
         '''See the bots source'''
-        await ctx.send("<:python:758139554670313493> Source: https://asksirk.com/Astro/github.html\nPlease make sure to credit @isirk if you are copying code.")
+        await ctx.send("<:python:758139554670313493> Source: https://github.com/ISIRK/Sirk\nPlease make sure to credit @isirk if you are copying code.")
         
     @commands.command()
     async def vote(self, ctx):
