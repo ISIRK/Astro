@@ -43,19 +43,11 @@ class other(commands.Cog):
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/766312838910181421/unknown.png")
         await ctx.send(embed=embed)
 
+        
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
     async def joke(self, ctx):
         '''Get a joke'''
-        async with aiohttp.ClientSession() as session:
-          async with session.get('https://some-random-api.ml/joke') as resp:
-            resp = await resp.json()
-        await ctx.send(resp['joke'])
-        
-    @commands.command()
-    @commands.cooldown(1,3,BucketType.user)
-    async def dadjoke(self, ctx):
-        '''Get a dad joke'''
         async with aiohttp.ClientSession() as session:
             async with session.get("https://dadjoke-api.herokuapp.com/api/v1/dadjoke") as r:
                 resp = await r.json()
