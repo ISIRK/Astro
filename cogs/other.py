@@ -114,10 +114,9 @@ class other(commands.Cog):
     async def minecraft(self, ctx, *, username):
         '''Get a minecraft users stats'''
         async with aiohttp.ClientSession() as session:
-          async with session.get(f'https://some-random-api.ml/mc?username={username}') as resp:
+          async with session.get(f'https://api.mojang.com/users/profiles/minecraft/{username}?at=') as resp:
             resp = await resp.json()
-        embed=discord.Embed(title=f"Stats for {resp['username']}", description=f"ID: `{resp['uuid']}`", color=color)
-        embed.add_field(name="Name history", value=resp['name_history'])
+        embed=discord.Embed(title=f"Stats for {resp['name']}", description=f"ID: `{resp['id']}`", color=color)
         embed.set_thumbnail(url=f"https://minotar.net/helm/{username}/100.png")
         await ctx.send(embed=embed)
 
