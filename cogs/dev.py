@@ -62,7 +62,7 @@ class dev(commands.Cog):
         await ctx.send(f"📤 Unloaded extension **cogs/{name}.py**")
     
     @commands.is_owner()
-    @commands.command()
+    @commands.command(aliases=['ra'])
     async def reloadall(self, ctx):
         """Reloads all extensions. """
         error_collection = []
@@ -138,7 +138,7 @@ class dev(commands.Cog):
         await ctx.send(content)
         
     @commands.is_owner()    
-    @commands.command()
+    @commands.command(aliases=['e'])
     async def eval(self, ctx, *, code: str):
         '''Evaluate code'''
         cog = self.bot.get_cog("Jishaku")
