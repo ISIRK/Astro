@@ -132,7 +132,7 @@ class dev(commands.Cog):
         await ctx.send(f"<:comment:726779670514630667> Message sent to {user}")
     
     @commands.is_owner()
-    @commands.command(name="dm -a")
+    @commands.command(aliases=['dma'])
     async def dm_a(self , ctx, user : discord.Member, *, content):
         '''Dm a Member Anonymously'''
         embed = discord.Embed(color=self.color)
