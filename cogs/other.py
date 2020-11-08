@@ -80,6 +80,16 @@ class other(commands.Cog):
               async with session.get(f'https://some-random-api.ml/binary?decode={binary}') as resp:
                 resp = await resp.json()
             await ctx.send(resp['text'])
+    
+    @commands.cooldown(1, 15, BucketType.user)
+    @commands.command(aliases = ["ss"])
+    async def screenshot(self, ctx, url):
+        
+        embed = discord.Embed(title = f"Screenshot of {url}", color=color)
+        async with self.session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
+            res = await r.read()
+            embed.set_image(url="attachment://pp.png")
+            await ctx.send(file=discord.File(io.BytesIO(res), filename="pp.png"), embed=embed)
         
     @commands.command()
     @commands.cooldown(1,5,BucketType.user) 
@@ -96,16 +106,6 @@ class other(commands.Cog):
             embed.set_image(url=resp['url'])
             embed.set_footer(text="r/Dankmemes")
             await ctx.send(embed=embed)
-            
-    @commands.cooldown(1, 15, BucketType.user)
-    @commands.command(aliases = ["ss"])
-    async def screenshot(self, ctx, url):
-        
-        embed = discord.Embed(title = f"Screenshot of {url}", color=color)
-        async with self.session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
-            res = await r.read()
-            embed.set_image(url="attachment://screenshot.png")
-            await ctx.send(file=discord.File(io.BytesIO(res), filename="screenshot.png"), embed=embed)
 
     @commands.command(aliases=['ph'])
     @commands.cooldown(1,5,BucketType.user) 
