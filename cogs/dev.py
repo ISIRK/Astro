@@ -141,9 +141,10 @@ class dev(commands.Cog):
         await user.send(embed=embed)
         await ctx.send(f"<:comment:726779670514630667> Message sent to {user}")
         
+    @commands.is_owner()    
     @commands.command(aliases = ["ss"])
     async def screenshot(self, ctx, url):
-
+        await ctx.send('This is a slow API so it may take some time.')
         embed = discord.Embed(title = f"Screenshot of {url}", color=color)
         async with aiohttp.ClientSession() as session:
             async with session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
