@@ -52,7 +52,7 @@ class info(commands.Cog):
                 filename = code.co_filename
                 lines, firstline = inspect.getsourcelines(code)
                 location = os.path.relpath(filename).replace('\\', '/')
-                final_url = f'{repo}/blob/master/{location}#L{firstline}-L' \
+                final_url = f'<{repo}/blob/master/{location}#L{firstline}-L>' \
                             f'{firstline + len(lines) - 1}'
                 return await ctx.send(final_url)
         
