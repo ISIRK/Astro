@@ -82,17 +82,6 @@ class other(commands.Cog):
               async with session.get(f'https://some-random-api.ml/binary?decode={binary}') as resp:
                 resp = await resp.json()
             await ctx.send(resp['text'])
-    
-    @commands.cooldown(1, 15, BucketType.user)
-    @commands.command(aliases = ["ss"])
-    async def screenshot(self, ctx, url):
-        
-        embed = discord.Embed(title = f"Screenshot of {url}", color=color)
-        async with aiohttp.ClientSession() as session:
-            async with session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
-                res = await r.read()
-            embed.set_image(url="attachment://ss.png")
-            await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
         
     @commands.command()
     @commands.cooldown(1,5,BucketType.user) 
