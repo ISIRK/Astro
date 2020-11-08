@@ -9,6 +9,8 @@ from discord.ext.commands import bot
 
 import os
 
+import io
+
 import psutil
 
 import collections
