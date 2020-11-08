@@ -86,10 +86,11 @@ class other(commands.Cog):
     async def screenshot(self, ctx, url):
         
         embed = discord.Embed(title = f"Screenshot of {url}", color=color)
-        async with self.session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
-            res = await r.read()
-            embed.set_image(url="attachment://pp.png")
-            await ctx.send(file=discord.File(io.BytesIO(res), filename="pp.png"), embed=embed)
+        async with aiohttp.ClientSession() as session:
+            async with self.session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
+                res = await r.read()
+            embed.set_image(url="attachment://ss.png")
+            await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
         
     @commands.command()
     @commands.cooldown(1,5,BucketType.user) 
