@@ -35,8 +35,9 @@ class info(commands.Cog):
     @commands.command(aliases=['src'])
     async def source(self, ctx, *, command: str = None):
 
-        # This is inspired by R.danny source at
+        # This is inspired by R.danny source and Daggy's source command at
         # https://github.com/Rapptz/RoboDanny/blob/rewrite/cogs/meta.py#L328-L366
+        #and https://github.com/Daggy1234/dagbot/
         repo = "https://github.com/ISIRK/Sirk"
         if command is None:
             return await ctx.send(repo)
