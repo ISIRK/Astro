@@ -1,6 +1,5 @@
 import discord
 
-from discord import Embed
 from discord.user import User
 from discord.utils import get
 from discord.ext import commands
