@@ -34,6 +34,7 @@ class other(commands.Cog):
     '''Random Commands'''
     def __init__(self, bot):
         self.bot = bot
+        self.session = aiohttp.ClientSession()
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
@@ -49,9 +50,8 @@ class other(commands.Cog):
     @commands.cooldown(1,3,BucketType.user)
     async def joke(self, ctx):
         '''Get a joke'''
-        async with aiohttp.ClientSession() as session:
-            async with session.get("https://dadjoke-api.herokuapp.com/api/v1/dadjoke") as r:
-                resp = await r.json()
+        async with self.session.get("https://dadjoke-api.herokuapp.com/api/v1/dadjoke") as r:
+            resp = await r.json()
         await ctx.send(resp['joke'])
         
     @commands.command()
