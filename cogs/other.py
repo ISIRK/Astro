@@ -87,9 +87,9 @@ class other(commands.Cog):
         async with session.get('https://meme-api.herokuapp.com/gimme/dankmemes') as resp:
             resp = await resp.json()
             
-          if resp['nsfw'] == True and not ctx.channel.is_nsfw():
+        if resp['nsfw'] == True and not ctx.channel.is_nsfw():
             return await ctx.send("⚠️ This meme is marked as NSFW and I can't post it in a non-nsfw channel.")
-          else:
+        else:
             embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=color)
             embed.set_image(url=resp['url'])
             embed.set_footer(text="r/Dankmemes")
