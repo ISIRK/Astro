@@ -39,7 +39,7 @@ class info(commands.Cog):
     @commands.command()
     async def vote(self, ctx):
         '''Vote for Sirk Bot on top.gg'''
-        embed=discord.Embed(title="Vote", description="**Vote for Sirk Bot [here](https://top.gg/bot/751447995270168586/vote)**\nHave a cookie as well -> 🍪", color=color)
+        embed=discord.Embed(title="Vote", description="**Vote for Sirk Bot [here](https://top.gg/bot/751447995270168586/vote)**\nHave a cookie as well -> [🍪](https://orteil.dashnet.org/cookieclicker/)", color=color)
         await ctx.send(embed=embed)
         
     @commands.command()
