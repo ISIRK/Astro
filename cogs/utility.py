@@ -1,7 +1,6 @@
 from multiprocessing.connection import Client
 from random import randint
 import discord
-from discord import Embed
 from discord.ext import commands
 from discord.ext.commands import context
 from discord.shard import ShardInfo
