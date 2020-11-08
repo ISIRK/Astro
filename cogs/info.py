@@ -35,7 +35,7 @@ class info(commands.Cog):
         '''See the bots source'''
         await ctx.send("<:python:758139554670313493> Source: https://github.com/ISIRK/Sirk\nPlease make sure to credit @isirk if you are copying code.")
         
-    @commands.command(aliases['src'])
+    @commands.command(aliases=['src'])
     async def source(self, ctx, *, command: str = None):
 
         # This is inspired by R.danny source at
