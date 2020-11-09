@@ -36,7 +36,7 @@ class other(commands.Cog):
         self.bot = bot
         self.session = aiohttp.ClientSession()
 
-    @commands.command(hidden=True)
+    @commands.command()
     async def bruh(self, ctx):
         await ctx.send('https://discord.com/channels/336642139381301249/381963689470984203/775164860957851689')
         
