@@ -38,7 +38,7 @@ class other(commands.Cog):
 
     @commands.command(hidden=True)
     async def bruh(self, ctx):
-        await ctx.send('https://discord.com/channels/336642139381301249/381963689470984203/775164860957851689)
+        await ctx.send('https://discord.com/channels/336642139381301249/381963689470984203/775164860957851689')
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
