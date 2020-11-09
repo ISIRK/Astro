@@ -110,6 +110,17 @@ class other(commands.Cog):
         embed.set_footer(text="r/ProgrammerHumor")
         await ctx.send(embed=embed)
 
+    @commands.command(aliases=['political'])
+    @commands.cooldown(1,5,BucketType.user) 
+    async def politicalcartoon(self, ctx):
+        '''Get a political cartoon (United States)'''
+        async with self.session.get('https://meme-api.herokuapp.com/gimme/politicalcartoons') as resp:
+            resp = await resp.json()
+        embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=color)
+        embed.set_image(url=resp['url'])
+        embed.set_footer(text="r/PoliticalCartoons")
+        await ctx.send(embed=embed)
+
     @commands.command(aliases=['mc'])
     @commands.cooldown(1,3,BucketType.user)
     async def minecraft(self, ctx, *, username):
