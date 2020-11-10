@@ -60,7 +60,7 @@ class test(commands.Cog):
         pages = menus.MenuPages(source=MySource(range(1, 100)), clear_reactions_after=True)
         await pages.start(ctx)
     @commands.command()
-    async def menu_source(self, ctx):
+    async def menu_embeds(self, ctx):
         pages = menus.MenuPages(source=Embeds(data, key=lambda t: t.key, per_page=12), clear_reactions_after=True)
         await pages.start(ctx)
      
