@@ -27,7 +27,7 @@ class disputils(commands.Cog):
             discord.Embed(title="test page 3", description="Why are you still here?", color=0x191638)
         ]
 
-        paginator = BotEmbedPaginator(self, ctx, embeds)
+        paginator = BotEmbedPaginator(ctx, embeds)
         await paginator.run()
     
     @commands.command()
