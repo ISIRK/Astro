@@ -41,7 +41,7 @@ class Source(menus.GroupByPageSource):
     
 class Embeds(menus.ListPageSource):
     def __init__(self, data):
-        #super().__init__(data, per_page=4)
+    #super().__init__(data, per_page=4)
 
     async def format_page(self, menu, entries):
         embeds = [
