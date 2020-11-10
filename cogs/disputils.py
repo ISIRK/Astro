@@ -1,4 +1,4 @@
-import discord
+import discord, json
 
 from discord.user import User
 from discord.utils import get
