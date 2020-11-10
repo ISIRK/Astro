@@ -22,9 +22,9 @@ class disputils(commands.Cog):
     @commands.command()
     async def paginate(self, ctx):
         embeds = [
-            Embed(title="test page 1", description="This is just some test content!", color=0x115599),
-            Embed(title="test page 2", description="Nothing interesting here.", color=0x5599ff),
-            Embed(title="test page 3", description="Why are you still here?", color=0x191638)
+            discord.Embed(title="test page 1", description="This is just some test content!", color=0x115599),
+            discord.Embed(title="test page 2", description="Nothing interesting here.", color=0x5599ff),
+            discord.Embed(title="test page 3", description="Why are you still here?", color=0x191638)
         ]
 
         paginator = BotEmbedPaginator(self, ctx, embeds)
