@@ -45,8 +45,8 @@ class Embeds(menus.ListPageSource):
 
     async def format_page(self, menu, entries):
         embeds = [
-            discord.Embed(title="test0", description="test as well", color=color)
-            discord.Embed(title="test1", description="test as well", color=color)
+            discord.Embed(title="test0", description="test as well", color=color),
+            discord.Embed(title="test1", description="test as well", color=color),
             discord.Embed(title="test2", description="test as well", color=color)
         ]
 
