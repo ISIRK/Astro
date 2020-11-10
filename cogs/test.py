@@ -61,7 +61,7 @@ class test(commands.Cog):
         await pages.start(ctx)
     @commands.command()
     async def menu_source(self, ctx):
-        pages = menus.MenuPages(source=Source(data, key=lambda t: t.key, per_page=12), clear_reactions_after=True)
+        pages = menus.MenuPages(source=Embeds(data, key=lambda t: t.key, per_page=12), clear_reactions_after=True)
         await pages.start(ctx)
      
     @commands.command()
