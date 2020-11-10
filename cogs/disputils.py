@@ -35,8 +35,8 @@ class disputils(commands.Cog):
 
         await multiple_choice.quit(multiple_choice.choice)
       
-    @bot.command()
-    async def confirm(ctx):
+    @commands.command()
+    async def confirm(self, ctx):
         confirmation = BotConfirmation(ctx, 0x012345)
         await confirmation.confirm("Are you sure?")
 
