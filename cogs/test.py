@@ -38,6 +38,17 @@ class Source(menus.GroupByPageSource):
     async def format_page(self, menu, entry):
         joined = '\n'.join(f'{i}. <Test value={v.value}>' for i, v in enumerate(entry.items, start=1))
         return f'**{entry.key}**\n{joined}\nPage {menu.current_page + 1}/{self.get_max_pages()}'
+    
+class Embeds(menus.ListPageSource):
+    def __init__(self, data):
+        super().__init__(data, per_page=4)
+
+    async def format_page(self, menu, entries):
+        embeds = [
+            discord.Embed(title="test0", description="test as well", color=color)
+            discord.Embed(title="test1", description="test as well", color=color)
+            discord.Embed(title="test2", description="test as well", color=color)
+        ]
 
 class test(commands.Cog):
     '''Testing Commands'''
