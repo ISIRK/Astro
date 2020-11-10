@@ -7,6 +7,8 @@ from discord.shard import ShardInfo
 from discord.ext.commands import context
 from discord.ext.commands.cooldowns import BucketType
 
+from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
+
 colorfile = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(colorfile) as f:
     data = json.load(f)
