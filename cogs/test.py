@@ -1,6 +1,7 @@
 import discord, json
 
 from discord.user import User
+from discord.ext import menus
 from discord.utils import get
 from discord.ext import commands
 from discord.shard import ShardInfo
@@ -14,6 +15,14 @@ with open(colorfile) as f:
     data = json.load(f)
 color = int(data['COLORS'], 16)
 
+class MySource(menus.ListPageSource):
+    def __init__(self, data):
+        super().__init__(data, per_page=4)
+
+    async def format_page(self, menu, entries):
+        offset = menu.current_page * self.per_page
+        return '\n'.join(f'{i}. {v}' for i, v in enumerate(entries, start=offset))
+
 class test(commands.Cog):
     '''Testing Commands'''
     def __init__(self, bot):
@@ -22,9 +31,9 @@ class test(commands.Cog):
     @commands.command()
     async def paginate(self, ctx):
         embeds = [
-            discord.Embed(title="test page 1", description="This is just some test content!", color=0x115599),
-            discord.Embed(title="test page 2", description="Nothing interesting here.", color=0x5599ff),
-            discord.Embed(title="test page 3", description="Why are you still here?", color=0x191638)
+            discord.Embed(title="test page 1", description="This is just some test content!", color=color),
+            discord.Embed(title="test page 2", description="Nothing interesting here.", color=color),
+            discord.Embed(title="test page 3", description="Why are you still here?", color=color)
         ]
 
         paginator = BotEmbedPaginator(ctx, embeds)
@@ -39,13 +48,13 @@ class test(commands.Cog):
       
     @commands.command()
     async def confirm(self, ctx):
-        confirmation = BotConfirmation(ctx, 0x012345)
+        confirmation = BotConfirmation(ctx, color)
         await confirmation.confirm("Are you sure?")
 
         if confirmation.confirmed:
-            await confirmation.update("Confirmed", color=0x55ff55)
+            await confirmation.update("Confirmed", color=color)
         else:
-            await confirmation.update("Not confirmed", hide_author=True, color=0xff5555)
+            await confirmation.update("Not confirmed", hide_author=True, color=color)
 
         
 def setup(bot):
