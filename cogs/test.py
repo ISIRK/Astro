@@ -22,6 +22,22 @@ class MySource(menus.ListPageSource):
     async def format_page(self, menu, entries):
         offset = menu.current_page * self.per_page
         return '\n'.join(f'{i}. {v}' for i, v in enumerate(entries, start=offset))
+    
+class Test:
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+
+data = [
+    Test(key=key, value=value)
+    for key in ['test', 'other', 'okay']
+    for value in range(20)
+]
+
+class Source(menus.GroupByPageSource):
+    async def format_page(self, menu, entry):
+        joined = '\n'.join(f'{i}. <Test value={v.value}>' for i, v in enumerate(entry.items, start=1))
+        return f'**{entry.key}**\n{joined}\nPage {menu.current_page + 1}/{self.get_max_pages()}'
 
 class test(commands.Cog):
     '''Testing Commands'''
@@ -31,6 +47,10 @@ class test(commands.Cog):
     @commands.command()
     async def menu(self, ctx):
         pages = menus.MenuPages(source=MySource(range(1, 100)), clear_reactions_after=True)
+        await pages.start(ctx)
+    @commands.command()
+    async def menu_source(self, ctx):
+        pages = menus.MenuPages(source=Source(data, key=lambda t: t.key, per_page=12), clear_reactions_after=True)
         await pages.start(ctx)
      
     @commands.command()
