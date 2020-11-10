@@ -27,6 +27,11 @@ class test(commands.Cog):
     '''Testing Commands'''
     def __init__(self, bot):
         self.bot = bot
+        
+    @commands.command()
+    async def menu(self, ctx):
+        pages = menus.MenuPages(source=MySource(range(1, 100)), clear_reactions_after=True)
+        await pages.start(ctx)
      
     @commands.command()
     async def paginate(self, ctx):
