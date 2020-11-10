@@ -14,8 +14,8 @@ with open(colorfile) as f:
     data = json.load(f)
 color = int(data['COLORS'], 16)
 
-class disputils(commands.Cog):
-    '''Disputils Commands'''
+class test(commands.Cog):
+    '''Testing Commands'''
     def __init__(self, bot):
         self.bot = bot
      
@@ -49,4 +49,4 @@ class disputils(commands.Cog):
 
         
 def setup(bot):
-    bot.add_cog(disputils(bot))
+    bot.add_cog(test(bot))
