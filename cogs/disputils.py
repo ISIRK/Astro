@@ -17,8 +17,8 @@ class disputils(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
      
-     @commands.command()
-     async def paginate(self, ctx):
+    @commands.command()
+    async def paginate(self, ctx):
         embeds = [
             Embed(title="test page 1", description="This is just some test content!", color=0x115599),
             Embed(title="test page 2", description="Nothing interesting here.", color=0x5599ff),
