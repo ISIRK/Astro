@@ -41,14 +41,13 @@ class Source(menus.GroupByPageSource):
     
 class Embeds(menus.ListPageSource):
     def __init__(self, data):
-    '''super().__init__(data, per_page=4)'''
 
-    async def format_page(self, menu, entries):
-        embeds = [
-            discord.Embed(title="test0", description="test as well", color=color),
-            discord.Embed(title="test1", description="test as well", color=color),
-            discord.Embed(title="test2", description="test as well", color=color)
-        ]
+        async def format_page(self, menu, entries):
+            embeds = [
+                discord.Embed(title="test0", description="test as well", color=color),
+                discord.Embed(title="test1", description="test as well", color=color),
+                discord.Embed(title="test2", description="test as well", color=color)
+            ]
 
 class test(commands.Cog):
     '''Testing Commands'''
