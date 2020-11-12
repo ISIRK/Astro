@@ -114,12 +114,15 @@ class other(commands.Cog):
     @commands.cooldown(1,3,BucketType.user)
     async def minecraft(self, ctx, *, username):
         '''Get a minecraft users stats'''
-        async with self.session.get(f'https://api.mojang.com/users/profiles/minecraft/{username}?at=') as resp:
-            resp = await resp.json()
-        embed=discord.Embed(title=f"Stats for {resp['name']}", description=f"ID: `{resp['id']}`", color=color)
-        embed.set_image(url=f"https://minotar.net/armor/body/{username}/100.png")
-        embed.set_thumbnail(url=f"https://mc-heads.net/avatar/{username}/100.png")
-        await ctx.send(embed=embed)
+        try:
+            async with self.session.get(f'https://api.mojang.com/users/profiles/minecraft/{username}?at=') as resp:
+                resp = await resp.json()
+            embed=discord.Embed(title=f"Stats for {resp['name']}", description=f"ID: `{resp['id']}`", color=color)
+            embed.set_image(url=f"https://minotar.net/armor/body/{username}/100.png")
+            embed.set_thumbnail(url=f"https://mc-heads.net/avatar/{username}/100.png")
+            await ctx.send(embed=embed)
+        except Exception as e:
+            return await ctx.send(f"```py\n{e}```")
 
     @commands.command(aliases=['mcs'])
     @commands.cooldown(1,3,BucketType.user)
