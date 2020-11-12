@@ -118,7 +118,7 @@ class other(commands.Cog):
             resp = await resp.json()
         embed=discord.Embed(title=f"Stats for {resp['name']}", description=f"ID: `{resp['id']}`", color=color)
         embed.set_image(url=f"https://minotar.net/armor/body/{username}/100.png")
-        embed.set_thumbnail(url=f"https://minotar.net/helm/{username}/100.png")
+        embed.set_thumbnail(url=f"https://mc-heads.net/avatar/{username}/100.png")
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['mcs'])
