@@ -32,29 +32,9 @@ class info(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
                 
-    '''@commands.command(aliases=['src'])
-    async def source(self, ctx, *, command: str = None):
-
-        # This is inspired by R.danny source and Daggy's source command at
-        # https://github.com/Rapptz/RoboDanny/blob/rewrite/cogs/meta.py#L328-L366
-        #and https://github.com/Daggy1234/dagbot/
-        repo = "https://github.com/ISIRK/Sirk"
-        if command is None:
-            return await ctx.send(repo)
-        else:
-            com = self.bot.get_command(command)
-            if com is None:
-                return await ctx.send(
-                    'There is no command with that name. Maybe check repo\n'
-                    'https://github.com/ISIRK/Sirk')
-            else:
-                code = com.callback.__code__
-                filename = code.co_filename
-                lines, firstline = inspect.getsourcelines(code)
-                location = os.path.relpath(filename).replace('\\', '/')
-                final_url = f'<{repo}/blob/master/{location}#L{firstline}-L' \
-                            f'{firstline + len(lines) - 1}>'
-                return await ctx.send(final_url)'''
+    @commands.command(aliases=['src'])
+    async def source(self, ctx):
+        await ctx.send('This bot is in a private repo right now.')
         
     @commands.command()
     async def vote(self, ctx):
