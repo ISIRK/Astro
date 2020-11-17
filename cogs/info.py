@@ -32,7 +32,7 @@ class info(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
                 
-    @commands.command(aliases=['src'])
+    '''@commands.command(aliases=['src'])
     async def source(self, ctx, *, command: str = None):
 
         # This is inspired by R.danny source and Daggy's source command at
@@ -54,7 +54,7 @@ class info(commands.Cog):
                 location = os.path.relpath(filename).replace('\\', '/')
                 final_url = f'<{repo}/blob/master/{location}#L{firstline}-L' \
                             f'{firstline + len(lines) - 1}>'
-                return await ctx.send(final_url)
+                return await ctx.send(final_url)'''
         
     @commands.command()
     async def vote(self, ctx):
