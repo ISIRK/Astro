@@ -167,17 +167,18 @@ class dev(commands.Cog):
         
     @commands.command()
     @commands.is_owner()
-    async def rc(self, ctx):
-        error_collection = []
-        for file in os.listdir("cogs"):
-            if file.endswith(".py"):
-                name = file[:-3]
-                try:
-                    self.bot.reload_extension(f"cogs.{name}")
-                except Exception as e:
-                    await ctx.send(f"\U0000274c {e}")
-
-        await ctx.send("\U00002705 Successfully reloaded all extensions")
+    async def nick(self, ctx, *, name: str):
+        try:
+            await ctx.guild.me.edit(nick=name)
+            await ctx.send(f"Successfully changed username to **{name}**")
+        except discord.HTTPException as err:
+            await ctx.send(f"```{err}```")
+            
+   @commands.command()
+    @commands.is_owner()
+    async def rn(self, ctx):
+        await ctx.guild.me.edit(nick=None)
+        await ctx.send(f'Nickname reset to {ctx.guild.me.nick}')
             
 def setup(bot):
     bot.add_cog(dev(bot))
