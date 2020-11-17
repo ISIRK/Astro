@@ -178,7 +178,7 @@ class dev(commands.Cog):
     @commands.is_owner()
     async def rn(self, ctx):
         await ctx.guild.me.edit(nick=None)
-        await ctx.send(f'Nickname reset to {ctx.guild.me.nick}')
+        await ctx.send(f'Nickname reset to Sirk')
             
 def setup(bot):
     bot.add_cog(dev(bot))
