@@ -167,7 +167,7 @@ class dev(commands.Cog):
 
     @commands.is_owner()
     @commands.command(aliases=['myst'])
-    async def mystbin(self, data):
+    async def mystbin(self, data:str):
           data = bytes(data, 'utf-8')
           async with aiohttp.ClientSession() as cs:
             async with cs.post('https://mystb.in/', data = data) as r:
