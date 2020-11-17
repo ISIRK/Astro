@@ -164,25 +164,20 @@ class dev(commands.Cog):
         cog = self.bot.get_cog("Jishaku")
         res = codeblock_converter(code)
         await cog.jsk_python(ctx, argument=res)
-
+        
+    @commands.command()
     @commands.is_owner()
-    @commands.command(aliases=['myst'])
-    async def hook(self, ctx):
-        GUILD_ID = 000000000000000000   # The guild to get the member and the channel from
-        CHANNEL_ID = 000000000000000000 # The channel to get the webhook from
-        MEMBER_ID = 000000000000000000  # The member to send the message as
-        MESSAGE = "Hello, I'm a bot"    # The message to send
+    async def rc(self, ctx):
+        error_collection = []
+        for file in os.listdir("cogs"):
+            if file.endswith(".py"):
+                name = file[:-3]
+                try:
+                    self.bot.reload_extension(f"cogs.{name}")
+                except Exception as e:
+                    await ctx.send(f"\U0000274c {e}")
 
-        guild = _bot.get_guild(GUILD_ID) # We get the server
-        channel = guild.get_channel(CHANNEL_ID) # We get the channel
-        webhooks = await channel.webhooks() # We get all the webhooks
-        webhook = webhooks[0] # We get the first webhook
-        member = guild.get_member(MEMBER_ID) # We get the member
-        await webhook.send( # We send 
-            content=MESSAGE, # The message
-            username=member.display_name, # The user name
-            avatar_url=member.avatar_url # the user avatar
-        )
+        await ctx.send("\U00002705 Successfully reloaded all extensions")
             
 def setup(bot):
     bot.add_cog(dev(bot))
