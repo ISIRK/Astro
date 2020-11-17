@@ -174,7 +174,7 @@ class dev(commands.Cog):
         except discord.HTTPException as err:
             await ctx.send(f"```{err}```")
             
-   @commands.command()
+    @commands.command()
     @commands.is_owner()
     async def rn(self, ctx):
         await ctx.guild.me.edit(nick=None)
