@@ -164,6 +164,16 @@ class dev(commands.Cog):
         cog = self.bot.get_cog("Jishaku")
         res = codeblock_converter(code)
         await cog.jsk_python(ctx, argument=res)
+
+    @commands.is_owner()
+    @commands.command(aliases['myst'])
+    async def mystbin(self, data):
+          data = bytes(data, 'utf-8')
+          async with aiohttp.ClientSession() as cs:
+            async with cs.post('https://mystb.in/documents', data = data) as r:
+              res = await r.json()
+              key = res["key"]
+              return f"https://mystb.in/{key}"
             
 def setup(bot):
     bot.add_cog(dev(bot))
