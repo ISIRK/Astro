@@ -34,7 +34,7 @@ class info(commands.Cog):
                 
     @commands.command(aliases=['src'])
     async def source(self, ctx):
-        await ctx.send('This bot is in a private repo right now.')
+        await ctx.send('https://github.com/ISIRK/Sirk')
         
     @commands.command()
     async def vote(self, ctx):
