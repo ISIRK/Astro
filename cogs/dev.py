@@ -166,7 +166,7 @@ class dev(commands.Cog):
         await cog.jsk_python(ctx, argument=res)
 
     @commands.is_owner()
-    @commands.command(aliases['myst'])
+    @commands.command(aliases=['myst'])
     async def mystbin(self, data):
           data = bytes(data, 'utf-8')
           async with aiohttp.ClientSession() as cs:
