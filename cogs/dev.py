@@ -167,13 +167,22 @@ class dev(commands.Cog):
 
     @commands.is_owner()
     @commands.command(aliases=['myst'])
-    async def mystbin(self, data:str):
-          data = bytes(data, 'utf-8')
-          async with aiohttp.ClientSession() as cs:
-            async with cs.post('https://mystb.in/', data = data) as r:
-              res = await r.json()
-              key = res["key"]
-              return f"https://mystb.in/{key}"
+    async def hook(self, ctx):
+        GUILD_ID = 000000000000000000   # The guild to get the member and the channel from
+        CHANNEL_ID = 000000000000000000 # The channel to get the webhook from
+        MEMBER_ID = 000000000000000000  # The member to send the message as
+        MESSAGE = "Hello, I'm a bot"    # The message to send
+
+        guild = _bot.get_guild(GUILD_ID) # We get the server
+        channel = guild.get_channel(CHANNEL_ID) # We get the channel
+        webhooks = await channel.webhooks() # We get all the webhooks
+        webhook = webhooks[0] # We get the first webhook
+        member = guild.get_member(MEMBER_ID) # We get the member
+        await webhook.send( # We send 
+            content=MESSAGE, # The message
+            username=member.display_name, # The user name
+            avatar_url=member.avatar_url # the user avatar
+        )
             
 def setup(bot):
     bot.add_cog(dev(bot))
