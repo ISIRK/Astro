@@ -369,7 +369,7 @@ class music(commands.Cog):
             await player.np.delete()
         except discord.HTTPException:
             pass
-        embed=discord.Embed(title="Now Playing", description=f"`{vc.source.title}`\n Requested by {vc.source.requester}", color=color)
+        embed=discord.Embed(title="Now Playing", description=f"`{vc.source.title}`\n> Requested by {vc.source.requester}", color=color)
         '''player.np = await ctx.send(f'**Now Playing:** `{vc.source.title}` '
                                    f'requested by `{vc.source.requester}`')'''
         player.np = await ctx.send(embed=embed)
