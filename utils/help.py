@@ -23,7 +23,7 @@ class EmbedHelpCommand(commands.HelpCommand):
     COLOUR = color
 
     def get_ending_note(self):
-        return 'Use {0}{1} [module] for more info on a module.\nUse {0}{1} [command] for more info on a command.'.format(self.clean_prefix, self.invoked_with)
+        return 'Use {0}{1} [module|command] for more info on a module or command.'.format(self.clean_prefix, self.invoked_with)
 
     def get_command_signature(self, command):
         return '{0.qualified_name} {0.signature}'.format(command)
@@ -42,7 +42,7 @@ class EmbedHelpCommand(commands.HelpCommand):
                 if cog and cog.description:
                     value = '{0}\n{1}'.format(cog.description, value)
 
-                embed.add_field(name=name, value=value, inline=False)
+                embed.add_field(name=name, value=value, inline=True)
 
         embed.set_footer(text=self.get_ending_note())
         await self.get_destination().send(embed=embed)
