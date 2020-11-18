@@ -179,6 +179,33 @@ class dev(commands.Cog):
     async def rn(self, ctx):
         await ctx.guild.me.edit(nick=None)
         await ctx.send(f'Nickname reset to Sirk')
+
+    @commands.command(aliases=["dstatus"])
+        async def discordstatus(self, ctx):
+            """Gets the current status of Discord."""
+
+            async with self.bot.session.get("https://discordstatus.com/history.json") as response:
+                data = await response.json()
+                current = data["months"][0]["incidents"][0]
+
+                timestamp = re.sub("<var data-var='date'>|</var>|<var data-var='time'>", "", current["timestamp"])
+
+                embed = Embed.default(
+                    ctx,
+                    title="Current Status for Discord.",
+                    description=(
+                        "```\n" +
+                        f"Code: {current['code']}\n" +
+                        f"Name: {current['name']}\n" +
+                        f"Message: {current['message']}\n" +
+                        f"Impact: {current['impact']}\n" +
+                        f"Timestamp: {timestamp}\n" +
+                        "```"
+                    )
+                )
+
+                await ctx.send(embed=embed)
+
             
 def setup(bot):
     bot.add_cog(dev(bot))
