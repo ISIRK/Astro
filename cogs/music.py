@@ -401,7 +401,7 @@ class music(commands.Cog):
 
         await self.cleanup(ctx.guild)
         m = await self.cleanup()
-        await m.add_reaction(\U0000274c)
+        await m.add_reaction('\U0000274c')
 
 
 def setup(bot):
