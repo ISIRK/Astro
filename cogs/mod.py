@@ -52,35 +52,22 @@ class mod(commands.Cog):
             embed.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=embed)
 
-    '''@commands.command()
+    @commands.command()
     @commands.has_permissions(kick_members=True)
-    async def mute(self, ctx, user : discord.Member, time: int):
-        """Prevents a user from speaking for a specified amount of time."""
+    async def mute(self, ctx, user : discord.Member):
+        """Prevents a user from speaking"""
+        permissions = discord.Permissions(1049600)
         if ctx.author == user:
             await ctx.send("You cannot mute yourself.")
         else:
             rolem = discord.utils.get(ctx.message.guild.roles, name='Muted')
             if rolem is None:
-                embed=discord.Embed(title="Muted role", url="http://echo-bot.wikia.com/wiki/Setting_up_the_muted_role", description="The mute command requires a role named 'Muted'.", color=0x2F3136)
-                embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
-                embed.set_footer(text="Without this role, the command will not work.")
-                await ctx.send(embed=embed)
+                rolem = await ctx.guild.create_role(name="Muted", permissions=permissions, hoist=False, color=discord.Color.light_gray())
             elif rolem not in user.roles:
-                embed = discord.Embed(title=f'User {user.name} has been successfully muted for {time}s.', color=0x2F3136)
+                embed = discord.Embed(title=f'User {user.name} has been successfully muted.', color=0x2F3136)
                 embed.add_field(name="Shhh!", value=":zipper_mouth:")
                 embed.set_thumbnail(url=user.avatar_url)
                 await ctx.send(embed=embed)
-                await user.add_roles(rolem)
-                await sleep(time)
-                if rolem in user.roles:
-                    try:
-                        await user.remove_roles(rolem)
-                        embed = discord.Embed(title=f'User {user.name} has been automatically unmuted.', color=0x2F3136)
-                        embed.add_field(name="Welcome back!", value=":open_mouth:")
-                        embed.set_thumbnail(url=user.avatar_url)
-                        await ctx.send(embed=embed)
-                    except Exception:
-                        print(f'User {user.name} could not be unmuted!')
             else:
                 await ctx.send(f'User {user.mention} is already muted.')
 
@@ -94,7 +81,7 @@ class mod(commands.Cog):
             embed.add_field(name="Welcome back!", value=":open_mouth:")
             embed.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=embed)
-            await user.remove_roles(rolem)'''
+            await user.remove_roles(rolem)
 
     @commands.command()
     @commands.has_permissions(manage_messages=True)
