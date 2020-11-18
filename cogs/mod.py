@@ -89,9 +89,7 @@ class mod(commands.Cog):
     @commands.has_permissions(manage_messages=True)
     async def clear(self, ctx, count: int):
         """Deletes a specified amount of messages. (Max 100)"""
-        if count>100:
-            count = 100
-        await ctx.channel.purge(limit=count+1, bulk=True)
+        await ctx.channel.purge(limit=100, bulk=True)
 
     @commands.command()
     @commands.has_permissions(manage_channels=True)
