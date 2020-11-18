@@ -153,8 +153,10 @@ class MusicPlayer:
             self.current = source
 
             self._guild.voice_client.play(source, after=lambda _: self.bot.loop.call_soon_threadsafe(self.next.set))
-            self.np = await self._channel.send(f'**Now Playing:** `{source.title}` requested by '
-                                               f'`{source.requester}`')
+            embed=discord.Embed(title="Playing", description=f"Now playing `{source.title}`\n> Requested by `{source.requester}`", color=color)
+            self.np = await self._channel.send(embed=embed)
+            '''self.np = await self._channel.send(f'**Now Playing:** `{source.title}` requested by '
+                                               f'`{source.requester}`')'''
             await self.next.wait()
 
             # Make sure the FFmpeg process is cleaned up.
@@ -278,7 +280,7 @@ class music(commands.Cog):
         # If download is True, source will be a discord.FFmpegPCMAudio with a VolumeTransformer.
         source = await YTDLSource.create_source(ctx, search, loop=self.bot.loop, download=False)
 
-        await player.queue.put(discord.Embed(title="Playing", description=source, color=color))
+        await player.queue.put(source)
 
     @commands.command(name='pause')
     async def pause_(self, ctx):
