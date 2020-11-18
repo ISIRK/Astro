@@ -64,7 +64,7 @@ class mod(commands.Cog):
             if rolem is None:
                 rolem = await ctx.guild.create_role(name="Muted", permissions=permissions, hoist=False, color=discord.Color.light_gray())
             elif rolem not in user.roles:
-                await ctx.author.add_roles(rolem, reason=reason)
+                await user.add_roles(rolem, reason=reason)
                 embed = discord.Embed(title=f'User {user.name} has been successfully muted.', color=0x2F3136)
                 embed.add_field(name="Shhh!", value=":zipper_mouth:")
                 embed.set_thumbnail(url=user.avatar_url)
