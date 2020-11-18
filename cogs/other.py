@@ -130,7 +130,7 @@ class other(commands.Cog):
         await ctx.send(embed=embed)
 
             
-    @commands.command(aliases=['q'])
+    @commands.command()
     @commands.cooldown(1,60,BucketType.user) 
     async def quiz(self, ctx):
         '''Take a halloween quiz'''
