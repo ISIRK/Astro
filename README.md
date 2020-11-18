@@ -17,7 +17,7 @@ If you have any questions please either dm isirk#0001 or join our support server
 
 [Sirk](https://asksirk.com/Astro) (Yes, I know it says astro on the site, please give us time to update our website.)
 
-[Privacy Policy](https://asksirk.com/Astro/privacy/)
+[Privacy Policy](https://gist.github.com/ISIRK/c33b7c95dcac63f82397b72f40ec055c)
 
 <br>
 
