@@ -278,7 +278,7 @@ class music(commands.Cog):
         # If download is True, source will be a discord.FFmpegPCMAudio with a VolumeTransformer.
         source = await YTDLSource.create_source(ctx, search, loop=self.bot.loop, download=False)
 
-        await player.queue.put(source)
+        await player.queue.put(discord.Embed(title="Playing", description=source, color=color))
 
     @commands.command(name='pause')
     async def pause_(self, ctx):
