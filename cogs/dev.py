@@ -189,8 +189,7 @@ class dev(commands.Cog):
             data = await response.json()
             current = data["months"][0]["incidents"][0]
 
-            embed = Embed.default(
-                ctx,
+            embed = discord.Embed(
                 title="Current Status for Discord.",
                 description=(
                     "```\n" +
@@ -198,7 +197,8 @@ class dev(commands.Cog):
                     f"Name: {current['name']}\n" +
                     f"Message: {current['message']}\n" +
                     f"Impact: {current['impact']}\n" +
-                    "```"
+                    "```",
+                color=color
                 )
             )
 
