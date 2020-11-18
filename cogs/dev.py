@@ -36,6 +36,7 @@ class dev(commands.Cog):
     '''Developer Commands'''
     def __init__(self, bot):
         self.bot = bot
+        self.session = aiohttp.ClientSession()
         
     @commands.is_owner()
     @commands.command()
@@ -184,7 +185,7 @@ class dev(commands.Cog):
     async def discordstatus(self, ctx):
         """Gets the current status of Discord."""
 
-        async with self.bot.session.get("https://discordstatus.com/history.json") as response:
+        async with self.session.get("https://discordstatus.com/history.json") as response:
             data = await response.json()
             current = data["months"][0]["incidents"][0]
 
