@@ -52,7 +52,7 @@ class mod(commands.Cog):
             embed.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=embed)
 
-    @commands.command()
+    '''@commands.command()
     @commands.has_permissions(kick_members=True)
     async def mute(self, ctx, user: discord.Member, reason: str = None):
         """Prevents a user from speaking"""
@@ -83,7 +83,7 @@ class mod(commands.Cog):
             embed.add_field(name="Welcome back!", value=":open_mouth:")
             embed.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=embed)
-            await user.remove_roles(rolem)
+            await user.remove_roles(rolem)'''
 
     @commands.command()
     @commands.has_permissions(manage_messages=True)
