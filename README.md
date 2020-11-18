@@ -7,7 +7,7 @@
   
 <br>
 
-**A minimalistic utilities bot for discord**
+**A minimalistic bot for discord**
 
 Sirk is a simple, easy to use, discord bot made to make your use of discord easy.
 
@@ -29,6 +29,8 @@ Mod - Moderation Commands
 
 Info - Info Commands
 
+Music - Music Commands
+
 Other - Other Commands
 
 ```
@@ -43,7 +45,7 @@ Syntax for Sirk:
 **Upcomming Features**
 - Help Command
 - Custom Prefix
-- Music Commands
+- ~~Music Commands~~ (Finished!)
 - Poll Command
 - Optimizations
 
