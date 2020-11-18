@@ -189,8 +189,6 @@ class dev(commands.Cog):
             data = await response.json()
             current = data["months"][0]["incidents"][0]
 
-            timestamp = re.sub("<var data-var='date'>|</var>|<var data-var='time'>", "", current["timestamp"])
-
             embed = Embed.default(
                 ctx,
                 title="Current Status for Discord.",
@@ -200,7 +198,6 @@ class dev(commands.Cog):
                     f"Name: {current['name']}\n" +
                     f"Message: {current['message']}\n" +
                     f"Impact: {current['impact']}\n" +
-                    f"Timestamp: {timestamp}\n" +
                     "```"
                 )
             )
