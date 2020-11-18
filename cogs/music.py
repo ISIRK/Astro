@@ -23,6 +23,11 @@ from async_timeout import timeout
 from functools import partial
 from youtube_dl import YoutubeDL
 
+colorfile = "/home/pi/Discord/Sirk/utils/tools.json"
+with open(colorfile) as f:
+    data = json.load(f)
+color = int(data['COLORS'], 16)
+
 
 ytdlopts = {
     'format': 'bestaudio/best',
@@ -363,9 +368,10 @@ class Music(commands.Cog):
             await player.np.delete()
         except discord.HTTPException:
             pass
-
-        player.np = await ctx.send(f'**Now Playing:** `{vc.source.title}` '
-                                   f'requested by `{vc.source.requester}`')
+        embed=discord.Embed(title="Now Playing", description=f"`{vc.source.title}`\n Requested by {vc.source.requester}", color=color)
+        '''player.np = await ctx.send(f'**Now Playing:** `{vc.source.title}` '
+                                   f'requested by `{vc.source.requester}`')'''
+        player.np = await ctx.send(embed=embed)
 
     @commands.command(name='volume', aliases=['vol'])
     async def change_volume(self, ctx, *, vol: float):
