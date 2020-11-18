@@ -67,6 +67,7 @@ class mod(commands.Cog):
                 await user.add_roles(rolem, reason=reason)
                 embed = discord.Embed(title=f'User {user.name} has been successfully muted.', color=0x2F3136)
                 embed.add_field(name="Shhh!", value=":zipper_mouth:")
+                embed.add_field(name="Note", value="If the Muted Role I created is lower than the members highest role they will not be muted.\nTo change this go into server settings and move the `Muted` role above their highest role.", inline=False)
                 embed.set_thumbnail(url=user.avatar_url)
                 await ctx.send(embed=embed)
             else:
