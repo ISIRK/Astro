@@ -400,6 +400,8 @@ class music(commands.Cog):
             return await ctx.send('I am not currently playing anything!', delete_after=20)
 
         await self.cleanup(ctx.guild)
+        m = await self.cleanup()
+        await m.add_reaction(\U0000274c)
 
 
 def setup(bot):
