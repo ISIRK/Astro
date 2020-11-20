@@ -173,6 +173,7 @@ class other(commands.Cog):
         time_taken = time.time()- start_time
         await ctx.send(f"Correct!\nYou took **{time_taken:,.2f} seconds!**")
 
+    @commands.cooldown(1,30,BucketType.user)
     @commands.command()
     async def weather(self, ctx, *, city_name:str):
         """Get the weather of a city/town by its name. State code is US only."""
