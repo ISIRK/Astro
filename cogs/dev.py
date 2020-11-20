@@ -106,7 +106,7 @@ class dev(commands.Cog):
     async def status(self, ctx, type, *, status=None):
         '''Change the Bot Status'''
         if type == "playing":
-            await self.bot.change_presence(activity=discord.Game(name=f"{status}"))
+            await self.bot.change_presence(activity=discord.Game(name=f"{status}"), status=discord.Status.idle)
             await ctx.send(f'<:online:758139458767290421> Changed status to `Playing {status}`')
         elif type == "listening":
             await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f"{status}"))
