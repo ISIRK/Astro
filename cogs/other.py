@@ -176,13 +176,13 @@ class other(commands.Cog):
     @commands.command(aliases=["weather", "cityweather"])
     async def weathercity(self, ctx, *, city_name:str):
         """Get the weather of a city/town by its name. State code is US only."""
-        # Code:
+        # Code By CraziiAce#0001
         async with aiohttp.ClientSession() as session:
             url = "http://api.openweathermap.org/data/2.5/weather?q=" + city_name + "&appid=168ced82a72953d81d018f75eec64aa0&units=imperial"
             async with session.get(url) as response:
                 weather_response = await response.json()
                 if weather_response['cod'] != 200:
-                    await ctx.send(f"An error ocurred: `{weather_response['message']}`. If the issue persists, please contact a support team member with this error code: `{weather_response['cod']}`")
+                    await ctx.send(f"An error ocurred: `{weather_response['message']}`.")
                 else:
                     currentUnix = time.time()
                     localSunrise = weather_response['sys']['sunrise'] + weather_response['timezone']
