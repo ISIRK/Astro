@@ -31,10 +31,6 @@ class info(commands.Cog):
     '''Information Commands'''
     def __init__(self, bot):
         self.bot = bot
-                
-    @commands.command(aliases=['src'])
-    async def source(self, ctx):
-        await ctx.send('https://github.com/ISIRK/Sirk')
         
     @commands.command()
     async def vote(self, ctx):
