@@ -32,11 +32,11 @@ class info(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.Cog.listener()
-    async def on_message(self, message):
+    '''@commands.Cog.listener()
+    async def on_message(self):
         if message.content.endswith('@Sirk'):
             embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `sirk `, `Sirk `, `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
-            await message.channel.send(embed=embed)
+            await message.channel.send(embed=embed)'''
         
     @commands.command()
     async def vote(self, ctx):
@@ -51,7 +51,7 @@ class info(commands.Cog):
         infoembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         infoembed.add_field(name= "<:news:758781954073821194> News", value=f"**🎧 <@751447995270168586> Has music commands! 🎧**\n> To see the music commands use `{ctx.prefix}help music`!", inline=True)
         infoembed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758451109919981580.png?v=1")
-        infoembed.add_field(name= ":link: Links", value="[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot)\n[Website](https://asksirk.com/bot) \n[Github Repository](https://github.com/ISIRK/Sirk)", inline=False)
+        infoembed.add_field(name= ":link: Links", value="[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot)\n[Website](https://asksirk.com/bot))", inline=False)
         infoembed.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
         await ctx.send(embed=infoembed)
         
