@@ -13,7 +13,6 @@ from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 colorfile = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(colorfile) as f:
     data = json.load(f)
-color = int(data['COLORS'], 16)
 
 class MySource(menus.ListPageSource):
     def __init__(self, data):
