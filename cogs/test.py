@@ -10,9 +10,11 @@ from discord.ext.commands.cooldowns import BucketType
 
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 
-file = "/home/pi/Discord/Sirk/utils/tools.json"
-with open(file) as f:
+tools = "/home/pi/Discord/Sirk/utils/tools.json"
+with open(tools) as f:
     data = json.load(f)
+footer = data['FOOTER']
+color = int(data['COLOR'], 16)
 
 class MySource(menus.ListPageSource):
     def __init__(self, data):
