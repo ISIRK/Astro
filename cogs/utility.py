@@ -114,7 +114,6 @@ class utility(commands.Cog):
         avatarembed = discord.Embed( color=color)
         avatarembed.set_author(name=member, icon_url=ctx.author.avatar_url)
         avatarembed.set_image(url=userAvatar)
-        avatarembed.set_footer(text=footer)
         await ctx.send(embed=avatarembed)
 
 def setup(bot):
