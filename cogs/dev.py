@@ -197,6 +197,7 @@ class dev(commands.Cog):
     async def color(self, ctx, *, color):
         try:
             await self.bot.set_embed_color(color)
+            await ctx.send(f'Color set to `{color}`.')
         except Exception as e:
             return await ctx.send(f"```py\n{e}```")
         
