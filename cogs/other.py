@@ -29,7 +29,6 @@ import collections
 tools = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(tools) as f:
     data = json.load(f)
-color = int(data['COLORS'], 16)
 footer = data['FOOTER']
 
 class other(commands.Cog):
@@ -93,7 +92,7 @@ class other(commands.Cog):
         if resp['nsfw'] == True and not ctx.channel.is_nsfw():
             return await ctx.send("⚠️ This meme is marked as NSFW and I can't post it in a non-nsfw channel.")
         else:
-            embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=color)
+            embed = discord.Embed(title=resp['title'], url=resp['postLink'])
             embed.set_image(url=resp['url'])
             embed.set_footer(text=f"r/Dankmemes | {footer}")
             await ctx.send(embed=embed)
@@ -104,7 +103,7 @@ class other(commands.Cog):
         '''Get a programmer humor meme'''
         async with self.session.get('https://meme-api.herokuapp.com/gimme/ProgrammerHumor') as resp:
             resp = await resp.json()
-        embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=color)
+        embed = discord.Embed(title=resp['title'], url=resp['postLink'])
         embed.set_image(url=resp['url'])
         embed.set_footer(text=f"r/ProgrammerHumor | {footer}")
         await ctx.send(embed=embed)
@@ -115,7 +114,7 @@ class other(commands.Cog):
         '''Get a minecraft users stats'''
         async with self.session.get(f'https://api.mojang.com/users/profiles/minecraft/{username}?at=') as resp:
             resp = await resp.json()
-        embed=discord.Embed(title=f"Stats for {resp['name']}", description=f"ID: `{resp['id']}`", color=color)
+        embed=discord.Embed(title=f"Stats for {resp['name']}", description=f"ID: `{resp['id']}`")
         embed.set_image(url=f"https://minotar.net/armor/body/{username}/100.png")
         embed.set_thumbnail(url=f"https://minotar.net/helm/{username}/100.png")
         embed.set_thumbnail(url=f"https://mc-heads.net/avatar/{username}/100.png")
@@ -129,7 +128,7 @@ class other(commands.Cog):
         async with self.session.get(f'http://mcapi.xdefcon.com/server/{server}/full/json') as resp:
             resp = await resp.json()
                             
-        embed=discord.Embed(title=f"Stats for {server}", description=f"IP: {resp['serverip']}\nStatus: {resp['serverStatus']}\nPing: {resp['ping']}\nVersion: {resp['version']}\nPlayers: {resp['players']}\nMax Players: {resp['maxplayers']}", color=color)
+        embed=discord.Embed(title=f"Stats for {server}", description=f"IP: {resp['serverip']}\nStatus: {resp['serverStatus']}\nPing: {resp['ping']}\nVersion: {resp['version']}\nPlayers: {resp['players']}\nMax Players: {resp['maxplayers']}")
         embed.set_thumbnail(url=f"https://api.minetools.eu/favicon/{server}/25565")
         embed.set_footer(text=footer)
         await ctx.send(embed=embed)
@@ -200,7 +199,6 @@ class other(commands.Cog):
                         title=f"Weather in {weather_response['name']}, {weather_response['sys']['country']}",
                         url = f"https://openweathermap.org/city/{weather_response['id']}",
                         description=weather_response['weather'][0]['description'],
-                        color=color,
                     )
                     embed.add_field(name='Location:', value=f"**🏙️ City:** {weather_response['name']}\n**<:coordinates:727254888836235294> Longitude:** {weather_response['coord']['lon']}\n **<:coordinates:727254888836235294> Latitude:** {weather_response['coord']['lat']}", inline=False)
                     embed.add_field(name='Weather', value=f"**🌡️ Current Temp:** {weather_response['main']['temp']}\n**🌡️ Feels Like:** {weather_response['main']['feels_like']}\n**🌡️ Daily High:** {weather_response['main']['temp_max']}\n**🌡️ Daily Low:** {weather_response['main']['temp_min']}\n**<:humidity:727253612778094683> Humidity:** {weather_response['main']['humidity']}%\n**🌬️ Wind:** {weather_response['wind']['speed']} mph", inline=False)
