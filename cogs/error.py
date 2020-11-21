@@ -17,10 +17,10 @@ class ErrorHandler(Cog):
         instead. If it fails that too, it just stays silent."""
 
         try:
-            return await ctx.reply(text, *args, **kwargs)
+            return await ctx.send(text, *args, **kwargs)
         except discord.Forbidden:
             try:
-                return await ctx.author.reply(text, *args, **kwargs)
+                return await ctx.author.send(text, *args, **kwargs)
             except discord.Forbidden:
                 pass
         except discord.NotFound:
