@@ -1,4 +1,5 @@
 {
     "PREFIXES" : ["sirk ", "Sirk ", "^", "<@!751447995270168586> "],
-    "COLORS" : "2F3136"
+    "COLORS" : "2F3136",
+    "FOOTER" : "Sirk Bot v1"
 }
