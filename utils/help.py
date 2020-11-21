@@ -5,6 +5,7 @@ import json
 file = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(file) as f:
     data = json.load(f)
+    color = int(data['COLOR'], 16)
 
 class EmbedHelpCommand(commands.HelpCommand):
     """This is an example of a HelpCommand that utilizes embeds.
@@ -27,7 +28,7 @@ class EmbedHelpCommand(commands.HelpCommand):
         return '{0.qualified_name} {0.signature}'.format(command)
 
     async def send_bot_help(self, mapping):
-        embed = discord.Embed(title='Help')
+        embed = discord.Embed(title='Help', color=color)
         description = f'Commands for Sirk Bot.\nMade with ❤️ in <:python:758139554670313493> by [isirk#0001](https://discord.com/users/542405601255489537)\n*Note: Commands are shown based on permissions.*'
         if description:
             embed.description = description
@@ -46,7 +47,7 @@ class EmbedHelpCommand(commands.HelpCommand):
         await self.get_destination().send(embed=embed)
 
     async def send_cog_help(self, cog):
-        embed = discord.Embed(title='{0.qualified_name} Commands'.format(cog))
+        embed = discord.Embed(title='{0.qualified_name} Commands'.format(cog), color=color)
         if cog.description:
             embed.description = cog.description
 
@@ -58,7 +59,7 @@ class EmbedHelpCommand(commands.HelpCommand):
         await self.get_destination().send(embed=embed)
 
     async def send_group_help(self, group):
-        embed = discord.Embed(title=group.qualified_name)
+        embed = discord.Embed(title=group.qualified_name, color=color)
         if group.help:
             embed.description = group.help
 
