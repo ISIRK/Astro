@@ -115,7 +115,7 @@ class admin(commands.Cog):
         await ctx.guild.leave()
 
 
-    @dev.command()
+    @commands.command()
     async def statuss(self, ctx, type, *, status=None):
         '''Change the Bot Status'''
         if type == "playing":
@@ -142,7 +142,7 @@ class admin(commands.Cog):
         else:
             await ctx.send("Type needs to be either `playing|listening|watching|streaming|competing|bot|reset`")
 
-    @dev.command()
+    @commands.command()
     async def dm(self , ctx, user : discord.Member, *, content):
         '''Dm a Member'''
         embed = discord.Embed(color=color)
@@ -153,7 +153,7 @@ class admin(commands.Cog):
         await user.send(embed=embed)
         await ctx.send(f"<:comment:726779670514630667> Message sent to {user}")
         
-    @dev.command(aliases = ["ss"])
+    @commands.command(aliases = ["ss"])
     async def screenshot(self, ctx, url):
         await ctx.send('This is a slow API so it may take some time.')
         embed = discord.Embed(title = f"Screenshot of {url}", color=color)
@@ -163,19 +163,19 @@ class admin(commands.Cog):
             embed.set_image(url="attachment://ss.png")
             await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
     
-    @dev.command()
+    @commands.command()
     async def say(self, ctx, *, content:str):
         '''Make the bot say something'''
         await ctx.send(content)
           
-    @dev.command(aliases=['e'])
+    @commands.command(aliases=['e'])
     async def eval(self, ctx, *, code: str):
         '''Evaluate code'''
         cog = self.bot.get_cog("Jishaku")
         res = codeblock_converter(code)
         await cog.jsk_python(ctx, argument=res)
         
-    @dev.command()
+    @commands.command()
     async def nick(self, ctx, *, name: str):
         try:
             await ctx.guild.me.edit(nick=name)
@@ -183,7 +183,7 @@ class admin(commands.Cog):
         except discord.HTTPException as err:
             await ctx.send(f"```{err}```")
             
-    @dev.command()
+    @commands.command()
     async def rn(self, ctx):
         await ctx.guild.me.edit(nick=None)
         await ctx.send(f'Nickname reset to Sirk')
