@@ -31,6 +31,8 @@ tools = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']
+color = int(data['COLOR'], 16)
+
 
 class dev(commands.Cog):
     '''Dev Commands'''
@@ -96,7 +98,7 @@ class dev(commands.Cog):
     @commands.command()
     async def leaveguildanddontchokeisirk(self, ctx):
         '''Leave the current server.'''
-        embed=discord.Embed(title='Goodbye')
+        embed=discord.Embed(title='Goodbye', color=color)
         await ctx.send(embed=embed)
         await ctx.guild.leave()
 
@@ -133,7 +135,7 @@ class dev(commands.Cog):
     @commands.command()
     async def dm(self , ctx, user : discord.Member, *, content):
         '''Dm a Member'''
-        embed = discord.Embed()
+        embed = discord.Embed(color=color)
         embed.set_author(name=f"Sent from {ctx.author}", icon_url=ctx.author.avatar_url)
         embed.add_field(name="Message:", value=f'{content}')
         embed.set_footer(text=footer)
@@ -145,7 +147,7 @@ class dev(commands.Cog):
     @commands.command(aliases = ["ss"])
     async def screenshot(self, ctx, url):
         await ctx.send('This is a slow API so it may take some time.')
-        embed = discord.Embed(title = f"Screenshot of {url}")
+        embed = discord.Embed(title = f"Screenshot of {url}", color=color)
         async with aiohttp.ClientSession() as session:
             async with session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
                 res = await r.read()
@@ -188,7 +190,7 @@ class dev(commands.Cog):
         s = ""
         for cog in self.bot.cogs.keys():
             s += f"\n {cog}"
-        embed = discord.Embed(title = "Active Cogs:", description = f"```yaml\n{s}```")
+        embed = discord.Embed(title = "Active Cogs:", description = f"```yaml\n{s}```", color=color)
         embed.set_footer(text=footer)
         await ctx.send(embed=embed)
     
