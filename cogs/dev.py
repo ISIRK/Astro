@@ -27,10 +27,11 @@ from jishaku.codeblocks import codeblock_converter
 
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 
-colorfile = "/home/pi/Discord/Sirk/utils/tools.json"
-with open(colorfile) as f:
+tools = "/home/pi/Discord/Sirk/utils/tools.json"
+with open(tools) as f:
     data = json.load(f)
 color = int(data['COLORS'], 16)
+footer = data['FOOTER']
 
 class dev(commands.Cog):
     '''Dev Commands'''
@@ -136,7 +137,7 @@ class dev(commands.Cog):
         embed = discord.Embed(color=color)
         embed.set_author(name=f"Sent from {ctx.author}", icon_url=ctx.author.avatar_url)
         embed.add_field(name="Message:", value=f'{content}')
-        embed.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
+        embed.set_footer(text=footer)
         embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/726779670514630667.png?v=1")
         await user.send(embed=embed)
         await ctx.send(f"<:comment:726779670514630667> Message sent to {user}")
@@ -150,6 +151,7 @@ class dev(commands.Cog):
             async with session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
                 res = await r.read()
             embed.set_image(url="attachment://ss.png")
+            embed.set_footer(text=footer)
             await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
     
     @commands.is_owner()
