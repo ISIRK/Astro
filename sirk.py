@@ -25,7 +25,7 @@ prefixes = data['PREFIXES']
 intents = discord.Intents.default()
 intents.presences = True
 intents.members = True
-bot = commands.Bot(command_prefix = prefixes, intents=intents, allowed_mentions=discord.AllowedMentions(users=True, roles=False, everyone=False, replied_user=True)))
+bot = commands.Bot(command_prefix = prefixes, intents=intents, allowed_mentions=discord.AllowedMentions(users=True, roles=False, everyone=False, replied_user=True))
 bot.help_command = EmbedHelpCommand()
 
 bot.owner_ids = {542405601255489537}
@@ -56,5 +56,5 @@ for filename in os.listdir('./cogs'):
 
 bot.load_extension("jishaku")
 
-#13334
+#13514
 bot.run(token)
