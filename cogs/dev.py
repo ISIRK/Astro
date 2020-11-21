@@ -191,16 +191,6 @@ class dev(commands.Cog):
         embed = discord.Embed(title = "Active Cogs:", description = f"```yaml\n{s}```")
         embed.set_footer(text=footer)
         await ctx.send(embed=embed)
-        
-    @commands.is_owner()
-    @commands.command()
-    async def color(self, ctx, *, color):
-        try:
-            await self.bot.set_embed_color(color)
-            await ctx.send(f'Color set to `{color}`.')
-        except Exception as e:
-            return await ctx.send(f"```py\n{e}```")
-        
     
 def setup(bot):
     bot.add_cog(dev(bot))
