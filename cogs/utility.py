@@ -21,6 +21,7 @@ tools = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']
+color = int(data['COLOR'], 16)
 
 class utility(commands.Cog):
     def __init__(self, bot):
@@ -33,7 +34,7 @@ class utility(commands.Cog):
 
         statuses = collections.Counter([m.status for m in ctx.guild.members])
 
-        embed = discord.Embed(title=f"{ctx.guild.name}")
+        embed = discord.Embed(title=f"{ctx.guild.name}", color=color)
         embed.description = ctx.guild.description if ctx.guild.description else None
         embed.add_field(name='**General:**',
                         value=f'Owner: **{ctx.guild.owner}**\n'
@@ -87,7 +88,7 @@ class utility(commands.Cog):
                     "dnd": "<:dnd:758139458598993921>",
                     "offline": "<:offline:758139458611970088>"
                     }
-        embed = discord.Embed(title=f"{member}")
+        embed = discord.Embed(title=f"{member}", color=color)
         embed.add_field(name='**General:**',
                         value=f'Name: `{member}`\n' 
                               f'Status: {statuses[str(member.status)]}\n'
@@ -110,7 +111,7 @@ class utility(commands.Cog):
         if not member: # if member is no mentioned
             member = ctx.message.author # set member as the author
         userAvatar = member.avatar_url
-        avatarembed = discord.Embed()
+        avatarembed = discord.Embed(color=color)
         avatarembed.set_author(name=member, icon_url=ctx.author.avatar_url)
         avatarembed.set_image(url=userAvatar)
         await ctx.send(embed=avatarembed)
