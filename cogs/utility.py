@@ -134,7 +134,7 @@ class utility(commands.Cog):
     @commands.command()
     async def stats(self ,ctx):
         '''Get the bot stats'''
-        embed = discord.Embed(title="Bot Stats", description=f"Member Count: `{len(self.bot.users)}`\nServers: `{len(self.bot.guilds)}`\nCommands: `{len(self.bot.commands)}`\nDPY Version: `{discord.__version__}`\nServer:` {platform.system()}`\nCPU Usage: `{psutil.cpu_percent()}%`\nRAM USAGE: `{psutil.virtual_memory().percent}%`",color=color)
+        embed = discord.Embed(title="Bot Stats", description=f"Member Count: `{len(self.bot.users)}`\nServers: `{len(self.bot.guilds)}`\nCommands: `{len(self.bot.commands)}`\nDPY Version: `{discord.__version__}`\nServer: `{platform.system()}`\nCPU Usage: `{psutil.cpu_percent()}%`\nRAM USAGE: `{psutil.virtual_memory().percent}%`",color=color)
         await ctx.send(embed=embed)
 
 def setup(bot):
