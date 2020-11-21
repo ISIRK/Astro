@@ -194,7 +194,7 @@ class dev(commands.Cog):
         
     @commands.is_owner()
     @commands.command()
-    async def color(self, ctx, *, color):
+    async def color(self, ctx, *, color:int):
         try:
             await self.bot.set_embed_color(color)
         except Exception as e:
