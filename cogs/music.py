@@ -131,6 +131,13 @@ class MusicPlayer:
 
         while not self.bot.is_closed():
             self.next.clear()
+                       
+            try:
+                # Wait for the next song. If we timeout cancel the player and disconnect...
+                async with timeout(300):  # 5 minutes...
+                    source = await self.queue.get()
+            except asyncio.TimeoutError:
+                return self.destroy(self._guild)
 
             if not isinstance(source, YTDLSource):
                 # Source was probably a stream (not downloaded)
