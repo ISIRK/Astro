@@ -134,8 +134,8 @@ class MusicPlayer:
                        
             try:
                 # Wait for the next song. If we timeout cancel the player and disconnect...
-                async with timeout(600):  # 5 minutes...
-                    source = await self.queue.get()
+                #async with timeout(600):  # 5 minutes...
+                source = await self.queue.get()
             except asyncio.TimeoutError:
                 return self.destroy(self._guild)
 

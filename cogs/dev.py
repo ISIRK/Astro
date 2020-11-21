@@ -32,14 +32,31 @@ with open(colorfile) as f:
     data = json.load(f)
 color = int(data['COLORS'], 16)
 
-class dev(commands.Cog):
-    '''Developer Commands'''
+class admin(commands.Cog):
+    '''Administrator Commands'''
     def __init__(self, bot):
         self.bot = bot
         self.session = aiohttp.ClientSession()
+
+    async def cog_check(self, ctx: commands.Context):
+        """
+        Local check, makes all commands in this cog owner-only
+        """
+        if not await ctx.bot.is_owner(ctx.author):
+            embed = discord.Embed(title="Error", description="This command can only be executed by the bot owner.", color=color)
+            await ctx.send(embed=embed)
+            return False
+        return True
+
+    @commands.group(invoke_without_command=True)
+    async def dev(self, ctx):
+        """ Bot admin commands.
+        Used to help managing bot stuff."""
+
+        if ctx.invoked_subcommand is None:
+            await ctx.send_help(ctx.command)
         
-    @commands.is_owner()
-    @commands.command()
+    @dev.command()
     async def load(self, ctx, name: str):
         """Loads an extension. """
         try:
@@ -49,8 +66,7 @@ class dev(commands.Cog):
         await ctx.send(f"📥 Loaded extension **cogs/{name}.py**")
 
 
-    @commands.is_owner()
-    @commands.command()
+    @dev.command()
     async def reload(self, ctx, name: str):
         """Reloads an extension. """
 
@@ -61,8 +77,7 @@ class dev(commands.Cog):
         except Exception as e:
             return await ctx.send(f"```py\n{e}```")
 
-    @commands.is_owner()
-    @commands.command()
+    @dev.command()
     async def unload(self, ctx, name: str):
         """Unloads an extension. """
         try:
@@ -71,8 +86,7 @@ class dev(commands.Cog):
             return await ctx.send(f"```py\n{e}```")
         await ctx.send(f"📤 Unloaded extension **cogs/{name}.py**")
     
-    @commands.is_owner()
-    @commands.command(aliases=['ra'])
+    @dev.command(aliases=['ra'])
     async def reloadall(self, ctx):
         """Reloads all extensions. """
         error_collection = []
@@ -93,17 +107,16 @@ class dev(commands.Cog):
 
         await ctx.send("Successfully reloaded all extensions")
 
-    @commands.is_owner()
-    @commands.command()
-    async def leaveguild(self, ctx):
+    @dev.command()
+    async def leaveguildanddontchokeisirk(self, ctx):
         '''Leave the current server.'''
         embed=discord.Embed(title='Goodbye', color=color)
         await ctx.send(embed=embed)
         await ctx.guild.leave()
-    
-    @commands.is_owner()
-    @commands.command()
-    async def status(self, ctx, type, *, status=None):
+
+
+    @dev.command()
+    async def statuss(self, ctx, type, *, status=None):
         '''Change the Bot Status'''
         if type == "playing":
             await self.bot.change_presence(activity=discord.Game(name=f"{status}"))
@@ -129,8 +142,7 @@ class dev(commands.Cog):
         else:
             await ctx.send("Type needs to be either `playing|listening|watching|streaming|competing|bot|reset`")
 
-    @commands.is_owner()
-    @commands.command()
+    @dev.command()
     async def dm(self , ctx, user : discord.Member, *, content):
         '''Dm a Member'''
         embed = discord.Embed(color=color)
@@ -141,8 +153,7 @@ class dev(commands.Cog):
         await user.send(embed=embed)
         await ctx.send(f"<:comment:726779670514630667> Message sent to {user}")
         
-    @commands.is_owner()    
-    @commands.command(aliases = ["ss"])
+    @dev.command(aliases = ["ss"])
     async def screenshot(self, ctx, url):
         await ctx.send('This is a slow API so it may take some time.')
         embed = discord.Embed(title = f"Screenshot of {url}", color=color)
@@ -152,22 +163,19 @@ class dev(commands.Cog):
             embed.set_image(url="attachment://ss.png")
             await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
     
-    @commands.is_owner()
-    @commands.command()
+    @dev.command()
     async def say(self, ctx, *, content:str):
         '''Make the bot say something'''
         await ctx.send(content)
-        
-    @commands.is_owner()    
-    @commands.command(aliases=['e'])
+          
+    @dev.command(aliases=['e'])
     async def eval(self, ctx, *, code: str):
         '''Evaluate code'''
         cog = self.bot.get_cog("Jishaku")
         res = codeblock_converter(code)
         await cog.jsk_python(ctx, argument=res)
         
-    @commands.command()
-    @commands.is_owner()
+    @dev.command()
     async def nick(self, ctx, *, name: str):
         try:
             await ctx.guild.me.edit(nick=name)
@@ -175,12 +183,10 @@ class dev(commands.Cog):
         except discord.HTTPException as err:
             await ctx.send(f"```{err}```")
             
-    @commands.command()
-    @commands.is_owner()
+    @dev.command()
     async def rn(self, ctx):
         await ctx.guild.me.edit(nick=None)
         await ctx.send(f'Nickname reset to Sirk')
-
             
 def setup(bot):
-    bot.add_cog(dev(bot))
+    bot.add_cog(admin(bot))
