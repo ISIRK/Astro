@@ -31,6 +31,12 @@ class info(commands.Cog):
     '''Information Commands'''
     def __init__(self, bot):
         self.bot = bot
+    
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if message.content.endswith('@Sirk'):
+            embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `sirk `, `Sirk `, `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
+            await message.channel.send(embed=embed)
         
     @commands.command()
     async def vote(self, ctx):
