@@ -17,10 +17,11 @@ import psutil
 import json
 import platform
 
-colorfile = "/home/pi/Discord/Sirk/utils/tools.json"
-with open(colorfile) as f:
+tools = "/home/pi/Discord/Sirk/utils/tools.json"
+with open(tools) as f:
     data = json.load(f)
 color = int(data['COLORS'], 16)
+footer = data['FOOTER']
 
 class utility(commands.Cog):
     def __init__(self, bot):
@@ -59,7 +60,7 @@ class utility(commands.Cog):
         embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         embed.set_thumbnail(url=ctx.guild.icon_url)
         embed.set_image(url=ctx.guild.banner_url)
-        embed.set_footer(text=f'Guild ID: {ctx.guild.id}')
+        embed.set_footer(text=f'Guild ID: {ctx.guild.id} | {footer}')
 
         return await ctx.send(embed=embed)
 
@@ -100,7 +101,7 @@ class utility(commands.Cog):
 
         embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
         embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        embed.set_footer(text=f'Member ID: {member.id}')
+        embed.set_footer(text=f'Member ID: {member.id} | {footer}')
 
         return await ctx.send(embed=embed)
 
@@ -113,6 +114,7 @@ class utility(commands.Cog):
         avatarembed = discord.Embed( color=color)
         avatarembed.set_author(name=member, icon_url=ctx.author.avatar_url)
         avatarembed.set_image(url=userAvatar)
+        avatarembed.set_footer(text=footer)
         await ctx.send(embed=avatarembed)
 
 def setup(bot):
