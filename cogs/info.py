@@ -5,7 +5,7 @@ from discord.utils import get
 from discord.ext import commands
 from discord.shard import ShardInfo
 
-import os, json, inspect, random, collections, platform
+import os, json, inspect, random, collections, platform, sys, psutil
 
 import time, datetime
 from datetime import datetime
