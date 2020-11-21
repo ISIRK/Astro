@@ -41,6 +41,7 @@ os.environ["JISHAKU_HIDE"] = "True"
 @bot.event
 async def on_ready():
     print('{0.user} is up and running'.format(bot))
+    await bot.change_presence(status=discord.Status.idle)
 @bot.event
 async def on_message(message):
     await bot.process_commands(message)
