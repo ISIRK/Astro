@@ -9,6 +9,7 @@ tools = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']
+color = int(data['COLOR'], 16)
 
 class mod(commands.Cog):
     '''Moderation Commands\n*Note: These commands required specific permissions.*'''
@@ -26,7 +27,7 @@ class mod(commands.Cog):
             return
         else:
             await user.kick()
-            embed = discord.Embed(title=f'User {user.name} has been kicked.')
+            embed = discord.Embed(title=f'User {user.name} has been kicked.', color=color)
             embed.add_field(name="Bai!", value=":wave:")
             embed.set_thumbnail(url=user.avatar_url)
             embed.set_footer(text=footer)
@@ -48,7 +49,7 @@ class mod(commands.Cog):
 
             await ctx.guild.ban(user)
             
-            embed = discord.Embed(title=f'User {user.name} has been banned.')
+            embed = discord.Embed(title=f'User {user.name} has been banned.', color=color)
             embed.add_field(name="Bai!", value=":hammer:")
             embed.set_thumbnail(url=user.avatar_url)
             embed.set_footer(text=footer)
@@ -109,7 +110,7 @@ class mod(commands.Cog):
             return
         else:
             guild = ctx.guild
-            embed = discord.Embed()
+            embed = discord.Embed(color=color)
             embed.set_author(name=f"Warned By {ctx.author}", icon_url=ctx.author.avatar_url)
             embed.add_field(name=f"You Have Been Warned in {guild}\n\nReason:", value=f'{reason}')
             embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
@@ -133,7 +134,7 @@ class mod(commands.Cog):
             except asyncio.TimeoutError:
                 await ctx.send('Timeout Error')
             else:
-                embed = discord.Embed(title=title.content, description=description.content)
+                embed = discord.Embed(title=title.content, description=description.content, color=color)
                 await channel.send(embed=embed)
                 await ctx.send(f'`{title.content}` Embed sent in #{channel}')
 
