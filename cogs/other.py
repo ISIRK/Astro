@@ -46,7 +46,7 @@ class other(commands.Cog):
         embed = discord.Embed(title="Dice", description=f'The Dice Rolled {random.choice(dice)}', color=color)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/766312838910181421/unknown.png")
         embed.set_footer(text=footer)
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
         
     @commands.command()
@@ -55,33 +55,33 @@ class other(commands.Cog):
         '''Get a joke'''
         async with self.session.get("https://dadjoke-api.herokuapp.com/api/v1/dadjoke") as r:
             resp = await r.json()
-        await ctx.send(resp['joke'])
+        await ctx.reply(resp['joke'])
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
     async def binary(self, ctx, *, text: str):
         '''Change text into binary'''
         if "@everyone" in text:
-            await ctx.send('Please refrain from using `@everyone`.')
+            await ctx.reply('Please refrain from using `@everyone`.')
         elif "@here" in text:
-            await ctx.send('Please refrain from using `@here`.')
+            await ctx.reply('Please refrain from using `@here`.')
         else:
             async with self.session.get(f'https://some-random-api.ml/binary?text={text}') as resp:
                 resp = await resp.json()
-            await ctx.send(resp['binary'])
+            await ctx.reply(resp['binary'])
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
     async def text(self, ctx, *, binary: str):
         '''Change binary into text'''
         if "010000000110010101110110011001010111001001111001011011110110111001100101" in binary:
-            await ctx.send('Please refrain from using `@everyone`.')
+            await ctx.reply('Please refrain from using `@everyone`.')
         elif "0100000001101000011001010111001001100101" in binary:
-            await ctx.send('Please refrain from using `@here`.')
+            await ctx.reply('Please refrain from using `@here`.')
         else:
             async with self.session.get(f'https://some-random-api.ml/binary?decode={binary}') as resp:
                 resp = await resp.json()
-            await ctx.send(resp['text'])
+            await ctx.reply(resp['text'])
         
     @commands.command()
     @commands.cooldown(1,5,BucketType.user) 
@@ -91,12 +91,12 @@ class other(commands.Cog):
             resp = await resp.json()
             
         if resp['nsfw'] == True and not ctx.channel.is_nsfw():
-            return await ctx.send("⚠️ This meme is marked as NSFW and I can't post it in a non-nsfw channel.")
+            return await ctx.reply("⚠️ This meme is marked as NSFW and I can't post it in a non-nsfw channel.")
         else:
             embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=color)
             embed.set_image(url=resp['url'])
             embed.set_footer(text=f"r/Dankmemes | {footer}")
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command(aliases=['ph'])
     @commands.cooldown(1,5,BucketType.user) 
@@ -107,7 +107,7 @@ class other(commands.Cog):
         embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=color)
         embed.set_image(url=resp['url'])
         embed.set_footer(text=f"r/ProgrammerHumor | {footer}")
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(aliases=['mc'])
     @commands.cooldown(1,3,BucketType.user)
@@ -120,7 +120,7 @@ class other(commands.Cog):
         embed.set_thumbnail(url=f"https://minotar.net/helm/{username}/100.png")
         embed.set_thumbnail(url=f"https://mc-heads.net/avatar/{username}/100.png")
         embed.set_footer(text=footer)
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(aliases=['mcs'])
     @commands.cooldown(1,3,BucketType.user)
@@ -132,7 +132,7 @@ class other(commands.Cog):
         embed=discord.Embed(title=f"Stats for {server}", description=f"IP: {resp['serverip']}\nStatus: {resp['serverStatus']}\nPing: {resp['ping']}\nVersion: {resp['version']}\nPlayers: {resp['players']}\nMax Players: {resp['maxplayers']}", color=color)
         embed.set_thumbnail(url=f"https://api.minetools.eu/favicon/{server}/25565")
         embed.set_footer(text=footer)
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
             
     @commands.command()
@@ -165,17 +165,17 @@ class other(commands.Cog):
                 content += "Correct!\n"
             content += (f"**Question {i+1})** {question}\n"
                         f"{append}")
-            await ctx.send(content)
+            await ctx.reply(content)
 
             try:
                 message = await self.bot.wait_for("message", timeout=45.0, check=check)
             except asyncio.TimeoutError:
-                return await ctx.send("Timeout Error")
+                return await ctx.reply("Timeout Error")
 
             if message.content.upper() != answer:
-                return await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}quest`")
+                return await ctx.reply(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}quest`")
         time_taken = time.time()- start_time
-        await ctx.send(f"Correct!\nYou took **{time_taken:,.2f} seconds!**")
+        await ctx.reply(f"Correct!\nYou took **{time_taken:,.2f} seconds!**")
 
     @commands.cooldown(1,30,BucketType.user)
     @commands.command()
@@ -187,7 +187,7 @@ class other(commands.Cog):
             async with session.get(url) as response:
                 weather_response = await response.json()
                 if weather_response['cod'] != 200:
-                    await ctx.send(f"An error ocurred: `{weather_response['message']}`.")
+                    await ctx.reply(f"An error ocurred: `{weather_response['message']}`.")
                 else:
                     currentUnix = time.time()
                     localSunrise = weather_response['sys']['sunrise'] + weather_response['timezone']
@@ -207,7 +207,7 @@ class other(commands.Cog):
                     embed.add_field(name='Time', value=f"**🕓 Local Time:** {localTime.strftime('%I:%M %p')}\n **🌅 Sunrise Time:** {sunriseTime.strftime('%I:%M %p')}\n **🌇 Sunset Time:** {sunsetTime.strftime('%I:%M %p')}")
                     embed.set_thumbnail(url=f"https://openweathermap.org/img/wn/{weather_response['weather'][0]['icon']}@2x.png")
                     embed.set_footer(text=footer, icon_url=f"https://openweathermap.org/img/wn/{weather_response['weather'][0]['icon']}@2x.png")
-                    await ctx.send(embed=embed)
+                    await ctx.reply(embed=embed)
 
 
 

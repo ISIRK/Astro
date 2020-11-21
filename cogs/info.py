@@ -29,13 +29,13 @@ class info(commands.Cog):
     async def on_message(self):
         if message.content.endswith('@Sirk'):
             embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `sirk `, `Sirk `, `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
-            await message.channel.send(embed=embed)'''
+            await message.channel.reply(embed=embed)'''
         
     @commands.command()
     async def vote(self, ctx):
         '''Vote for Sirk Bot on top.gg'''
         embed=discord.Embed(title="Vote", description="**Vote for Sirk Bot [here](https://top.gg/bot/751447995270168586/vote)**\nHave a cookie as well -> [🍪](https://orteil.dashnet.org/cookieclicker/)", color=color)
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
         
     @commands.command()
     async def about(self, ctx):
@@ -47,24 +47,24 @@ class info(commands.Cog):
         infoembed.set_thumbnail(url="https://asksirk.com/img/sirk.png")
         infoembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         infoembed.set_footer(text=footer)
-        await ctx.send(embed=infoembed)
+        await ctx.reply(embed=infoembed)
         
     @commands.command()
     async def credits(self, ctx):
         '''See the credits for Sirk'''
         embed = discord.Embed(title="Credits", description="<@!542405601255489537> (isirk#0001)** - Developer and Owner**\n<@!555709231697756160> (CraziiAce#0001)** - API Usage**\n<@!668906205799907348> (Cyrus#8315)** - Bot Optimizations**\n<@!296862365503193098> (LeSirH#0001)** - Optimizations and Advice**\n<@!345457928972533773> (Moksej#3335)** - One Line**", color=color)
         embed.set_footer(text=footer)
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command()
     async def support(self, ctx):
         '''Get support information.'''
-        await ctx.send('https://discord.gg/7yZqHfG')
+        await ctx.reply('https://discord.gg/7yZqHfG')
     
     @commands.command()
     async def invite(self , ctx):
         '''Get the invite for the bot.'''
-        await ctx.send('<https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot>')
+        await ctx.reply('<https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot>')
         
     @commands.command()
     async def privacy(self, ctx):
@@ -72,7 +72,7 @@ class info(commands.Cog):
         embed = discord.Embed(title="Privacy Policy for Sirk", description="[Privacy Policy](https://asksirk.com/bot/privacy/)", color=color)
         embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         embed.set_footer(text=footer)
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command()
     async def ping(self, ctx):
@@ -82,7 +82,7 @@ class info(commands.Cog):
         pingembed.add_field(name="<:server:765946903803854898> Server", value=f'```autohotkey\n{round(self.bot.latency * 1000)} ms```')
                         
         start = time.perf_counter()
-        message = await ctx.send("Pinging...")
+        message = await ctx.reply("Pinging...")
         end = time.perf_counter()
         duration = (end - start) * 1000
                         

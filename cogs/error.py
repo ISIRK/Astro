@@ -13,14 +13,14 @@ class ErrorHandler(Cog):
     https://github.com/4Kaylum/DiscordpyBotBase/blob/master/cogs/error_handler.py"""
 
     async def send_to_ctx_or_author(self, ctx, text: str = None, *args, **kwargs) -> typing.Optional[discord.Message]:
-        """Tries to send the given text to ctx, but failing that, tries to send it to the author
+        """Tries to reply the given text to ctx, but failing that, tries to reply it to the author
         instead. If it fails that too, it just stays silent."""
 
         try:
-            return await ctx.send(text, *args, **kwargs)
+            return await ctx.reply(text, *args, **kwargs)
         except discord.Forbidden:
             try:
-                return await ctx.author.send(text, *args, **kwargs)
+                return await ctx.author.reply(text, *args, **kwargs)
             except discord.Forbidden:
                 pass
         except discord.NotFound:

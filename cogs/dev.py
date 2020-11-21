@@ -46,8 +46,8 @@ class dev(commands.Cog):
         try:
             self.bot.load_extension(f"cogs.{name}")
         except Exception as e:
-            return await ctx.send(f"```py\n{e}```")
-        await ctx.send(f"📥 Loaded extension **cogs/{name}.py**")
+            return await ctx.reply(f"```py\n{e}```")
+        await ctx.reply(f"📥 Loaded extension **cogs/{name}.py**")
 
     @commands.is_owner()
     @commands.command()
@@ -56,10 +56,10 @@ class dev(commands.Cog):
 
         try:
             self.bot.reload_extension(f"cogs.{name}")
-            await ctx.send(f"🔁 Reloaded extension **cogs/{name}.py**")
+            await ctx.reply(f"🔁 Reloaded extension **cogs/{name}.py**")
 
         except Exception as e:
-            return await ctx.send(f"```py\n{e}```")
+            return await ctx.reply(f"```py\n{e}```")
 
     @commands.is_owner()
     @commands.command()
@@ -68,8 +68,8 @@ class dev(commands.Cog):
         try:
             self.bot.unload_extension(f"cogs.{name}")
         except Exception as e:
-            return await ctx.send(f"```py\n{e}```")
-        await ctx.send(f"📤 Unloaded extension **cogs/{name}.py**")
+            return await ctx.reply(f"```py\n{e}```")
+        await ctx.reply(f"📤 Unloaded extension **cogs/{name}.py**")
     
     @commands.is_owner()
     @commands.command(aliases=['ra'])
@@ -82,23 +82,23 @@ class dev(commands.Cog):
                 try:
                     self.bot.reload_extension(f"cogs.{name}")
                 except Exception as e:
-                    return await ctx.send(f"```py\n{e}```")
+                    return await ctx.reply(f"```py\n{e}```")
 
         if error_collection:
             output = "\n".join([f"**{g[0]}** ```diff\n- {g[1]}```" for g in error_collection])
-            return await ctx.send(
+            return await ctx.reply(
                 f"Attempted to reload all extensions, was able to reload, "
                 f"however the following failed...\n\n{output}"
             )
 
-        await ctx.send("Successfully reloaded all extensions")
+        await ctx.reply("Successfully reloaded all extensions")
 
     @commands.is_owner()
     @commands.command()
     async def leaveguildanddontchokeisirk(self, ctx):
         '''Leave the current server.'''
         embed=discord.Embed(title='Goodbye', color=color)
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
         await ctx.guild.leave()
 
 
@@ -108,27 +108,27 @@ class dev(commands.Cog):
         '''Change the Bot Status'''
         if type == "playing":
             await self.bot.change_presence(activity=discord.Game(name=f"{status}"))
-            await ctx.send(f'<:online:758139458767290421> Changed status to `Playing {status}`')
+            await ctx.reply(f'<:online:758139458767290421> Changed status to `Playing {status}`')
         elif type == "listening":
             await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f"{status}"))
-            await ctx.send(f'<:online:758139458767290421> Changed status to `Listening to {status}`')
+            await ctx.reply(f'<:online:758139458767290421> Changed status to `Listening to {status}`')
         elif type == "watching":
             await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{status}"))
-            await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {status}`')
+            await ctx.reply(f'<:online:758139458767290421> Changed status to `Watching {status}`')
         elif type == "bot":
             await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name=f"{len(self.bot.users)} users in {len(self.bot.guilds)} servers"))
-            await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {len(self.bot.users)} users in {len(self.bot.guilds)} servers`')
+            await ctx.reply(f'<:online:758139458767290421> Changed status to `Watching {len(self.bot.users)} users in {len(self.bot.guilds)} servers`')
         elif type == "competing":
             await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.competing, name=f"{status}"))
-            await ctx.send(f'<:online:758139458767290421> Changed status to `Competing in {status}`')
+            await ctx.reply(f'<:online:758139458767290421> Changed status to `Competing in {status}`')
         elif type == "streaming":
             await self.bot.change_presence(activity=discord.Streaming(name=f"{status}", url="https://www.twitch.tv/isirk"))
-            await ctx.send(f'<:streaming:769640090275151912> Changed status to `Streaming {status}`')
+            await ctx.reply(f'<:streaming:769640090275151912> Changed status to `Streaming {status}`')
         elif type == "reset":
             await self.bot.change_presence(status=discord.Status.online)
-            await ctx.send("<:online:758139458767290421> Reset Status")
+            await ctx.reply("<:online:758139458767290421> Reset Status")
         else:
-            await ctx.send("Type needs to be either `playing|listening|watching|streaming|competing|bot|reset`")
+            await ctx.reply("Type needs to be either `playing|listening|watching|streaming|competing|bot|reset`")
 
     @commands.is_owner()
     @commands.command()
@@ -139,26 +139,26 @@ class dev(commands.Cog):
         embed.add_field(name="Message:", value=f'{content}')
         embed.set_footer(text=footer)
         embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/726779670514630667.png?v=1")
-        await user.send(embed=embed)
-        await ctx.send(f"<:comment:726779670514630667> Message sent to {user}")
+        await user.reply(embed=embed)
+        await ctx.reply(f"<:comment:726779670514630667> Message sent to {user}")
         
     @commands.is_owner()
     @commands.command(aliases = ["ss"])
     async def screenshot(self, ctx, url):
-        await ctx.send('This is a slow API so it may take some time.')
+        await ctx.reply('This is a slow API so it may take some time.')
         embed = discord.Embed(title = f"Screenshot of {url}", color=color)
         async with aiohttp.ClientSession() as session:
             async with session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
                 res = await r.read()
             embed.set_image(url="attachment://ss.png")
             embed.set_footer(text=footer)
-            await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
+            await ctx.reply(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
     
     @commands.is_owner()
     @commands.command()
     async def say(self, ctx, *, content:str):
         '''Make the bot say something'''
-        await ctx.send(content)
+        await ctx.reply(content)
           
     @commands.is_owner()
     @commands.command(aliases=['e'])
@@ -173,15 +173,15 @@ class dev(commands.Cog):
     async def nick(self, ctx, *, name: str):
         try:
             await ctx.guild.me.edit(nick=name)
-            await ctx.send(f"Successfully changed username to **{name}**")
+            await ctx.reply(f"Successfully changed username to **{name}**")
         except discord.HTTPException as err:
-            await ctx.send(f"```{err}```")
+            await ctx.reply(f"```{err}```")
             
     @commands.is_owner()
     @commands.command()
     async def rn(self, ctx):
         await ctx.guild.me.edit(nick=None)
-        await ctx.send(f'Nickname reset to Sirk')
+        await ctx.reply(f'Nickname reset to Sirk')
         
     @commands.is_owner()
     @commands.command()

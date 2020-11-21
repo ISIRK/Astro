@@ -62,7 +62,7 @@ class utility(commands.Cog):
         embed.set_image(url=ctx.guild.banner_url)
         embed.set_footer(text=f'Guild ID: {ctx.guild.id} | {footer}')
 
-        return await ctx.send(embed=embed)
+        return await ctx.reply(embed=embed)
 
     @commands.command()
     async def user(self, ctx, *, member: discord.Member = None):
@@ -103,7 +103,7 @@ class utility(commands.Cog):
         embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         embed.set_footer(text=f'Member ID: {member.id} | {footer}')
 
-        return await ctx.send(embed=embed)
+        return await ctx.reply(embed=embed)
 
     @commands.command(aliases=['av'])
     async def avatar(self, ctx, *, member: discord.Member=None): # set the member object to None
@@ -114,7 +114,7 @@ class utility(commands.Cog):
         avatarembed = discord.Embed( color=color)
         avatarembed.set_author(name=member, icon_url=ctx.author.avatar_url)
         avatarembed.set_image(url=userAvatar)
-        await ctx.send(embed=avatarembed)
+        await ctx.reply(embed=avatarembed)
 
 def setup(bot):
     bot.add_cog(utility(bot))
