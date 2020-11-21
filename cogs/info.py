@@ -14,10 +14,11 @@ from multiprocessing.connection import Client
 
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 
-colorfile = "/home/pi/Discord/Sirk/utils/tools.json"
-with open(colorfile) as f:
+tools = "/home/pi/Discord/Sirk/utils/tools.json"
+with open(tools) as f:
     data = json.load(f)
 color = int(data['COLORS'], 16)
+footer = data['FOOTER']
 
 class info(commands.Cog):
     '''Information Commands'''
@@ -45,7 +46,7 @@ class info(commands.Cog):
         infoembed.add_field(name= ":link: Links", value="[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot)\n[Website](https://asksirk.com/bot)", inline=False)
         infoembed.set_thumbnail(url="https://asksirk.com/img/sirk.png")
         infoembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        infoembed.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
+        infoembed.set_footer(text=footer)
         await ctx.send(embed=infoembed)
         
     @commands.command()
