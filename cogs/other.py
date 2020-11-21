@@ -25,11 +25,12 @@ import random
 
 import collections
 
-colorfile = "/home/pi/Discord/Sirk/utils/tools.json"
-with open(colorfile) as f:
+
+tools = "/home/pi/Discord/Sirk/utils/tools.json"
+with open(tools) as f:
     data = json.load(f)
 color = int(data['COLORS'], 16)
-
+footer = data['FOOTER']
 
 class other(commands.Cog):
     '''Random Commands'''
@@ -44,6 +45,7 @@ class other(commands.Cog):
         dice = ['1', '2', '3', '4', '5', '6', 'off the table...\n*You Found The Mystery!*']
         embed = discord.Embed(title="Dice", description=f'The Dice Rolled {random.choice(dice)}', color=color)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/766312838910181421/unknown.png")
+        embed.set_footer(text=footer)
         await ctx.send(embed=embed)
 
         
@@ -93,7 +95,7 @@ class other(commands.Cog):
         else:
             embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=color)
             embed.set_image(url=resp['url'])
-            embed.set_footer(text="r/Dankmemes")
+            embed.set_footer(text=f"r/Dankmemes | {footer}")
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['ph'])
@@ -104,7 +106,7 @@ class other(commands.Cog):
             resp = await resp.json()
         embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=color)
         embed.set_image(url=resp['url'])
-        embed.set_footer(text="r/ProgrammerHumor")
+        embed.set_footer(text=f"r/ProgrammerHumor | {footer}")
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['mc'])
@@ -117,6 +119,7 @@ class other(commands.Cog):
         embed.set_image(url=f"https://minotar.net/armor/body/{username}/100.png")
         embed.set_thumbnail(url=f"https://minotar.net/helm/{username}/100.png")
         embed.set_thumbnail(url=f"https://mc-heads.net/avatar/{username}/100.png")
+        embed.set_footer(text=footer)
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['mcs'])
@@ -128,6 +131,7 @@ class other(commands.Cog):
                             
         embed=discord.Embed(title=f"Stats for {server}", description=f"IP: {resp['serverip']}\nStatus: {resp['serverStatus']}\nPing: {resp['ping']}\nVersion: {resp['version']}\nPlayers: {resp['players']}\nMax Players: {resp['maxplayers']}", color=color)
         embed.set_thumbnail(url=f"https://api.minetools.eu/favicon/{server}/25565")
+        embed.set_footer(text=footer)
         await ctx.send(embed=embed)
 
             
@@ -202,7 +206,7 @@ class other(commands.Cog):
                     embed.add_field(name='Weather', value=f"**🌡️ Current Temp:** {weather_response['main']['temp']}\n**🌡️ Feels Like:** {weather_response['main']['feels_like']}\n**🌡️ Daily High:** {weather_response['main']['temp_max']}\n**🌡️ Daily Low:** {weather_response['main']['temp_min']}\n**<:humidity:727253612778094683> Humidity:** {weather_response['main']['humidity']}%\n**🌬️ Wind:** {weather_response['wind']['speed']} mph", inline=False)
                     embed.add_field(name='Time', value=f"**🕓 Local Time:** {localTime.strftime('%I:%M %p')}\n **🌅 Sunrise Time:** {sunriseTime.strftime('%I:%M %p')}\n **🌇 Sunset Time:** {sunsetTime.strftime('%I:%M %p')}")
                     embed.set_thumbnail(url=f"https://openweathermap.org/img/wn/{weather_response['weather'][0]['icon']}@2x.png")
-                    embed.set_footer(text='Sirk Bot | discord.gg/7yZqHfG', icon_url=f"https://openweathermap.org/img/wn/{weather_response['weather'][0]['icon']}@2x.png")
+                    embed.set_footer(text=footer, icon_url=f"https://openweathermap.org/img/wn/{weather_response['weather'][0]['icon']}@2x.png")
                     await ctx.send(embed=embed)
 
 
