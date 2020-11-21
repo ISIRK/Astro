@@ -37,26 +37,8 @@ class admin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.session = aiohttp.ClientSession()
-
-    async def cog_check(self, ctx: commands.Context):
-        """
-        Local check, makes all commands in this cog owner-only
-        """
-        if not await ctx.bot.is_owner(ctx.author):
-            embed = discord.Embed(title="Error", description="This command can only be executed by the owner.", color=color)
-            await ctx.send(embed=embed)
-            return False
-        return True
-
-    @commands.group(invoke_without_command=True)
-    async def dev(self, ctx):
-        """ Bot admin commands.
-        Used to help managing bot stuff."""
-
-        if ctx.invoked_subcommand is None:
-            await ctx.send_help(ctx.command)
         
-    @dev.command()
+    @commands.command()
     async def load(self, ctx, name: str):
         """Loads an extension. """
         try:
@@ -66,7 +48,7 @@ class admin(commands.Cog):
         await ctx.send(f"📥 Loaded extension **cogs/{name}.py**")
 
 
-    @dev.command()
+    @commands.command()
     async def reload(self, ctx, name: str):
         """Reloads an extension. """
 
@@ -77,7 +59,7 @@ class admin(commands.Cog):
         except Exception as e:
             return await ctx.send(f"```py\n{e}```")
 
-    @dev.command()
+    @commands.command()
     async def unload(self, ctx, name: str):
         """Unloads an extension. """
         try:
@@ -86,7 +68,7 @@ class admin(commands.Cog):
             return await ctx.send(f"```py\n{e}```")
         await ctx.send(f"📤 Unloaded extension **cogs/{name}.py**")
     
-    @dev.command(aliases=['ra'])
+    @commands.command(aliases=['ra'])
     async def reloadall(self, ctx):
         """Reloads all extensions. """
         error_collection = []
@@ -107,7 +89,7 @@ class admin(commands.Cog):
 
         await ctx.send("Successfully reloaded all extensions")
 
-    @dev.command()
+    @commands.command()
     async def leaveguildanddontchokeisirk(self, ctx):
         '''Leave the current server.'''
         embed=discord.Embed(title='Goodbye', color=color)
