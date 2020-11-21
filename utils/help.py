@@ -2,10 +2,9 @@ from discord.ext import commands
 import discord
 import json
 
-colorfile = "/home/pi/Discord/Sirk/utils/tools.json"
-with open(colorfile) as f:
+file = "/home/pi/Discord/Sirk/utils/tools.json"
+with open(file) as f:
     data = json.load(f)
-color = int(data['COLORS'], 16)
 
 class EmbedHelpCommand(commands.HelpCommand):
     """This is an example of a HelpCommand that utilizes embeds.
@@ -20,7 +19,6 @@ class EmbedHelpCommand(commands.HelpCommand):
     bot = commands.Bot(help_command=EmbedHelpCommand())
     """
     # Set the embed colour here
-    COLOUR = color
 
     def get_ending_note(self):
         return 'Use {0}{1} [module|command] for more info on a module or command.'.format(self.clean_prefix, self.invoked_with)
@@ -29,7 +27,7 @@ class EmbedHelpCommand(commands.HelpCommand):
         return '{0.qualified_name} {0.signature}'.format(command)
 
     async def send_bot_help(self, mapping):
-        embed = discord.Embed(title='Help', colour=self.COLOUR)
+        embed = discord.Embed(title='Help')
         description = f'Commands for Sirk Bot.\nMade with ❤️ in <:python:758139554670313493> by [isirk#0001](https://discord.com/users/542405601255489537)\n*Note: Commands are shown based on permissions.*'
         if description:
             embed.description = description
@@ -48,7 +46,7 @@ class EmbedHelpCommand(commands.HelpCommand):
         await self.get_destination().send(embed=embed)
 
     async def send_cog_help(self, cog):
-        embed = discord.Embed(title='{0.qualified_name} Commands'.format(cog), colour=self.COLOUR)
+        embed = discord.Embed(title='{0.qualified_name} Commands'.format(cog))
         if cog.description:
             embed.description = cog.description
 
@@ -60,7 +58,7 @@ class EmbedHelpCommand(commands.HelpCommand):
         await self.get_destination().send(embed=embed)
 
     async def send_group_help(self, group):
-        embed = discord.Embed(title=group.qualified_name, colour=self.COLOUR)
+        embed = discord.Embed(title=group.qualified_name)
         if group.help:
             embed.description = group.help
 
