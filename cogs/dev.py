@@ -43,7 +43,7 @@ class admin(commands.Cog):
         Local check, makes all commands in this cog owner-only
         """
         if not await ctx.bot.is_owner(ctx.author):
-            embed = discord.Embed(title="Error", description="This command can only be executed by my owner.", color=color)
+            embed = discord.Embed(title="Error", description="This command can only be executed by the owner.", color=color)
             await ctx.send(embed=embed)
             return False
         return True
