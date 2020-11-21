@@ -3,8 +3,9 @@ import os
 import asyncio
 
 import discord
-from discord import Embed
+
 from discord.ext import commands, menus
+
 import json
 
 from disputils.pagination import BotEmbedPaginator
@@ -25,7 +26,7 @@ prefixes = data['PREFIXES']
 intents = discord.Intents.default()
 intents.presences = True
 intents.members = True
-bot = commands.Bot(command_prefix = prefixes, intents=intents, allowed_mentions=discord.AllowedMentions(users=True, roles=False, everyone=False, replied_user=False))
+bot = commands.Bot(command_prefix = prefixes, intents=intents, allowed_mentions=discord.AllowedMentions(users=True, roles=False, everyone=False))
 bot.help_command = EmbedHelpCommand()
 
 bot.owner_ids = {542405601255489537}
@@ -57,5 +58,5 @@ for filename in os.listdir('./cogs'):
 
 bot.load_extension("jishaku")
 
-#15178
+#16003
 bot.run(token)
