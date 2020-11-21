@@ -45,7 +45,7 @@ Syntax for Sirk:
 
 
 **Upcomming Features**
-- Help Command
+- ~~Help Command~~ (Finished!)
 - Custom Prefix
 - ~~Music Commands~~ (Finished!)
 - Poll Command
