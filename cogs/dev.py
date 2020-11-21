@@ -33,7 +33,7 @@ with open(colorfile) as f:
 color = int(data['COLORS'], 16)
 
 class dev(commands.Cog):
-    '''Administrator Commands'''
+    '''Dev Commands'''
     def __init__(self, bot):
         self.bot = bot
         self.session = aiohttp.ClientSession()
