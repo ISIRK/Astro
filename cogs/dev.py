@@ -191,7 +191,7 @@ class dev(commands.Cog):
             s += f"\n {cog}"
         embed = discord.Embed(title = "Active Cogs:", description = f"```yaml\n{s}```", color=color)
         embed.set_footer(text=footer)
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
     
 def setup(bot):
     bot.add_cog(dev(bot))
