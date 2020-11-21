@@ -47,11 +47,12 @@ class info(commands.Cog):
     @commands.command()
     async def about(self, ctx):
         '''Get information about the bot.'''
-        infoembed = discord.Embed(title="Info", description="A Minimalist Discord Bot with reliability and simplicity", color=color)
-        infoembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        infoembed = discord.Embed(title="Sirk Bot", description="A minimalistic bot for discord\nDeveloped by [isirk](https://discord.com/users/542405601255489537)", color=color)
         infoembed.add_field(name= "<:news:758781954073821194> News", value=f"**🎧 <@751447995270168586> Has music commands! 🎧**\n> To see the music commands use `{ctx.prefix}help music`!", inline=True)
-        infoembed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758451109919981580.png?v=1")
-        infoembed.add_field(name= ":link: Links", value="[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot)\n[Website](https://asksirk.com/bot))", inline=False)
+        infoembed.add_field(name="<a:settings:768181060734812230> Stats", value=f"<:member:758139554652749835> Member Count: `{len(self.bot.users)}`\n<:discord:765251798629220382> Servers: `{len(self.bot.guilds)}`\n<:code:758447982688862238> Commands: `{len(self.bot.commands)}`\n<:dpy:779749503216648233> DPY Version: `{discord.__version__}`\n<:python:758139554670313493> Python Version: `{platform.python_version()}`\n<:server:765946903803854898> Server: `{platform.system()}`\nCPU Usage: `{psutil.cpu_percent()}%`\nRAM USAGE: `{psutil.virtual_memory().percent}%`", inline=False)
+        infoembed.add_field(name= ":link: Links", value="[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot)\n[Website](https://asksirk.com/bot)", inline=False)
+        infoembed.set_thumbnail(url="https://asksirk.com/img/sirk.png")
+        infoembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         infoembed.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
         await ctx.send(embed=infoembed)
         
@@ -78,6 +79,23 @@ class info(commands.Cog):
         embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         embed.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
         await ctx.send(embed=embed)
+
+    @commands.command()
+    async def ping(self, ctx):
+        '''Get the bot ping'''                        
+        pingembed = discord.Embed(title="Pong!", color=color)
+        pingembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        pingembed.add_field(name="<:server:765946903803854898> Server", value=f'```autohotkey\n{round(self.bot.latency * 1000)} ms```')
+                        
+        start = time.perf_counter()
+        message = await ctx.send("Pinging...")
+        end = time.perf_counter()
+        duration = (end - start) * 1000
+                        
+        pingembed.add_field(name="<a:typing:765946280601059349> Typing", value='```autohotkey\n{:.2f} ms```'.format(duration))
+                        
+        await message.edit(embed=pingembed)
+
      
 def setup(bot):
     bot.add_cog(info(bot))
