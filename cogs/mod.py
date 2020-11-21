@@ -5,10 +5,11 @@ import asyncio
 from asyncio import sleep
 import typing
 
-colorfile = "/home/pi/Discord/Sirk/utils/tools.json"
-with open(colorfile) as f:
+tools = "/home/pi/Discord/Sirk/utils/tools.json"
+with open(tools) as f:
     data = json.load(f)
 color = int(data['COLORS'], 16)
+footer = data['FOOTER']
 
 class mod(commands.Cog):
     '''Moderation Commands\n*Note: These commands required specific permissions.*'''
@@ -29,6 +30,7 @@ class mod(commands.Cog):
             embed = discord.Embed(title=f'User {user.name} has been kicked.', color=color)
             embed.add_field(name="Bai!", value=":wave:")
             embed.set_thumbnail(url=user.avatar_url)
+            embed.set_footer(text=footer)
             await ctx.send(embed=embed)
 
     @commands.command()
@@ -50,6 +52,7 @@ class mod(commands.Cog):
             embed = discord.Embed(title=f'User {user.name} has been banned.', color=color)
             embed.add_field(name="Bai!", value=":hammer:")
             embed.set_thumbnail(url=user.avatar_url)
+            embed.set_footer(text=footer)
             await ctx.send(embed=embed)
 
     '''@commands.command()
@@ -111,6 +114,7 @@ class mod(commands.Cog):
             embed.set_author(name=f"Warned By {ctx.author}", icon_url=ctx.author.avatar_url)
             embed.add_field(name=f"You Have Been Warned in {guild}\n\nReason:", value=f'{reason}')
             embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
+            embed.set_footer(text=footer)
             await user.send(embed=embed)
             await ctx.send(f"<:help:758453150897799172> Warned {user}")
 
