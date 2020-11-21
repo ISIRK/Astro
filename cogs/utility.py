@@ -115,28 +115,5 @@ class utility(commands.Cog):
         avatarembed.set_image(url=userAvatar)
         await ctx.send(embed=avatarembed)
 
-    @commands.command()
-    async def ping(self, ctx):
-        '''Get the bot ping'''                        
-        pingembed = discord.Embed(title="Pong!", color=color)
-        pingembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        pingembed.add_field(name="<:server:765946903803854898> Server", value=f'```autohotkey\n{round(self.bot.latency * 1000)} ms```')
-                        
-        start = time.perf_counter()
-        message = await ctx.send("Pinging...")
-        end = time.perf_counter()
-        duration = (end - start) * 1000
-                        
-        pingembed.add_field(name="<a:typing:765946280601059349> Typing", value='```autohotkey\n{:.2f} ms```'.format(duration))
-                        
-        await message.edit(embed=pingembed)
-
-    @commands.command()
-    async def stats(self ,ctx):
-        '''Get the bot stats'''
-        embed = discord.Embed(title="Stats", description=f"<:member:758139554652749835> Member Count: `{len(self.bot.users)}`\n<:discord:765251798629220382> Servers: `{len(self.bot.guilds)}`\n<:code:758447982688862238> Commands: `{len(self.bot.commands)}`\n<:dpy:779749503216648233> DPY Version: `{discord.__version__}`\n<:python:758139554670313493> Python Version: `{platform.python_version()}`\n<:server:765946903803854898> Server: `{platform.system()}`\nCPU Usage: `{psutil.cpu_percent()}%`\nRAM USAGE: `{psutil.virtual_memory().percent}%`",color=color)
-        embed.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
-        await ctx.send(embed=embed)
-
 def setup(bot):
     bot.add_cog(utility(bot))
