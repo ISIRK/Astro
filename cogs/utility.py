@@ -134,7 +134,7 @@ class utility(commands.Cog):
     @commands.command()
     async def stats(self ,ctx):
         '''Get the bot stats'''
-        embed = discord.Embed(title="Bot Stats", description=f"<:member:758139554652749835> Member Count: `{len(self.bot.users)}`\n<:discord:765251798629220382> Servers: `{len(self.bot.guilds)}`\n<:code:758447982688862238> Commands: `{len(self.bot.commands)}`\n<:dpy:596577034537402378> DPY Version: `{discord.__version__}`\n<:python:758139554670313493> Python Version: `{platform.python_version()}`\n<:server:765946903803854898> Server: `{platform.system()}`\nCPU Usage: `{psutil.cpu_percent()}%`\nRAM USAGE: `{psutil.virtual_memory().percent}%`",color=color)
+        embed = discord.Embed(title="Bot Stats", description=f"<:member:758139554652749835> Member Count: `{len(self.bot.users)}`\n<:discord:765251798629220382> Servers: `{len(self.bot.guilds)}`\n<:code:758447982688862238> Commands: `{len(self.bot.commands)}`\n<:dpy:779749503216648233> DPY Version: `{discord.__version__}`\n<:python:758139554670313493> Python Version: `{platform.python_version()}`\n<:server:765946903803854898> Server: `{platform.system()}`\nCPU Usage: `{psutil.cpu_percent()}%`\nRAM USAGE: `{psutil.virtual_memory().percent}%`",color=color)
         await ctx.send(embed=embed)
 
 def setup(bot):
