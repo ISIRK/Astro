@@ -32,12 +32,13 @@ with open(colorfile) as f:
     data = json.load(f)
 color = int(data['COLORS'], 16)
 
-class admin(commands.Cog):
+class dev(commands.Cog):
     '''Administrator Commands'''
     def __init__(self, bot):
         self.bot = bot
         self.session = aiohttp.ClientSession()
-        
+    
+    @commands.is_owner()
     @commands.command()
     async def load(self, ctx, name: str):
         """Loads an extension. """
@@ -47,7 +48,7 @@ class admin(commands.Cog):
             return await ctx.send(f"```py\n{e}```")
         await ctx.send(f"📥 Loaded extension **cogs/{name}.py**")
 
-
+    @commands.is_owner()
     @commands.command()
     async def reload(self, ctx, name: str):
         """Reloads an extension. """
@@ -59,6 +60,7 @@ class admin(commands.Cog):
         except Exception as e:
             return await ctx.send(f"```py\n{e}```")
 
+    @commands.is_owner()
     @commands.command()
     async def unload(self, ctx, name: str):
         """Unloads an extension. """
@@ -68,6 +70,7 @@ class admin(commands.Cog):
             return await ctx.send(f"```py\n{e}```")
         await ctx.send(f"📤 Unloaded extension **cogs/{name}.py**")
     
+    @commands.is_owner()
     @commands.command(aliases=['ra'])
     async def reloadall(self, ctx):
         """Reloads all extensions. """
@@ -89,6 +92,7 @@ class admin(commands.Cog):
 
         await ctx.send("Successfully reloaded all extensions")
 
+    @commands.is_owner()
     @commands.command()
     async def leaveguildanddontchokeisirk(self, ctx):
         '''Leave the current server.'''
@@ -97,6 +101,7 @@ class admin(commands.Cog):
         await ctx.guild.leave()
 
 
+    @commands.is_owner()
     @commands.command()
     async def statuss(self, ctx, type, *, status=None):
         '''Change the Bot Status'''
@@ -124,6 +129,7 @@ class admin(commands.Cog):
         else:
             await ctx.send("Type needs to be either `playing|listening|watching|streaming|competing|bot|reset`")
 
+    @commands.is_owner()
     @commands.command()
     async def dm(self , ctx, user : discord.Member, *, content):
         '''Dm a Member'''
@@ -135,6 +141,7 @@ class admin(commands.Cog):
         await user.send(embed=embed)
         await ctx.send(f"<:comment:726779670514630667> Message sent to {user}")
         
+    @commands.is_owner()
     @commands.command(aliases = ["ss"])
     async def screenshot(self, ctx, url):
         await ctx.send('This is a slow API so it may take some time.')
@@ -145,11 +152,13 @@ class admin(commands.Cog):
             embed.set_image(url="attachment://ss.png")
             await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
     
+    @commands.is_owner()
     @commands.command()
     async def say(self, ctx, *, content:str):
         '''Make the bot say something'''
         await ctx.send(content)
           
+    @commands.is_owner()
     @commands.command(aliases=['e'])
     async def eval(self, ctx, *, code: str):
         '''Evaluate code'''
@@ -157,6 +166,7 @@ class admin(commands.Cog):
         res = codeblock_converter(code)
         await cog.jsk_python(ctx, argument=res)
         
+    @commands.is_owner()
     @commands.command()
     async def nick(self, ctx, *, name: str):
         try:
@@ -165,10 +175,11 @@ class admin(commands.Cog):
         except discord.HTTPException as err:
             await ctx.send(f"```{err}```")
             
+    @commands.is_owner()
     @commands.command()
     async def rn(self, ctx):
         await ctx.guild.me.edit(nick=None)
         await ctx.send(f'Nickname reset to Sirk')
             
 def setup(bot):
-    bot.add_cog(admin(bot))
+    bot.add_cog(dev(bot))
