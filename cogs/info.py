@@ -53,6 +53,7 @@ class info(commands.Cog):
     async def credits(self, ctx):
         '''See the credits for Sirk'''
         embed = discord.Embed(title="Credits", description="<@!542405601255489537> (isirk#0001)** - Developer and Owner**\n<@!555709231697756160> (CraziiAce#0001)** - API Usage**\n<@!668906205799907348> (Cyrus#8315)** - Bot Optimizations**\n<@!296862365503193098> (LeSirH#0001)** - Optimizations and Advice**\n<@!345457928972533773> (Moksej#3335)** - One Line**", color=color)
+        embed.set_footer(text=footer)
         await ctx.send(embed=embed)
 
     @commands.command()
@@ -70,7 +71,7 @@ class info(commands.Cog):
         '''See the bots privacy policy'''
         embed = discord.Embed(title="Privacy Policy for Sirk", description="[Privacy Policy](https://asksirk.com/bot/privacy/)", color=color)
         embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        embed.set_footer(text="Sirk Bot | discord.gg/7yZqHfG")
+        embed.set_footer(text=footer)
         await ctx.send(embed=embed)
 
     @commands.command()
@@ -86,7 +87,7 @@ class info(commands.Cog):
         duration = (end - start) * 1000
                         
         pingembed.add_field(name="<a:typing:765946280601059349> Typing", value='```autohotkey\n{:.2f} ms```'.format(duration))
-                        
+        pingembed.set_footer(text=footer)
         await message.edit(embed=pingembed)
 
      
