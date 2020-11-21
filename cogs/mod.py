@@ -21,9 +21,9 @@ class mod(commands.Cog):
     async def kick(self, ctx, user : discord.Member):
         """Kicks a user from the server."""
         if ctx.author == user:
-            await ctx.reply("You cannot kick yourself.")
+            await ctx.send("You cannot kick yourself.")
         if user.top_role >= ctx.author.top_role and ctx.author.id != 542405601255489537:
-            await ctx.reply("You can only kick people below you in role hierarchy.")
+            await ctx.send("You can only kick people below you in role hierarchy.")
             return
         else:
             await user.kick()
@@ -31,16 +31,16 @@ class mod(commands.Cog):
             embed.add_field(name="Bai!", value=":wave:")
             embed.set_thumbnail(url=user.avatar_url)
             embed.set_footer(text=footer)
-            await ctx.reply(embed=embed)
+            await ctx.send(embed=embed)
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, user: typing.Union[discord.Member, discord.User]):
         """Bans a user from the server."""
         if ctx.author == user:
-            await ctx.reply("You cannot ban yourself.")
+            await ctx.send("You cannot ban yourself.")
         if user.top_role >= ctx.author.top_role and ctx.author.id != 542405601255489537:            
-            await ctx.reply("You can only ban people below you in role hierarchy.")
+            await ctx.send("You can only ban people below you in role hierarchy.")
             return
         else:
             # If user is not in the guild ban the user's object
@@ -53,7 +53,7 @@ class mod(commands.Cog):
             embed.add_field(name="Bai!", value=":hammer:")
             embed.set_thumbnail(url=user.avatar_url)
             embed.set_footer(text=footer)
-            await ctx.reply(embed=embed)
+            await ctx.send(embed=embed)
 
     '''@commands.command()
     @commands.has_permissions(kick_members=True)
@@ -99,14 +99,14 @@ class mod(commands.Cog):
     async def slowmode(self, ctx, seconds: int):
         '''Change the slowmode in the current channel.'''
         await ctx.channel.edit(slowmode_delay=seconds)
-        await ctx.reply(f"Slowmode is now {seconds} seconds.")
+        await ctx.send(f"Slowmode is now {seconds} seconds.")
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
     async def warn(self , ctx, user : discord.Member, *, reason):
         '''Warn a Member'''
         if user.top_role >= ctx.author.top_role and ctx.author.id != 542405601255489537:
-            await ctx.reply("You can only warn people below you in role hierarchy.")
+            await ctx.send("You can only warn people below you in role hierarchy.")
             return
         else:
             guild = ctx.guild
@@ -115,28 +115,28 @@ class mod(commands.Cog):
             embed.add_field(name=f"You Have Been Warned in {guild}\n\nReason:", value=f'{reason}')
             embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
             embed.set_footer(text=footer)
-            await user.reply(embed=embed)
-            await ctx.reply(f"<:help:758453150897799172> Warned {user}")
+            await user.send(embed=embed)
+            await ctx.send(f"<:help:758453150897799172> Warned {user}")
 
     @commands.command(aliases=['em'])
     @commands.has_permissions(manage_messages=True)
     async def embed(self, ctx, channel: discord.TextChannel):
-        '''Make a custom embed and reply it in any channel'''
-        await ctx.reply("Embed Maker Started\nWhat would you like the title to be?")
+        '''Make a custom embed and send it in any channel'''
+        await ctx.send("Embed Maker Started\nWhat would you like the title to be?")
         try:
             title = await self.bot.wait_for('message', timeout=60.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
         except asyncio.TimeoutError:
-            await ctx.reply('Timeout Error')
+            await ctx.send('Timeout Error')
         else: 
-            await ctx.reply("What would you like the description to be?")
+            await ctx.send("What would you like the description to be?")
             try:
                 description = await self.bot.wait_for('message', timeout=60.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
             except asyncio.TimeoutError:
-                await ctx.reply('Timeout Error')
+                await ctx.send('Timeout Error')
             else:
                 embed = discord.Embed(title=title.content, description=description.content, color=color)
                 await channel.send(embed=embed)
-                await ctx.reply(f'`{title.content}` Embed sent in #{channel}')
+                await ctx.send(f'`{title.content}` Embed sent in #{channel}')
 
 def setup(bot):
     bot.add_cog(mod(bot))
