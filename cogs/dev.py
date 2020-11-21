@@ -182,6 +182,14 @@ class dev(commands.Cog):
     async def rn(self, ctx):
         await ctx.guild.me.edit(nick=None)
         await ctx.send(f'Nickname reset to Sirk')
+        
+    @commands.is_owner()
+    @commands.command()
+    async def cogs(self, ctx):
+        s = ""
+        for cog in self.bot.cogs.keys():
+            s += f"\n {cog}"
+        await ctx.send(embed = discord.Embed(title = "Active Cogs:", description = f"'''fix{s}'''"))
             
 def setup(bot):
     bot.add_cog(dev(bot))
