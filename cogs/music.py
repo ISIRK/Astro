@@ -17,7 +17,6 @@ from youtube_dl import YoutubeDL
 tools = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(tools) as f:
     data = json.load(f)
-color = int(data['COLORS'], 16)
 footer = data['FOOTER']
 
 ytdlopts = {
@@ -153,7 +152,7 @@ class MusicPlayer:
             self.current = source
 
             self._guild.voice_client.play(source, after=lambda _: self.bot.loop.call_soon_threadsafe(self.next.set))
-            embed=discord.Embed(title="Playing", description=f"Now playing `{source.title}`\n> Requested by `{source.requester}`", color=color)
+            embed=discord.Embed(title="Playing", description=f"Now playing `{source.title}`\n> Requested by `{source.requester}`")
             embed.set_footer(text=footer)
             self.np = await self._channel.send(embed=embed)
             '''self.np = await self._channel.send(f'**Now Playing:** `{source.title}` requested by '
@@ -341,7 +340,7 @@ class music(commands.Cog):
         upcoming = list(itertools.islice(player.queue._queue, 0, 5))
 
         fmt = '\n'.join(f'**`{_["title"]}`**' for _ in upcoming)
-        embed = discord.Embed(title=f'Upcoming - Next {len(upcoming)}', description=fmt, color=color)
+        embed = discord.Embed(title=f'Upcoming - Next {len(upcoming)}', description=fmt)
         embed.set_footer(text=footer)
         await ctx.send(embed=embed)
 
@@ -362,7 +361,7 @@ class music(commands.Cog):
             await player.np.delete()
         except discord.HTTPException:
             pass
-        embed=discord.Embed(title="Now Playing", description=f"`{vc.source.title}`\n> Requested by {vc.source.requester}", color=color)
+        embed=discord.Embed(title="Now Playing", description=f"`{vc.source.title}`\n> Requested by {vc.source.requester}")
         '''player.np = await ctx.send(f'**Now Playing:** `{vc.source.title}` '
                                    f'requested by `{vc.source.requester}`')'''
         embed.set_footer(text=footer)
