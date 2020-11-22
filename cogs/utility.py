@@ -89,7 +89,7 @@ class utility(commands.Cog):
                     "offline": "<:offline:758139458611970088>"
                     }
         
-        roles = [role.name.replace('@', '@\u200b') for role in getattr(user, 'roles', [])]
+        roles = [role.name.replace('@', '@\u200b') for role in getattr(member, 'roles', [])]
         
         embed = discord.Embed(title=f"{member}", color=color)
         embed.add_field(name='**General:**',
