@@ -97,7 +97,7 @@ class utility(commands.Cog):
         embed.add_field(name='**Guild related information:**',
                         value=f'Joined guild: `{datetime.datetime.strftime(member.joined_at, "%A %d %B %Y at %H:%M")}`\n'
                               f'Nickname: `{member.nick}`\n'
-                              f'Top role: {member.top_role.mention}', inline=False)
+                              f'Top role: {member.roles}', inline=False)
 
         embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
         embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
@@ -128,7 +128,7 @@ class utility(commands.Cog):
         perms = '\n'.join(perm for perm, value in member.guild_permissions if value)
 
         # And to make it look nice, we wrap it in an Embed.
-        embed = discord.Embed(title='Permissions for:', description=ctx.guild.name, colour=member.colour)
+        embed = discord.Embed(title='Permissions for:', description=ctx.guild.name, colour=color)
         embed.set_author(icon_url=member.avatar_url, name=str(member))
 
         # \uFEFF is a Zero-Width Space, which basically allows us to have an empty field name.
