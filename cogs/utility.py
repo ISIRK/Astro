@@ -89,8 +89,6 @@ class utility(commands.Cog):
                     "offline": "<:offline:758139458611970088>"
                     }
         
-        roles = [role.name.replace('@', '@\u200b') for role in getattr(member, 'roles', [])]
-        
         embed = discord.Embed(title=f"{member}", color=color)
         embed.add_field(name='**General:**',
                         value=f'Name: `{member}`\n' 
@@ -100,9 +98,7 @@ class utility(commands.Cog):
         embed.add_field(name='**Guild related information:**',
                         value=f'Joined guild: `{datetime.datetime.strftime(member.joined_at, "%A %d %B %Y at %H:%M")}`\n'
                               f'Nickname: `{member.nick}`\n'
-                              f'Top role: {member.roles}', inline=False)
-        if roles:
-            embed.add_field(name='Roles', value=', '.join(roles) if len(roles) < 10 else f'{len(roles)} roles', inline=False)
+                              f'Top role: {member.top_role}', inline=False)
 
         embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
         embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
