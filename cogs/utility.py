@@ -115,6 +115,27 @@ class utility(commands.Cog):
         avatarembed.set_author(name=member, icon_url=ctx.author.avatar_url)
         avatarembed.set_image(url=userAvatar)
         await ctx.send(embed=avatarembed)
+                        
+    @commands.command(name="perms")
+    async def check_permissions(self, ctx, *, member: discord.Member=None):
+        """A simple command which checks a members Guild Permissions.
+        If member is not provided, the author will be checked."""
+
+        if not member:
+            member = ctx.author
+
+        # Here we check if the value of each permission is True.
+        perms = '\n'.join(perm for perm, value in member.guild_permissions if value)
+
+        # And to make it look nice, we wrap it in an Embed.
+        embed = discord.Embed(title='Permissions for:', description=ctx.guild.name, colour=member.colour)
+        embed.set_author(icon_url=member.avatar_url, name=str(member))
+
+        # \uFEFF is a Zero-Width Space, which basically allows us to have an empty field name.
+        embed.add_field(name='\uFEFF', value=perms)
+
+        await ctx.send(content=None, embed=embed)
+        # Thanks to Gio for the Command
 
 def setup(bot):
     bot.add_cog(utility(bot))
