@@ -126,15 +126,12 @@ class utility(commands.Cog):
         if not member:
             member = ctx.author
 
-        # Here we check if the value of each permission is True.
         perms = '\n'.join(perm for perm, value in member.guild_permissions if value)
 
-        # And to make it look nice, we wrap it in an Embed.
-        embed = discord.Embed(title=f'Permissions for: {member}', description=f"```yaml\n{perms}```", colour=color)
+        embed = discord.Embed(title='Permissions', description=f"```yaml\n{perms}```", colour=color)
         embed.set_author(icon_url=member.avatar_url, name=str(member))
         embed.set_footer(text=footer)
         await ctx.send(content=None, embed=embed)
-        # Thanks to Gio for the Command
 
 def setup(bot):
     bot.add_cog(utility(bot))
