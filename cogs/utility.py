@@ -130,9 +130,9 @@ class utility(commands.Cog):
         perms = '\n'.join(perm for perm, value in member.guild_permissions if value)
 
         # And to make it look nice, we wrap it in an Embed.
-        embed = discord.Embed(title='Permissions for:', description=ctx.guild.name, colour=color)
+        embed = discord.Embed(title=f'Permissions for: {member}', colour=color)
         embed.set_author(icon_url=member.avatar_url, name=str(member))
-
+        embed.set_footer(text=footer)
         # \uFEFF is a Zero-Width Space, which basically allows us to have an empty field name.
         embed.add_field(name='\uFEFF', value=perms)
 
