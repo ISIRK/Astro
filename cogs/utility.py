@@ -130,7 +130,7 @@ class utility(commands.Cog):
         perms = '\n'.join(perm for perm, value in member.guild_permissions if value)
 
         # And to make it look nice, we wrap it in an Embed.
-        embed = discord.Embed(title=f'Permissions for: {member}', description=f"`{perms}`", colour=color)
+        embed = discord.Embed(title=f'Permissions for: {member}', description=f"```yaml\n{perms}`", colour=color)
         embed.set_author(icon_url=member.avatar_url, name=str(member))
         embed.set_footer(text=footer)
         await ctx.send(content=None, embed=embed)
