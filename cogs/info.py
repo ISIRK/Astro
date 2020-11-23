@@ -37,7 +37,7 @@ class info(commands.Cog):
         embed=discord.Embed(title="Vote", description="**Vote for Sirk Bot [here](https://top.gg/bot/751447995270168586/vote)**\nHave a cookie as well -> [🍪](https://orteil.dashnet.org/cookieclicker/)", color=color)
         await ctx.send(embed=embed)
         
-    @commands.command()
+    @commands.command(aliases=['info'])
     async def about(self, ctx):
         '''Get information about the bot.'''
         infoembed = discord.Embed(title="Sirk Bot", description="A minimalistic bot for discord\nDeveloped by [isirk](https://discord.com/users/542405601255489537)", color=color)
