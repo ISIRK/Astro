@@ -119,7 +119,7 @@ class utility(commands.Cog):
         await ctx.send(embed=avatarembed)
                         
     @commands.command(name="perms")
-    async def check_permissions(self, ctx, *, member: discord.Member=None):
+    async def permissions(self, ctx, *, member: discord.Member=None):
         """A simple command which checks a members Guild Permissions.
         If member is not provided, the author will be checked."""
 
