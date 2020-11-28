@@ -48,7 +48,7 @@ class dev(commands.Cog):
             self.bot.load_extension(f"cogs.{name}")
         except Exception as e:
             return await ctx.send(f"```py\n{e}```")
-        await ctx.send(f"📥 Loaded extension **cogs/{name}.py**")
+        await ctx.send(f"📥 Loaded extension **`cogs/{name}.py`**")
 
     @commands.is_owner()
     @commands.command()
@@ -57,7 +57,7 @@ class dev(commands.Cog):
 
         try:
             self.bot.reload_extension(f"cogs.{name}")
-            await ctx.send(f"🔁 Reloaded extension **cogs/{name}.py**")
+            await ctx.send(f"🔁 Reloaded extension **`cogs/{name}.py`**")
 
         except Exception as e:
             return await ctx.send(f"```py\n{e}```")
@@ -70,7 +70,7 @@ class dev(commands.Cog):
             self.bot.unload_extension(f"cogs.{name}")
         except Exception as e:
             return await ctx.send(f"```py\n{e}```")
-        await ctx.send(f"📤 Unloaded extension **cogs/{name}.py**")
+        await ctx.send(f"📤 Unloaded extension **`cogs/{name}.py`**")
     
     @commands.is_owner()
     @commands.command(aliases=['ra'])
@@ -92,7 +92,7 @@ class dev(commands.Cog):
                 f"however the following failed...\n\n{output}"
             )
 
-        await ctx.send("**`Reloaded`**")
+        await ctx.send("**🔁 `Reloaded All Extentions`**")
 
     @commands.is_owner()
     @commands.command()
