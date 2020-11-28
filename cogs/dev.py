@@ -92,7 +92,7 @@ class dev(commands.Cog):
                 f"however the following failed...\n\n{output}"
             )
 
-        await ctx.send("Successfully reloaded all extensions")
+        await ctx.send("**`Reloaded`**")
 
     @commands.is_owner()
     @commands.command()
