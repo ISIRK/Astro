@@ -197,7 +197,7 @@ class dev(commands.Cog):
     @commands.is_owner()
     @commands.command()
     async def replace(self, ctx, char, *, text):
-      await ctx.send(text.replace(" ", char))
+      await ctx.send(text.replace(" ", f" {char} "))
     
 def setup(bot):
     bot.add_cog(dev(bot))
