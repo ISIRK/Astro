@@ -24,8 +24,8 @@ footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
 class utility(commands.Cog):
+    '''Utility commands'''
     def __init__(self, bot):
-        '''Utility commands for discord'''
         self.bot = bot
 
     @commands.command()
