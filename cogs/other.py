@@ -64,7 +64,7 @@ class other(commands.Cog):
         '''Talk to cleverbot'''
         async with self.session.get(f"http://bruhapi.xyz/cb/{text}") as r:
             resp = await r.json()
-        await ctx.send(resp['resp'])
+        await ctx.send(resp['res'])
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
