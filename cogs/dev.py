@@ -100,11 +100,11 @@ class dev(commands.Cog):
     @commands.is_owner()
     async def sync(self, ctx):
         """Sync with GitHub and reload all the cogs"""
-        embedvar = discord.Embed(title="Syncing...", description="Syncing and reloading cogs.", color=0xff0000)
+        embedvar = discord.Embed(title="Syncing...", description="Syncing and reloading cogs.", color=color)
         msg = await ctx.send(embed=embedvar)
         async with ctx.channel.typing():
             output = sp.getoutput('git pull')
-        embedvar = discord.Embed(title="Synced", description="Synced with GitHub and reloaded all the cogs.", color=0x00ff00)
+        embedvar = discord.Embed(title="Synced", description="Synced with GitHub and reloaded all the cogs.", color=color)
         # Reload Cogs as well
         error_collection = []
         for file in os.listdir("cogs"):
