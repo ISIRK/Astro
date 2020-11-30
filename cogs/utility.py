@@ -23,7 +23,7 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
-class utility(commands.Cog):
+class utility(commands.Cog, name="Utility"):
     '''Utility commands'''
     def __init__(self, bot):
         self.bot = bot
