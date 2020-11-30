@@ -96,7 +96,7 @@ class dev(commands.Cog):
 
         await ctx.send("**🔁 `Reloaded All Extentions`**")
 
-    @commands.command(aliases=['pull'], hidden = True)
+    @commands.command(aliases=['s'])
     @commands.is_owner()
     async def sync(self, ctx):
         """Sync with GitHub and reload all the cogs"""
