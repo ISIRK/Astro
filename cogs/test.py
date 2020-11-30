@@ -2,7 +2,7 @@ import discord
 import subprocess as sp
 from discord.ext import commands
 
-class test(commands.Cog):
+class test(commands.Cog(hidden=True)):
     '''Testing Commands'''
     def __init__(self, bot):
         self.bot = bot
