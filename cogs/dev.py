@@ -124,6 +124,7 @@ class dev(commands.Cog):
 
         await msg.edit(embed=embedvar)
     
+    # Do not use because of ram usage, cuz it does not kill what is running.
     '''@commands.is_owner()
     @command.command()
     async def restart(self, ctx):
