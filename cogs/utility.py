@@ -88,7 +88,7 @@ class utility(commands.Cog):
                     "dnd": "<:dnd:758139458598993921>",
                     "offline": "<:offline:758139458611970088>"
                     }
-        roles = '\n'.join([r.mention for r in member.roles if r != guild.default_role] or ['None'])
+        roles = '\n'.join([r.mention for r in member.roles if r != ctx.guild.default_role] or ['None'])
         embed = discord.Embed(title=f"{member}", color=color)
         embed.add_field(name='**General:**',
                         value=f'Name: `{member}`\n' 
