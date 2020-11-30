@@ -88,7 +88,7 @@ class utility(commands.Cog):
                     "dnd": "<:dnd:758139458598993921>",
                     "offline": "<:offline:758139458611970088>"
                     }
-        roles = ["None"] if len(user.roles) == 1 else [i.mention for i in user.roles if i.name != "@everyone"]
+        roles = ["None"] if len(member.roles) == 1 else [i.mention for i in member.roles if i.name != "@everyone"]
         
         embed = discord.Embed(title=f"{member}", color=color)
         embed.add_field(name='**General:**',
