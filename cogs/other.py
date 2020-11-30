@@ -56,6 +56,15 @@ class other(commands.Cog):
         async with self.session.get("https://dadjoke-api.herokuapp.com/api/v1/dadjoke") as r:
             resp = await r.json()
         await ctx.send(resp['joke'])
+     
+    @commands.is_owner()
+    @commands.command()
+    @commands.cooldown(1,30,BucketType.user)
+    async def joke(self, ctx, *, text):
+        '''Talk to cleverbot'''
+        async with self.session.get(f"http://bruhapi.xyz/cb/{text}") as r:
+            resp = await r.json()
+        await ctx.send(resp['resp'])
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
