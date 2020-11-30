@@ -24,7 +24,10 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
             num += 1
         embed = discord.Embed(title = title, description = s, color=color)
         embed.set_footer(text=footer)
-        await ctx.channel.purge(limit=1)
+        try:
+            await ctx.channel.purge(limit=1)
+        except:
+            pass
         msg = await ctx.send(embed=embed)
         for i in range(1, len(options) + 1): await msg.add_reaction(reactions[i])
 
