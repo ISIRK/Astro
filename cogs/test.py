@@ -23,7 +23,7 @@ class test(commands.Cog):
     async def sync(self, ctx):
         """Get the most recent changes from the GitHub repository
         Uses: p,sync"""
-        embedvar = discord.Embed(title="Syncing...", description="Syncing with the GitHub repository, this should take up to 15 seconds", color=0xff0000, timestamp=ctx.message.created_at)
+        embedvar = discord.Embed(title="Syncing...", description="Syncing with the GitHub repository and reloading the cogs, this should take up to 15 seconds", color=0xff0000, timestamp=ctx.message.created_at)
         msg = await ctx.send(embed=embedvar)
         async with ctx.channel.typing():
             output = sp.getoutput('git pull')
