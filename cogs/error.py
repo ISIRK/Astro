@@ -66,8 +66,8 @@ class ErrorHandler(Cog):
             return await self.send_to_ctx_or_author(ctx, f"I could not complete this command. This is most likely a permissions error.")
 
         # User who invoked command is not owner
-        elif isinstance(error, commands.NotOwner):
-            return await self.send_to_ctx_or_author(ctx, f"You must be the owner of the bot to run this command.")
+        '''elif isinstance(error, commands.NotOwner):
+            return await self.send_to_ctx_or_author(ctx, f"You must be the owner of the bot to run this command.")'''
         
         raise error
 
