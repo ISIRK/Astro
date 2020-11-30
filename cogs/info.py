@@ -78,9 +78,11 @@ class info(commands.Cog):
         pingembed = discord.Embed(title="Pong!", color=color)
         pingembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         pingembed.add_field(name="<:server:765946903803854898> Server", value=f'```autohotkey\n{round(self.bot.latency * 1000)} ms```')
-                        
+        
+        embed = discord.Embed(title="Pinging", color=color)
+        
         start = time.perf_counter()
-        message = await ctx.send(discord.Embed(title="Pinging", color=color))
+        message = await ctx.send(embed=embed)
         end = time.perf_counter()
         duration = (end - start) * 1000
                         
