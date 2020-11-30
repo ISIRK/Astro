@@ -18,6 +18,21 @@ class test(commands.Cog):
         msg = await ctx.send(embed = discord.Embed(title = title, descrioption = s))
         for i in range(1, len(options) + 1): await msg.add_reaction(reactions[i])
 
+    @commands.command(aliases=['pull'], hidden = True)
+    @commands.is_owner()
+    async def sync(self, ctx):
+        """Get the most recent changes from the GitHub repository
+        Uses: p,sync"""
+        embedvar = discord.Embed(title="Syncing...", description="Syncing with the GitHub repository, this should take up to 15 seconds", color=0xff0000, timestamp=ctx.message.created_at)
+        msg = await ctx.send(embed=embedvar)
+        async with ctx.channel.typing():
+            output = sp.getoutput('git pull origin master')
+            #await c.send(f"""```sh\n{output}```""")
+            msg1 = await ctx.send("Success!")
+            await msg1.delete()
+        embedvar = discord.Embed(title="Synced", description="Sync with the GitHub repository has completed.", color=0x00ff00, timestamp=ctx.message.created_at)
+        await msg.edit(embed=embedvar)
+
         
 def setup(bot):
     bot.add_cog(test(bot))
