@@ -27,10 +27,24 @@ class test(commands.Cog):
         msg = await ctx.send(embed=embedvar)
         async with ctx.channel.typing():
             output = sp.getoutput('git pull')
-            #await c.send(f"""```sh\n{output}```""")
-            msg1 = await ctx.send("Success!")
-            await msg1.delete()
-        embedvar = discord.Embed(title="Synced", description="Sync with the GitHub repository has completed.", color=0x00ff00, timestamp=ctx.message.created_at)
+        embedvar = discord.Embed(title="Synced", description="Sync with the GitHub repository has completed.\nAll cogs have been reloaded as well.", color=0x00ff00, timestamp=ctx.message.created_at)
+        # Reload Cogs as well
+        error_collection = []
+        for file in os.listdir("cogs"):
+            if file.endswith(".py"):
+                name = file[:-3]
+                try:
+                    self.bot.reload_extension(f"cogs.{name}")
+                except Exception as e:
+                    return await ctx.send(f"```py\n{e}```")
+
+        if error_collection:
+            output = "\n".join([f"**{g[0]}** ```diff\n- {g[1]}```" for g in error_collection])
+            return await ctx.send(
+                f"Attempted to reload all extensions, was able to reload, "
+                f"however the following failed...\n\n{output}"
+            )
+        
         await msg.edit(embed=embedvar)
 
         
