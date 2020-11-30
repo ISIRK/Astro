@@ -26,7 +26,7 @@ class test(commands.Cog):
         embedvar = discord.Embed(title="Syncing...", description="Syncing with the GitHub repository, this should take up to 15 seconds", color=0xff0000, timestamp=ctx.message.created_at)
         msg = await ctx.send(embed=embedvar)
         async with ctx.channel.typing():
-            output = sp.getoutput('git pull origin master')
+            output = sp.getoutput('git pull')
             #await c.send(f"""```sh\n{output}```""")
             msg1 = await ctx.send("Success!")
             await msg1.delete()
