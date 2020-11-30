@@ -1,4 +1,4 @@
-import discord
+import discord, json
 import subprocess as sp
 from discord.ext import commands
 
