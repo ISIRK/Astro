@@ -26,7 +26,8 @@ prefixes = data['PREFIXES']
 intents = discord.Intents.default()
 intents.presences = True
 intents.members = True
-bot = commands.Bot(command_prefix = prefixes, intents=intents, allowed_mentions=discord.AllowedMentions(users=True, roles=False, everyone=False))
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(prefixes), intents=intents, allowed_mentions=discord.AllowedMentions(users=True, roles=False, everyone=False))
+# Might Wanna look at this: command_prefix=commands.when_mentioned_or(prefixes)
 bot.help_command = EmbedHelpCommand()
 
 bot.owner_ids = {542405601255489537}
