@@ -7,7 +7,7 @@ from discord.shard import ShardInfo
 
 import os, json, inspect, random, collections, platform, sys, psutil, multiprocessing
 
-
+from collections import Counter
 import time, datetime
 from datetime import datetime
 
@@ -41,9 +41,12 @@ class info(commands.Cog):
     @commands.command(aliases=['info', 'stats'])
     async def about(self, ctx):
         '''Get information about the bot.'''
+        channel_types = Counter(type(c) for c in self.bot.get_all_channels())
+        voice = channel_types[discord.channel.VoiceChannel]
+        text = channel_types[discord.channel.TextChannel]
         infoembed = discord.Embed(title="Sirk Bot", description="A minimalistic bot for discord\nDeveloped by [isirk](https://discord.com/users/542405601255489537)", color=color)
         infoembed.add_field(name= "<:news:758781954073821194> News", value=f"**🎧 <@751447995270168586> Has music commands! 🎧**\n> To see the music commands use `{ctx.prefix}help music`!", inline=True)
-        infoembed.add_field(name="<a:settings:768181060734812230> Stats", value=f"<:member:758139554652749835> Member Count: `{len(self.bot.users)}`\n<:discord:765251798629220382> Servers: `{len(self.bot.guilds)}`\n<:code:758447982688862238> Commands: `{len(self.bot.commands)}`\n<:dpy:779749503216648233> DPY Version: `{discord.__version__}`\n<:python:758139554670313493> Python Version: `{platform.python_version()}`\n<:server:765946903803854898> Server: `{platform.system()}`\n> Ping:  `{round(self.bot.latency * 1000)}ms`\n> CPU Count: `{multiprocessing.cpu_count()}`\n> CPU Usage: `{psutil.cpu_percent()}%`\n> RAM USAGE: `{psutil.virtual_memory().percent}%`", inline=False)
+        infoembed.add_field(name="<a:settings:768181060734812230> Stats", value=f"<:member:758139554652749835> Member Count: `{len(self.bot.users)}`\n<:discord:765251798629220382> Servers: `{len(self.bot.guilds)}`\n<:code:758447982688862238> Commands: `{len(self.bot.commands)}`\n<:textchannel:724637677395116072> Channels: `{text}\n<:voicechannel:724637677130875001> Voice Channels: `{voice}\n<:dpy:779749503216648233> DPY Version: `{discord.__version__}`\n<:python:758139554670313493> Python Version: `{platform.python_version()}`\n<:server:765946903803854898> Server: `{platform.system()}`\n> Ping:  `{round(self.bot.latency * 1000)}ms`\n> CPU Count: `{multiprocessing.cpu_count()}`\n> CPU Usage: `{psutil.cpu_percent()}%`\n> RAM USAGE: `{psutil.virtual_memory().percent}%`", inline=False)
         infoembed.add_field(name= ":link: Links", value="[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot)\n[Website](https://asksirk.com/bot)", inline=False)
         infoembed.set_thumbnail(url="https://asksirk.com/img/sirk.png")
         infoembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
