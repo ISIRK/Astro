@@ -2,6 +2,12 @@ import discord
 import subprocess as sp
 from discord.ext import commands
 
+tools = "/home/pi/Discord/Sirk/utils/tools.json"
+with open(tools) as f:
+    data = json.load(f)
+footer = data['FOOTER']
+color = int(data['COLOR'], 16)
+
 class test(commands.Cog, command_attrs=dict(hidden=True)):
     '''Testing Commands'''
     def __init__(self, bot):
@@ -15,7 +21,9 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
         for i in options: 
             s += f"{num} - {i}\n" 
             num += 1
-        msg = await ctx.send(embed = discord.Embed(title = title, descrioption = s, color=color))
+        embed = discord.Embed(title = title, descrioption = s, color=color)
+        embed.set_footer(text=footer)
+        msg = await ctx.send(embed=embed)
         for i in range(1, len(options) + 1): await msg.add_reaction(reactions[i])
 
         
