@@ -18,7 +18,6 @@ class mod(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
-    @commands.bot_has_permissions(kick_members=True)
     async def kick(self, ctx, user : discord.Member):
         """Kicks a user from the server."""
         if ctx.author == user:
@@ -36,7 +35,6 @@ class mod(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
-    @commands.bot_has_permissions(ban_members=True)
     async def ban(self, ctx, user: typing.Union[discord.Member, discord.User]):
         """Bans a user from the server."""
         if ctx.author == user:
@@ -92,14 +90,12 @@ class mod(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(manage_messages=True)
-    @commands.bot_has_permissions(manage_messages=True)
     async def clear(self, ctx, count: int):
         """Deletes a specified amount of messages. (Max 100)"""
         await ctx.channel.purge(limit=count+1, bulk=True)
 
     @commands.command()
     @commands.has_permissions(manage_channels=True)
-    @commands.bot_has_permissions(manage_channels=True)
     async def slowmode(self, ctx, seconds: int):
         '''Change the slowmode in the current channel.'''
         await ctx.channel.edit(slowmode_delay=seconds)
@@ -107,7 +103,6 @@ class mod(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
-    @commands.bot_has_permissions(kick_members=True)
     async def warn(self , ctx, user : discord.Member, *, reason):
         '''Warn a Member'''
         if user.top_role >= ctx.author.top_role and ctx.author.id != 542405601255489537:
@@ -125,7 +120,6 @@ class mod(commands.Cog):
 
     @commands.command(aliases=['em'])
     @commands.has_permissions(manage_messages=True)
-    @commands.bot_has_permissions(manage_messages=True)
     async def embed(self, ctx, channel: discord.TextChannel):
         '''Make a custom embed and send it in any channel'''
         await ctx.send("Embed Maker Started\nWhat would you like the title to be?")
