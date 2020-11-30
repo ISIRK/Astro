@@ -1,5 +1,5 @@
-import discord, sp
-
+import discord
+import subprocess as sp
 from discord.ext import commands
 
 class test(commands.Cog):
