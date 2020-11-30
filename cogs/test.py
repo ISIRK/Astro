@@ -1,4 +1,4 @@
-import discord, os
+import discord
 import subprocess as sp
 from discord.ext import commands
 
@@ -17,34 +17,6 @@ class test(commands.Cog):
             num += 1
         msg = await ctx.send(embed = discord.Embed(title = title, descrioption = s))
         for i in range(1, len(options) + 1): await msg.add_reaction(reactions[i])
-
-    @commands.command(aliases=['pull'], hidden = True)
-    @commands.is_owner()
-    async def sync(self, ctx):
-        """Sync with GitHub and reload all the cogs"""
-        embedvar = discord.Embed(title="Syncing...", description="Syncing and reloading cogs.", color=0xff0000)
-        msg = await ctx.send(embed=embedvar)
-        async with ctx.channel.typing():
-            output = sp.getoutput('git pull')
-        embedvar = discord.Embed(title="Synced", description="Synced with GitHub and reloaded all the cogs.", color=0x00ff00)
-        # Reload Cogs as well
-        error_collection = []
-        for file in os.listdir("cogs"):
-            if file.endswith(".py"):
-                name = file[:-3]
-                try:
-                    self.bot.reload_extension(f"cogs.{name}")
-                except Exception as e:
-                    return await ctx.send(f"```py\n{e}```")
-
-        if error_collection:
-            output = "\n".join([f"**{g[0]}** ```diff\n- {g[1]}```" for g in error_collection])
-            return await ctx.send(
-                f"Attempted to reload all extensions, was able to reload, "
-                f"however the following failed...\n\n{output}"
-            )
-        
-        await msg.edit(embed=embedvar)
 
         
 def setup(bot):
