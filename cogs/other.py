@@ -59,7 +59,7 @@ class other(commands.Cog):
      
     @commands.is_owner()
     @commands.command()
-    @commands.cooldown(1,30,BucketType.user)
+    #@commands.cooldown(1,30,BucketType.user)
     async def cb(self, ctx, *, text):
         '''Talk to cleverbot'''
         async with self.session.get(f"http://bruhapi.xyz/cb/{text}") as r:
