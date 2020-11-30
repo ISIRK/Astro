@@ -75,7 +75,7 @@ class dev(commands.Cog):
     @commands.is_owner()
     @commands.command(aliases=['ra'])
     async def reloadall(self, ctx):
-        """Reloads all extensions. """
+        """Reloads all extensions.""
         error_collection = []
         for file in os.listdir("cogs"):
             if file.endswith(".py"):
