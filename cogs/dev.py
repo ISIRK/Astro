@@ -23,6 +23,8 @@ from datetime import datetime
 
 from multiprocessing.connection import Client
 
+import subprocess as sp
+
 from jishaku.codeblocks import codeblock_converter
 
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
@@ -94,16 +96,32 @@ class dev(commands.Cog):
 
         await ctx.send("**🔁 `Reloaded All Extentions`**")
 
-    @commands.command(aliases=['pull'])
+    @commands.command(aliases=['pull'], hidden = True)
     @commands.is_owner()
     async def sync(self, ctx):
-        """Get the most recent changes from the GitHub repository
-        Uses: p,sync"""
-        embedvar = discord.Embed(title="Syncing...", description="Syncing with the GitHub repository, this should take up to 15 seconds", color=0xff0000, timestamp=ctx.message.created_at)
+        """Sync with GitHub and reload all the cogs"""
+        embedvar = discord.Embed(title="Syncing...", description="Syncing and reloading cogs.", color=0xff0000)
         msg = await ctx.send(embed=embedvar)
         async with ctx.channel.typing():
             output = sp.getoutput('git pull')
-        embedvar = discord.Embed(title="Synced", description="Sync with the GitHub repository has completed.", color=0x00ff00, timestamp=ctx.message.created_at)
+        embedvar = discord.Embed(title="Synced", description="Synced with GitHub and reloaded all the cogs.", color=0x00ff00)
+        # Reload Cogs as well
+        error_collection = []
+        for file in os.listdir("cogs"):
+            if file.endswith(".py"):
+                name = file[:-3]
+                try:
+                    self.bot.reload_extension(f"cogs.{name}")
+                except Exception as e:
+                    return await ctx.send(f"```py\n{e}```")
+
+        if error_collection:
+            output = "\n".join([f"**{g[0]}** ```diff\n- {g[1]}```" for g in error_collection])
+            return await ctx.send(
+                f"Attempted to reload all extensions, was able to reload, "
+                f"however the following failed...\n\n{output}"
+            )
+
         await msg.edit(embed=embedvar)
 
     @commands.is_owner()
