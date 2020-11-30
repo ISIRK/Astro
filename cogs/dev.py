@@ -123,6 +123,12 @@ class dev(commands.Cog):
             )
 
         await msg.edit(embed=embedvar)
+    
+    '''@commands.is_owner()
+    @command.command()
+    async def restart(self, ctx):
+        output = sp.getoutput('python3 sirk.py &')
+        await ctx.bot.logout()'''
 
     @commands.is_owner()
     @commands.command()
