@@ -89,11 +89,13 @@ class utility(commands.Cog):
                     "offline": "<:offline:758139458611970088>"
                     }
         roles = ' '.join([r.mention for r in member.roles if r != ctx.guild.default_role] or ['None'])
+        shared = sum(g.get_member(member.id) is not None for g in self.bot.guilds)
         embed = discord.Embed(title=f"{member}", color=color)
         embed.add_field(name='**General:**',
                         value=f'Name: `{member}`\n' 
                               f'Status: {statuses[str(member.status)]}\n'
                               f'Bot: `{member.bot}`\n'
+                              f'Shared Guilds: `{shared}`\n'
                               f'Account Created on: `{datetime.datetime.strftime(member.created_at, "%A %d %B %Y at %H:%M")}`', inline=False)
 
         embed.add_field(name='**Guild related information:**',
