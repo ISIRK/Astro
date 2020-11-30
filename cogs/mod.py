@@ -107,7 +107,6 @@ class mod(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
-    @commands.bot_has_permissions(kick_members=True)
     async def warn(self , ctx, user : discord.Member, *, reason):
         '''Warn a Member'''
         if user.top_role >= ctx.author.top_role and ctx.author.id != 542405601255489537:
@@ -125,7 +124,6 @@ class mod(commands.Cog):
 
     @commands.command(aliases=['em'])
     @commands.has_permissions(manage_messages=True)
-    @commands.bot_has_permissions(manage_messages=True)
     async def embed(self, ctx, channel: discord.TextChannel):
         '''Make a custom embed and send it in any channel'''
         await ctx.send("Embed Maker Started\nWhat would you like the title to be?")
