@@ -11,7 +11,7 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
-class mod(commands.Cog):
+class mod(commands.Cog, name="Moderation"):
     '''Moderation Commands\n*Note: These commands required specific permissions.*'''
     def __init__(self,bot):
         self.bot = bot
