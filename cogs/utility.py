@@ -88,6 +88,7 @@ class utility(commands.Cog):
                     "dnd": "<:dnd:758139458598993921>",
                     "offline": "<:offline:758139458611970088>"
                     }
+        roles = ["None"] if len(user.roles) == 1 else [i.mention for i in user.roles if i.name != "@everyone"]
         
         embed = discord.Embed(title=f"{member}", color=color)
         embed.add_field(name='**General:**',
@@ -99,7 +100,7 @@ class utility(commands.Cog):
         embed.add_field(name='**Guild related information:**',
                         value=f'Joined guild: `{datetime.datetime.strftime(member.joined_at, "%A %d %B %Y at %H:%M")}`\n'
                               f'Nickname: `{member.nick}`\n'
-                              f'Top role: {member.top_role}', inline=False)
+                              f'Roles: {roles}', inline=False)
 
         embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
         embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
