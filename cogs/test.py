@@ -23,11 +23,11 @@ class test(commands.Cog):
     async def sync(self, ctx):
         """Get the most recent changes from the GitHub repository
         Uses: p,sync"""
-        embedvar = discord.Embed(title="Syncing...", description="Syncing with the GitHub repository and reloading the cogs, this should take up to 15 seconds", color=0xff0000, timestamp=ctx.message.created_at)
+        embedvar = discord.Embed(title="Syncing...", description="Syncing with the GitHub repository and reloading the cogs.", color=0xff0000)
         msg = await ctx.send(embed=embedvar)
         async with ctx.channel.typing():
             output = sp.getoutput('git pull')
-        embedvar = discord.Embed(title="Synced", description="Sync with the GitHub repository has completed.\nAll cogs have been reloaded as well.", color=0x00ff00, timestamp=ctx.message.created_at)
+        embedvar = discord.Embed(title="Synced", description="Sync with the GitHub repository has completed.\nAll cogs have been reloaded as well.", color=0x00ff00)
         # Reload Cogs as well
         error_collection = []
         for file in os.listdir("cogs"):
