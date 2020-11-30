@@ -116,10 +116,10 @@ class dev(commands.Cog):
                     return await ctx.send(f"```py\n{e}```")
 
         if error_collection:
-            output = "\n".join([f"**{g[0]}** ```diff\n- {g[1]}```" for g in error_collection])
+            err = "\n".join([f"**{g[0]}** ```diff\n- {g[1]}```" for g in error_collection])
             return await ctx.send(
                 f"Attempted to reload all extensions, was able to reload, "
-                f"however the following failed...\n\n{output}"
+                f"however the following failed...\n\n{err}"
             )
 
         await msg.edit(embed=embedvar)
