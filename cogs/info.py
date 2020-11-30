@@ -80,7 +80,7 @@ class info(commands.Cog):
         pingembed.add_field(name="<:server:765946903803854898> Server", value=f'```autohotkey\n{round(self.bot.latency * 1000)} ms```')
                         
         start = time.perf_counter()
-        message = await ctx.send("Pinging...")
+        message = await ctx.send(discord.Embed(title="Pinging", color=color)
         end = time.perf_counter()
         duration = (end - start) * 1000
                         
