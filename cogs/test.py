@@ -15,7 +15,7 @@ class test(commands.Cog):
         for i in options: 
             s += f"{num} - {i}\n" 
             num += 1
-        msg = await ctx.send(embed = discord.Embed(title = title, descrioption = s))
+        msg = await ctx.send(embed = discord.Embed(title = title, descrioption = s, color=color))
         for i in range(1, len(options) + 1): await msg.add_reaction(reactions[i])
 
         
