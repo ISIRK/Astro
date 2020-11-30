@@ -75,7 +75,7 @@ class dev(commands.Cog):
     @commands.is_owner()
     @commands.command(aliases=['ra'])
     async def reloadall(self, ctx):
-        """Reloads all extensions.""
+        """Reloads all extensions. """
         error_collection = []
         for file in os.listdir("cogs"):
             if file.endswith(".py"):
@@ -93,6 +93,18 @@ class dev(commands.Cog):
             )
 
         await ctx.send("**🔁 `Reloaded All Extentions`**")
+
+    @commands.command(aliases=['pull'])
+    @commands.is_owner()
+    async def sync(self, ctx):
+        """Get the most recent changes from the GitHub repository
+        Uses: p,sync"""
+        embedvar = discord.Embed(title="Syncing...", description="Syncing with the GitHub repository, this should take up to 15 seconds", color=0xff0000, timestamp=ctx.message.created_at)
+        msg = await ctx.send(embed=embedvar)
+        async with ctx.channel.typing():
+            output = sp.getoutput('git pull')
+        embedvar = discord.Embed(title="Synced", description="Sync with the GitHub repository has completed.", color=0x00ff00, timestamp=ctx.message.created_at)
+        await msg.edit(embed=embedvar)
 
     @commands.is_owner()
     @commands.command()
