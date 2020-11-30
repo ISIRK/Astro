@@ -62,6 +62,7 @@ class other(commands.Cog):
     #@commands.cooldown(1,30,BucketType.user)
     async def cb(self, ctx, *, text):
         '''Talk to cleverbot'''
+        await ctx.send('This is a slow api so it could take some time.')
         async with self.session.get(f"http://bruhapi.xyz/cb/{text}") as r:
             resp = await r.json()
         await ctx.send(resp['res'])
