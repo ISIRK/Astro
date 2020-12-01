@@ -33,11 +33,12 @@ class EmbedPageSource(menus.ListPageSource):
     
 # Possible help command   
 class Test:
-    def __init__(self, key, value):
+    def __init__(self, key, value, bot):
         self.key = key
         self.value = value
+        self.bot = bot
         
-coglist = [bot.cogs[i] for i in bot.cogs]
+coglist = [self.bot.cogs[i] for i in self.bot.cogs]
 d = {}
 for i in coglist:
   d.update({f"{i.qualified_name}": [f"`{j.name}` ({j.signature})\n{j.help}\n" for j in i.get_commands()]})
