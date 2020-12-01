@@ -78,7 +78,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
         code = code.content if code else None
         paste = await self.myst.post(code, syntax="python")
         str(paste)
-        await ctx.send(f"{ctx.author.mention} Here is your code :join: {paste.url}")
+        await ctx.send(f"{ctx.author.mention} Here is your code <:join:736719688956117043> {paste.url}")
         
 def setup(bot):
     bot.add_cog(test(bot))
