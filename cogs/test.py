@@ -76,7 +76,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
     async def mystbin(self,ctx,*,code: codeblock_converter = None):
         """Post code to mystbin."""
         code = code.content if code else None
-        paste = await self.myst.post(f"Code posted by Sirk Bot\n{code}",syntax="python")
+        paste = await self.myst.post(code,syntax="python")
         str(paste)
         await ctx.send(f"{ctx.author.mention} Here is your code <:join:736719688956117043> {paste.url}")
         
