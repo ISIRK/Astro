@@ -32,7 +32,7 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
-class other(commands.Cog, name="Other"):
+class other(commands.Cog):
     '''Random Commands'''
     def __init__(self, bot):
         self.bot = bot
