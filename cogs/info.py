@@ -55,11 +55,11 @@ class info(commands.Cog):
         embed.set_author(name="isirk#0001", icon_url="https://asksirk.com/img/isirk.gif")
         embed.set_footer(text=footer)
         embed.add_field(name="About",
-                        value=f"A minimalistic bot for discord.\nDeveloped by [isirk](https://discord.com/users/542405601255489537)\n[Support Server](https://discord.gg/7yZqHfG)")
+                        value=f"A minimalistic bot for discord made by [isirk](https://discord.com/users/542405601255489537)\n[Support Server](https://discord.gg/7yZqHfG)  [Website](https://asksirk.com/bot/)")
         embed.add_field(name=f"Stats",
                         value=f"Servers: {len(self.bot.guilds)}\nUsers: {len(self.bot.users)}\nCommands: {len(self.bot.commands)}")
         embed.add_field(name= "News", 
-                        value=f"**🎧 <@751447995270168586> Has music commands! 🎧**\n> To see the music commands use `{ctx.prefix}help music`!",
+                        value=f"**🎧 Music Commands have launched 🎧**\n> To see the music commands use `{ctx.prefix}help music`!",
                        inline=False)
         '''embed.add_field(name="Usage:",
                         value=f"```{mem[0] / 1000000} MB total \n{mem[1] / 1000000} MB available ({100 - mem[2]}%)```",
