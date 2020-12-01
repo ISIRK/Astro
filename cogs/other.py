@@ -58,7 +58,7 @@ class other(commands.Cog):
         await ctx.send(resp['joke'])
      
     @commands.command()
-    @commands.cooldown(1,30,BucketType.channel)
+    @commands.cooldown(1,3,BucketType.user)
     async def cb(self, ctx, *, text):
         '''Talk to cleverbot'''
         async with self.session.get(f"http://bruhapi.xyz/cb/{text}") as r:
