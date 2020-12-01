@@ -72,7 +72,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
         menu = menus.MenuPages(EmbedPageSource(embeds, per_page=1))
         await menu.start(ctx)
     
-    @commands.command()
+    @commands.command(aliases=['myst'])
     async def mystbin(self,ctx,*,code: codeblock_converter = None):
         """Post code to mystbin."""
         code = code.content if code else None
