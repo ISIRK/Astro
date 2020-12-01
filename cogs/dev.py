@@ -142,7 +142,7 @@ class dev(commands.Cog):
 
     @commands.is_owner()
     @commands.command()
-    async def statuss(self, ctx, type, *, status=None):
+    async def status(self, ctx, type, *, status=None):
         '''Change the Bot Status'''
         if type == "playing":
             await self.bot.change_presence(activity=discord.Game(name=f"{status}"))
@@ -183,7 +183,6 @@ class dev(commands.Cog):
     @commands.is_owner()
     @commands.command(aliases = ["ss"])
     async def screenshot(self, ctx, url):
-        await ctx.send('This is a slow API so it may take some time.')
         embed = discord.Embed(title = f"Screenshot of {url}", color=color)
         async with aiohttp.ClientSession() as session:
             async with session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
