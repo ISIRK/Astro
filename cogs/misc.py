@@ -2,10 +2,10 @@ import discord, os, io, datetime, time, json, asyncio, aiohttp, random, collecti
 
 from discord.user import User
 from discord.utils import get
+from jishaku import codeblocks
 from discord.ext import commands
 from discord.shard import ShardInfo
 from discord.ext.commands import context
-from jishaku.codeblocks import codeblock_converter
 from discord.ext.commands.cooldowns import BucketType
 
 tools = "/home/pi/Discord/Sirk/utils/tools.json"
