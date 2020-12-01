@@ -172,7 +172,7 @@ class meta(commands.Cog):
                     }
         roles = ' '.join([r.mention for r in member.roles if r != ctx.guild.default_role] or ['None'])
         shared = sum(g.get_member(member.id) is not None for g in self.bot.guilds)
-        embed = discord.Embed(title=f"{member}", color=color)
+        embed = discord.Embed(title=f"{member}", color=ctx.author.color)
         embed.add_field(name='**General:**',
                         value=f'Name: `{member}`\n' 
                               f'Status: {statuses[str(member.status)]}\n'
