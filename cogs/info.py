@@ -21,7 +21,7 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
-class info(commands.Cog, name="Information"):
+class info(commands.Cog):
     '''Information Commands'''
     def __init__(self, bot):
         self.bot = bot
