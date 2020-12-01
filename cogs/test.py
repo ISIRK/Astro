@@ -1,8 +1,6 @@
 import discord, json
 import subprocess as sp
 from discord.ext import commands, menus
-import mystbin
-from jishaku.codeblocks import codeblock_converter
 
 tools = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(tools) as f:
@@ -37,25 +35,6 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
     '''Testing Commands'''
     def __init__(self, bot):
         self.bot = bot
-        self.myst = mystbin.Client()
-
-    @commands.command()
-    async def poll(self, ctx, title, *options):
-        '''Make a quick poll'''
-        reactions = {1: "1️⃣", 2: "2️⃣", 3: "3️⃣", 4: "4️⃣", 5: "5️⃣", 6: "6️⃣", 7: "7️⃣", 8: "8️⃣", 9: "9️⃣", 10: "🔟"}
-        s = ""
-        num = 1
-        for i in options: 
-            s += f"{num} - {i}\n" 
-            num += 1
-        embed = discord.Embed(title = title, description = s, color=color)
-        embed.set_footer(text=footer)
-        try:
-            await ctx.channel.purge(limit=1)
-        except:
-            pass
-        msg = await ctx.send(embed=embed)
-        for i in range(1, len(options) + 1): await msg.add_reaction(reactions[i])
             
     @commands.command()
     async def menu(self, ctx):
@@ -72,13 +51,6 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
         menu = menus.MenuPages(EmbedPageSource(embeds, per_page=1))
         await menu.start(ctx)
     
-    @commands.command(aliases=['myst'])
-    async def mystbin(self,ctx,*,code: codeblock_converter = None):
-        """Post code to mystbin."""
-        code = code.content if code else None
-        paste = await self.myst.post(code,syntax="python")
-        str(paste)
-        await ctx.send(f"{ctx.author.mention} Here is your code <:join:736719688956117043> {paste.url}")
         
 def setup(bot):
     bot.add_cog(test(bot))
