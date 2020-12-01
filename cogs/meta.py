@@ -229,7 +229,7 @@ class meta(commands.Cog):
         else:
             com = self.bot.get_command(command)
             if com is None:
-                return await ctx.send('If you are using code, make sure to star the repo.\nhttps://github.com/isirk/Sirk')
+                return await ctx.send(repo)
             else:
                 code = com.callback.__code__
                 filename = code.co_filename
@@ -237,7 +237,7 @@ class meta(commands.Cog):
                 location = os.path.relpath(filename).replace('\\', '/')
                 final_url = f'{repo}/blob/master/{location}#L{firstline}-L' \
                             f'{firstline + len(lines) - 1}'
-                return await ctx.send(f"If you are using code, make sure to star the repo.\n{final_url}")
+                return await ctx.send(f"{repo}\n{final_url}")
 
 def setup(bot):
     bot.add_cog(meta(bot))
