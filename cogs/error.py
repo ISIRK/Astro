@@ -39,7 +39,7 @@ class ErrorHandler(Cog):
         elif isinstance(error, discord.NotFound): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.CommandOnCooldown): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         else:
-            c = bot.get_channel(783138336323403826) 
+            c = self.bot.get_channel(783138336323403826) 
             embed = discord.Embed(
                 title = "An error occurred!",
                 description = f"Reported to the support server. Need more help? [Join the support server](https://discord.gg/7yZqHfG)\n```Error: \n{str(error)}```",
