@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands import Cog
-from datetime import datetime
+import datetime
 
 class ErrorHandler(Cog):
     def __init__(self, bot):
