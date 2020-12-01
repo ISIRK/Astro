@@ -84,31 +84,5 @@ class ErrorHandler(Cog):
             )
             await c.send(embed = embed)
 
-'''        # Command is on Cooldown
-        elif isinstance(error, commands.CommandOnCooldown):
-            return await self.send_to_ctx_or_author(ctx, f"This command is on cooldown. **Try in `{int(error.retry_after)}` seconds**", delete_after=10.0)
-
-        # Missing argument
-        elif isinstance(error, commands.MissingRequiredArgument):#{error.param.name}
-            return await self.send_to_ctx_or_author(ctx, str(error))
-
-        # Missing Permissions
-        elif isinstance(error, commands.MissingPermissions):
-            return await self.send_to_ctx_or_author(ctx, f"You're missing the required permission: `{error.missing_perms[0]}`")
-
-        # Missing Permissions
-        elif isinstance(error, commands.BotMissingPermissions):
-            return await self.send_to_ctx_or_author(ctx, f"Sirk is missing the required permission: `{error.missing_perms[0]}`")
-
-        # Discord Forbidden, usually if bot doesn't have permissions
-        elif isinstance(error, discord.Forbidden):
-            return await self.send_to_ctx_or_author(ctx, f"I could not complete this command. This is most likely a permissions error.")
-
-        # User who invoked command is not owner
-        elif isinstance(error, commands.NotOwner):
-            return await self.send_to_ctx_or_author(ctx, f"You must be the owner of the bot to run this command.")
-        
-        raise error'''
-
 def setup(bot):
     bot.add_cog(ErrorHandler(bot))
