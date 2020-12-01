@@ -55,9 +55,9 @@ class ErrorHandler(Cog):
         #elif isinstance(error, commands.NotOwner):
             #await ctx.send(embed = discord.Embed(title = "You are not an owner.", color = discord.Color.red()))
         elif isinstance(error, commands.BotMissingPermissions):
-            await ctx.send(embed = discord.Embed(description = str(error), color = discord.Color.red()))
-        elif isinstance(error, discord.NotFound): await ctx.send(embed = discord.Embed(description = str(error), color = discord.Color.red()))
-        elif isinstance(error, commands.CommandOnCooldown): await ctx.send(embed = discord.Embed(description = str(error), color = discord.Color.red()))
+            await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+        elif isinstance(error, discord.NotFound): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+        elif isinstance(error, commands.CommandOnCooldown): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         else:
             c = bot.get_channel(783138336323403826) 
             embed = discord.Embed(
