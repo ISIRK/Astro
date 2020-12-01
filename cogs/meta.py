@@ -217,7 +217,7 @@ class meta(commands.Cog):
         embed.set_footer(text=footer)
         await ctx.send(content=None, embed=embed)
 
-    @commands.command()
+    @commands.command(aliases=['src', 'code'])
     async def source(self, ctx, *, command: str = None):
         '''Get the bot source
         *Note: `help` doesn't work*'''
