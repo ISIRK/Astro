@@ -23,8 +23,8 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
-class utility(commands.Cog):
-    '''Utility commands'''
+class meta(commands.Cog):
+    '''Meta commands'''
     def __init__(self, bot):
         self.bot = bot
 
@@ -136,4 +136,4 @@ class utility(commands.Cog):
         await ctx.send(content=None, embed=embed)
 
 def setup(bot):
-    bot.add_cog(utility(bot))
+    bot.add_cog(meta(bot))
