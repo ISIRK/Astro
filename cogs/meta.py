@@ -237,7 +237,7 @@ class meta(commands.Cog):
                 location = os.path.relpath(filename).replace('\\', '/')
                 final_url = f'{repo}/blob/master/{location}#L{firstline}-L' \
                             f'{firstline + len(lines) - 1}'
-                return await ctx.send(f"{repo}\n{final_url}")
+                return await ctx.send(f"{final_url}")
 
 def setup(bot):
     bot.add_cog(meta(bot))
