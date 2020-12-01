@@ -282,7 +282,7 @@ class misc(commands.Cog):
         language = ""
         if code[0]: language = code[0]
         elif not code[0]: language = "txt"
-        url = await self.bot.myst.post(code[1], syntax = language)
+        url = await self.myst.post(code[1], syntax = language)
         await ctx.send(f"{ctx.author.mention} Here is your code <:join:736719688956117043> {str(url)}")
 
 def setup(bot):
