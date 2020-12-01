@@ -263,6 +263,7 @@ class misc(commands.Cog):
 
     @commands.command()
     async def replace(self, ctx, char, *, text):
+      '''Send a message with an emoji in between each word'''
       await ctx.send(text.replace(" ", f" {char} "))
 
 def setup(bot):
