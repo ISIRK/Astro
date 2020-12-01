@@ -55,15 +55,15 @@ class info(commands.Cog):
         embed.set_author(name="isirk#0001", icon_url="https://asksirk.com/img/isirk.gif")
         embed.set_footer(text=footer)
         embed.add_field(name="About",
-                        value=f"A simple, easy to use, discord bot made to make your use of discord easy.\nDeveloped by [isirk](https://discord.com/users/542405601255489537)\n[Support Server](https://discord.gg/7yZqHfG).")
+                        value=f"A minimalistic bot for discord. Developed by [isirk](https://discord.com/users/542405601255489537)\n[Support Server](https://discord.gg/7yZqHfG)")
         embed.add_field(name=f"Stats",
                         value=f"Servers: {len(self.bot.guilds)}\nUsers: {len(self.bot.users)}\nCommands: {len(self.bot.commands)}")
         embed.add_field(name= "News", 
                         value=f"**🎧 <@751447995270168586> Has music commands! 🎧**\n> To see the music commands use `{ctx.prefix}help music`!",
                        inline=False)
-        embed.add_field(name="Usage:",
+        '''embed.add_field(name="Usage:",
                         value=f"```{mem[0] / 1000000} MB total \n{mem[1] / 1000000} MB available ({100 - mem[2]}%)```",
-                        inline=False)
+                        inline=False)'''
         embed.add_field(name="Version Info:",
                         value=f"```Python: {platform.python_version()} \nDiscord.py: {discord.__version__}```")
         embed.add_field(name="Vote!",
