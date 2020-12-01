@@ -1,30 +1,12 @@
-import discord
+import discord, os, io, datetime, time, json, asyncio, aiohttp, random, collections, mystbin
 
 from discord.user import User
 from discord.utils import get
 from discord.ext import commands
 from discord.shard import ShardInfo
 from discord.ext.commands import context
+from jishaku.codeblocks import codeblock_converter
 from discord.ext.commands.cooldowns import BucketType
-
-import os
-
-import io
-
-import datetime
-
-import time
-
-import json
-
-import asyncio
-
-import aiohttp
-
-import random
-
-import collections
-
 
 tools = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(tools) as f:
@@ -53,6 +35,7 @@ class misc(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.session = aiohttp.ClientSession()
+        self.myst = mystbin.Client()
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
@@ -265,6 +248,32 @@ class misc(commands.Cog):
     async def replace(self, ctx, char, *, text):
       '''Send a message with an emoji in between each word'''
       await ctx.send(text.replace(" ", f" {char} "))
+
+    @commands.command()
+    async def poll(self, ctx, title, *options):
+        '''Make a quick poll'''
+        reactions = {1: "1️⃣", 2: "2️⃣", 3: "3️⃣", 4: "4️⃣", 5: "5️⃣", 6: "6️⃣", 7: "7️⃣", 8: "8️⃣", 9: "9️⃣", 10: "🔟"}
+        s = ""
+        num = 1
+        for i in options: 
+            s += f"{num} - {i}\n" 
+            num += 1
+        embed = discord.Embed(title = title, description = s, color=color)
+        embed.set_footer(text=footer)
+        try:
+            await ctx.channel.purge(limit=1)
+        except:
+            pass
+        msg = await ctx.send(embed=embed)
+        for i in range(1, len(options) + 1): await msg.add_reaction(reactions[i])
+
+    @commands.command(aliases=['myst'])
+    async def mystbin(self,ctx,*,code: codeblock_converter = None):
+        """Post code to mystbin."""
+        code = code.content if code else None
+        paste = await self.myst.post(code,syntax="python")
+        str(paste)
+        await ctx.send(f"{ctx.author.mention} Here is your code <:join:736719688956117043> {paste.url}")
 
 def setup(bot):
     bot.add_cog(misc(bot))
