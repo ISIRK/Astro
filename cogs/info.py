@@ -25,22 +25,15 @@ class info(commands.Cog):
     '''Information Commands'''
     def __init__(self, bot):
         self.bot = bot
-        
-    @commands.command()
-    async def vote(self, ctx):
-        '''Vote for Sirk Bot on top.gg'''
-        embed=discord.Embed(title="Vote", description="**Vote for Sirk Bot [here](https://top.gg/bot/751447995270168586/vote)**\nHave a cookie as well -> [🍪](https://orteil.dashnet.org/cookieclicker/)", color=color)
-        await ctx.send(embed=embed)
-        
+                
     @commands.command()
     async def stats(self, ctx):
         '''Get statistics about the bot.'''
         channel_types = Counter(type(c) for c in self.bot.get_all_channels())
         voice = channel_types[discord.channel.VoiceChannel]
         text = channel_types[discord.channel.TextChannel]
-        infoembed = discord.Embed(title="Sirk Bot", description="A minimalistic bot for discord\nDeveloped by [isirk](https://discord.com/users/542405601255489537)", color=color)
-        infoembed.add_field(name="<a:settings:768181060734812230> Stats", value=f"<:member:758139554652749835> Member Count: `{len(self.bot.users)}`\n<:discord:765251798629220382> Servers: `{len(self.bot.guilds)}`\n<:code:758447982688862238> Commands: `{len(self.bot.commands)}`\n<:textchannel:724637677395116072> Channels: `{text}`\n<:voicechannel:724637677130875001> Voice Channels: `{voice}`\n<:dpy:779749503216648233> DPY Version: `{discord.__version__}`\n<:python:758139554670313493> Python Version: `{platform.python_version()}`\n<:server:765946903803854898> Server: `{platform.system()}`\n> Ping:  `{round(self.bot.latency * 1000)}ms`\n> CPU Count: `{multiprocessing.cpu_count()}`\n> CPU Usage: `{psutil.cpu_percent()}%`\n> RAM USAGE: `{psutil.virtual_memory().percent}%`", inline=False)
-        infoembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        infoembed = discord.Embed(title="<a:settings:768181060734812230> Stats", description=f"<:member:758139554652749835> Member Count: `{len(self.bot.users)}`\n<:discord:765251798629220382> Servers: `{len(self.bot.guilds)}`\n<:code:758447982688862238> Commands: `{len(self.bot.commands)}`\n<:textchannel:724637677395116072> Channels: `{text}`\n<:voicechannel:724637677130875001> Voice Channels: `{voice}`\n<:dpy:779749503216648233> DPY Version: `{discord.__version__}`\n<:python:758139554670313493> Python Version: `{platform.python_version()}`\n<:server:765946903803854898> Server: `{platform.system()}`\n> Ping:  `{round(self.bot.latency * 1000)}ms`\n> CPU Count: `{multiprocessing.cpu_count()}`\n> CPU Usage: `{psutil.cpu_percent()}%`\n> RAM USAGE: `{psutil.virtual_memory().percent}%`", color=color)
+        infoembed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         infoembed.set_footer(text=footer)
         await ctx.send(embed=infoembed)
 
@@ -69,6 +62,7 @@ class info(commands.Cog):
     async def credits(self, ctx):
         '''See the credits for Sirk'''
         embed = discord.Embed(title="Credits", description="<@!542405601255489537> (isirk#0001)** - Developer and Owner**\n<@!555709231697756160> (CraziiAce#0001)** - API Usage**\n<@!668906205799907348> (Cyrus#8315)** - Bot Optimizations**\n<@!296862365503193098> (LeSirH#0001)** - Optimizations and Advice**\n<@!345457928972533773> (Moksej#3335)** - One Line**", color=color)
+        embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         embed.set_footer(text=footer)
         await ctx.send(embed=embed)
 
@@ -86,7 +80,7 @@ class info(commands.Cog):
     async def privacy(self, ctx):
         '''See the bots privacy policy'''
         embed = discord.Embed(title="Privacy Policy for Sirk", description="[Privacy Policy](https://asksirk.com/bot/privacy/)", colo=color)
-        embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         embed.set_footer(text=footer)
         await ctx.send(embed=embed)
 
@@ -94,7 +88,7 @@ class info(commands.Cog):
     async def ping(self, ctx):
         '''Get the bot ping'''                        
         pingembed = discord.Embed(title="Pong!", color=color)
-        pingembed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        pingembed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         pingembed.add_field(name="<:server:765946903803854898> Server", value=f'```autohotkey\n{round(self.bot.latency * 1000)} ms```')
         
         embed = discord.Embed(title="Pinging", color=color)
