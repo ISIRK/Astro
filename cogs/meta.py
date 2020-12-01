@@ -236,8 +236,8 @@ class meta(commands.Cog):
                 lines, firstline = inspect.getsourcelines(code)
                 location = os.path.relpath(filename).replace('\\', '/')
                 final_url = f'{repo}/blob/master/{location}#L{firstline}-L' \
-                            f'If you are using code, make sure to star the repo.\n{firstline + len(lines) - 1}'
-                return await ctx.send(final_url)
+                            f'{firstline + len(lines) - 1}'
+                return await ctx.send(f"If you are using code, make sure to star the repo.\n{final_url}")
 
 def setup(bot):
     bot.add_cog(meta(bot))
