@@ -2,6 +2,7 @@ import discord, json
 import subprocess as sp
 from discord.ext import commands, menus
 import mystbin
+from jishaku.codeblocks import codeblock_converter
 
 tools = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(tools) as f:
@@ -75,7 +76,8 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
     async def myst(self, ctx, *, code):
         '''Post code to mystbin
         *Note: if you use "```" then it will show up in the post.*'''
-        paste = await self.myst.post(code, syntax="python")
+        res = codeblock_converter(code)
+        paste = await self.myst.post(res, syntax="python")
         str(paste)
         await ctx.send(f"{ctx.author.mention} Here is your code <:join:736719688956117043> {paste.url}")
         
