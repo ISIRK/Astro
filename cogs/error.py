@@ -44,8 +44,48 @@ class ErrorHandler(Cog):
 
         if ctx.original_author_id in self.bot.owner_ids and isinstance(error, owner_reinvoke_errors):
             return await ctx.reinvoke()
+        elif isinstance(error, commands.CommandNotFound):
+            return
+        elif isinstance(error, commands.MissingPermissions):
+            await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+        elif isinstance(error, commands.MissingRequiredArgument):
+            await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+        elif isinstance(error, commands.BadArgument):
+            await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+        elif isinstance(error, commands.NotOwner):
+            await ctx.reply(embed = discord.Embed(title = "You are not an owner.", color = discord.Color.red()))
+        elif isinstance(error, commands.BotMissingPermissions):
+            await ctx.reply(embed = discord.Embed(description = str(error)))
+        elif isinstance(error, discord.NotFound): await ctx.reply(embed = discord.Embed(description = str(error)))
+        elif isinstance(error, commands.CommandOnCooldown): await ctx.reply(embed = discord.Embed(description = str(error)))
+        elif isinstance(error, commands.CheckFailure): await ctx.reply(embed = discord.Embed(description = "You are blacklisted! Contact the owner to talk about it."))
+        else:
+            c = bot.get_channel(783138336323403826) 
+            embed = discord.Embed(
+                title = "An error occurred!",
+                description = f"Reported to the support server. Need more help? [Join the support server](https://discord.gg/7yZqHfG)\n```Error: \n{str(error)}```",
+                timestamp = datetime.datetime.utcnow()
+            )
+            embed.set_footer(text = f"Caused by: {ctx.command}")
+            await ctx.reply(embed = embed)
 
-        # Command is on Cooldown
+            #Support server embed
+            embed = discord.Embed(
+                title = f"An error occured!",
+                description = f"```{str(error)}```",
+                timestamp = datetime.datetime.utcnow()
+            )
+            embed.add_field(
+                name = "Details:",
+                value = f"""
+                Caused by: `{str(ctx.author)} [{int(ctx.author)}]`
+                In guild: `{str(ctx.guild)} [{int(ctx.guild)}]`
+                Command: `{ctx.command}`
+                """
+            )
+            await c.send(embed = embed)
+
+'''        # Command is on Cooldown
         elif isinstance(error, commands.CommandOnCooldown):
             return await self.send_to_ctx_or_author(ctx, f"This command is on cooldown. **Try in `{int(error.retry_after)}` seconds**", delete_after=10.0)
 
@@ -66,10 +106,10 @@ class ErrorHandler(Cog):
             return await self.send_to_ctx_or_author(ctx, f"I could not complete this command. This is most likely a permissions error.")
 
         # User who invoked command is not owner
-        '''elif isinstance(error, commands.NotOwner):
-            return await self.send_to_ctx_or_author(ctx, f"You must be the owner of the bot to run this command.")'''
+        elif isinstance(error, commands.NotOwner):
+            return await self.send_to_ctx_or_author(ctx, f"You must be the owner of the bot to run this command.")
         
-        raise error
+        raise error'''
 
 def setup(bot):
     bot.add_cog(ErrorHandler(bot))
