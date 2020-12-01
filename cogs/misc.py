@@ -32,8 +32,8 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
-class other(commands.Cog):
-    '''Random Commands'''
+class misc(commands.Cog):
+    '''Miscellaneous Commands'''
     def __init__(self, bot):
         self.bot = bot
         self.session = aiohttp.ClientSession()
@@ -226,4 +226,4 @@ class other(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(other(bot))
+    bot.add_cog(misc(bot))
