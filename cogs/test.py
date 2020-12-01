@@ -73,7 +73,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
     
     @commands.command()
     async def myst(self, ctx, *, code):
-        paste = await self.myst.post("Hello from MystBin!", syntax="python")
+        paste = await self.myst.post(code, syntax="python")
         str(paste)
         await ctx.send(paste.url)
         
