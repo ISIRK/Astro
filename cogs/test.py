@@ -50,7 +50,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
             pass
         msg = await ctx.send(embed=embed)
         for i in range(1, len(options) + 1): await msg.add_reaction(reactions[i])
-`   
+            
     @commands.command()
     async def menu(self, ctx):
         m = MyMenu()
