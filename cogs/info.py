@@ -59,7 +59,7 @@ class info(commands.Cog):
         embed.add_field(name=f"Stats",
                         value=f"Servers: {len(self.bot.guilds)}\nUsers: {len(self.bot.users)}\nCommands: {len(self.bot.commands)}")
         embed.add_field(name="Usage:",
-                        value=f"```CPU Usage: `{psutil.cpu_percent()}%\n{mem[1] / 1000000} MB available ({100 - mem[2]}%)```",
+                        value=f"```CPU Usage: {psutil.cpu_percent()}%\n{mem[1] / 1000000} MB available ({100 - mem[2]}%)```",
                         inline=False)
         embed.add_field(name="Version Info",
                         value=f"```Python: {platform.python_version()}\nDiscord.py: {discord.__version__}```")
