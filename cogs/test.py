@@ -30,7 +30,7 @@ class EmbedPageSource(menus.ListPageSource):
         return embed
     
 # Possible help command   
-coglist = [bot.cogs[i] for i in sefl.bot.cogs]
+coglist = [bot.cogs[i] for i in self.bot.cogs]
 d = {}
 for i in coglist:
   d.update({f"{i.qualified_name}": [f"`{j.name}` ({j.signature})\n{j.help}\n" for j in i.get_commands()]})
