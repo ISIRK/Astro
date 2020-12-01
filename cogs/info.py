@@ -37,8 +37,8 @@ class info(commands.Cog):
         infoembed.set_footer(text=footer)
         await ctx.send(embed=infoembed)
 
-    @commands.command(aliases=['about', 'i'])
-    async def info(self, ctx):
+    @commands.command(aliases=['info', 'i'])
+    async def about(self, ctx):
         """Displays bot info"""
         mem = psutil.virtual_memory()
         embed = discord.Embed(title="Bot Info", color=color)
