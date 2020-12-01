@@ -73,7 +73,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
         await menu.start(ctx)
     
     @commands.command()
-    async def myst(self, ctx, *, code):
+    async def myst(self, ctx, *, code : str):
         '''Post code to mystbin
         *Note: if you use "```" then it will show up in the post.*'''
         res = codeblock_converter(code)
