@@ -31,29 +31,6 @@ class EmbedPageSource(menus.ListPageSource):
     async def format_page(self, menu, embed):
         return embed
     
-# Possible help command   
-class Test:
-    def __init__(self, key, value, bot):
-        self.key = key
-        self.value = value
-        self.bot = bot
-        
-    coglist = [self.bot.cogs[i] for i in self.bot.cogs]
-    d = {}
-    for i in coglist:
-      d.update({f"{i.qualified_name}": [f"`{j.name}` ({j.signature})\n{j.help}\n" for j in i.get_commands()]})
-
-    data = [
-        Test(key=key, value=value)
-        for key in d.keys()
-        for value in d[key]
-    ]
-
-class Source(menus.GroupByPageSource):
-    async def format_page(self, menu, entry):
-        joined = '\n'.join(f'{v.value}' for i, v in enumerate(entry.items, start=1))
-        return discord.Embed(title = entry.key, description = joined).set_footer(text = f"{menu.current_page + 1}/{self.get_max_pages()}")
-
 class test(commands.Cog, command_attrs=dict(hidden=True)):
     '''Testing Commands'''
     def __init__(self, bot):
@@ -91,6 +68,27 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
         ]
         menu = menus.MenuPages(EmbedPageSource(embeds, per_page=1))
         await menu.start(ctx)
+
+    coglist = [self.bot.cogs[i] for i in self.bot.cogs]
+    d = {}
+    for i in coglist:
+      d.update({f"{i.qualified_name}": [f"`{j.name}` ({j.signature})\n{j.help}\n" for j in i.get_commands()]})
+
+    class Test:
+        def __init__(self, key, value):
+            self.key = key
+            self.value = value
+
+    data = [
+        Test(key=key, value=value)
+        for key in d.keys()
+        for value in d[key]
+    ]
+
+    class Source(menus.GroupByPageSource):
+        async def format_page(self, menu, entry):
+            joined = '\n'.join(f'{v.value}' for i, v in enumerate(entry.items, start=1))
+            return discord.Embed(title = entry.key, description = joined).set_footer(text = f"{menu.current_page + 1}/{self.get_max_pages()}")
     
     @commands.command()
     async def phelp(self, ctx):
