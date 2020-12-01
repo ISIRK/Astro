@@ -77,7 +77,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
         *Note: if you use "```" then it will show up in the post.*'''
         paste = await self.myst.post(code, syntax="python")
         str(paste)
-        await ctx.send(paste.url)
+        await ctx.send(f"{ctx.author.mention} Here is your code <:join:736719688956117043> {paste.url}")
         
 def setup(bot):
     bot.add_cog(test(bot))
