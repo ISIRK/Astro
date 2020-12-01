@@ -73,6 +73,8 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
     
     @commands.command()
     async def myst(self, ctx, *, code):
+        '''Post code to mystbin
+        *Note: if you use "```" then it will show up in the post.*'''
         paste = await self.myst.post(code, syntax="python")
         str(paste)
         await ctx.send(paste.url)
