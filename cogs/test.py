@@ -1,6 +1,7 @@
 import discord, json
 import subprocess as sp
 from discord.ext import commands, menus
+import mystbin
 
 tools = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(tools) as f:
@@ -30,32 +31,12 @@ class MyMenu(menus.Menu):
 class EmbedPageSource(menus.ListPageSource):
     async def format_page(self, menu, embed):
         return embed
-
-# possible help command
-class Source(menus.GroupByPageSource):
-        async def format_page(self, menu, entry):
-            coglist = [self.bot.cogs[i] for i in self.bot.cogs]
-            d = {}
-            for i in coglist:
-              d.update({f"{i.qualified_name}": [f"`{j.name}` ({j.signature})\n{j.help}\n" for j in i.get_commands()]})
-
-            class Test:
-                def __init__(self, key, value):
-                    self.key = key
-                    self.value = value
-
-            data = [
-                Test(key=key, value=value)
-                for key in d.keys()
-                for value in d[key]
-            ]
-            joined = '\n'.join(f'{v.value}' for i, v in enumerate(entry.items, start=1))
-            return discord.Embed(title = entry.key, description = joined).set_footer(text = f"{menu.current_page + 1}/{self.get_max_pages()}")
     
 class test(commands.Cog, command_attrs=dict(hidden=True)):
     '''Testing Commands'''
     def __init__(self, bot):
         self.bot = bot
+        self.myst = mystbin.Client()
 
     @commands.command()
     async def poll(self, ctx, title, *options):
@@ -91,9 +72,10 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
         await menu.start(ctx)
     
     @commands.command()
-    async def phelp(self, ctx):
-        pages = menus.MenuPages(source=Source(data, key=lambda t: t.key, per_page=12), clear_reactions_after=True)
-        await pages.start(ctx)
+    async def myst(self, ctx, *, code):
+        paste = await mystbin_client.post("Hello from MystBin!", syntax="python")
+        str(paste)
+        await ctx.send(paste.url)
         
 def setup(bot):
     bot.add_cog(test(bot))
