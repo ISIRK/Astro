@@ -38,16 +38,16 @@ class Test:
         self.value = value
         self.bot = bot
         
-coglist = [self.bot.cogs[i] for i in self.bot.cogs]
-d = {}
-for i in coglist:
-  d.update({f"{i.qualified_name}": [f"`{j.name}` ({j.signature})\n{j.help}\n" for j in i.get_commands()]})
+    coglist = [self.bot.cogs[i] for i in self.bot.cogs]
+    d = {}
+    for i in coglist:
+      d.update({f"{i.qualified_name}": [f"`{j.name}` ({j.signature})\n{j.help}\n" for j in i.get_commands()]})
 
-data = [
-    Test(key=key, value=value)
-    for key in d.keys()
-    for value in d[key]
-]
+    data = [
+        Test(key=key, value=value)
+        for key in d.keys()
+        for value in d[key]
+    ]
 
 class Source(menus.GroupByPageSource):
     async def format_page(self, menu, entry):
