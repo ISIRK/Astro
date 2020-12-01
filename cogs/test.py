@@ -25,6 +25,7 @@ class MyMenu(menus.Menu):
     @menus.button('\N{BLACK SQUARE FOR STOP}\ufe0f')
     async def on_stop(self, payload):
         self.stop()
+        
 # ext-menus Embed paginator
 class EmbedPageSource(menus.ListPageSource):
     async def format_page(self, menu, embed):
@@ -35,6 +36,7 @@ class Test:
     def __init__(self, key, value):
         self.key = key
         self.value = value
+        self.bot = bot
         
 coglist = [bot.cogs[i] for i in self.bot.cogs]
 d = {}
