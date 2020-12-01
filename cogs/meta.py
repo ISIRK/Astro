@@ -220,7 +220,7 @@ class meta(commands.Cog):
     @commands.command()
     async def source(self, ctx, *, command: str = None):
         '''Get the bot source
-        *Note: `help` doesn't work'''
+        *Note: `help` doesn't work*'''
         # This is inspired by R.danny source at
         # https://github.com/Rapptz/RoboDanny/blob/rewrite/cogs/meta.py#L328-L366
         repo = "https://github.com/isirk/Sirk"
