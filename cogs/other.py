@@ -57,13 +57,13 @@ class other(commands.Cog):
             resp = await r.json()
         await ctx.send(resp['joke'])
      
-    @commands.command()
+    @commands.command(aliases=['cb'])
     @commands.cooldown(1,3,BucketType.user)
-    async def cb(self, ctx, *, text):
-        '''Talk to cleverbot'''
-        async with self.session.get(f"http://bruhapi.xyz/cb/{text}") as r:
+    async def chatbot(self, ctx, *, message):
+        '''Talk to chatbot'''
+        async with self.session.get(f"https://some-random-api.ml/chatbot?message={message}") as r:
             resp = await r.json()
-        await ctx.send(resp['res'])
+        await ctx.send(resp['response'])
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
