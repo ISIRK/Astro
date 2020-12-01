@@ -211,7 +211,7 @@ class dev(commands.Cog):
     async def src(self, ctx, *, command):
         '''Evaluate code'''
         cog = self.bot.get_cog("Jishaku")
-        await cog.jsk_source(ctx, argument=command)
+        await cog.jsk_source(ctx, command_name=command)
         
     @commands.is_owner()
     @commands.command()
