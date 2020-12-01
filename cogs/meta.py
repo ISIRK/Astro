@@ -16,6 +16,13 @@ import random
 import psutil
 import json
 import platform
+import inspect, sys, multiprocessing
+
+from collections import Counter
+import time, datetime
+from datetime import datetime
+
+from multiprocessing.connection import Client
 
 tools = "/home/pi/Discord/Sirk/utils/tools.json"
 with open(tools) as f:
