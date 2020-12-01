@@ -9,18 +9,14 @@ class ErrorHandler(Cog):
         
     @Cog.listener()
     async def on_command_error(self, ctx, error):
-        ignored_errors = (commands.CommandNotFound, commands.NotOwner) 
         
         error = getattr(error, "original", error)
 
-        if isinstance(error, ignored_errors):
+        if isinstance(error):
             return
 
         setattr(ctx, "original_author_id", getattr(ctx, "original_author_id", ctx.author.id))
-        owner_reinvoke_errors = (
-            commands.MissingAnyRole, commands.MissingPermissions,
-            commands.MissingRole, commands.CommandOnCooldown, commands.DisabledCommand
-        )
+        owner_reinvoke_errors = (commands.CommandOnCooldown)
 
         if ctx.original_author_id in self.bot.owner_ids and isinstance(error, owner_reinvoke_errors):
             return await ctx.reinvoke()
@@ -32,8 +28,8 @@ class ErrorHandler(Cog):
             await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.BadArgument):
             await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
-        #elif isinstance(error, commands.NotOwner):
-            #await ctx.send(embed = discord.Embed(title = "You are not an owner.", color = discord.Color.red()))
+        elif isinstance(error, commands.NotOwner):
+            return #await ctx.send(embed = discord.Embed(title = "You are not an owner.", color = discord.Color.red()))
         elif isinstance(error, commands.BotMissingPermissions):
             await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, discord.NotFound): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
