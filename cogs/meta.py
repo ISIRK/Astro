@@ -229,9 +229,7 @@ class meta(commands.Cog):
         else:
             com = self.bot.get_command(command)
             if com is None:
-                return await ctx.send(
-                    'There is no command with that name. Maybe check repo\n'
-                    'https://github.com/isirk/Sirk')
+                return await ctx.send('https://github.com/isirk/Sirk')
             else:
                 code = com.callback.__code__
                 filename = code.co_filename
