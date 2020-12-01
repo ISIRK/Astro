@@ -50,11 +50,10 @@ class info(commands.Cog):
     @commands.command()
     async def i(self, ctx):
         """Displays bot info"""
-        botOwner = await self.bot.fetch_user(self.bot.owner_ids[0])
         mem = psutil.virtual_memory()
         embed = discord.Embed(title="Bot Info")
-        embed.set_author(name=str(botOwner), icon_url=botOwner.avatar_url)
-        embed.set_footer(text=self.bot.user, icon_url=self.bot.user.avatar_url)
+        embed.set_author(name="isirk#0001", icon_url="https://asksirk.com/img/isirk.gif")
+        embed.set_footer(text=footer)
         embed.add_field(name="About",
                         value=f"A minimalistic bot for discord\nDeveloped by [isirk](https://discord.com/users/542405601255489537)\n[Support Server](https://discord.gg/7yZqHfG).")
         embed.add_field(name=f"Servers: {len(self.bot.guilds)}", value=f"Users: {len(self.bot.users)}")
