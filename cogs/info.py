@@ -63,7 +63,7 @@ class info(commands.Cog):
         embed.add_field(name="Version Info:",
                         value=f"```Python: {platform.python_version()} \nDiscord.py: {discord.__version__}```")
         embed.add_field(name="Vote!",
-                        value="[Top.GG](https://top.gg/bot/751447995270168586/]\n[Discord Extreme List](https://discordextremelist.xyz/en-US/bots/sirk)")
+                        value="[Top.GG](https://top.gg/bot/751447995270168586/)\n[Discord Extreme List](https://discordextremelist.xyz/en-US/bots/sirk)")
         await ctx.send(embed=embed)
         
     @commands.command()
