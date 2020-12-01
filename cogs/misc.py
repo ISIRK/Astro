@@ -267,15 +267,7 @@ class misc(commands.Cog):
         msg = await ctx.send(embed=embed)
         for i in range(1, len(options) + 1): await msg.add_reaction(reactions[i])
 
-    '''@commands.command(aliases=['myst'])
-    async def mystbin(self,ctx,*,code: codeblock_converter = None):
-        """Post code to mystbin."""
-        code = code.content if code else None
-        paste = await self.myst.post(code,syntax="python")
-        str(paste)
-        await ctx.send(f"{ctx.author.mention} Here is your code <:join:736719688956117043> {paste.url}")'''
-
-    @commands.command(aliases = ["myst"])
+    @commands.command(aliases = ["myst", "paste"])
     async def mystbin(self, ctx, *, code):
         """Post code to mystbin."""
         code = codeblocks.codeblock_converter(code)
