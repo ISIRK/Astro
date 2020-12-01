@@ -19,7 +19,7 @@ class ErrorHandler(Cog):
         elif isinstance(error, commands.BadArgument):
             await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.NotOwner):
-            return #await ctx.send(embed = discord.Embed(title = "You are not an owner.", color = discord.Color.red()))
+            await ctx.send(embed = discord.Embed(title = "You are not an owner.", color = discord.Color.red())) #return
         elif isinstance(error, commands.BotMissingPermissions):
             await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, discord.NotFound): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
