@@ -9,7 +9,7 @@ class ErrorHandler(Cog):
         
     @Cog.listener()
     async def on_command_error(self, ctx, error):
-        ignored_errors = (commands.NotOwner) #commands.CommandNotFound, 
+        ignored_errors = (commands.CommandNotFound, commands.NotOwner) 
         
         error = getattr(error, "original", error)
 
@@ -36,7 +36,7 @@ class ErrorHandler(Cog):
             #await ctx.send(embed = discord.Embed(title = "You are not an owner.", color = discord.Color.red()))
         elif isinstance(error, commands.BotMissingPermissions):
             await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
-        elif isinstance(error, discord.CommandNotFound): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+        elif isinstance(error, discord.NotFound): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.CommandOnCooldown): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         else:
             c = bot.get_channel(783138336323403826) 
