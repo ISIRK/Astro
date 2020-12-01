@@ -223,19 +223,19 @@ class meta(commands.Cog):
         *Note: `help` doesn't work*'''
         # This is inspired by R.danny source at
         # https://github.com/Rapptz/RoboDanny/blob/rewrite/cogs/meta.py#L328-L366
-        repo = "https://github.com/isirk/Sirk"
+        repo = "If you are using code, make sure to star the repo.\nhttps://github.com/isirk/Sirk"
         if command is None:
             return await ctx.send(repo)
         else:
             com = self.bot.get_command(command)
             if com is None:
-                return await ctx.send('https://github.com/isirk/Sirk')
+                return await ctx.send('If you are using code, make sure to star the repo.\nhttps://github.com/isirk/Sirk')
             else:
                 code = com.callback.__code__
                 filename = code.co_filename
                 lines, firstline = inspect.getsourcelines(code)
                 location = os.path.relpath(filename).replace('\\', '/')
-                final_url = f'{repo}/blob/master/{location}#L{firstline}-L' \
+                final_url = f'If you are using code, make sure to star the repo.\n{repo}/blob/master/{location}#L{firstline}-L' \
                             f'{firstline + len(lines) - 1}'
                 return await ctx.send(final_url)
 
