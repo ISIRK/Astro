@@ -74,7 +74,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
     
     @commands.command()
     async def mystbin(self,ctx,*,code: codeblock_converter = None):
-      """Post code to mystbin."""
+        """Post code to mystbin."""
         code = code.content if code else None
         paste = await self.myst.post(code, syntax="python")
         str(paste)
