@@ -51,12 +51,14 @@ class info(commands.Cog):
     async def i(self, ctx):
         """Displays bot info"""
         mem = psutil.virtual_memory()
-        embed = discord.Embed(title="Bot Info")
+        embed = discord.Embed(title="Bot Info", color=color)
         embed.set_author(name="isirk#0001", icon_url="https://asksirk.com/img/isirk.gif")
         embed.set_footer(text=footer)
         embed.add_field(name="About",
-                        value=f"A minimalistic bot for discord\nDeveloped by [isirk](https://discord.com/users/542405601255489537)\n[Support Server](https://discord.gg/7yZqHfG).")
+                        value=f"A simple, easy to use, discord bot made to make your use of discord easy.\nDeveloped by [isirk](https://discord.com/users/542405601255489537)\n[Support Server](https://discord.gg/7yZqHfG).")
         embed.add_field(name=f"Servers: {len(self.bot.guilds)}", value=f"Users: {len(self.bot.users)}")
+        embed.add_field(name= "News", 
+                        value=f"**🎧 <@751447995270168586> Has music commands! 🎧**\n> To see the music commands use `{ctx.prefix}help music`!")
         embed.add_field(name="Usage:",
                         value=f"```{mem[0] / 1000000} MB total \n{mem[1] / 1000000} MB available ({100 - mem[2]}%)```",
                         inline=False)
