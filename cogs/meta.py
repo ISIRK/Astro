@@ -217,5 +217,29 @@ class meta(commands.Cog):
         embed.set_footer(text=footer)
         await ctx.send(content=None, embed=embed)
 
+    @commands.command()
+    async def source(self, ctx, *, command: str = None):
+        '''Get the bot source
+        *Note: `help` doesn't work'''
+        # This is inspired by R.danny source at
+        # https://github.com/Rapptz/RoboDanny/blob/rewrite/cogs/meta.py#L328-L366
+        repo = "https://github.com/isirk/Sirk"
+        if command is None:
+            return await ctx.send(repo)
+        else:
+            com = self.bot.get_command(command)
+            if com is None:
+                return await ctx.send(
+                    'There is no command with that name. Maybe check repo\n'
+                    'https://github.com/isirk/Sirk')
+            else:
+                code = com.callback.__code__
+                filename = code.co_filename
+                lines, firstline = inspect.getsourcelines(code)
+                location = os.path.relpath(filename).replace('\\', '/')
+                final_url = f'{repo}/blob/master/{location}#L{firstline}-L' \
+                            f'{firstline + len(lines) - 1}'
+                return await ctx.send(final_url)
+
 def setup(bot):
     bot.add_cog(meta(bot))
