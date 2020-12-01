@@ -29,7 +29,7 @@ class ErrorHandler(Cog):
 
     @Cog.listener()
     async def on_command_error(self, ctx, error):
-        ignored_errors = (commands.CommandNotFound,)
+        ignored_errors = (commands.CommandNotFound, commands.NotOwner)
         
         error = getattr(error, "original", error)
 
@@ -52,13 +52,12 @@ class ErrorHandler(Cog):
             await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.BadArgument):
             await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
-        elif isinstance(error, commands.NotOwner):
-            await ctx.send(embed = discord.Embed(title = "You are not an owner.", color = discord.Color.red()))
+        '''elif isinstance(error, commands.NotOwner):
+            await ctx.send(embed = discord.Embed(title = "You are not an owner.", color = discord.Color.red()))'''
         elif isinstance(error, commands.BotMissingPermissions):
-            await ctx.send(embed = discord.Embed(description = str(error)))
-        elif isinstance(error, discord.NotFound): await ctx.send(embed = discord.Embed(description = str(error)))
-        elif isinstance(error, commands.CommandOnCooldown): await ctx.send(embed = discord.Embed(description = str(error)))
-        elif isinstance(error, commands.CheckFailure): await ctx.send(embed = discord.Embed(description = "You are blacklisted! Contact the owner to talk about it."))
+            await ctx.send(embed = discord.Embed(description = str(error), color = discord.Color.red()))
+        elif isinstance(error, discord.NotFound): await ctx.send(embed = discord.Embed(description = str(error), color = discord.Color.red()))
+        elif isinstance(error, commands.CommandOnCooldown): await ctx.send(embed = discord.Embed(description = str(error), color = discord.Color.red()))
         else:
             c = bot.get_channel(783138336323403826) 
             embed = discord.Embed(
