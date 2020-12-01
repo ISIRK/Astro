@@ -100,11 +100,11 @@ class dev(commands.Cog):
     @commands.is_owner()
     async def sync(self, ctx):
         """Sync with GitHub and reload all the cogs"""
-        embedvar = discord.Embed(title="Syncing...", description="Syncing and reloading cogs.", color=color)
-        msg = await ctx.send(embed=embedvar)
+        embed = discord.Embed(title="Syncing...", description="Syncing and reloading cogs.", color=color)
+        msg = await ctx.send(embed=embed)
         async with ctx.channel.typing():
             output = sp.getoutput('git pull')
-        embedvar = discord.Embed(title="Synced", description="Synced with GitHub and reloaded all the cogs.", color=color)
+        embed = discord.Embed(title="Synced", description="Synced with GitHub and reloaded all the cogs.", color=color)
         # Reload Cogs as well
         error_collection = []
         for file in os.listdir("cogs"):
@@ -122,7 +122,7 @@ class dev(commands.Cog):
                 f"however the following failed...\n\n{err}"
             )
 
-        await msg.edit(embed=embedvar)
+        await msg.edit(embed=embed)
     
     # Do not use because of ram usage, cuz it does not kill what is running.
     '''@commands.is_owner()
