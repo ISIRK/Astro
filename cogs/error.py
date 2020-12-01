@@ -29,7 +29,7 @@ class ErrorHandler(Cog):
 
     @Cog.listener()
     async def on_command_error(self, ctx, error):
-        ignored_errors = (commands.CommandNotFound,)
+        '''ignored_errors = (commands.CommandNotFound,)
         
         error = getattr(error, "original", error)
 
@@ -43,8 +43,8 @@ class ErrorHandler(Cog):
         )
 
         if ctx.original_author_id in self.bot.owner_ids and isinstance(error, owner_reinvoke_errors):
-            return await ctx.reinvoke()
-        elif isinstance(error, commands.CommandNotFound):
+            return await ctx.reinvoke()'''
+        if isinstance(error, commands.CommandNotFound):
             return
         elif isinstance(error, commands.MissingPermissions):
             await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
