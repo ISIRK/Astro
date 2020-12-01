@@ -46,6 +46,7 @@ class other(commands.Cog):
         embed = discord.Embed(title="Dice", description=f'The Dice Rolled {random.choice(dice)}', color=color)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/766312838910181421/unknown.png")
         embed.set_footer(text=footer)
+        embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
         
@@ -103,6 +104,7 @@ class other(commands.Cog):
         else:
             embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=color)
             embed.set_image(url=resp['url'])
+            embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
             embed.set_footer(text=f"r/Dankmemes | {footer}")
             await ctx.send(embed=embed)
 
@@ -114,6 +116,7 @@ class other(commands.Cog):
             resp = await resp.json()
         embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=color)
         embed.set_image(url=resp['url'])
+        embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         embed.set_footer(text=f"r/ProgrammerHumor | {footer}")
         await ctx.send(embed=embed)
 
@@ -127,6 +130,7 @@ class other(commands.Cog):
         embed.set_image(url=f"https://minotar.net/armor/body/{username}/100.png")
         embed.set_thumbnail(url=f"https://minotar.net/helm/{username}/100.png")
         embed.set_thumbnail(url=f"https://mc-heads.net/avatar/{username}/100.png")
+        embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         embed.set_footer(text=footer)
         await ctx.send(embed=embed)
 
@@ -140,6 +144,7 @@ class other(commands.Cog):
         embed=discord.Embed(title=f"Stats for {server}", description=f"IP: {resp['serverip']}\nStatus: {resp['serverStatus']}\nPing: {resp['ping']}\nVersion: {resp['version']}\nPlayers: {resp['players']}\nMax Players: {resp['maxplayers']}", color=color)
         embed.set_thumbnail(url=f"https://api.minetools.eu/favicon/{server}/25565")
         embed.set_footer(text=footer)
+        embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
             
@@ -215,6 +220,7 @@ class other(commands.Cog):
                     embed.add_field(name='Time', value=f"**🕓 Local Time:** {localTime.strftime('%I:%M %p')}\n **🌅 Sunrise Time:** {sunriseTime.strftime('%I:%M %p')}\n **🌇 Sunset Time:** {sunsetTime.strftime('%I:%M %p')}")
                     embed.set_thumbnail(url=f"https://openweathermap.org/img/wn/{weather_response['weather'][0]['icon']}@2x.png")
                     embed.set_footer(text=footer, icon_url=f"https://openweathermap.org/img/wn/{weather_response['weather'][0]['icon']}@2x.png")
+                    embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
                     await ctx.send(embed=embed)
 
 
