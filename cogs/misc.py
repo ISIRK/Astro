@@ -244,7 +244,7 @@ class misc(commands.Cog):
     async def rps(self, ctx):
         """Rock paper scissors, either play against the bot or against a user"""
         choices = ["\U0001f4f0", "\U0001faa8", "\U00002702"]
-        s = m = await ctx.send(embed = discord.Embed(title = f"Rock, Paper, Scissors with {str(ctx.author)} and {str(ctx.me)}!", description = "It's quite simple, just add a reaction to the message with your choice!"))
+        s = m = await ctx.send(embed = discord.Embed(title = f"Rock, Paper, Scissors.", description = f" {str(ctx.author)} Choose your weapon!", color=color))
         for i in choices:
             await m.add_reaction(i)
 
@@ -257,7 +257,7 @@ class misc(commands.Cog):
             botChoice = random.choice(choices)
             result = rps_winner(reaction, botChoice)
 
-            await s.edit(embed= discord.Embed(title = "Results:", description = f"I picked {botChoice} and you picked {reaction} \n\n{result}"))
+            await s.edit(embed= discord.Embed(title = "Results:", description = f"I picked {botChoice} and you picked {reaction} \n\n{result}", color=color))
 
         except asyncio.TimeoutError: return await ctx.send("You didn't add a reaction in time!")
 
