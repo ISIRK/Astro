@@ -3,29 +3,10 @@ from discord.ext import commands
 from discord.ext.commands import Cog
 from datetime import datetime
 
-# noinspection PyRedundantParentheses
 class ErrorHandler(Cog):
     def __init__(self, bot):
         self.bot = bot
-
-    """Pretty much from here:
-    https://github.com/4Kaylum/DiscordpyBotBase/blob/master/cogs/error_handler.py"""
-
-    async def send_to_ctx_or_author(self, ctx, text: str = None, *args, **kwargs) -> typing.Optional[discord.Message]:
-        """Tries to reply the given text to ctx, but failing that, tries to reply it to the author
-        instead. If it fails that too, it just stays silent."""
-
-        try:
-            return await ctx.send(text, *args, **kwargs)
-        except discord.Forbidden:
-            try:
-                return await ctx.author.send(text, *args, **kwargs)
-            except discord.Forbidden:
-                pass
-        except discord.NotFound:
-            pass
-        return None
-
+        
     @Cog.listener()
     async def on_command_error(self, ctx, error):
         ignored_errors = (commands.CommandNotFound, commands.NotOwner)
