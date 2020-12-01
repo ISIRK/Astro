@@ -261,5 +261,9 @@ class misc(commands.Cog):
 
         except asyncio.TimeoutError: return await ctx.send("You didn't add a reaction in time!")
 
+    @commands.command()
+    async def replace(self, ctx, char, *, text):
+      await ctx.send(text.replace(" ", f" {char} "))
+
 def setup(bot):
     bot.add_cog(misc(bot))
