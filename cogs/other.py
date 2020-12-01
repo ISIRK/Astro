@@ -61,9 +61,9 @@ class other(commands.Cog):
     @commands.cooldown(1,3,BucketType.user)
     async def chatbot(self, ctx, *, message):
         '''Talk to chatbot'''
-        async with self.session.get(f"https://some-random-api.ml/chatbot?message={message}") as r:
+        async with self.session.get(f"http://bruhapi.xyz/cb/{message}") as r:
             resp = await r.json()
-        await ctx.send(resp['response'])
+        await ctx.send(resp['res'])
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
