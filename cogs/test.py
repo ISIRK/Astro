@@ -73,13 +73,12 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
         await menu.start(ctx)
     
     @commands.command()
-    async def myst(self, ctx, *, code : str):
-        '''Post code to mystbin
-        *Note: if you use "```" then it will show up in the post.*'''
-        res = codeblock_converter(code)
-        paste = await self.myst.post(res, syntax="python")
+    async def mystbin(self,ctx,*,code: codeblock_converter = None):
+      """Post code to mystbin."""
+        code = code.content if code else None
+        paste = await self.myst.post(code, syntax="python")
         str(paste)
-        await ctx.send(f"{ctx.author.mention} Here is your code <:join:736719688956117043> {paste.url}")
+        await ctx.send(f"{ctx.author.mention} Here is your code :join: {paste.url}")
         
 def setup(bot):
     bot.add_cog(test(bot))
