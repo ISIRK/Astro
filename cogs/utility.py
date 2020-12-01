@@ -57,7 +57,7 @@ class utility(commands.Cog):
                               f'<:textchannel:724637677395116072> **{len(ctx.guild.text_channels)}**\n'
                               f'<:voicechannel:724637677130875001> **{len(ctx.guild.voice_channels)}**\n', inline = False)
 
-        embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         embed.set_thumbnail(url=ctx.guild.icon_url)
         embed.set_image(url=ctx.guild.banner_url)
         embed.set_footer(text=f'Guild ID: {ctx.guild.id} | {footer}')
@@ -104,7 +104,7 @@ class utility(commands.Cog):
                               f'Roles: {roles}', inline=False)
 
         embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
-        embed.set_author(name=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         embed.set_footer(text=f'Member ID: {member.id} | {footer}')
 
         return await ctx.send(embed=embed)
@@ -116,7 +116,7 @@ class utility(commands.Cog):
             member = ctx.message.author # set member as the author
         userAvatar = member.avatar_url
         avatarembed = discord.Embed(color=color)
-        avatarembed.set_author(name=member) #, icon_url=ctx.author.avatar_url
+        avatarembed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         avatarembed.set_image(url=userAvatar)
         await ctx.send(embed=avatarembed)
                         
