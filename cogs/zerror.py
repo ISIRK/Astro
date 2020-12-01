@@ -9,14 +9,6 @@ class ErrorHandler(Cog):
         
     @Cog.listener()
     async def on_command_error(self, ctx, error):
-        
-        error = getattr(error, "original", error)
-
-        if isinstance(error):
-            return
-
-        setattr(ctx, "original_author_id", getattr(ctx, "original_author_id", ctx.author.id))
-        owner_reinvoke_errors = (commands.CommandOnCooldown)
 
         if ctx.original_author_id in self.bot.owner_ids and isinstance(error, owner_reinvoke_errors):
             return await ctx.reinvoke()
