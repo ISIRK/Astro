@@ -59,11 +59,11 @@ class info(commands.Cog):
         embed.add_field(name=f"Stats",
                         value=f"Servers: {len(self.bot.guilds)}\nUsers: {len(self.bot.users)}\nCommands: {len(self.bot.commands)}")
         embed.add_field(name= "News", 
-                        value=f"```py\n🎧 Music Commands have launched 🎧\n> To see the music commands use {ctx.prefix}help music!```",
+                        value=f"**🎧 Music Commands have launched 🎧**\n> To see the music commands use `{ctx.prefix}help music`!",
                        inline=False)
-        embed.add_field(name="Usage:",
+        '''embed.add_field(name="Usage:",
                         value=f"```{mem[0] / 1000000} MB total \n{mem[1] / 1000000} MB available ({100 - mem[2]}%)```",
-                        inline=False)
+                        inline=False)'''
         embed.add_field(name="Version Info",
                         value=f"```Python: {platform.python_version()}\nDiscord.py: {discord.__version__}```")
         embed.add_field(name="Vote!",
