@@ -217,11 +217,11 @@ class meta(commands.Cog):
         embed.set_footer(text=footer)
         await ctx.send(content=None, embed=embed)
 
-    @commands.command(aliases=['src', 'code'])
+   '''@commands.command(aliases=['src', 'code'])
     async def source(self, ctx, *, command: str = None):
-        '''Get the bot source
-        __**Make sure to leave a star if you use code.**__'''
-        await ctx.send(embed=discord.Embed(title="If you are using code, make sure to star the repo", description="https://github.com/isirk/Sirk", color=color))
+        Get the bot source
+        __**Make sure to leave a star if you use code.**__
+        await ctx.send(embed=discord.Embed(title="If you are using code, make sure to star the repo", description="https://github.com/isirk/Sirk", color=color))'''
 
 def setup(bot):
     bot.add_cog(meta(bot))
