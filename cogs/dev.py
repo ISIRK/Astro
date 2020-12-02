@@ -36,7 +36,7 @@ footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
 
-class dev(commands.Cog):
+class dev(commands.Cog, name="<:dev:759427919302492160> Dev"):
     '''Dev Commands'''
     def __init__(self, bot):
         self.bot = bot
