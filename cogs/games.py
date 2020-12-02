@@ -30,7 +30,7 @@ class games(commands.Cog):
         self.bot = bot
         
     @commands.command()
-    @commands.cooldown(1,5,BucketType.user)
+    @commands.cooldown(1,3,BucketType.user)
     async def dice(self, ctx):
         '''Roll a dice'''
         dice = ['1', '2', '3', '4', '5', '6', 'off the table...\n*You Found The Mystery!*']
@@ -41,7 +41,7 @@ class games(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    @commands.cooldown(1,5,BucketType.user) 
+    @commands.cooldown(1,3,BucketType.user)
     async def quiz(self, ctx):
         '''Take a halloween quiz'''
         qa = {
@@ -83,7 +83,7 @@ class games(commands.Cog):
         await ctx.send(f"Correct!\nYou took **{time_taken:,.2f} seconds!**")
 
     
-    @commands.cooldown(1,5,BucketType.user)
+    @commands.cooldown(1,3,BucketType.user)
     @commands.command()
     async def rps(self, ctx):
         """Rock paper scissors, either play against the bot or against a user"""
