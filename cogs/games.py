@@ -1,4 +1,4 @@
-import discord, random
+import discord, random, json
 from discord.ext import commands, menus
 
 tools = "/home/pi/Discord/Sirk/utils/tools.json"
