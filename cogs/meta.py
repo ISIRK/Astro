@@ -221,7 +221,7 @@ class meta(commands.Cog):
     async def source(self, ctx, *, command: str = None):
         '''Get the bot source
         __**Make sure to leave a star if you use code.**__'''
-        await ctx.send("If you are using code, make sure to star the repo.\nhttps://github.com/isirk/Sirk")
+        await ctx.send(discord.Embed(title="If you are using code, make sure to star the repo", description="https://github.com/isirk/Sirk", color=color))
 
 def setup(bot):
     bot.add_cog(meta(bot))
