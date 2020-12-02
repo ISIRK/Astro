@@ -1,4 +1,4 @@
-import discord, random, json
+import discord, random, json, time
 from discord.ext import commands, menus
 from discord.ext.commands.cooldowns import BucketType
 
