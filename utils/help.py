@@ -16,7 +16,7 @@ class EmbedHelpCommand(commands.HelpCommand):
 
     async def send_bot_help(self, mapping):
         embed = discord.Embed(title='Help', color=color)
-        description = f'Commands for Sirk Bot.\nMade with ❤️ in <:python:758139554670313493> by [isirk](https://discord.com/users/542405601255489537)\n*Note: Commands are shown based on permissions.*'
+        description = f'Commands for Sirk Bot.\nMade in <:python:758139554670313493> by [isirk](https://discord.com/users/542405601255489537)\n*Note: Commands are shown based on permissions.*'
         if description:
             embed.description = description
 
