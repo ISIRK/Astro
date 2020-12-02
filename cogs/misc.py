@@ -23,7 +23,7 @@ class misc(commands.Cog):
         
         
     @commands.command()
-    @commands.cooldown(1,3,BucketType.user)
+    @commands.cooldown(1,5,BucketType.user)
     async def joke(self, ctx):
         '''Get a joke'''
         async with self.session.get("https://dadjoke-api.herokuapp.com/api/v1/dadjoke") as r:
@@ -31,7 +31,6 @@ class misc(commands.Cog):
         await ctx.send(resp['joke'])
      
     @commands.command(aliases=['cb'])
-    @commands.cooldown(1,3,BucketType.user)
     async def chatbot(self, ctx, *, message):
         '''Talk to chatbot'''
         async with self.session.get(f"http://bruhapi.xyz/cb/{message}") as r:
@@ -65,7 +64,7 @@ class misc(commands.Cog):
             await ctx.send(resp['text'])
         
     @commands.command()
-    @commands.cooldown(1,5,BucketType.user) 
+    @commands.cooldown(1,3,BucketType.user) 
     async def meme(self, ctx):
         '''Get a random meme'''
         async with self.session.get('https://meme-api.herokuapp.com/gimme/dankmemes') as resp:
@@ -81,7 +80,7 @@ class misc(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['ph'])
-    @commands.cooldown(1,5,BucketType.user) 
+    @commands.cooldown(1,3,BucketType.user) 
     async def programmerhumor(self, ctx):
         '''Get a programmer humor meme'''
         async with self.session.get('https://meme-api.herokuapp.com/gimme/ProgrammerHumor') as resp:
@@ -119,7 +118,7 @@ class misc(commands.Cog):
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-    @commands.cooldown(1,30,BucketType.user)
+    @commands.cooldown(1,10,BucketType.user)
     @commands.command()
     async def weather(self, ctx, *, city_name:str):
         """Get the weather of a city/town by its name. State code is US only."""
@@ -153,11 +152,13 @@ class misc(commands.Cog):
                     await ctx.send(embed=embed)
 
     @commands.command()
+    @commands.cooldown(1,3,BucketType.user)
     async def replace(self, ctx, char, *, text):
       '''Send a message with an emoji in between each word'''
       await ctx.send(text.replace(" ", f" {char} "))
 
     @commands.command()
+    @commands.cooldown(1,3,BucketType.user)
     async def poll(self, ctx, title, *options):
         '''Make a quick poll'''
         reactions = {1: "1️⃣", 2: "2️⃣", 3: "3️⃣", 4: "4️⃣", 5: "5️⃣", 6: "6️⃣", 7: "7️⃣", 8: "8️⃣", 9: "9️⃣", 10: "🔟"}
@@ -176,6 +177,7 @@ class misc(commands.Cog):
         for i in range(1, len(options) + 1): await msg.add_reaction(reactions[i])
 
     @commands.command(aliases = ["myst", "paste"])
+    @commands.cooldown(1,3,BucketType.user)
     async def mystbin(self, ctx, *, code):
         """Post code to mystbin."""
         code = codeblocks.codeblock_converter(code)
