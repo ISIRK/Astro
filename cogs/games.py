@@ -45,12 +45,9 @@ class games(commands.Cog):
     async def quiz(self, ctx):
         '''Take a halloween quiz'''
         qa = {
-            "`What was Halloween originally called?`": "ALL HALLOWS EVE",
-            "`What was candy corn originally called?`": "CHICKEN FEED",
-            "`(Approx)How much money does the average American spend on Halloween every year?`\n**A) $45\nB) $60\nC) $85\nD) $100**": "C",
-            "`(Approx)What percentage of kids like to recieve gum for halloween?`": "10",
-            "`When is Halloween?`": "OCTOBER 31",
-            "`What country was Trick-or-treating first done?`": "CANADA"
+            "`Was King William I of England was crowned on Christmas Day.(Yes/No)`": "YES",
+            "`When is Christmas?`": "DECEMBER 25",
+            "`Who delivers toys?`" : "SANTA"
         }
         total_questions = len(qa)
         start_time = time.time()
@@ -63,9 +60,7 @@ class games(commands.Cog):
             append = "Type your answer below"
 
             if i == 0:
-                content += "Quest Started!\n"
-            elif i == 2:
-                append += " [Format: A|B|C|D]"
+                content += "Quiz Started!\n"
             else:
                 content += "Correct!\n"
             content += (f"**Question {i+1})** {question}\n"
@@ -78,7 +73,7 @@ class games(commands.Cog):
                 return await ctx.send("Timeout Error")
 
             if message.content.upper() != answer:
-                return await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}quest`")
+                return await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}quiz`")
         time_taken = time.time()- start_time
         await ctx.send(f"Correct!\nYou took **{time_taken:,.2f} seconds!**")
 
