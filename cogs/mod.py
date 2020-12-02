@@ -141,7 +141,7 @@ class mod(commands.Cog):
             else:
                 embed = discord.Embed(title=title.content, description=description.content, color=color)
                 await channel.send(embed=embed)
-                await ctx.send(f'`{title.content}` Embed sent in #{channel}')
+                await ctx.send(f'`{title.content}` Embed sent in #{channel.mention}')
 
 def setup(bot):
     bot.add_cog(mod(bot))
