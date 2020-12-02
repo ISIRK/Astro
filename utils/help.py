@@ -8,19 +8,6 @@ with open(file) as f:
     color = int(data['COLOR'], 16)
 
 class EmbedHelpCommand(commands.HelpCommand):
-    """This is an example of a HelpCommand that utilizes embeds.
-    It's pretty basic but it lacks some nuances that people might expect.
-    1. It breaks if you have more than 25 cogs or more than 25 subcommands. (Most people don't reach this)
-    2. It doesn't DM users. To do this, you have to override `get_destination`. It's simple.
-    Other than those two things this is a basic skeleton to get you started. It should
-    be simple to modify if you desire some other behaviour.
-        
-    To use this, pass it to the bot constructor e.g.:
-        
-    bot = commands.Bot(help_command=EmbedHelpCommand())
-    """
-    # Set the embed colour here
-
     def get_ending_note(self):
         return 'Use {0}{1} [module|command] for more info on a module or command.'.format(self.clean_prefix, self.invoked_with)
 
@@ -70,8 +57,4 @@ class EmbedHelpCommand(commands.HelpCommand):
 
         embed.set_footer(text=self.get_ending_note())
         await self.get_destination().send(embed=embed)
-
-        # This makes it so it uses the function above
-        # Less work for us to do since they're both similar.
-        # If you want to make regular command help look different then override it
     send_command_help = send_group_help
