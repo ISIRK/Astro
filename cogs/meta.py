@@ -37,7 +37,7 @@ class meta(commands.Cog):
     @commands.command()
     async def stats(self, ctx):
         '''Get statistics about the bot.'''
-        embed=discord.embed(title="<a:loading:737722827112972449> Gathering Stats", color=color)
+        embed = discord.Embed(title="<a:loading:737722827112972449> Gathering Stats", color=color)
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         embed.set_footer(text=footer)
         msg = await ctx.send(embed=embed)
