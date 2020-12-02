@@ -146,7 +146,7 @@ class meta(commands.Cog):
 
         return await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(aliases=['whois', 'ui'])
     async def user(self, ctx, *, member: discord.Member = None):
         '''Get information about the mentioned user.'''
         if member is None:
@@ -174,15 +174,15 @@ class meta(commands.Cog):
         shared = sum(g.get_member(member.id) is not None for g in self.bot.guilds)
         embed = discord.Embed(title=f"{member}", color=member.color)
         embed.add_field(name='**General:**',
-                        value=f'Name: `{member}`\n' 
+                        value=f'Name: **{member}**\n' 
                               f'Status: {statuses[str(member.status)]}\n'
-                              f'Bot: `{member.bot}`\n'
-                              f'Shared Guilds: `{shared}`\n'
-                              f'Account Created on: `{datetime.datetime.strftime(member.created_at, "%A %d %B %Y at %H:%M")}`', inline=False)
+                              f'Bot: **{member.bot}**\n'
+                              f'Shared Guilds: **{shared}**\n'
+                              f'Account Created on: **{datetime.datetime.strftime(member.created_at, "%A %d %B %Y at %H:%M")}**', inline=False)
 
         embed.add_field(name='**Guild related information:**',
-                        value=f'Joined guild: `{datetime.datetime.strftime(member.joined_at, "%A %d %B %Y at %H:%M")}`\n'
-                              f'Nickname: `{member.nick}`\n'
+                        value=f'Joined guild: **{datetime.datetime.strftime(member.joined_at, "%A %d %B %Y at %H:%M")}**\n'
+                              f'Nickname: **{member.nick}**\n'
                               f'Roles: {roles}', inline=False)
 
         embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
