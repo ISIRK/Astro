@@ -38,6 +38,14 @@ class misc(commands.Cog):
         await ctx.send(resp['res'])
         
     @commands.command()
+    async def translate(self, ctx, *, message):
+        '''Translate text to english.'''
+        async with self.session.get(f"http://bruhapi.xyz/translate/{message}") as r:
+            resp = await r.json()
+        embed = discord.Embed(title="Translate", description=f"Original: {resp['original']}\nTranslation: {resp['text']}", color=color)
+        await ctx.send(embed=embed)
+        
+    @commands.command()
     @commands.cooldown(1,3,BucketType.user)
     async def binary(self, ctx, *, text: str):
         '''Change text into binary'''
