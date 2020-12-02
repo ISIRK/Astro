@@ -217,6 +217,7 @@ class meta(commands.Cog):
         embed.set_footer(text=footer)
         await ctx.send(content=None, embed=embed)
 
+    '''
     @commands.command()
     async def source(self, ctx, *, command: str = None):
         """Displays my full source code or for a specific command.
@@ -254,6 +255,7 @@ class meta(commands.Cog):
 
         final_url = f'<{source_url}/blob/{branch}/{location}#L{firstlineno}-L{firstlineno + len(lines) - 1}>'
         await ctx.send(final_url)
+    '''
                         
 def setup(bot):
     bot.add_cog(meta(bot))
