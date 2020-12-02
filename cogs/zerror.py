@@ -11,7 +11,7 @@ class ErrorHandler(Cog):
     async def on_command_error(self, ctx, error):
 
         if isinstance(error, commands.CommandNotFound):
-            return
+            await ctx.send(embed = discord.Embed(title = "Command Not Found.", description= f"Use `{ctx.prefix}help for a list of commands", color = discord.Color.red())) #return
         elif isinstance(error, commands.MissingPermissions):
             await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.MissingRequiredArgument):
