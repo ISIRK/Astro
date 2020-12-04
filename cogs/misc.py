@@ -211,7 +211,7 @@ class misc(commands.Cog):
                     embed.add_field(name="Artist", value=activity.artist)
                     embed.add_field(name="Album", value=activity.album)
                     embed.add_field(name="Duration", value=activity.duration, inline=True)
-                    embed.add_field(name="Elapsed", value="{}".format(activity.created_at.strftime("%H:%M")))
+                    embed.add_field(name="Elapsed", value="{}".format(activity.created_at.strftime("%H:%M")), inline=True)
                     embed.set_footer(text=footer)
                     return await ctx.send(embed=embed)
             return await ctx.send('No Spotify Activity Found')
