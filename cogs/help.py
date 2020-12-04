@@ -153,7 +153,7 @@ class HelpMenu(RoboPages):
         embed.description = 'Sirk Bot\nA minimalistic bot for discord\nDeveloped by [isirk#0001](https://discord.com/users/542405601255489537)'
         embed.add_field(name='Update v1.0.3', value=f'{add} Added New Help Command\n{add} Added Spotify Command\n{remove} Removed Music Commands(For Now)', inline=False)
         embed.add_field(name="Upcoming features", value="> • Wavelink/Lavalink Music Commands\n> • Mongodb or postgresql database support\n> • Custom Prefixes\nAnd Much More...", inline=False)
-        embed.add_field(name="Links", value="[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot)\n[Vote](https://top.gg/bot/751447995270168586/vote)\n[Website](https://asksirk.com/bot/)", inline=False)
+        embed.add_field(name="Links", value="[Vote](https://top.gg/bot/751447995270168586/vote)\n[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot)\n[Website](https://asksirk.com/bot/)", inline=False)
         embed.set_footer(text=footer)
         await self.message.edit(embed=embed)
 
