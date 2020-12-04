@@ -168,7 +168,6 @@ class HelpMenu(RoboPages):
 
         embed = discord.Embed(title='Using the bot', colour=color)
         embed.title = 'Sirk Bot'
-        embed.description = 'test'
         embed.add_field(name='Update v1.0.3', value='**New Help Command!**\nYou probably already know this because you are using it but, Sirk bot has a new help command.', inline=False)
         embed.add_field(name="Upcomming features", value="> Wavelink/Lavalink Music Commands\n> Mongodb or postgresql database support\n> Custom Prefixes\n> Much More", inline=False)
         embed.set_footer(text=footer)
