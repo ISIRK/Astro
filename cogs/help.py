@@ -71,7 +71,7 @@ class BotHelpPageSource(menus.ListPageSource):
 
     async def format_page(self, menu, cogs):
         prefix = menu.ctx.prefix
-        description = f'Sirk Bot\nA minimalistic bot for discord.\nDeveloped by [isirk#0001](https://discord.com/users/542405601255489537)\nUse `{self.prefix}[module|command]` for more info on a module or command.\n**Use the reactions below to change the page**'
+        description = f'Sirk Bot\nA minimalistic bot for discord\nDeveloped by [isirk#0001](https://discord.com/users/542405601255489537)\nUse `{self.prefix}[module|command]` for more info on a module or command.\n**Use the reactions below to change the page**'
 
         embed = discord.Embed(title='Help Menu', description=description, colour=color)
 
@@ -150,7 +150,7 @@ class HelpMenu(RoboPages):
 
         embed = discord.Embed(title='Using the bot', colour=color)
         embed.title = 'Sirk Bot'
-        embed.description = 'Sirk Bot\nA minimalistic bot for discord.\nDeveloped by [isirk#0001](https://discord.com/users/542405601255489537)'
+        embed.description = 'Sirk Bot\nA minimalistic bot for discord\nDeveloped by [isirk#0001](https://discord.com/users/542405601255489537)'
         embed.add_field(name='Update v1.0.3', value=f'{add} Added New Help Command\n{add} Added Spotify Command\n{remove} Removed Music Commands(For Now)', inline=False)
         embed.add_field(name="Upcoming features", value="> • Wavelink/Lavalink Music Commands\n> • Mongodb or postgresql database support\n> • Custom Prefixes\nAnd Much More...", inline=False)
         embed.set_footer(text=footer)
