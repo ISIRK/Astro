@@ -1,11 +1,10 @@
 import discord, aiohttp, json
 from discord.ext import tasks, commands
 
-tools = "/json/config.json"
+config = "/json/config.json"
 with open(tools) as f:
     data = json.load(f)
-footer = data['FOOTER']
-color = int(data['COLOR'], 16)
+deltoken = data['DELTOKEN']
 
 class DEL(commands.Cog):
     def __init__(self, bot):

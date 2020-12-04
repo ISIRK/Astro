@@ -3,11 +3,10 @@ import json
 import discord
 from discord.ext import commands
 
-tools = "/json/config.json"
+config = "/json/config.json"
 with open(tools) as f:
     data = json.load(f)
-footer = data['FOOTER']
-color = int(data['COLOR'], 16)
+TOPTOKEN = data['TOPTOKEN']
 
 class TopGG(commands.Cog):
     """Handles interactions with the top.gg API"""
