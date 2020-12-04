@@ -143,7 +143,7 @@ class HelpMenu(RoboPages):
                               '__**You do not type in the brackets!**__')
         )
 
-        embed.add_field(name='How do I use this bot?', value=f'To use the bot type `{self.prefix}help` for a list of commands\nAnd then `{self.prefix}<command>` to use a command.')
+        embed.add_field(name='How do I use this bot?', value='To use the bot type `^help` for a list of commands\nAnd then `^<command>` to use a command.')
 
         for name, value in entries:
             embed.add_field(name=name, value=value, inline=False)
