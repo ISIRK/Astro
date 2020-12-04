@@ -21,26 +21,6 @@ color = int(data['COLOR'], 16)
 add = '<:add:784479069852008558>'
 remove = '<:remove:784479069672308778>'
 
-'''
-class Prefix(commands.Converter):
-    async def convert(self, ctx, argument):
-        user_id = ctx.bot.user.id
-        if argument.startswith((f'<@{user_id}>', f'<@!{user_id}>')):
-            raise commands.BadArgument('That is a reserved prefix already in use.')
-        return argument
-
-class FetchedUser(commands.Converter):
-    async def convert(self, ctx, argument):
-        if not argument.isdigit():
-            raise commands.BadArgument('Not a valid user ID.')
-        try:
-            return await ctx.bot.fetch_user(argument)
-        except discord.NotFound:
-            raise commands.BadArgument('User not found.') from None
-        except discord.HTTPException:
-            raise commands.BadArgument('An error occurred while fetching the user.') from None
-            '''
-
 class BotHelpPageSource(menus.ListPageSource):
     def __init__(self, help_command, commands):
 
