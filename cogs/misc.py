@@ -200,19 +200,21 @@ class misc(commands.Cog):
         '''Returns info about spotify playback.'''
         if user == None:
             user = ctx.author
-            await ctx.send('No spotify Activity')
         if user.activities:
             for activity in user.activities:
                 if isinstance(activity, Spotify):
                     embed = discord.Embed(
                         title = f"{user.name}'s Spotify",
                         description = "Listening to {}".format(activity.title),
-                        color = 0xC902FF)
+                        color = color)
                     embed.set_thumbnail(url=activity.album_cover_url)
                     embed.add_field(name="Artist", value=activity.artist)
                     embed.add_field(name="Album", value=activity.album)
-                    embed.set_footer(text="Song started at {}".format(activity.created_at.strftime("%H:%M")))
+                    embed.add_field(name="Song started at", value="{}".format(activity.created_at.strftime("%H:%M")))
+                    embed.set_footer(text=footer)
                     await ctx.send(embed=embed)
+                else:
+                    await ctx.send('No spotify Activity')
 
 def setup(bot):
     bot.add_cog(misc(bot))
