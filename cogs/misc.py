@@ -210,7 +210,7 @@ class misc(commands.Cog):
                     embed.set_thumbnail(url=activity.album_cover_url)
                     embed.add_field(name="Artist", value=activity.artist)
                     embed.add_field(name="Album", value=activity.album)
-                    embed.add_field(name="Song started at", value="{}".format(activity.created_at.strftime("%H:%M")))
+                    embed.add_field(name="Started at", value="{}".format(activity.created_at.strftime("%H:%M")))
                     embed.set_footer(text=footer)
                     await ctx.send(embed=embed)
 
