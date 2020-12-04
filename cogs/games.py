@@ -2,7 +2,7 @@ import discord, random, json, time
 from discord.ext import commands, menus
 from discord.ext.commands.cooldowns import BucketType
 
-tools = "/json/tools.json"
+tools = "json/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']

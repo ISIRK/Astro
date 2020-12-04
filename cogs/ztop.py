@@ -3,8 +3,8 @@ import json
 import discord
 from discord.ext import commands
 
-config = "/json/config.json"
-with open(tools) as f:
+config = "json/config.json"
+with open(config) as f:
     data = json.load(f)
 TOPTOKEN = data['TOPTOKEN']
 

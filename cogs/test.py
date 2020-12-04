@@ -2,7 +2,7 @@ import discord, json
 import subprocess as sp
 from discord.ext import commands, menus
 
-tools = "/json/tools.json"
+tools = "json/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']

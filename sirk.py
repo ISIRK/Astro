@@ -22,7 +22,7 @@ prefixes = data['PREFIXES']
 intents = discord.Intents.default()
 intents.presences = True
 intents.members = True
-bot = commands.Bot(command_prefix=commands.when_mentioned_or(prefixes), intents=intents, allowed_mentions=discord.AllowedMentions(users=True, roles=False, everyone=False))
+bot = commands.Bot(command_prefix=commands.when_mentioned_or("^"), intents=intents, allowed_mentions=discord.AllowedMentions(users=True, roles=False, everyone=False))
 # Might Wanna look at this: command_prefix=commands.when_mentioned_or(prefixes)
 
 bot.owner_ids = {542405601255489537}
@@ -45,7 +45,10 @@ async def on_message(message):
     if message.author == bot.user:
         return
     if message.content.endswith('<@!751447995270168586>'):
-        embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `sirk `, `Sirk `, `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
+        embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
+        await message.channel.send(embed=embed)
+    if message.content.endswith('<@751447995270168586>'):
+        embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
         await message.channel.send(embed=embed)
 
 for filename in os.listdir('./cogs'):

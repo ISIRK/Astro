@@ -27,9 +27,7 @@ import subprocess as sp
 
 from jishaku.codeblocks import codeblock_converter
 
-from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
-
-tools = "/json/tools.json"
+tools = "json/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']

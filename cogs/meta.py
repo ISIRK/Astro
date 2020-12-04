@@ -11,7 +11,6 @@ import os
 import collections
 import time, datetime
 from discord.ext.commands.cooldowns import BucketType
-from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 import random
 import psutil
 import json
@@ -23,7 +22,7 @@ import time, datetime
 
 from multiprocessing.connection import Client
 
-tools = "/json/tools.json"
+tools = "json/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']

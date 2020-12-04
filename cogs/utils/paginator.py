@@ -16,6 +16,7 @@ class RoboPages(menus.MenuPages):
         except discord.HTTPException:
             pass
 
+    '''
     @menus.button('\N{INFORMATION SOURCE}\ufe0f', position=menus.Last(3))
     async def show_help(self, payload):
         """shows this message"""
@@ -61,6 +62,7 @@ class RoboPages(menus.MenuPages):
             await channel.delete_messages(to_delete)
         except Exception:
             pass
+    '''
 
 class FieldPageSource(menus.ListPageSource):
     """A page source that requires (field_name, field_value) tuple items."""
