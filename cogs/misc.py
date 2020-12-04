@@ -49,10 +49,8 @@ class misc(commands.Cog):
     @commands.cooldown(1,3,BucketType.user)
     async def binary(self, ctx, *, text: str):
         '''Change text into binary'''
-        if "@everyone" in text:
-            await ctx.send('Please refrain from using `@everyone`.')
-        elif "@here" in text:
-            await ctx.send('Please refrain from using `@here`.')
+        if len(text) > 100
+            await ctx.send('Too many characters')
         else:
             async with self.session.get(f'https://some-random-api.ml/binary?text={text}') as resp:
                 resp = await resp.json()
@@ -62,10 +60,8 @@ class misc(commands.Cog):
     @commands.cooldown(1,3,BucketType.user)
     async def text(self, ctx, *, binary: str):
         '''Change binary into text'''
-        if "010000000110010101110110011001010111001001111001011011110110111001100101" in binary:
-            await ctx.send('Please refrain from using `@everyone`.')
-        elif "0100000001101000011001010111001001100101" in binary:
-            await ctx.send('Please refrain from using `@here`.')
+        if len(binary) > 100:
+            await ctx.send(f"{ctx.author}'s dick is too long")
         else:
             async with self.session.get(f'https://some-random-api.ml/binary?decode={binary}') as resp:
                 resp = await resp.json()
