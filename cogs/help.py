@@ -102,24 +102,6 @@ class BotHelpPageSource(menus.ListPageSource):
         maximum = self.get_max_pages()
         embed.set_footer(text=f'Page {menu.current_page + 1}/{maximum} | {footer}')
         return embed
-    
-    @menus.button('<:sirk:784474605413990421>', position=menus.Last(5))
-    async def show_bot_help(self, payload):
-        """shows how to use the bot"""
-
-        embed = discord.Embed(title='Using the bot', colour=color)
-        embed.title = 'Sirk Bot'
-        embed.description = 'Sirk Bot Made in <:python:758139554670313493> by [isirk#0001](https://discord.com/users/542405601255489537)'
-        embed.add_field(name='Update v1.0.3', value=f'{add} Added New Help Command\n{remove} Removed Music Commands(For Now)', inline=False)
-        embed.add_field(name="Upcoming features", value="> • Wavelink/Lavalink Music Commands\n> • Mongodb or postgresql database support\n> • Custom Prefixes\nAnd Much More...", inline=False)
-        embed.set_footer(text=footer)
-        await self.message.edit(embed=embed)
-
-        async def go_back_to_current_page():
-            await asyncio.sleep(30.0)
-            await self.show_page(self.current_page)
-
-        self.bot.loop.create_task(go_back_to_current_page())
 
 class GroupHelpPageSource(menus.ListPageSource):
     def __init__(self, group, commands, *, prefix):
@@ -179,7 +161,7 @@ class HelpMenu(RoboPages):
 
         self.bot.loop.create_task(go_back_to_current_page())
     '''
-    '''
+    
     @menus.button('<:sirk:784474605413990421>', position=menus.Last(5))
     async def show_bot_help(self, payload):
         """shows how to use the bot"""
@@ -197,7 +179,7 @@ class HelpMenu(RoboPages):
             await self.show_page(self.current_page)
 
         self.bot.loop.create_task(go_back_to_current_page())
-        '''
+        
         
 
 class PaginatedHelpCommand(commands.HelpCommand):
