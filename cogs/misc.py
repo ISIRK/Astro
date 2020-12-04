@@ -210,12 +210,11 @@ class misc(commands.Cog):
                     embed.set_thumbnail(url=activity.album_cover_url)
                     embed.add_field(name="Artist", value=activity.artist)
                     embed.add_field(name="Album", value=activity.album)
-                    embed.add_field(name="Duration", value=activity.duration, inline=False)
-                    embed.add_field(name="Elapsed", value="{}".format(activity.created_at.strftime("%H:%M")), inline=False)
+                    embed.add_field(name="Duration", value=activity.duration)
+                    embed.add_field(name="Elapsed", value="{}".format(activity.created_at.strftime("%H:%M")))
                     embed.set_footer(text=footer)
                     await ctx.send(embed=embed)
-                else:
-                    await ctx.send('No Spotify Activity Found')
+           await ctx.send('No Spotify Activity Found')
 
 def setup(bot):
     bot.add_cog(misc(bot))
