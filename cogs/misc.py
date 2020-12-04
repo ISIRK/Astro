@@ -213,8 +213,6 @@ class misc(commands.Cog):
                     embed.add_field(name="Song started at", value="{}".format(activity.created_at.strftime("%H:%M")))
                     embed.set_footer(text=footer)
                     await ctx.send(embed=embed)
-        else:
-            await ctx.send('No spotify Activity')
 
 def setup(bot):
     bot.add_cog(misc(bot))
