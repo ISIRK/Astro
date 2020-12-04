@@ -8,7 +8,7 @@ from discord.shard import ShardInfo
 from discord.ext.commands import context
 from discord.ext.commands.cooldowns import BucketType
 
-tools = "/home/pi/Discord/Sirk/utils/tools.json"
+tools = "/json/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']

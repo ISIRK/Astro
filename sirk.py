@@ -8,17 +8,13 @@ from discord.ext import commands, menus
 
 import json
 
-from disputils.pagination import BotEmbedPaginator
-
-from utils.help import EmbedHelpCommand
-
 ##CONFIG
-tokenFile = "/home/pi/Discord/Sirk/utils/config.json"
+tokenFile = "json/config.json"
 with open(tokenFile) as f:
     data = json.load(f)
 token = data['TOKEN']
 
-prefixFile = "/home/pi/Discord/Sirk/utils/tools.json"
+prefixFile = "json/tools.json"
 with open(prefixFile) as f:
     data = json.load(f)
 prefixes = data['PREFIXES']
@@ -28,7 +24,6 @@ intents.presences = True
 intents.members = True
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(prefixes), intents=intents, allowed_mentions=discord.AllowedMentions(users=True, roles=False, everyone=False))
 # Might Wanna look at this: command_prefix=commands.when_mentioned_or(prefixes)
-bot.help_command = EmbedHelpCommand()
 
 bot.owner_ids = {542405601255489537}
 #bot.remove_command('help')

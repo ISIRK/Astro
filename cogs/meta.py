@@ -23,7 +23,7 @@ import time, datetime
 
 from multiprocessing.connection import Client
 
-tools = "/home/pi/Discord/Sirk/utils/tools.json"
+tools = "/json/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']

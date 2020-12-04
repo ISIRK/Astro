@@ -3,10 +3,11 @@ import json
 import discord
 from discord.ext import commands
 
-tokenFile = "/home/pi/Discord/Sirk/utils/config.json"
-with open(tokenFile) as f:
+tools = "/json/config.json"
+with open(tools) as f:
     data = json.load(f)
-TOPTOKEN = data['TOPTOKEN']
+footer = data['FOOTER']
+color = int(data['COLOR'], 16)
 
 class TopGG(commands.Cog):
     """Handles interactions with the top.gg API"""

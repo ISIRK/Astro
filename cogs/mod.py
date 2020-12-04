@@ -5,7 +5,7 @@ import asyncio
 from asyncio import sleep
 import typing
 
-tools = "/home/pi/Discord/Sirk/utils/tools.json"
+tools = "/json/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']

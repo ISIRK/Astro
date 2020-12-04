@@ -2,12 +2,11 @@ import discord, json
 import subprocess as sp
 from discord.ext import commands, menus
 
-tools = "/home/pi/Discord/Sirk/utils/tools.json"
+tools = "/json/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
-
 
 # ext-menus paginator
 class MyMenu(menus.Menu):
