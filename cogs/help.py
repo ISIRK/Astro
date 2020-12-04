@@ -126,8 +126,8 @@ class HelpMenu(RoboPages):
     def __init__(self, source):
         super().__init__(source)
 
-    '''
-    @menus.button('\N{INFORMAtiON SOURCE}', position=menus.Last(5))
+    
+    @menus.button('<:sirk:784474605413990421>', position=menus.Last(5))
     async def show_bot_help(self, payload):
         """shows how to use the bot"""
 
@@ -157,8 +157,8 @@ class HelpMenu(RoboPages):
             await self.show_page(self.current_page)
 
         self.bot.loop.create_task(go_back_to_current_page())
-    '''
     
+    '''
     @menus.button('<:sirk:784474605413990421>', position=menus.Last(5))
     async def show_bot_help(self, payload):
         """shows how to use the bot"""
@@ -176,6 +176,7 @@ class HelpMenu(RoboPages):
             await self.show_page(self.current_page)
 
         self.bot.loop.create_task(go_back_to_current_page())
+        '''
 
 class PaginatedHelpCommand(commands.HelpCommand):
     def __init__(self):
