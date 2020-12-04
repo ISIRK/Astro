@@ -84,6 +84,7 @@ class meta(commands.Cog):
     @commands.command()
     async def invite(self , ctx):
         '''Get the invite for the bot.'''
+        await message.add_reaction('\U0001f4ec')
         await ctx.author.send('<https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot>')
         
     @commands.command()
