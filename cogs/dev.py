@@ -202,6 +202,13 @@ class dev(commands.Cog):
         cog = self.bot.get_cog("Jishaku")
         res = codeblock_converter(code)
         await cog.jsk_python(ctx, argument=res)
+
+    @commands.is_owner()
+    @commands.command()
+    async def sudo(self, ctx, *, command:str):
+        '''Sudo command'''
+        cog = self.bot.get_cog("Jishaku")
+        await cog.jsk_sudo(ctx, command_string=command)
         
     @commands.is_owner()
     @commands.command()
