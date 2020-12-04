@@ -222,7 +222,7 @@ class meta(commands.Cog):
     @commands.command()
     async def source(self, ctx):
         '''Displays my source code GitHub Link'''
-        await ctx.send('**Make sure to leave a star if you use code**\nhttps://github.com/isirk/Sirk')
+        await ctx.send('**Make sure to leave a star if you use code**\n> <https://github.com/isirk/Sirk>')
                         
 def setup(bot):
     bot.add_cog(meta(bot))
