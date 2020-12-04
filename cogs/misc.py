@@ -214,7 +214,7 @@ class misc(commands.Cog):
                     embed.add_field(name="Elapsed", value="{}".format(activity.created_at.strftime("%H:%M")))
                     embed.set_footer(text=footer)
                     await ctx.send(embed=embed)
-           await ctx.send('No Spotify Activity Found')
+                await ctx.send('No Spotify Activity Found')
 
 def setup(bot):
     bot.add_cog(misc(bot))
