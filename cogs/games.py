@@ -43,7 +43,7 @@ class games(commands.Cog):
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
     async def quiz(self, ctx):
-        '''Take a halloween quiz'''
+        '''Take a Chritmas quiz'''
         qa = {
             "`Was King William I of England was crowned on Christmas Day.(Yes/No)`": "YES",
             "`When is Christmas?`": "DECEMBER 25",
