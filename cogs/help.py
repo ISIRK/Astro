@@ -41,7 +41,7 @@ class BotHelpPageSource(menus.ListPageSource):
 
         # entries = [(cog, len(sub)) for cog, sub in commands.items()]
         # entries.sort(key=lambda t: (t[0].qualified_name, t[1]), reverse=True)
-        super().__init__(entries=sorted(commands.keys(), key=lambda c: c.qualified_name), per_page=2)
+        super().__init__(entries=sorted(commands.keys(), key=lambda c: c.qualified_name), per_page=1)
         self.commands = commands
         self.help_command = help_command
         self.prefix = help_command.clean_prefix
@@ -62,7 +62,7 @@ class BotHelpPageSource(menus.ListPageSource):
 
         page = []
         for command in commands:
-            value = f'`{command.name}`'
+            value = f'`{command.name}`\n'
             count = len(value) + 1 # The space
             if count + current_count < 800:
                 current_count += count
@@ -86,7 +86,7 @@ class BotHelpPageSource(menus.ListPageSource):
 
     async def format_page(self, menu, cogs):
         prefix = menu.ctx.prefix
-        description = f'Sirk Bot\nMade By isirk in python\nUse `{prefix}help <command|module>` for more info on a command.'
+        description = f'Sirk Bot\nMade By isirk in python\nUse `{prefix}help <command|module>` for more info on a command.\n__**Use the reactions below to change the page**__'
 
         embed = discord.Embed(title='Help Menu', description=description, colour=color)
 
