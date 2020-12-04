@@ -145,8 +145,8 @@ class HelpMenu(RoboPages):
 
         embed.add_field(name='How do I use this bot?', value=f'To use the bot type `{self.prefix}help` for a list of commands\nAnd then `{self.prefix}<command>` to use a command.')
 
-        for value in entries: #name,
-            embed.add_field(name="Syntax", value=value, inline=False)
+        for name, value in entries:
+            embed.add_field(name=name, value=value, inline=False)
 
         embed.set_footer(text=footer)
         await self.message.edit(embed=embed)
