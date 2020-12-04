@@ -35,7 +35,7 @@ color = int(data['COLOR'], 16)
 
 
 class dev(commands.Cog):
-    '''<:dev:759427919302492160> Dev Commands'''
+    '''Developer Commands'''
     def __init__(self, bot):
         self.bot = bot
         self.session = aiohttp.ClientSession()
