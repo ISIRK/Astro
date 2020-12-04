@@ -96,7 +96,7 @@ class games(commands.Cog):
             botChoice = random.choice(choices)
             result = rps_winner(reaction, botChoice)
 
-            await s.edit(embed= discord.Embed(title = "Results:", description = f"I picked {botChoice} and you picked {reaction} \n\n{result}", color=color))
+            await s.edit(embed= discord.Embed(title =result , description = f"I picked {botChoice} and you picked {reaction}.", color=color))
 
         except asyncio.TimeoutError: return await ctx.send("You didn't add a reaction in time!")
 
