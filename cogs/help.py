@@ -126,7 +126,7 @@ class HelpMenu(RoboPages):
     def __init__(self, source):
         super().__init__(source)
 
-    @menus.button('\N{INFORMATION SOURCE}', position=menus.Last(5))
+    @menus.button('\N{INFORMATION SOURCE}', position=menus(5))
     async def show_bot_help(self, payload):
         """shows how to use the bot"""
 
