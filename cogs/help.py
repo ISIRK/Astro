@@ -122,7 +122,7 @@ class GroupHelpPageSource(menus.ListPageSource):
         if maximum > 1:
             embed.set_author(name=f'Page {menu.current_page + 1}/{maximum} ({len(self.entries)} commands)')
 
-        embed.set_footer(text=f'Use {self.prefix}[module|command] for more info on a module or command.'
+        embed.set_footer(text=f'Use {self.prefix}[module|command] for more info on a module or command.')
         return embed
 
 class HelpMenu(RoboPages):
