@@ -21,6 +21,7 @@ color = int(data['COLOR'], 16)
 add = '<:add:784479069852008558>'
 remove = '<:remove:784479069672308778>'
 
+'''
 class Prefix(commands.Converter):
     async def convert(self, ctx, argument):
         user_id = ctx.bot.user.id
@@ -38,6 +39,7 @@ class FetchedUser(commands.Converter):
             raise commands.BadArgument('User not found.') from None
         except discord.HTTPException:
             raise commands.BadArgument('An error occurred while fetching the user.') from None
+            '''
 
 class BotHelpPageSource(menus.ListPageSource):
     def __init__(self, help_command, commands):
