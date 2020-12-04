@@ -206,8 +206,8 @@ class meta(commands.Cog):
                         
     @commands.command(name="perms")
     async def permissions(self, ctx, *, member: discord.Member=None):
-        """A simple command which checks a members Guild Permissions.
-        If member is not provided, the author will be checked."""
+        '''A simple command which checks a members Guild Permissions.
+        If member is not provided, the author will be checked.'''
 
         if not member:
             member = ctx.author
@@ -219,45 +219,10 @@ class meta(commands.Cog):
         embed.set_footer(text=footer)
         await ctx.send(content=None, embed=embed)
 
-    '''
     @commands.command()
-    async def source(self, ctx, *, command: str = None):
-        """Displays my full source code or for a specific command.
-        To display the source code of a subcommand you can separate it by
-        periods
-        """
-        source_url = 'https://github.com/isirk/Sirk'
-        branch = 'master'
-        if command is None:
-            return await ctx.send(source_url)
-
-        if command == 'help':
-            src = type(self.bot.help_command)
-            module = src.__module__
-            filename = inspect.getsourcefile(src)
-        else:
-            obj = self.bot.get_command(command.replace('.', ' '))
-            if obj is None:
-                return await ctx.send('Could not find command.')
-
-            # since we found the command we're looking for, presumably anyway, let's
-            # try to access the code itself
-            src = obj.callback.__code__
-            module = obj.callback.__module__
-            filename = src.co_filename
-
-        lines, firstlineno = inspect.getsourcelines(src)
-        if not module.startswith('discord'):
-            # not a built-in command
-            location = os.path.relpath(filename).replace('\\', '/')
-        else:
-            location = module.replace('.', '/') + '.py'
-            source_url = 'https://github.com/Rapptz/discord.py'
-            branch = 'master'
-
-        final_url = f'<{source_url}/blob/{branch}/{location}#L{firstlineno}-L{firstlineno + len(lines) - 1}>'
-        await ctx.send(final_url)
-    '''
+    async def source(self, ctx):
+        '''Displays my source code GitHub Link'''
+        await ctx.send('https://github.com/isirk/Sirk')
                         
 def setup(bot):
     bot.add_cog(meta(bot))
