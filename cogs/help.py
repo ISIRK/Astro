@@ -131,7 +131,7 @@ class HelpMenu(RoboPages):
         """shows how to use the bot"""
 
         embed = discord.Embed(title='Using the bot', colour=color)
-        embed.title = 'Using the bot'
+        embed.title = 'Sirk Bot'
         embed.description = 'Hello! Welcome to the help page.'
 
         entries = (
@@ -148,7 +148,7 @@ class HelpMenu(RoboPages):
         for name, value in entries:
             embed.add_field(name=name, value=value, inline=False)
 
-        embed.set_footer(text=f'We were on page {self.current_page + 1} before this message.')
+        embed.set_footer(text=footer)
         await self.message.edit(embed=embed)
 
         async def go_back_to_current_page():
