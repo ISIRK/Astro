@@ -62,7 +62,7 @@ class BotHelpPageSource(menus.ListPageSource):
 
         page = []
         for command in commands:
-            value = f'`{command.name}`\n'
+            value = f'`{command.name}`'
             count = len(value) + 1 # The space
             if count + current_count < 800:
                 current_count += count
