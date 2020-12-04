@@ -18,6 +18,9 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
+add = '<:add:784479069852008558>'
+remove = '<:remove:784479069672308778>'
+
 class Prefix(commands.Converter):
     async def convert(self, ctx, argument):
         user_id = ctx.bot.user.id
@@ -135,9 +138,6 @@ class HelpMenu(RoboPages):
         embed.title = 'Sirk Bot'
         embed.description = 'Hello! Welcome to the help page.'
         
-        embed.add_field(name='Update v1.0.3', value='**New Help Command!**\nYou probably already know this because you are using it but, Sirk bot has a new help command.')
-        embed.add_field(name='Upcomming features', vaulue="> Wavelink/Lavalink Music Commands\n> Mongodb or postgresql database support\n> Custom Prefixes\n> Much More")
-
         entries = (
             ('<argument>', 'This means the argument is __**required**__.'),
             ('[argument]', 'This means the argument is __**optional**__.'),
@@ -168,8 +168,9 @@ class HelpMenu(RoboPages):
 
         embed = discord.Embed(title='Using the bot', colour=color)
         embed.title = 'Sirk Bot'
-        embed.add_field(name='Update v1.0.3', value='**New Help Command!**\nYou probably already know this because you are using it but, Sirk bot has a new help command.', inline=False)
-        embed.add_field(name="Upcomming features", value="> Wavelink/Lavalink Music Commands\n> Mongodb or postgresql database support\n> Custom Prefixes\n> Much More", inline=False)
+        embed.description = 'Sirk Bot Made in <:python:758139554670313493> with :love: by [isirk#0001](https://discord.com/users/542405601255489537)
+        embed.add_field(name='Update v1.0.3', value=f'{add} Added New Help Command\n{remove} Removed Music Commands(For Now)', inline=False)
+        embed.add_field(name="Upcomming features", value="> • Wavelink/Lavalink Music Commands\n> • Mongodb or postgresql database support\n> • Custom Prefixes\nAnd Much More...", inline=False)
         embed.set_footer(text=footer)
         await self.message.edit(embed=embed)
 
