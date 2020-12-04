@@ -244,7 +244,7 @@ class PaginatedHelpCommand(commands.HelpCommand):
 class HelpCog(commands.Cog, name = "Help"):
     def __init__(self, bot):
         self.bot = bot
-        bot.help_command = PaginatedHelpCommand(dm_help = True)
+        bot.help_command = PaginatedHelpCommand()
         bot.help_command.cog = self
 
 def setup(bot):
