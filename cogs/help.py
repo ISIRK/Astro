@@ -86,7 +86,7 @@ class BotHelpPageSource(menus.ListPageSource):
 
     async def format_page(self, menu, cogs):
         prefix = menu.ctx.prefix
-        description = f'Sirk Bot\nMade By isirk in python\nUse "{prefix}help command" for more info on a command.'
+        description = f'Sirk Bot\nMade By isirk in python\nUse `{prefix}help <command|module>` for more info on a command.'
 
         embed = discord.Embed(title='Help Menu', description=description, colour=color)
 
