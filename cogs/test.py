@@ -50,28 +50,5 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
         menu = menus.MenuPages(EmbedPageSource(embeds, per_page=1))
         await menu.start(ctx)
     
-    @commands.command(aliases=["g"])
-    async def google(self, ctx, *, query: str):
-        """Searches google for a given query."""
-
-        async with google_search(query) as results:
-            embeds = []
-
-            for result in results:
-                embed = Embed.default(ctx)
-                embed.title = result.title
-                embed.description = result.snippet
-                embed.url = result.link
-                embed.set_image(url=result.image if result.image is not None
-                                    and result.image.startswith(("https://", "http://"))
-                                    else discord.Embed.Empty)
-                print(result.link)
-
-                embeds.append(embed)
-
-            menu = menus.MenuPages(EmbedMenu(embeds), clear_reactions_after=True)
-            await menu.start(ctx)
-    
-        
 def setup(bot):
     bot.add_cog(test(bot))
