@@ -206,7 +206,7 @@ class misc(commands.Cog):
                     embed = discord.Embed(
                         title = f"{user.name}'s Spotify",
                         description = "Listening to {}".format(activity.title),
-                        color = discord.Spotify.color)
+                        color = discord.Spotify.Color())
                     embed.set_thumbnail(url=activity.album_cover_url)
                     embed.add_field(name="Artist", value=activity.artist)
                     embed.add_field(name="Album", value=activity.album)
