@@ -89,7 +89,7 @@ class BotHelpPageSource(menus.ListPageSource):
 
     async def format_page(self, menu, cogs):
         prefix = menu.ctx.prefix
-        description = f'Sirk Bot\nMade By isirk in python\nUse {0}{1} [module|command] for more info on a module or command.\n**Use the reactions below to change the page**'.format(self.clean_prefix, self.invoked_with)
+        description = f'Sirk Bot\nMade By isirk in python\nUse {self.prefix}[module|command] for more info on a module or command.\n**Use the reactions below to change the page**'
 
         embed = discord.Embed(title='Help Menu', description=description, colour=color)
 
@@ -122,7 +122,7 @@ class GroupHelpPageSource(menus.ListPageSource):
         if maximum > 1:
             embed.set_author(name=f'Page {menu.current_page + 1}/{maximum} ({len(self.entries)} commands)')
 
-        embed.set_footer(text=f'Use {0}{1} [module|command] for more info on a module or command.'.format(self.clean_prefix, self.invoked_with))
+        embed.set_footer(text=f'Use {self.prefix}[module|command] for more info on a module or command.'
         return embed
 
 class HelpMenu(RoboPages):
