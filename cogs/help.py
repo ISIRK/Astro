@@ -159,7 +159,7 @@ class HelpMenu(RoboPages):
         self.bot.loop.create_task(go_back_to_current_page())
     '''
     
-    @menus.button('<:news:758781954073821194>', position=menus.Last(6))
+    @menus.button('<:sirk:784474605413990421>', position=menus.Last(6))
     async def show_bot_help(self, payload):
         """shows how to use the bot"""
 
@@ -167,7 +167,7 @@ class HelpMenu(RoboPages):
         embed.title = 'Sirk Bot'
         embed.add_field(name='Update v1.0.3', value='**New Help Command!**\nYou probably already know this because you are using it but, Sirk bot has a new help command.')
         embed.add_field(name="Upcomming features", vaulue="> Wavelink/Lavalink Music Commands\n> Mongodb or postgresql database support\n> Custom Prefixes\n> Much More")
-        embed.add_field(name="Info", value="To contact dm [isirk#0001](https://discord.com/users/542405601255489537) or join [our support server](https://discord.gg/7yZqHfG).
+        embed.add_field(name="Info", value="To contact dm [isirk#0001](https://discord.com/users/542405601255489537) or join [our support server](https://discord.gg/7yZqHfG).")
         embed.set_footer(text=footer)
         await self.message.edit(embed=embed)
 
