@@ -29,13 +29,6 @@ class misc(commands.Cog):
         async with self.session.get("https://dadjoke-api.herokuapp.com/api/v1/dadjoke") as r:
             resp = await r.json()
         await ctx.send(resp['joke'])
-     
-    @commands.command(aliases=['cb'])
-    async def chatbot(self, ctx, *, message):
-        '''Talk to chatbot'''
-        async with self.session.get(f"http://bruhapi.xyz/cb/{message}") as r:
-            resp = await r.json()
-        await ctx.send(resp['res'])
         
     @commands.command()
     async def translate(self, ctx, *, message):
