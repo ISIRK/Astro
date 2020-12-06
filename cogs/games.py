@@ -1,4 +1,4 @@
-import discord, random, json, time
+import discord, random, json, time, asyncio, aiohttp
 from discord.ext import commands, menus
 from discord.ext.commands.cooldowns import BucketType
 
@@ -28,6 +28,15 @@ class games(commands.Cog):
     '''Game Commands'''
     def __init__(self, bot):
         self.bot = bot
+        self.session = aiohttp.ClientSession()
+        
+    @commands.cooldown(1,3,BucketType.user)   
+    @commands.command(aliases=['cb'])
+    async def chatbot(self, ctx, *, message):
+        '''Talk to chatbot'''
+        async with self.session.get(f"http://bruhapi.xyz/cb/{message}") as r:
+            resp = await r.json()
+        await ctx.send(resp['res'])
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
