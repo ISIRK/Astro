@@ -234,6 +234,15 @@ class dev(commands.Cog):
         embed = discord.Embed(title = "Active Cogs:", description = f"```yaml\n{s}```", color=color)
         embed.set_footer(text=footer)
         await ctx.send(embed=embed)
+        
+    @commands.is_owner()    
+    @commands.command(aliases=['bc'])
+    async def bot_cleanup(self, ctx, *, number : int):
+        def is_me(m):
+            return m.author == client.user
+
+        deleted = await channel.purge(limit=100, check=is_me)
+        await channel.send('Deleted {} message(s)'.format(len(deleted)))
     
 def setup(bot):
     bot.add_cog(dev(bot))
