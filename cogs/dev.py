@@ -234,6 +234,25 @@ class dev(commands.Cog):
         embed = discord.Embed(title = "Active Cogs:", description = f"```yaml\n{s}```", color=color)
         embed.set_footer(text=footer)
         await ctx.send(embed=embed)
+
+    @commands.is_owner()
+    @commands.command()
+    async def cleanup(self, ctx, search=100):
+        """Cleans up the bot's messages from the channel."""
+
+        strategy = self._basic_cleanup_strategy
+        if ctx.me.permissions_in(ctx.channel).manage_messages:
+            strategy = self._complex_cleanup_strategy
+
+        spammers = await strategy(ctx, search)
+        deleted = sum(spammers.values())
+        messages = [f'{deleted} message{" was" if deleted == 1 else "s were"} removed.']
+        if deleted:
+            messages.append('')
+            spammers = sorted(spammers.items(), key=lambda t: t[1], reverse=True)
+            messages.extend(f'- **{author}**: {count}' for author, count in spammers)
+
+        await ctx.send('\n'.join(messages), delete_after=10)
     
 def setup(bot):
     bot.add_cog(dev(bot))
