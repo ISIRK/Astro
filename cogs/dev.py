@@ -235,13 +235,13 @@ class dev(commands.Cog):
         embed.set_footer(text=footer)
         await ctx.send(embed=embed)
         
+    def is_me(m):
+        return m.author == self.bot.user
+
     @commands.is_owner()    
     @commands.command(aliases=['bc'])
     async def bot_cleanup(self, ctx, *, number : int):
-        def is_me(m):
-            return m.author == client.user
-
-        deleted = await channel.purge(limit=100, check=is_me)
+        deleted = await channel.purge(limit=number, check=is_me)
         await channel.send('Deleted {} message(s)'.format(len(deleted)))
     
 def setup(bot):
