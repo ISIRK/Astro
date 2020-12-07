@@ -240,7 +240,7 @@ class dev(commands.Cog):
 
     @commands.is_owner()    
     @commands.command(aliases=['bc'])
-    async def bot_cleanup(self, ctx, *, number : int):
+    async def cleanup(self, ctx, *, number : int):
         deleted = await channel.purge(limit=number, check=is_me)
         await channel.send('Deleted {} message(s)'.format(len(deleted)))
     
