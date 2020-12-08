@@ -244,7 +244,7 @@ class dev(commands.Cog):
             return m.author == self.bot.user
 
         deleted = await channel.purge(limit=limit, check=is_me, bulk=False)
-        await channel.send('Deleted {} message(s)'.format(len(deleted)))
+        await channel.send('Deleted {} message(s)'.format(len(deleted)), delete_after=10)
     
 def setup(bot):
     bot.add_cog(dev(bot))
