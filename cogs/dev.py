@@ -241,7 +241,7 @@ class dev(commands.Cog):
         channel = ctx.message.channel
 
         def is_me(m):
-            return m.author == self.client.user
+            return m.author == self.bot.user
 
         deleted = await channel.purge(limit=limit, check=is_me, bulk=False)
         await channel.send('Deleted {} message(s)'.format(len(deleted)))
