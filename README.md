@@ -25,15 +25,13 @@ If you have any questions please either dm isirk#0001 or join our support server
 
 **Modules:**
 
-Utility - Utility Commands
+Meta - Utility Commands
 
 Mod - Moderation Commands
 
-Info - Info Commands
+Misc - Miscellaneous Commands
 
-Music - Music Commands
-
-Other - Other Commands
+Games - Game Commands
 
 ```
 Syntax for Sirk:
@@ -43,12 +41,10 @@ Syntax for Sirk:
 (permission) - Permission
 ```
 
-
 **Upcomming Features**
-- ~~Help Command~~ (Finished!)
 - Custom Prefix
-- ~~Music Commands~~ (Finished!)
-- Poll Command
+- DataBase
+- Wavelink/Lavalink Player for Music Commands
 - Optimizations
 
 **Prerequisites**
