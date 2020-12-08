@@ -234,10 +234,10 @@ class dev(commands.Cog):
         embed = discord.Embed(title = "Active Cogs:", description = f"```yaml\n{s}```", color=color)
         embed.set_footer(text=footer)
         await ctx.send(embed=embed)
-        
-    @commands.command()
+      
     @commands.is_owner()
-    async def selfpurge(self, ctx, limit=50):
+    @commands.command(aliases=['bp'])
+    async def botpurge(self, ctx, limit=50):
         channel = ctx.message.channel
 
         def is_me(m):
