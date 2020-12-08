@@ -212,18 +212,16 @@ class dev(commands.Cog):
         
     @commands.is_owner()
     @commands.command()
-    async def nick(self, ctx, *, name: str):
-        try:
-            await ctx.guild.me.edit(nick=name)
-            await ctx.send(f"Successfully changed username to **{name}**")
-        except discord.HTTPException as err:
-            await ctx.send(f"```{err}```")
-            
-    @commands.is_owner()
-    @commands.command()
-    async def rn(self, ctx):
-        await ctx.guild.me.edit(nick=None)
-        await ctx.send(f'Nickname reset to Sirk')
+    async def nick(self, ctx, *, name=None):
+        if name is None:
+            await ctx.guild.me.edit(nick=None)
+            await ctx.send("Nickname reset to `Sirk`")
+        else:
+            try:
+                await ctx.guild.me.edit(nick=name)
+                await ctx.send(f"Successfully changed username to **{name}**")
+            except discord.HTTPException as err:
+                await ctx.send(f"```{err}```")
         
     @commands.is_owner()
     @commands.command()
