@@ -2,10 +2,10 @@
 
 # Sirk - Discord Bot
 <p>
-  
+   
   ![GitHub release (latest by date)](https://img.shields.io/github/v/release/isirk/Sirk?style=for-the-badge)
   
-  [![Support Server](https://img.shields.io/discord/743121194911531110.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge)](https://discord.gg/7yZqHfG)
+  ![Discord](https://img.shields.io/discord/743121194911531110?color=7289DA&label=Sirk&logo=Discord&style=for-the-badge)
   
 <br>
 
