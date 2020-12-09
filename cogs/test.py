@@ -21,7 +21,7 @@ SOFTWARE.
 
 '''
 
-import discord, json, aiohttp
+import discord, json, aiohttp, random, asyncio
 import subprocess as sp
 from discord.ext import commands, menus
 
