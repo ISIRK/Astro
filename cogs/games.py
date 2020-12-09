@@ -134,7 +134,8 @@ class games(commands.Cog):
             await s.edit(embed= discord.Embed(title =result , description = f"I picked {botChoice} and you picked {reaction}.", color=color))
 
         except asyncio.TimeoutError: return await ctx.send("You didn't add a reaction in time!")
-
+        
+    @commands.cooldown(1,30,BucketType.channel)
     @commands.command()
     async def twenty(self, ctx):
         """Starts a 2048 game inside of Discord."""
