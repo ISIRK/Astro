@@ -135,7 +135,7 @@ class games(commands.Cog):
 
         except asyncio.TimeoutError: return await ctx.send("You didn't add a reaction in time!")
         
-    @commands.cooldown(1,30,BucketType.channel)
+    @commands.max_concurrency(1, per=BucketType.channel, *, wait=False)
     @commands.command(aliases=['2048', '24'])
     async def twenty(self, ctx):
         """Starts a 2048 game inside of Discord."""
