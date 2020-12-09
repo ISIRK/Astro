@@ -79,6 +79,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.command()
     async def twenty(self, ctx):
         """Starts a 2048 game inside of Discord."""
+        ## Made by NeuroAssassin [https://github.com/NeuroAssassin/Toxic-Cogs/blob/master/twenty/twenty.py]
         board = [
             ["_", "_", "_", "_"],
             ["_", "_", "_", "_"],
