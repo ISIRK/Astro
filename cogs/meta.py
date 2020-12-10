@@ -89,6 +89,7 @@ class meta(commands.Cog):
                         value=f"```Python: {platform.python_version()}\nDiscord.py: {discord.__version__}```")
         embed.add_field(name="Vote!",
                         value="[Top.GG](https://top.gg/bot/751447995270168586/)\n[Discord Extreme List](https://discordextremelist.xyz/en-US/bots/sirk)")
+        embed.set_image(url="https://asksirk.com/img/sirk-banner.jpg")
         await ctx.send(embed=embed)
         
     @commands.command()
