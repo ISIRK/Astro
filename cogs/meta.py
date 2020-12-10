@@ -120,21 +120,9 @@ class meta(commands.Cog):
 
     @commands.command()
     async def ping(self, ctx):
-        '''Get the bot ping'''                        
-        pingembed = discord.Embed(title="Pong!", color=color)
-        pingembed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-        pingembed.add_field(name="<:server:765946903803854898> Server", value=f'```autohotkey\n{round(self.bot.latency * 1000)} ms```')
-        
-        embed = discord.Embed(title="Pinging", color=color)
-        
-        start = time.perf_counter()
-        message = await ctx.send(embed=embed)
-        end = time.perf_counter()
-        duration = (end - start) * 1000
-                        
-        pingembed.add_field(name="<a:typing:765946280601059349> Typing", value='```autohotkey\n{:.2f} ms```'.format(duration))
-        pingembed.set_footer(text=footer)
-        await message.edit(embed=pingembed)
+        '''Get the bot ping'''
+        await ctx.message.add_reaction('🏓')
+        await ctx.send(f"Pong! Average Latency is {round(self.bot.latency * 1000)} ms)
 
     @commands.command()
     async def server(self, ctx):
