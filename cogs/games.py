@@ -152,7 +152,7 @@ class games(commands.Cog):
         await ctx.send(
             "Starting game...\nIf a reaction is not received every 5 minutes, the game will time out."
         )
-        embed=discord.Embed(title="Score: **{score}**", description=f"```{self.print_board(board)}```", color=color)
+        embed=discord.Embed(title=f"Score: **{score}**", description=f"```{self.print_board(board)}```", color=color)
         'message = await ctx.send(f"Score: **{score}**```{self.print_board(board)}```")'
         message = await ctx.send(embed=embed)
         await message.add_reaction("\u2B06")
@@ -202,7 +202,9 @@ class games(commands.Cog):
                     await message.delete()
                     return
                 board = nb
-                await message.edit(content=f"Score: **{score}**```{self.print_board(board)}```")
+                sem=discord.Embed(title=f"Score: **{score}**", description=f"```{self.print_board(board)}```", color=color)
+                'await message.edit(content=f"Score: **{score}**```{self.print_board(board)}```")'
+                await message.edit(embed=sem)
 
     def print_board(self, board):
         col_width = max(len(str(word)) for row in board for word in row) + 2  # padding
