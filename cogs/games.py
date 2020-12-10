@@ -173,6 +173,9 @@ class games(commands.Cog):
                 reaction, user = await self.bot.wait_for(
                     "reaction_add", check=check, timeout=300.0
                 )
+                                 await self.bot.wait_for(
+                    "reaction_remove", check=check, timeout=300.0
+                )
             except asyncio.TimeoutError:
                 await ctx.send("Ending game")
                 await message.delete()
