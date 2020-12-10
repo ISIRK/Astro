@@ -170,7 +170,7 @@ class games(commands.Cog):
                     "reaction_add", check=check, timeout=300.0
                 )
             except asyncio.TimeoutError:
-                await ctx.send("Ending game")
+                await ctx.send("Ending game", delete_after=5)
                 await message.delete()
                 return
             else:
