@@ -161,6 +161,7 @@ class dev(commands.Cog):
         await ctx.guild.leave()
 
 
+    '''
     @commands.is_owner()
     @commands.command()
     async def status(self, ctx, type, *, status=None):
@@ -188,7 +189,51 @@ class dev(commands.Cog):
             await ctx.send("<:online:758139458767290421> Reset Status")
         else:
             await ctx.send("Type needs to be either `playing|listening|watching|streaming|competing|bot|reset`")
+            '''
+    
+    @commands.is_owner()
+    @commands.group()
+    async def status(self, ctx):
+        """Status commands."""
 
+        if ctx.invoked_subcommand is None:
+            await ctx.send_help(ctx.command)
+            
+    @status.command()
+    async def playing(self, ctx, *, status: str):
+        await self.bot.change_presence(activity=discord.Game(name=f"{status}"))
+        await ctx.send(f'<:online:758139458767290421> Changed status to `Playing {status}`')
+        
+    @status.command()
+    async def listening(self, ctx, *, status: str):
+        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f"{status}"))
+        await ctx.send(f'<:online:758139458767290421> Changed status to `Listening to {status}`')
+
+    @status.command()
+    async def watching(self, ctx, *, status: str):
+        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{status}"))
+        await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {status}`')
+
+    @status.command()
+    async def competing(self, ctx, *, status: str):
+        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.competing, name=f"{status}"))
+        await ctx.send(f'<:online:758139458767290421> Changed status to `Competing in {status}`')
+
+    @status.command()
+    async def streaming(self, ctx, *, status: str):
+        await self.bot.change_presence(activity=discord.Streaming(name=f"{status}", url="https://www.twitch.tv/isirk"))
+        await ctx.send(f'<:streaming:769640090275151912> Changed status to `Streaming {status}`')
+
+    @status.command()
+    async def bot(self, ctx, *, status: str):
+        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name=f"{len(self.bot.users)} users in {len(self.bot.guilds)} servers"))
+        await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {len(self.bot.users)} users in {len(self.bot.guilds)} servers`')
+
+    @status.command()
+    async def reset(self, ctx, *, status: str):
+        await self.bot.change_presence(status=discord.Status.online)
+        await ctx.send("<:online:758139458767290421> Reset Status")
+        
     @commands.is_owner()
     @commands.command()
     async def dm(self , ctx, user : discord.Member, *, content):
