@@ -122,7 +122,7 @@ class meta(commands.Cog):
     async def ping(self, ctx):
         '''Get the bot ping'''
         await ctx.message.add_reaction('🏓')
-        await ctx.send(f"Pong! Average Latency is {round(self.bot.latency * 1000)} ms)
+        await ctx.send(f"Pong! Average Latency is {round(self.bot.latency * 1000)} ms")
 
     @commands.command()
     async def server(self, ctx):
