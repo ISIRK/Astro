@@ -138,7 +138,8 @@ class games(commands.Cog):
     @commands.max_concurrency(1, per=BucketType.channel, wait=False)
     @commands.command(aliases=['2048', '24'])
     async def twenty(self, ctx):
-        """Starts a 2048 game inside of Discord."""
+        """Starts a 2048 game inside of Discord.
+        Join the support server to post your score!"""
         ## Made by NeuroAssassin [https://github.com/NeuroAssassin/Toxic-Cogs/blob/master/twenty/twenty.py]
         board = [
             ["_", "_", "_", "_"],
