@@ -225,9 +225,16 @@ class dev(commands.Cog):
         await ctx.send(f'<:streaming:769640090275151912> Changed status to `Streaming {status}`')
 
     @status.command()
-    async def bot(self, ctx):
-        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name=f"{len(self.bot.users)} users in {len(self.bot.guilds)} servers"))
-        await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {len(self.bot.users)} users in {len(self.bot.guilds)} servers`')
+    async def bot(self, ctx, *, type=None):
+        if type is None:
+            await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name=f"{len(self.bot.users)} users in {len(self.bot.guilds)} servers"))
+            await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {len(self.bot.users)} users in {len(self.bot.guilds)} servers`')
+        elif type == "servers":
+            await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name=f"{len(self.bot.guilds)} servers"))
+            await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {len(self.bot.guilds)} servers`')
+        elif type == "users":
+            await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name=f"{len(self.bot.users)} users"))
+            await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {len(self.bot.users)} users`')
 
     @status.command()
     async def reset(self, ctx, *, status: str):
