@@ -149,10 +149,7 @@ class games(commands.Cog):
         ]
         score = 0
         total = 0
-        await ctx.send(
-            "Starting game...\nIf a reaction is not received every 5 minutes, the game will time out."
-        )
-        embed=discord.Embed(title=f"Score: **{score}**", description=f"```{self.print_board(board)}```", color=color)
+        embed=discord.Embed(title="2048", description=f"Score: **{score}**\nIf a reaction is not received every 5 minutes, the game will time out.\n\n```{self.print_board(board)}```", color=color)
         'message = await ctx.send(f"Score: **{score}**```{self.print_board(board)}```")'
         message = await ctx.send(embed=embed)
         await message.add_reaction("\u2B06")
