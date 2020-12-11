@@ -187,7 +187,7 @@ class games(commands.Cog):
                 elif str(reaction.emoji) == "\u27A1":
                     msg, nb, total = self.execute_move("right", board)
                 elif str(reaction.emoji) == "\u274C":
-                    await ctx.send("Ending game")
+                    await ctx.send(f"Ending game.\nYour score was **{score}**")
                     await message.delete()
                     return
                 score += total
