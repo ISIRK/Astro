@@ -44,6 +44,14 @@ color = int(data['COLOR'], 16)
 add = '<:add:784479069852008558>'
 remove = '<:remove:784479069672308778>'
 
+updates_channel = await self.fetch_channel(751602755805642793)
+last_update = await updates_channel.fetch_message(updates_channel.last_message_id)
+cool = last_update.content.split("\n")
+update = {
+    "title": cool[0],
+    "message": "\n".join(cool[1:])
+    }
+
 class BotHelpPageSource(menus.ListPageSource):
     def __init__(self, help_command, commands):
 
@@ -166,13 +174,6 @@ class HelpMenu(RoboPages):
 
         self.bot.loop.create_task(go_back_to_current_page())
     '''
-    updates_channel = await self.fetch_channel(751602755805642793)
-    last_update = await updates_channel.fetch_message(updates_channel.last_message_id)
-    cool = last_update.content.split("\n")
-    update = {
-        "title": cool[0],
-        "message": "\n".join(cool[1:])
-    }
     
     @menus.button('<:sirk:784474605413990421>', position=menus.Last(5))
     async def show_bot_help(self, payload):
