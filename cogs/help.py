@@ -170,22 +170,12 @@ class HelpMenu(RoboPages):
     @menus.button('<:sirk:784474605413990421>', position=menus.Last(5))
     async def show_bot_help(self, payload):
         """shows how to use the bot"""
-        
-        updates_channel = await self.bot.fetch_channel(751602755805642793)
-        last_update = await updates_channel.fetch_message(updates_channel.last_message_id)
-        cool = last_update.content.split("\n")
-        update = {
-            "title": cool[0],
-            "message": "\n".join(cool[1:])
-        }
-
         embed = discord.Embed(title='Using the bot', colour=color)
         embed.title = 'Sirk Bot'
         embed.description = 'Sirk Bot\nA minimalistic bot for discord\nDeveloped by [isirk#0001](https://discord.com/users/542405601255489537)'
         embed.add_field(name='Update v1.0.3', value=f'{add} Added New Help Command\n{add} Added Spotify Command\n{remove} Removed Music Commands(For Now)', inline=False)
         embed.add_field(name="Upcoming features", value="> • Wavelink/Lavalink Music Commands\n> • Mongodb or postgresql database support\n> • Custom Prefixes\nAnd Much More...", inline=False)
         embed.add_field(name="Links", value="[Vote](https://top.gg/bot/751447995270168586/vote)\n[Invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot)\n[Website](https://asksirk.com/bot/)", inline=False)
-        embed.add_field(name=update['title'], description=update['message'], inline=False)
         embed.set_footer(text=footer)
         await self.message.edit(embed=embed)
 
