@@ -50,7 +50,7 @@ cool = last_update.content.split("\n")
 update = {
     "title": cool[0],
     "message": "\n".join(cool[1:])
-        }
+}
 
 class BotHelpPageSource(menus.ListPageSource):
     def __init__(self, help_command, commands):
