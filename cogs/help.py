@@ -44,7 +44,7 @@ color = int(data['COLOR'], 16)
 add = '<:add:784479069852008558>'
 remove = '<:remove:784479069672308778>'
 
-updates_channel = await bot.fetch_channel(751602755805642793)
+updates_channel = await commands.Bot.fetch_channel(751602755805642793)
 last_update = await updates_channel.fetch_message(updates_channel.last_message_id)
 cool = last_update.content.split("\n")
 update = {
