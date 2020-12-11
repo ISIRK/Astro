@@ -44,14 +44,6 @@ color = int(data['COLOR'], 16)
 add = '<:add:784479069852008558>'
 remove = '<:remove:784479069672308778>'
 
-updates_channel = await commands.Bot.fetch_channel(751602755805642793)
-last_update = await updates_channel.fetch_message(updates_channel.last_message_id)
-cool = last_update.content.split("\n")
-update = {
-    "title": cool[0],
-    "message": "\n".join(cool[1:])
-}
-
 class BotHelpPageSource(menus.ListPageSource):
     def __init__(self, help_command, commands):
 
@@ -178,6 +170,14 @@ class HelpMenu(RoboPages):
     @menus.button('<:sirk:784474605413990421>', position=menus.Last(5))
     async def show_bot_help(self, payload):
         """shows how to use the bot"""
+        
+        updates_channel = await self.bot.fetch_channel(751602755805642793)
+        last_update = await updates_channel.fetch_message(updates_channel.last_message_id)
+        cool = last_update.content.split("\n")
+        update = {
+            "title": cool[0],
+            "message": "\n".join(cool[1:])
+        }
 
         embed = discord.Embed(title='Using the bot', colour=color)
         embed.title = 'Sirk Bot'
