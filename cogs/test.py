@@ -57,6 +57,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
     '''Testing Commands'''
     def __init__(self, bot):
         self.bot = bot
+        self.session = aiohttp.ClientSession()
             
     @commands.command()
     async def menu(self, ctx):
