@@ -72,6 +72,13 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
         ]
         menu = menus.MenuPages(EmbedPageSource(embeds, per_page=1))
         await menu.start(ctx)
+
+    @commands.command()
+    async def shakey(self, ctx):
+        '''Shakespear'''
+        async with self.session.get("https://www.foaas.com/shakespeare/PB/isirk") as r:
+            resp = await r.json()
+        await ctx.send(resp['message'])
         
     @commands.is_owner()
     @commands.command()
