@@ -77,9 +77,10 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.command()
     async def shakey(self, ctx):
         '''Shakespear'''
-        async with self.session.get("https://www.foaas.com/shakespeare/PB/isirk") as r:
+        headers = {'content-type': 'application/json'}
+        async with self.session.get("https://www.foaas.com/shakespeare/PB/isirk", headers=headers) as r:
             resp = await r.json()
-        await ctx.send(resp['message'] == 'application/json')
+        await ctx.send(resp['message'])
         
     @commands.is_owner()
     @commands.command()
