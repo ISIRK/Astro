@@ -79,7 +79,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
         '''Shakespear'''
         async with self.session.get("https://www.foaas.com/shakespeare/PB/isirk") as r:
             resp = await r.json()
-        await ctx.send(resp['message'])
+        await ctx.send(resp['message'] == 'application/json')
         
     @commands.is_owner()
     @commands.command()
