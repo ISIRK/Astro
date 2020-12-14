@@ -63,6 +63,17 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
     async def menu(self, ctx):
         m = MyMenu()
         await m.start(ctx)
+
+    def check_if_string_in_file(file_name, string_to_search):
+    """ Check if any line in the file contains given string """
+    # Open the file in read only mode
+    with open(file_name, 'r') as read_obj:
+        # Read all lines in the file one by one
+        for line in read_obj:
+            # For each line, check if line contains the string
+            if string_to_search in line:
+                return True
+    return False
     
     @commands.command()
     async def emenu(self, ctx):
@@ -81,6 +92,15 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
         async with self.session.get("https://www.foaas.com/shakespeare/PB/isirk", headers=headers) as r:
             resp = await r.json()
         await ctx.send(resp['message'])
+
+    @commands.command()
+    async def premium(self, ctx):
+        user = ctx.author
+        # Check if string 'is' is found in file 'sample.txt'
+        if check_if_string_in_file('json/premium.txt', f'{user.id}'):
+            print('Member has Premium.')
+        else:
+            print('Member does not have premium.')
         
     @commands.is_owner()
     @commands.command()
