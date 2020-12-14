@@ -58,7 +58,7 @@ class games(commands.Cog):
         
     @commands.command()
     async def xmas(self, ctx):
-        await ctx.send("Looking for a **Christmas Challenge?**\n> https://asksirk.com/christmas/")
+        await ctx.send("Looking for a **Christmas Challenge**?\n> https://asksirk.com/christmas/")
         
     @commands.cooldown(1,3,BucketType.user)   
     @commands.command(aliases=['cb'])
