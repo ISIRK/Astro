@@ -31,18 +31,6 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
-# premium check
-def check_if_string_in_file(file_name, string_to_search):
-    """ Check if any line in the file contains given string """
-    # Open the file in read only mode
-    with open(file_name, 'r') as read_obj:
-        # Read all lines in the file one by one
-        for line in read_obj:
-            # For each line, check if line contains the string
-            if string_to_search in line:
-                return True
-    return False
-
 # ext-menus paginator
 class MyMenu(menus.Menu):
     async def send_initial_message(self, ctx, channel):
@@ -97,11 +85,11 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.command()
     async def premium(self, ctx):
         user = ctx.author
-        # Check if string 'is' is found in file 'sample.txt'
-        if check_if_string_in_file('json/premium.txt', f'{user.id}'):
-            print('Member has Premium.')
-        else:
-            print('Member does not have premium.')
+        with open('json/premium.txt') as f:
+            if f'{user.id}' in f.read():
+                await ctx.send("Member has premium.)
+            else:
+                await ctx.send('Member does not have premium')
         
     @commands.is_owner()
     @commands.command()
