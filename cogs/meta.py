@@ -113,7 +113,7 @@ class meta(commands.Cog):
     @commands.command()
     async def privacy(self, ctx):
         '''See the bots privacy policy'''
-        embed = discord.Embed(title="Privacy Policy for Sirk", description="[Privacy Policy](https://asksirk.com/bot/privacy/)", colo=color)
+        embed = discord.Embed(title="Privacy Policy for Sirk", description="[Privacy Policy](https://asksirk.com/bot/privacy/)", color=color)
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         embed.set_footer(text=footer)
         await ctx.send(embed=embed)
