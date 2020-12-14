@@ -84,7 +84,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
 
     @commands.command()
     async def premium(self, ctx, *, user:discord.Member=None):
-        if user=None:
+        if user is None:
             user = ctx.author
         else:
             with open('json/premium.txt') as f:
