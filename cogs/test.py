@@ -24,6 +24,7 @@ SOFTWARE.
 import discord, json, aiohttp, random, asyncio
 import subprocess as sp
 from discord.ext import commands, menus
+from .utils import checks
 
 tools = "json/tools.json"
 with open(tools) as f:
@@ -82,7 +83,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
             resp = await r.json()
         await ctx.send(resp['message'])
 
-    @utils.checks.premium_check()
+    @checks.premium_check()
     @commands.command(hidden=False)
     async def premium(self, ctx, *, user:discord.Member=None):
         if user is None:
