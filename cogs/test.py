@@ -34,6 +34,7 @@ color = int(data['COLOR'], 16)
 # premium check
 def premium_check():
     def predicate(ctx):
+        user = ctx.author
         with open('json/premium.txt') as f:
             if f'{user.id}' in f.read():
                return True
