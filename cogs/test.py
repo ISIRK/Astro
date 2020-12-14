@@ -31,6 +31,18 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
+# premium check
+def check_if_string_in_file(file_name, string_to_search):
+    """ Check if any line in the file contains given string """
+    # Open the file in read only mode
+    with open(file_name, 'r') as read_obj:
+        # Read all lines in the file one by one
+        for line in read_obj:
+            # For each line, check if line contains the string
+            if string_to_search in line:
+                return True
+    return False
+
 # ext-menus paginator
 class MyMenu(menus.Menu):
     async def send_initial_message(self, ctx, channel):
@@ -63,17 +75,6 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
     async def menu(self, ctx):
         m = MyMenu()
         await m.start(ctx)
-        
-    def check_if_string_in_file(file_name, string_to_search):
-        """ Check if any line in the file contains given string """
-        # Open the file in read only mode
-        with open(file_name, 'r') as read_obj:
-            # Read all lines in the file one by one
-            for line in read_obj:
-                # For each line, check if line contains the string
-                if string_to_search in line:
-                    return True
-        return False
     
     @commands.command()
     async def emenu(self, ctx):
