@@ -48,7 +48,7 @@ class ErrorHandler(Cog):
         elif isinstance(error, discord.NotFound): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.CommandOnCooldown): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.MaxConcurrencyReached): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
-        elif isinstance(error, discord.CheckFailure): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+        elif isinstance(error, commands.CheckFailure): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         else:
             embed = discord.Embed(
                 title = "An error occurred!",
