@@ -24,7 +24,7 @@ SOFTWARE.
 import discord, json, aiohttp, random, asyncio
 import subprocess as sp
 from discord.ext import commands, menus
-from cogs.utils import checks
+from .utils import checks
 
 tools = "json/tools.json"
 with open(tools) as f:
