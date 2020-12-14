@@ -115,6 +115,11 @@ class meta(commands.Cog):
         '''See the bots privacy policy'''
         embed = discord.Embed(description="[Privacy Policy for Sirk Bot](https://asksirk.com/bot/privacy/)", color=color)
         await ctx.send(embed=embed)
+        
+    @commands.command(aliases=['premium', 'pay'])
+    async def donate(self, ctx):
+        message = "Thank you for choosing to donate/buy premium, it is greatly appreciated.\n> https://donatebot.io/checkout/743121194911531110"
+        await ctx.send(message)
 
     @commands.command()
     async def ping(self, ctx):
