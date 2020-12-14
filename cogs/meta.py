@@ -119,7 +119,7 @@ class meta(commands.Cog):
     @commands.command(aliases=['buy', 'pay'])
     async def donate(self, ctx):
         message = "Thank you for choosing to donate/buy premium, it is greatly appreciated.\n> [Donate!](https://donatebot.io/checkout/743121194911531110)"
-        await ctx.send(embed=discord.Embed(title="Donate", description=message, color=color)
+        await ctx.send(embed=discord.Embed(title="Donate", description=message, color=color))
 
     @commands.command()
     async def ping(self, ctx):
