@@ -92,7 +92,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
             resp = await r.json()
         await ctx.send(resp['message'])
 
-    @commands.check(premium_check)
+    @premium_check()
     @commands.command(hidden=False)
     async def premium(self, ctx, *, user:discord.Member=None):
         if user is None:
