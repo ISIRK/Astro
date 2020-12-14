@@ -93,9 +93,9 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
             
         with open('json/premium.txt') as f:
             if f'{user.id}' in f.read():
-                await ctx.send("Member has premium.")
+                await ctx.send(f"{user} has premium.")
             else:
-                await ctx.send("Member does not have premium.")
+                await ctx.send(f"{user} does not have premium.")
         
     @commands.is_owner()
     @commands.command()
