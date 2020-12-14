@@ -96,6 +96,14 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
                 await ctx.send(f"{user} has premium.")
             else:
                 await ctx.send(f"{user} does not have premium.")
+
+    @commands.command(hidden=False, aliases=['list'])
+    async def list_premium(self, ctx):
+        f = open('json/premium.txt', 'r')
+        file_contents = f.read()
+        await ctx.send(embed=discord.Embed(title="Premium User_id's", description=file_contents, color=color))
+        f.close()
+        
         
     @commands.is_owner()
     @commands.command()
