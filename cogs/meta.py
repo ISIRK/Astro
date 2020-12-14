@@ -184,10 +184,18 @@ class meta(commands.Cog):
                     }
         roles = ' '.join([r.mention for r in member.roles if r != ctx.guild.default_role] or ['None'])
         shared = sum(g.get_member(member.id) is not None for g in self.bot.guilds)
+        
+        with open('json/premium.txt') as f:
+            if f'{member.id}' in f.read():
+                premium = "Yes"
+            else:
+                premium = "No"
+                
         embed = discord.Embed(title=f"{member}", color=member.color)
         embed.add_field(name='**General:**',
                         value=f'Name: `{member}`\n' 
                               f'Status: {statuses[str(member.status)]}\n'
+                              f'Premium: `{premium}`\n'
                               f'Bot: `{member.bot}`\n'
                               f'Shared Guilds: `{shared}`\n'
                               f'Account Created on: `{datetime.datetime.strftime(member.created_at, "%A %d %B %Y at %H:%M")}`', inline=False)
