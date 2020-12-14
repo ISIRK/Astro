@@ -31,16 +31,6 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
-# premium check
-def premium_check():
-    def predicate(ctx):
-        with open('json/premium.txt') as f:
-            if f'{ctx.author.id}' in f.read():
-               return True
-            else:
-                return False
-    return commands.check(predicate)
-
 # ext-menus paginator
 class MyMenu(menus.Menu):
     async def send_initial_message(self, ctx, channel):
