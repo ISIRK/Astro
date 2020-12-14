@@ -31,6 +31,16 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
+# premium check
+def premium_check():
+    def predicate(ctx):
+        with open('json/premium.txt') as f:
+            if f'{user.id}' in f.read():
+               return True
+            else:
+                return False
+    return commands.check(predicate)
+
 # ext-menus paginator
 class MyMenu(menus.Menu):
     async def send_initial_message(self, ctx, channel):
@@ -82,6 +92,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
             resp = await r.json()
         await ctx.send(resp['message'])
 
+    @commands.check(premium_check)
     @commands.command(hidden=False)
     async def premium(self, ctx, *, user:discord.Member=None):
         if user is None:
