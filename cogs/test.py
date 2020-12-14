@@ -86,12 +86,12 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
     async def premium(self, ctx, *, user:discord.Member=None):
         if user is None:
             user = ctx.author
-        else:
-            with open('json/premium.txt') as f:
-                if f'{user.id}' in f.read():
-                    await ctx.send("Member has premium.")
-                else:
-                    await ctx.send("Member does not have premium.")
+            
+        with open('json/premium.txt') as f:
+            if f'{user.id}' in f.read():
+                await ctx.send("Member has premium.")
+            else:
+                await ctx.send("Member does not have premium.")
         
     @commands.is_owner()
     @commands.command()
