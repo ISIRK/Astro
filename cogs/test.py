@@ -83,13 +83,15 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
         await ctx.send(resp['message'])
 
     @commands.command()
-    async def premium(self, ctx):
-        user = ctx.author
-        with open('json/premium.txt') as f:
-            if f'{user.id}' in f.read():
-                await ctx.send("Member has premium.")
-            else:
-                await ctx.send('Member does not have premium')
+    async def premium(self, ctx, *, user:discord.Member=None):
+        if user=None
+            user = ctx.author
+        else:
+            with open('json/premium.txt') as f:
+                if f'{user.id}' in f.read():
+                    await ctx.send("Member has premium.")
+                else:
+                    await ctx.send("Member does not have premium.")
         
     @commands.is_owner()
     @commands.command()
