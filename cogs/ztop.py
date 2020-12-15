@@ -31,6 +31,12 @@ with open(config) as f:
     data = json.load(f)
 TOPTOKEN = data['TOPTOKEN']
 
+tools = "tools/tools.json"
+with open(tools) as f:
+    data = json.load(f)
+footer = data['FOOTER']
+color = int(data['COLOR'], 16)
+
 class TopGG(commands.Cog):
     """Handles interactions with the top.gg API"""
 
@@ -38,6 +44,27 @@ class TopGG(commands.Cog):
         self.bot = bot
         self.token = TOPTOKEN # set this to your DBL token
         self.dblpy = dbl.DBLClient(self.bot, self.token, autopost=True) # Autopost will post your guild count every 30 minutes
+
+    '''
+    @commands.Cog.listener()
+    async def on_dbl_vote(self, data):
+        print(data)
+        channel = self.bot.get_channel(788229974594158592)
+        emb = discord.Embed(
+            title = "Vote recieved!",
+            color = color
+        )
+        user = self.bot.get_user(int(data["user"]))
+        emb.set_author(name=user, icon_url=user.avatar_url)
+        time_bad = datetime.datetime.now()
+        time_good = time_bad.strftime("%b %d at %I:%M %p")
+        emb.set_footer(text=time_good)
+        await channel.send(embed=emb)        
+        if not data["isWeekend"]:
+            await user.send(f"Thanks for voting for me on top.gg!")
+        if data ["isWeekend"]:
+            await user.send(f"Thanks for voting for me on top.gg!")
+    '''
 
     async def on_guild_post():
         print("Server count posted successfully")

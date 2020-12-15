@@ -96,7 +96,7 @@ def is_lounge_cpp():
     return is_in_guilds(145079846832308224)
 
 # premium check
-def premium_check():
+def premium():
     def predicate(ctx):
         with open('tools/premium.txt') as f:
             if f'{ctx.author.id}' in f.read():

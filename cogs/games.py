@@ -27,6 +27,7 @@ from discord.ext.commands.cooldowns import BucketType
 import asyncio
 import random
 from copy import deepcopy as dc
+from .utils import checks
 
 tools = "tools/tools.json"
 with open(tools) as f:
@@ -139,11 +140,14 @@ class games(commands.Cog):
 
         except asyncio.TimeoutError: return await ctx.send("You didn't add a reaction in time!")
         
-    @commands.max_concurrency(1, per=BucketType.channel, wait=False)
+    @checks.premium()
+    @commands.max_concurrency(1, per=BucketType.guild, wait=False)
     @commands.command(aliases=['2048', '24'])
     async def twenty(self, ctx):
         """Starts a 2048 game inside of Discord.
-        Join the support server to post your score!"""
+        Join the support server to post your score!
+        
+        *Note: This command is PREMIUM ONLY*"""
         ## Made by NeuroAssassin [https://github.com/NeuroAssassin/Toxic-Cogs/blob/master/twenty/twenty.py]
         board = [
             ["_", "_", "_", "_"],

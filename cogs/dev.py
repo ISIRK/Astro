@@ -318,6 +318,17 @@ class dev(commands.Cog):
 
         deleted = await channel.purge(limit=limit, check=is_me, bulk=False)
         await channel.send(f"I have deleted `{len(deleted)}` out of the `{limit}` requested messages.", delete_after=10)
+
+    @commands.is_owner()
+    @commands.command()
+    async def add(self, ctx, *, user:discord.User):
+        with open("tools/premium.txt", "a+") as file_object:
+            file_object.seek(0)
+            data = file_object.read(100)
+            if len(data) > 0 :
+                file_object.write("\n")
+            file_object.write(f"{user.id}")
+        await ctx.send(f'Sucessfully added {user.mention} to the premium tier.')
     
 def setup(bot):
     bot.add_cog(dev(bot))

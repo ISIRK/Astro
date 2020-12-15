@@ -54,7 +54,7 @@ class EmbedPageSource(menus.ListPageSource):
     async def format_page(self, menu, embed):
         return embed
     
-class test(commands.Cog, command_attrs=dict(hidden=True)):
+class test(commands.Cog): #, command_attrs=dict(hidden=True)
     '''Testing Commands'''
     def __init__(self, bot):
         self.bot = bot
@@ -83,7 +83,7 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
             resp = await r.json()
         await ctx.send(resp['message'])
 
-    @commands.command(hidden=False)
+    @commands.command()
     async def has_premium(self, ctx, *, user:discord.Member=None):
         if user is None:
             user = ctx.author
@@ -94,14 +94,13 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
             else:
                 await ctx.send(f"{user} does not have premium.")
 
-    @checks.premium_check()
-    @commands.command(hidden=False, aliases=['list'])
+    @checks.premium()
+    @commands.command(aliases=['list'])
     async def list_premium(self, ctx):
-        f = open('json/premium.txt', 'r')
+        f = open('tools/premium.txt', 'r')
         file_contents = f.read()
         await ctx.send(embed=discord.Embed(title="Premium User_id's", description=file_contents, color=color))
         f.close()
-        
         
     @commands.is_owner()
     @commands.command()
