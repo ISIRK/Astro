@@ -190,7 +190,7 @@ class meta(commands.Cog):
         roles = ' '.join([r.mention for r in member.roles if r != ctx.guild.default_role] or ['None'])
         shared = sum(g.get_member(member.id) is not None for g in self.bot.guilds)
         
-        with open('json/premium.txt') as f:
+        with open('tools/premium.txt') as f:
             if f'{member.id}' in f.read():
                 premium = "Yes"
             else:
