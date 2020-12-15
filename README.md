@@ -2,7 +2,9 @@
 
 # Sirk - Discord Bot
 <p>
-   
+  
+  ![Donate!](https://img.shields.io/badge/Donate-blue?style=for-the-badge&logo=Buy%20Me%20A%20Coffee&link=https://donatebot.io/checkout/743121194911531110)
+  
   ![GitHub release (latest by date)](https://img.shields.io/github/v/release/isirk/Sirk?style=for-the-badge)
   
   ![Discord](https://img.shields.io/discord/743121194911531110?color=7289DA&label=Sirk&logo=Discord&style=for-the-badge)
