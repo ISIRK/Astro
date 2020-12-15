@@ -98,7 +98,7 @@ def is_lounge_cpp():
 # premium check
 def premium_check():
     def predicate(ctx):
-        with open('json/premium.txt') as f:
+        with open('tools/premium.txt') as f:
             if f'{ctx.author.id}' in f.read():
                return True
             else:

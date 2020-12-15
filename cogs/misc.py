@@ -31,7 +31,7 @@ from discord.shard import ShardInfo
 from discord.ext.commands import context
 from discord.ext.commands.cooldowns import BucketType
 
-tools = "json/tools.json"
+tools = "tools/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']

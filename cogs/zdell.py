@@ -24,7 +24,7 @@ SOFTWARE.
 import discord, aiohttp, json
 from discord.ext import tasks, commands
 
-config = "json/config.json"
+config = "tools/config.json"
 with open(config) as f:
     data = json.load(f)
 deltoken = data['DELTOKEN']

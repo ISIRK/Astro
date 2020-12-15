@@ -45,7 +45,7 @@ import time, datetime
 
 from multiprocessing.connection import Client
 
-tools = "json/tools.json"
+tools = "tools/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']
@@ -116,7 +116,7 @@ class meta(commands.Cog):
         embed = discord.Embed(description="[Privacy Policy for Sirk Bot](https://asksirk.com/bot/privacy/)", color=color)
         await ctx.send(embed=embed)
         
-    @commands.command(aliases=['buy', 'pay'])
+    @commands.command(aliases=['buy', 'pay', 'premium'])
     async def donate(self, ctx):
         message = "**Thank you for choosing to donate/buy premium.**\n**It is greatly appreciated.**\n[Donate!](https://donatebot.io/checkout/743121194911531110)"
         await ctx.send(embed=discord.Embed(description=message, color=color))

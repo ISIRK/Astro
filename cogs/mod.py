@@ -28,7 +28,7 @@ import asyncio
 from asyncio import sleep
 import typing
 
-tools = "json/tools.json"
+tools = "tools/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']

@@ -26,7 +26,7 @@ import subprocess as sp
 from discord.ext import commands, menus
 from .utils import checks
 
-tools = "json/tools.json"
+tools = "tools/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']
@@ -83,20 +83,18 @@ class test(commands.Cog, command_attrs=dict(hidden=True)):
             resp = await r.json()
         await ctx.send(resp['message'])
 
-    '''
-    @checks.premium_check()
-    '''
     @commands.command(hidden=False)
-    async def premium(self, ctx, *, user:discord.Member=None):
+    async def has_premium(self, ctx, *, user:discord.Member=None):
         if user is None:
             user = ctx.author
             
-        with open('json/premium.txt') as f:
+        with open('tools/premium.txt') as f:
             if f'{user.id}' in f.read():
                 await ctx.send(f"{user} has premium.")
             else:
                 await ctx.send(f"{user} does not have premium.")
 
+    @checks.premium_check()
     @commands.command(hidden=False, aliases=['list'])
     async def list_premium(self, ctx):
         f = open('json/premium.txt', 'r')

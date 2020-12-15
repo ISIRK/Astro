@@ -31,12 +31,12 @@ from discord.ext import commands, menus
 import json
 
 ##CONFIG
-tokenFile = "json/config.json"
+tokenFile = "tools/config.json"
 with open(tokenFile) as f:
     data = json.load(f)
 token = data['TOKEN']
 
-prefixFile = "json/tools.json"
+prefixFile = "tools/tools.json"
 with open(prefixFile) as f:
     data = json.load(f)
 prefixes = data['PREFIXES']

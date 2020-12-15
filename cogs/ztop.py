@@ -26,7 +26,7 @@ import json
 import discord
 from discord.ext import commands
 
-config = "json/config.json"
+config = "tools/config.json"
 with open(config) as f:
     data = json.load(f)
 TOPTOKEN = data['TOPTOKEN']

@@ -28,7 +28,7 @@ import asyncio
 import random
 from copy import deepcopy as dc
 
-tools = "json/tools.json"
+tools = "tools/tools.json"
 with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']

@@ -21,10 +21,16 @@ SOFTWARE.
 
 '''
 
-import discord
+import discord, json
 from discord.ext import commands
 from discord.ext.commands import Cog
 import datetime
+
+tools = "tools/tools.json"
+with open(tools) as f:
+    data = json.load(f)
+footer = data['FOOTER']
+color = int(data['COLOR'], 16)
 
 class ErrorHandler(Cog):
     def __init__(self, bot):
@@ -48,7 +54,7 @@ class ErrorHandler(Cog):
         elif isinstance(error, discord.NotFound): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.CommandOnCooldown): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.MaxConcurrencyReached): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
-        elif isinstance(error, commands.CheckFailure): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+        elif isinstance(error, commands.CheckFailure): await ctx.send(embed = discord.Embed(title = f"{self.ctx.author} does not have premium. Use `donate` for more info.", color = discord.Color.red()))
         else:
             embed = discord.Embed(
                 title = "An error occurred!",
