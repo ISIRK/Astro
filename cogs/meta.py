@@ -191,7 +191,7 @@ class meta(commands.Cog):
         shared = sum(g.get_member(member.id) is not None for g in self.bot.guilds)
         
         with open('tools/premium.txt') as f:
-            if f'{user.id}' in f.read():
+            if f'{member.id}' in f.read():
                 badge = "<:premium:788800077103366194>"
             else:
                 badge = None
