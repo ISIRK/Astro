@@ -114,7 +114,8 @@ class PaginatedHelpCommand(commands.HelpCommand):
 
         for desc in pg.pages:
             embed = discord.Embed(colour=color) #, title=cog.qualified_name if cog else 'Unsorted'
-            embed.description = f'**{cog.qualified_name if cog else 'Unsorted'}**\n> {cog.description}\n{desc}' if cog else f'> No description\n{desc}'
+            name = cog.qualified_name if cog else 'Unsorted'
+            embed.description = f'**{name}**\n> {cog.description}\n{desc}' if cog else f'> No description\n{desc}'
             embed.set_footer(
                 text=f'Use "{self.clean_prefix}help <command|module>" for more information.')
             pages.append(embed)
