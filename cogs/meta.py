@@ -192,7 +192,7 @@ class meta(commands.Cog):
         
         with open('tools/premium.txt') as f:
             if f'{member.id}' in f.read():
-                badge = "<:premium:788800077103366194>"
+                badge = "<:premium:788805325130170448>"
             else:
                 badge = ""
         
