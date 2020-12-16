@@ -95,7 +95,7 @@ class EmbedMenu(menus.Menu):
 
 class PaginatedHelpCommand(commands.HelpCommand):
     def recursive_command_format(self, command, *, indent=1, subc=0):
-        yield ('' if indent == 1 else '├' if subc != 0 else '└') +  f'**{command.qualified_name}** - {command.short_doc}' if command.short_doc else f'**{command.qualified_name}** - No Description' #f'**{command.qualified_name}** - {command.short_doc}'
+        yield ('' if indent == 1 else '├' if subc != 0 else '└') + f'**{command.qualified_name}** - {command.short_doc}'
         if isinstance(command, commands.Group):
             last = len(command.commands) - 1
             for i, command in enumerate(command.commands):
