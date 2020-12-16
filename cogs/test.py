@@ -85,6 +85,7 @@ class test(commands.Cog): #, command_attrs=dict(hidden=True)
 
     @commands.command()
     async def has_premium(self, ctx, *, user:discord.Member=None):
+        '''Check to see if a user has premium'''
         if user is None:
             user = ctx.author
             
@@ -93,14 +94,6 @@ class test(commands.Cog): #, command_attrs=dict(hidden=True)
                 await ctx.send(f"{user} has premium.")
             else:
                 await ctx.send(f"{user} does not have premium.")
-
-    @checks.premium()
-    @commands.command(aliases=['list'])
-    async def list_premium(self, ctx):
-        f = open('tools/premium.txt', 'r')
-        file_contents = f.read()
-        await ctx.send(embed=discord.Embed(title="Premium User_id's", description=file_contents, color=color))
-        f.close()
         
     @commands.is_owner()
     @commands.command()
