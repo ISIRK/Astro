@@ -21,10 +21,8 @@ SOFTWARE.
 
 '''
 
-import discord, json
-from discord.ext import commands
+import discord, json, datetime
 from discord.ext.commands import Cog
-import datetime
 
 tools = "tools/tools.json"
 with open(tools) as f:
