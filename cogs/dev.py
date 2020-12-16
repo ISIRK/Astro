@@ -329,6 +329,15 @@ class dev(commands.Cog):
                 file_object.write("\n")
             file_object.write(f"{user.id}")
         await ctx.send(f'Sucessfully added {user.mention} to the premium tier.')
+
+    @checks.premium()
+    @commands.is_owner()
+    @commands.command(aliases=['list'])
+    async def list_premium(self, ctx):
+        f = open('tools/premium.txt', 'r')
+        file_contents = f.read()
+        await ctx.send(embed=discord.Embed(title="Premium User_id's", description=file_contents, color=color))
+        f.close()
     
 def setup(bot):
     bot.add_cog(dev(bot))
