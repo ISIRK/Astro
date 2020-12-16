@@ -115,7 +115,7 @@ class PaginatedHelpCommand(commands.HelpCommand):
         for desc in pg.pages:
             embed = discord.Embed(colour=color) #, title=cog.qualified_name if cog else 'Unsorted'
             name = cog.qualified_name if cog else 'Unsorted'
-            embed.description = f'**{name} Commands**{desc}' if cog else f'{desc}' # {cog.description}\n #No description\n
+            embed.description = f'**{name} Commands**\n{desc}' if cog else f'{desc}' # {cog.description}\n #No description\n
             embed.set_footer(
                 text=f'Use "{self.clean_prefix}help <command|module>" for more information.')
             pages.append(embed)
@@ -136,7 +136,6 @@ class PaginatedHelpCommand(commands.HelpCommand):
         await pg.start(self.context)
 
     async def send_cog_help(self, cog, cmds):
-        '''
         pages = []
         ctx = self.context
         self.format_commands(cog, await self.filter_commands(cog.get_commands(), sort=True), pages=pages)
@@ -147,12 +146,6 @@ class PaginatedHelpCommand(commands.HelpCommand):
 
         pg = EmbedMenu(pages)
         await pg.start(self.context)
-        '''
-        embed=discord.Embed(title=cog.name, color=color)
-        
-        for command in cog:
-            for line in self.recursive_command_format(command):
-                embed.add_field(title=command, description=line, inline=False)
 
     async def send_group_help(self, group):
         if not group.commands:
