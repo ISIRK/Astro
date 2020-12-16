@@ -125,7 +125,7 @@ class PaginatedHelpCommand(commands.HelpCommand):
         ctx = self.context
 
         for cog, cmds in mapping.items():
-            cmds = await self.filter_commands(cmds, sort=True)
+            cmds = await self.filter_commands(cmds, sort=False)
             self.format_commands(cog, cmds, pages=pages)
 
         total = len(pages)
