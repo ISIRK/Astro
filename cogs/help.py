@@ -115,7 +115,7 @@ class PaginatedHelpCommand(commands.HelpCommand):
         for desc in pg.pages:
             embed = discord.Embed(colour=color) #, title=cog.qualified_name if cog else 'Unsorted'
             name = cog.qualified_name if cog else 'Unsorted'
-            embed.description = f'**{name} Commands**\n\n{desc}' if cog else f'{desc}' # {cog.description}\n #No description\n
+            embed.description = f'**{name} Commands**\n{desc}' if cog else f'{desc}' # {cog.description}\n #No description\n
             embed.set_footer(
                 text=f'Use "{self.clean_prefix}help <command|module>" for more information.')
             pages.append(embed)
@@ -142,7 +142,7 @@ class PaginatedHelpCommand(commands.HelpCommand):
 
         total = len(pages)
         for i, embed in enumerate(pages, start=1):
-            embed.title = f'Page {i}/{total}: {embed.title}'
+            embed.title = f'{cog}'
 
         pg = EmbedMenu(pages)
         await pg.start(self.context)
@@ -150,17 +150,17 @@ class PaginatedHelpCommand(commands.HelpCommand):
     async def send_group_help(self, group):
         if not group.commands:
             return await self.send_command_help(group)
-        embed = discord.Embed(colour=discord.Colour.blurple())
+        embed = discord.Embed(colour=color)
         embed.title = f'{self.clean_prefix}{group.qualified_name} {group.signature}'
         embed.description = group.help or 'No help provided'
         embed.set_footer(
             text=f'Use "{self.clean_prefix}help <command>" for more information.')
         embed.add_field(name='Subcommands', value='\n'.join(
-            f'`{c.qualified_name}`: {c.short_doc}' for c in group.commands))
+            f'**{c.qualified_name}** - {c.short_doc}' for c in group.commands))
         await self.context.send(embed=embed)
 
     async def send_command_help(self, command):
-        embed = discord.Embed(colour=discord.Colour.blurple())
+        embed = discord.Embed(colour=color)
         embed.title = f'{self.clean_prefix}{command.qualified_name} {command.signature}'
         embed.description = command.help or 'No help provided'
         embed.set_footer(
