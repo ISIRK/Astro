@@ -50,6 +50,8 @@ import subprocess as sp
 
 from jishaku.codeblocks import codeblock_converter
 
+from .utils import checks
+
 tools = "tools/tools.json"
 with open(tools) as f:
     data = json.load(f)
