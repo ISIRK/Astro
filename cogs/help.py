@@ -135,7 +135,7 @@ class PaginatedHelpCommand(commands.HelpCommand):
         pg = EmbedMenu(pages)
         await pg.start(self.context)
 
-    async def send_cog_help(self, cog, cmds):
+    async def send_cog_help(self, cog): #, cmds
         pages = []
         ctx = self.context
         self.format_commands(cog, await self.filter_commands(cog.get_commands(), sort=True), pages=pages)
