@@ -135,17 +135,24 @@ class PaginatedHelpCommand(commands.HelpCommand):
         pg = EmbedMenu(pages)
         await pg.start(self.context)
 
-    async def send_cog_help(self, cog):
+    async def send_cog_help(self, cog, cmds):
+        '''
         pages = []
         ctx = self.context
         self.format_commands(cog, await self.filter_commands(cog.get_commands(), sort=True), pages=pages)
 
         total = len(pages)
         for i, embed in enumerate(pages, start=1):
-            embed.title = f'{cog}'
+            embed.title = f'{cog.name}'
 
         pg = EmbedMenu(pages)
         await pg.start(self.context)
+        '''
+        embed=discord.Embed(title=cog.name, color=color)
+        
+        for command in cmds:
+            for line in self.recursive_command_format(command):
+                embed.add_field(title=command, description=line, inline=False)
 
     async def send_group_help(self, group):
         if not group.commands:
