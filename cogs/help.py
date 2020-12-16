@@ -161,8 +161,6 @@ class PaginatedHelpCommand(commands.HelpCommand):
         embed = discord.Embed(colour=color)
         embed.title = f'{self.clean_prefix}{command.qualified_name} {command.signature}'
         embed.description = command.help or 'No help provided'
-        embed.set_footer(
-            text=f'Use "{self.clean_prefix}help <command>" for more information.')
         await self.context.send(embed=embed)
 
 
