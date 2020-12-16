@@ -191,6 +191,12 @@ class meta(commands.Cog):
         shared = sum(g.get_member(member.id) is not None for g in self.bot.guilds)
         
         with open('tools/premium.txt') as f:
+            if f'{user.id}' in f.read():
+                badge = "<:premium:788800077103366194>"
+            else:
+                badge = None
+        
+        with open('tools/premium.txt') as f:
             if f'{member.id}' in f.read():
                 premium = "Yes"
             else:
@@ -198,7 +204,7 @@ class meta(commands.Cog):
                 
         embed = discord.Embed(title=f"{member}", color=member.color)
         embed.add_field(name='**General:**',
-                        value=f'Name: `{member}`\n' 
+                        value=f'Name: `{member} {badge}`\n' 
                               f'Status: {statuses[str(member.status)]}\n'
                               f'Premium: `{premium}`\n'
                               f'Bot: `{member.bot}`\n'
