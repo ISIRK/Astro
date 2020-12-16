@@ -141,7 +141,7 @@ class PaginatedHelpCommand(commands.HelpCommand):
         self.format_commands(cog, await self.filter_commands(cog.get_commands(), sort=True), pages=pages)
         total = len(pages)
         for i, embed in enumerate(pages, start=1):
-            embed.title = f'Page {i}/{total}: {embed.title}'
+            embed.title = f'Page {i}/{total}' # : {embed.title}
         pg = EmbedMenu(pages)
         await pg.start(self.context)
 
