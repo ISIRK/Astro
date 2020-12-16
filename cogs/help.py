@@ -116,7 +116,7 @@ class PaginatedHelpCommand(commands.HelpCommand):
             embed = discord.Embed(colour=color, title=cog.qualified_name if cog else 'Unsorted')
             embed.description = f'> {cog.description}\n{desc}' if cog else f'> No description\n{desc}'
             embed.set_footer(
-                text=f'Use "{self.clean_prefix}help <command>" for more information.')
+                text=f'Use "{self.clean_prefix}help <command|module>" for more information.')
             pages.append(embed)
 
     async def send_bot_help(self, mapping):
@@ -129,7 +129,7 @@ class PaginatedHelpCommand(commands.HelpCommand):
 
         total = len(pages)
         for i, embed in enumerate(pages, start=1):
-            embed.title = f'Page {i}/{total}: {embed.title}'
+            embed.set_footer = f'Page {i}/{total} | {footer}' # : {embed.title}
 
         pg = EmbedMenu(pages)
         await pg.start(self.context)
