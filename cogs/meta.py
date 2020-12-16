@@ -194,7 +194,7 @@ class meta(commands.Cog):
             if f'{member.id}' in f.read():
                 badge = "<:premium:788800077103366194>"
             else:
-                badge = None
+                badge = ""
         
         with open('tools/premium.txt') as f:
             if f'{member.id}' in f.read():
@@ -202,9 +202,9 @@ class meta(commands.Cog):
             else:
                 premium = "No"
                 
-        embed = discord.Embed(title=f"{member}", color=member.color)
+        embed = discord.Embed(title=f"{member} {badge}", color=member.color)
         embed.add_field(name='**General:**',
-                        value=f'Name: `{member} {badge}`\n' 
+                        value=f'Name: `{member}`\n' 
                               f'Status: {statuses[str(member.status)]}\n'
                               f'Premium: `{premium}`\n'
                               f'Bot: `{member.bot}`\n'
