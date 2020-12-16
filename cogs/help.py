@@ -113,8 +113,8 @@ class PaginatedHelpCommand(commands.HelpCommand):
                 pg.add_line(line)
 
         for desc in pg.pages:
-            embed = discord.Embed(colour=color, title=cog.qualified_name if cog else 'Unsorted')
-            embed.description = f'> {cog.description}\n{desc}' if cog else f'> No description\n{desc}'
+            embed = discord.Embed(colour=color) #, title=cog.qualified_name if cog else 'Unsorted'
+            embed.description = f'**{cog.qualified_name if cog else 'Unsorted'}**\n> {cog.description}\n{desc}' if cog else f'> No description\n{desc}'
             embed.set_footer(
                 text=f'Use "{self.clean_prefix}help <command|module>" for more information.')
             pages.append(embed)
@@ -129,7 +129,7 @@ class PaginatedHelpCommand(commands.HelpCommand):
 
         total = len(pages)
         for i, embed in enumerate(pages, start=1):
-            embed.set_footer = f'Page {i}/{total} | {footer}' # : {embed.title}
+            embed.title = f'Page {i}/{total}' # | {embed.title}}
 
         pg = EmbedMenu(pages)
         await pg.start(self.context)
