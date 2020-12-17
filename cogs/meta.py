@@ -87,7 +87,7 @@ class meta(commands.Cog):
         embed.add_field(name="Version Info",
                         value=f"```Python: {platform.python_version()}\nDiscord.py: {discord.__version__}```")
         embed.add_field(name="Vote!",
-                        value="[Top.GG](https://top.gg/bot/751447995270168586/)\n[Discord Extreme List](https://discordextremelist.xyz/en-US/bots/sirk)")
+                        value="[Top.GG](https://top.gg/bot/751447995270168586/)\n[BotList.Space](https://botlist.space/bot/751447995270168586)\n[Discord Extreme List](https://discordextremelist.xyz/en-US/bots/sirk)")
         await ctx.send(embed=embed)
         
     @commands.command()
@@ -96,6 +96,13 @@ class meta(commands.Cog):
         embed = discord.Embed(title="Credits", description="<@!542405601255489537> (isirk#0001)** - Developer and Owner**\n<@!555709231697756160> (CraziiAce#0001)** - API Usage**\n<@!668906205799907348> (Cyrus#8315)** - Bot Optimizations**\n<@!296862365503193098> (LeSirH#0001)** - Optimizations and Advice**\n<@!345457928972533773> (Moksej#3335)** - Four Lines**", color=color)
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         embed.set_footer(text=footer)
+        await ctx.send(embed=embed)
+        
+    @commands.command()
+    async def vote(self, ctx):
+        embed = discord.Embed(title="Vote", description="[Top.GG](https://top.gg/bot/751447995270168586/)\n[BotList.Space](https://botlist.space/bot/751447995270168586)\n[Discord Extreme List](https://discordextremelist.xyz/en-US/bots/sirk)", color=color)
+        embed.set_footer(text=footer)
+        embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
     @commands.command()
