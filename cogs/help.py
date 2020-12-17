@@ -91,7 +91,7 @@ class BotHelpPageSource(menus.ListPageSource):
     async def format_page(self, menu, cogs):
         prefix = menu.ctx.prefix
         description = f'A minimalistic bot for discord\n' \
-                      f'Made by [isirk](https://discord.com/users/542405601255489537)n' \
+                      f'Made by [isirk](https://discord.com/users/542405601255489537)\n' \
                       f'Use `{prefix}help [command|module]` for more info.\n' \
 
         embed = discord.Embed(title='Categories', description=description, colour=color)
