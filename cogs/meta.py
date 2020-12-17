@@ -255,11 +255,6 @@ class meta(commands.Cog):
         embed.set_author(icon_url=member.avatar_url, name=str(member))
         embed.set_footer(text=footer)
         await ctx.send(content=None, embed=embed)
-
-    @commands.command(aliases=['src', 'code'])
-    async def source(self, ctx):
-        '''Displays my source code GitHub Link'''
-        await ctx.send('**Make sure to leave a star if you use code**\n> <https://github.com/isirk/Sirk>')
                         
 def setup(bot):
     bot.add_cog(meta(bot))
