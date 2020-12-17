@@ -1,8 +1,8 @@
-<img src="https://asksirk.com/img/sirk.png" align="right" height="200" width="200"/>
 
+<center>
 # Sirk - Discord Bot
-<p>
-  
+</center>
+
   [![Donate!](https://img.shields.io/badge/Donate-blue?style=for-the-badge&logo=Buy%20Me%20A%20Coffee)](https://donatebot.io/checkout/743121194911531110)
   
   [![GitHub release (latest by date)](https://img.shields.io/github/v/release/isirk/Sirk?style=for-the-badge)](https://github.com/isirk/Sirk/releases)
