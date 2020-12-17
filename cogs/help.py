@@ -21,12 +21,12 @@ SOFTWARE.
 
 '''
 
-from discord.ext import commands, menus, json
+from discord.ext import commands, menus
 from .utils import checks, formats, time
 from .utils.paginator import RoboPages
 import discord
 from collections import OrderedDict, deque, Counter
-import os, datetime
+import os, datetime, json
 import asyncio
 import copy
 import unicodedata
