@@ -57,3 +57,5 @@ Syntax for Sirk:
 **Prerequisites**
 - [Python](https://www.python.org/)
 - [Discord.py](https://discordpy.readthedocs.io/en/latest/index.html)
+- [Discor-Menus](https://github.com/Rapptz/discord-ext-menus)
+- Some other modules for commands
