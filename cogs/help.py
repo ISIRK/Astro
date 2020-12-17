@@ -45,7 +45,7 @@ class BotHelpPageSource(menus.ListPageSource):
 
         # entries = [(cog, len(sub)) for cog, sub in commands.items()]
         # entries.sort(key=lambda t: (t[0].qualified_name, t[1]), reverse=True)
-        super().__init__(entries=sorted(commands.keys(), key=lambda c: c.qualified_name), per_page=6)
+        super().__init__(entries=sorted(commands.keys(), key=lambda c: c.qualified_name), per_page=4)
         self.commands = commands
         self.help_command = help_command
         self.prefix = help_command.clean_prefix
@@ -90,10 +90,9 @@ class BotHelpPageSource(menus.ListPageSource):
 
     async def format_page(self, menu, cogs):
         prefix = menu.ctx.prefix
-        description = f'Use "{prefix}help command" for more info on a command.\n' \
-                      f'Use "{prefix}help category" for more info on a category.\n' \
-                       'For more help, join the official bot support server: https://penguin.vaskel.xyz/support\n' \
-                        'This help command is originally from R. Danny, GitHub: https://github.com/Rapptz/RoboDanny'
+        description = f'A minimalistic bot for discord\n' \
+                      f'Made by [isirk](https://discord.com/users/542405601255489537)n' \
+                      f'Use `{prefix}help [command|module]` for more info.\n' \
 
         embed = discord.Embed(title='Categories', description=description, colour=color)
 
@@ -126,7 +125,7 @@ class GroupHelpPageSource(menus.ListPageSource):
         if maximum > 1:
             embed.set_author(name=f'Page {menu.current_page + 1}/{maximum} ({len(self.entries)} commands)')
 
-        embed.set_footer(text=f'Use "{self.prefix}help command" for more info on a command.')
+        embed.set_footer(text=f'Use {self.prefix}help [command|module] for more info.')
         return embed
 
 class HelpMenu(RoboPages):
@@ -155,7 +154,7 @@ class HelpMenu(RoboPages):
         for name, value in entries:
             embed.add_field(name=name, value=value, inline=False)
 
-        embed.set_footer(text=f'We were on page {self.current_page + 1} before this message.')
+        embed.set_footer(text=footer)
         await self.message.edit(embed=embed)
 
         async def go_back_to_current_page():
