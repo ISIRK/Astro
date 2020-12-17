@@ -22,7 +22,8 @@ SOFTWARE.
 '''
 
 import discord, json, datetime
-from discord.ext.commands import Cog, commands
+from discord.ext.commands import Cog
+from discord.ext import commands
 
 tools = "tools/tools.json"
 with open(tools) as f:
