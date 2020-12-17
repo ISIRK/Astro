@@ -133,7 +133,7 @@ class meta(commands.Cog):
         hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
-        await ctx.send(f"Been up for {days}d, {hours}h, {minutes}m, {seconds}s"))
+        await ctx.send(f"Been up for {days}d, {hours}h, {minutes}m, {seconds}s")
 
     @commands.command()
     async def server(self, ctx):
