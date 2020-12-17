@@ -103,7 +103,7 @@ class BotHelpPageSource(menus.ListPageSource):
 
         maximum = self.get_max_pages()
         embed.set_author(name=f'Page {menu.current_page + 1}/{maximum}')
-        embde.set_footer(text=footer)
+        embed.set_footer(text=footer)
         return embed
 
 class GroupHelpPageSource(menus.ListPageSource):
