@@ -104,7 +104,7 @@ class BotHelpPageSource(menus.ListPageSource):
                 embed.add_field(name=cog.qualified_name, value=value, inline=False)
 
         maximum = self.get_max_pages()
-        embed.set_footer(text=f'Page {menu.current_page + 1}/{maximum}')
+        embed.set_footer(text=f'Page {menu.current_page + 1}/{maximum} | {footer}')
         return embed
 
 class GroupHelpPageSource(menus.ListPageSource):
