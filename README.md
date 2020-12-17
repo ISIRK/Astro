@@ -1,7 +1,4 @@
-
-<center>
 # Sirk - Discord Bot
-</center>
 
   [![Donate!](https://img.shields.io/badge/Donate-blue?style=for-the-badge&logo=Buy%20Me%20A%20Coffee)](https://donatebot.io/checkout/743121194911531110)
   
@@ -9,7 +6,7 @@
   
   [![Discord](https://img.shields.io/discord/743121194911531110?color=7289DA&label=Sirk&logo=Discord&style=for-the-badge)](https://discord.gg/7yZqHfG)
   
-<br>
+&nbsp;
 
 **A minimalistic bot for discord**
 
@@ -25,7 +22,7 @@ If you have any questions please either dm isirk#0001 or join our support server
 
 [Privacy Policy](https://asksirk.com/bot/privacy)
 
-<br>
+&nbsp;
 
 **Modules:**
 
@@ -37,6 +34,8 @@ Misc - Miscellaneous Commands
 
 Games - Game Commands
 
+&nbsp;
+
 ```
 Syntax for Sirk:
 <input> - Input for the Command
@@ -45,11 +44,15 @@ Syntax for Sirk:
 (permission) - Permission
 ```
 
+&nbsp;
+
 **Upcomming Features**
 - Custom Prefix
 - DataBase
 - Wavelink/Lavalink Player for Music Commands
 - Optimizations
+
+&nbsp;
 
 **Prerequisites**
 - [Python](https://www.python.org/)
