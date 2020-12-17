@@ -28,6 +28,8 @@ import discord
 
 from discord.ext import commands, menus
 
+from datetime import datetime
+
 import json
 
 ##CONFIG
@@ -46,6 +48,8 @@ intents.presences = True
 intents.members = True
 bot = commands.Bot(command_prefix=commands.when_mentioned_or("^"), intents=intents, allowed_mentions=discord.AllowedMentions(users=True, roles=False, everyone=False))
 # Might Wanna look at this: command_prefix=commands.when_mentioned_or(prefixes)
+
+bot.launch_time = datetime.utcnow()
 
 bot.owner_ids = {542405601255489537}
 #bot.remove_command('help')
