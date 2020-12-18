@@ -319,13 +319,9 @@ class dev(commands.Cog):
         picked = random.choice(channels)
         channel = self.bot.get_channel(picked)
 
-        embed = discord.Embed(
-            color=color,
-            title=f"→ Invite From Guild",
-            description=f"• Invite: {await channel.create_invite(max_uses=1)}"
-        )
+        invite = await channel.create_invite(max_uses=1)
 
-        await ctx.author.send(embed=embed)
+        await ctx.author.send(invite)
 
     
 def setup(bot):
