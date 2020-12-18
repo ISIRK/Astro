@@ -80,9 +80,9 @@ async def on_message(message):
 @loop(seconds=0)
 async def status_changer():
     await asyncio.sleep(15)
-	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
+	await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{len(bot.guilds)} servers | {len(bot.users)}"))
 	await asyncio.sleep(60)
-	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"^help"))
+	await bot.change_presence(activity=discord.Game(name="^help"))
 	await asyncio.sleep(45)
 
 for filename in os.listdir('./cogs'):
