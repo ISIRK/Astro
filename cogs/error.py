@@ -47,13 +47,13 @@ class ErrorHandler(Cog):
         elif isinstance(error, commands.BadArgument):
             await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.NotOwner):
-            await ctx.reply(embed = discord.Embed(title = f"{ctx.author} is too gay to use this command.", color = discord.Color.red())) #return # You are not an owner.
+            await ctx.reply(embed = discord.Embed(title = f"Owner Only Command.", color = discord.Color.red())) #return # You are not an owner.
         elif isinstance(error, commands.BotMissingPermissions):
             await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, discord.NotFound): await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.CommandOnCooldown): await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.MaxConcurrencyReached): await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
-        elif isinstance(error, commands.CheckFailure): await ctx.reply(embed = discord.Embed(title = "You don't have premium. Use command donate for more info.", color = discord.Color.red()))
+        elif isinstance(error, commands.CheckFailure): await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         else:
             embed = discord.Embed(
                 title = "An error occurred!",
