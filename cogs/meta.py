@@ -206,6 +206,8 @@ class meta(commands.Cog):
         shared = sum(g.get_member(member.id) is not None for g in self.bot.guilds)
         
         badges = []
+        
+        guild = self.bot.get_guild(743121194911531110)
             
         dev = guild.get_role(749808383619760151)
         if dev in member.roles:
