@@ -214,7 +214,7 @@ class meta(commands.Cog):
         if dev in member.roles:
           badges.append('<:dev:759427919302492160>')
         else:
-            badges.appen('hi')
+            badges.append('hi')
                 
         embed = discord.Embed(title=f"{member}" +" ".join(badges), color=member.color)
         embed.add_field(name='**General:**',
