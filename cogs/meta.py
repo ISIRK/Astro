@@ -211,10 +211,12 @@ class meta(commands.Cog):
             
         dev = guild.get_role(749808383619760151)
         
+        devbadge = <:dev:759427919302492160>
+        
         if dev in member.roles:
-          badges.append('<:dev:759427919302492160>')
+          badges.append(<:dev:759427919302492160>)
                 
-        embed = discord.Embed(title=f"{member}" + "".join(badges), color=member.color)
+        embed = discord.Embed(title=f"{member} {badges}", color=member.color)
         embed.add_field(name='**General:**',
                         value=f'Name: `{member}`\n' 
                               f'Status: {statuses[str(member.status)]}\n'
