@@ -320,7 +320,7 @@ class dev(commands.Cog):
         channel = self.bot.get_channel(picked)
 
         embed = discord.Embed(
-            color=self.bot.embed_color,
+            color=color,
             title=f"→ Invite From Guild",
             description=f"• Invite: {await channel.create_invite(max_uses=1)}"
         )
