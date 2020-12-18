@@ -27,7 +27,6 @@ from discord.ext.commands.cooldowns import BucketType
 import asyncio
 import random
 from copy import deepcopy as dc
-from .utils import checks
 
 tools = "tools/tools.json"
 with open(tools) as f:
