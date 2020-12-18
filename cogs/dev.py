@@ -310,21 +310,6 @@ class dev(commands.Cog):
 
     @commands.is_owner()
     @commands.command()
-    async def guilds(self, ctx):
-        post = requests.post("https://hasteb.in/documents", data=f"\n".join([guild.name for guild in self.bot.guilds]).encode("utf-8"))
-
-        embed = discord.Embed(
-            color=self.bot.embed_color,
-            title=f"→ Current amount of Guilds",
-            description=f"• Guilds: **https://hasteb.in/{post.json()['key']}**"
-        )
-
-        await ctx.send(embed=embed)
-
-        logger.info(f"Owner | Sent guilds: {ctx.author}")
-
-    @commands.is_owner()
-    @commands.command()
     async def get_invite(self, ctx, id: int):
         guild = self.bot.get_guild(id)
 
