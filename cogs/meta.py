@@ -212,9 +212,7 @@ class meta(commands.Cog):
         dev = guild.get_role(749808383619760151)
         
         if dev in member.roles:
-          bages.append('<:dev:759427919302492160>')
-        else:
-            pass
+          badges.append('<:dev:759427919302492160>')
                 
         embed = discord.Embed(title=f"{member} {badges}", color=member.color)
         embed.add_field(name='**General:**',
