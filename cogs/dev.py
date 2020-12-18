@@ -29,19 +29,8 @@ from discord.ext import commands
 from discord.shard import ShardInfo
 from discord.ext.commands import bot
 
-import os
+import os, io, json, psutil, aiohttp, collections, time, datetime, random
 
-import io
-
-import json
-
-import psutil
-
-import aiohttp
-
-import collections
-
-import time, datetime
 from datetime import datetime
 
 from multiprocessing.connection import Client
@@ -49,8 +38,6 @@ from multiprocessing.connection import Client
 import subprocess as sp
 
 from jishaku.codeblocks import codeblock_converter
-
-from .utils import checks
 
 tools = "tools/tools.json"
 with open(tools) as f:
@@ -323,23 +310,38 @@ class dev(commands.Cog):
 
     @commands.is_owner()
     @commands.command()
-    async def add(self, ctx, *, user:discord.User):
-        with open("tools/premium.txt", "a+") as file_object:
-            file_object.seek(0)
-            data = file_object.read(100)
-            if len(data) > 0 :
-                file_object.write("\n")
-            file_object.write(f"{user.id}")
-        await ctx.send(f'Sucessfully added {user.mention} to the premium tier.')
+    async def guilds(self, ctx):
+        post = requests.post("https://hasteb.in/documents", data=f"\n".join([guild.name for guild in self.bot.guilds]).encode("utf-8"))
 
-    @checks.premium()
+        embed = discord.Embed(
+            color=self.bot.embed_color,
+            title=f"→ Current amount of Guilds",
+            description=f"• Guilds: **https://hasteb.in/{post.json()['key']}**"
+        )
+
+        await ctx.send(embed=embed)
+
+        logger.info(f"Owner | Sent guilds: {ctx.author}")
+
     @commands.is_owner()
-    @commands.command(aliases=['list'])
-    async def list_premium(self, ctx):
-        f = open('tools/premium.txt', 'r')
-        file_contents = f.read()
-        await ctx.send(embed=discord.Embed(title="Premium User_id's", description=file_contents, color=color))
-        f.close()
+    @commands.command()
+    async def get_invite(self, ctx, id: int):
+        guild = self.bot.get_guild(id)
+
+        for channel in guild.text_channels:
+            channels = [channel.id]
+
+        picked = random.choice(channels)
+        channel = self.bot.get_channel(picked)
+
+        embed = discord.Embed(
+            color=self.bot.embed_color,
+            title=f"→ Invite From Guild",
+            description=f"• Invite: {await channel.create_invite(max_uses=1)}"
+        )
+
+        await ctx.author.send(embed=embed)
+
     
 def setup(bot):
     bot.add_cog(dev(bot))
