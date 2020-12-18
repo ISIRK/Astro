@@ -207,7 +207,7 @@ class meta(commands.Cog):
         
         badges = []
             
-        dev = self.bot.get_role(749808383619760151)
+        dev = guild.get_role(749808383619760151)
         if dev in member.roles:
           bages.append('<:dev:759427919302492160>')
                 
