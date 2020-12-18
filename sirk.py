@@ -26,8 +26,6 @@ import asyncio
 
 import discord
 
-from discord.ext.tasks import loop
-
 from discord.ext import commands, menus
 
 from datetime import datetime
@@ -78,14 +76,6 @@ async def on_message(message):
     if message.content.endswith('<@751447995270168586>'):
         embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
         await message.channel.send(embed=embed)
-
-@loop(seconds=0)
-async def status_changer():
-    await asyncio.sleep(15)
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{len(bot.guilds)} servers | {len(bot.users)}"))
-    await asyncio.sleep(60)
-    await bot.change_presence(activity=discord.Game(name="^help"))
-    await asyncio.sleep(45)
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
