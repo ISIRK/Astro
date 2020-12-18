@@ -41,19 +41,19 @@ class ErrorHandler(Cog):
         if isinstance(error, commands.CommandNotFound):
             return
         elif isinstance(error, commands.MissingPermissions):
-            await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+            await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+            await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.BadArgument):
-            await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+            await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.NotOwner):
-            await ctx.send(embed = discord.Embed(title = f"{ctx.author} is too gay to use this command.", color = discord.Color.red())) #return # You are not an owner.
+            await ctx.reply(embed = discord.Embed(title = f"{ctx.author} is too gay to use this command.", color = discord.Color.red())) #return # You are not an owner.
         elif isinstance(error, commands.BotMissingPermissions):
-            await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
-        elif isinstance(error, discord.NotFound): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
-        elif isinstance(error, commands.CommandOnCooldown): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
-        elif isinstance(error, commands.MaxConcurrencyReached): await ctx.send(embed = discord.Embed(title = str(error), color = discord.Color.red()))
-        elif isinstance(error, commands.CheckFailure): await ctx.send(embed = discord.Embed(title = "You don't have premium. Use command donate for more info.", color = discord.Color.red()))
+            await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+        elif isinstance(error, discord.NotFound): await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+        elif isinstance(error, commands.CommandOnCooldown): await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+        elif isinstance(error, commands.MaxConcurrencyReached): await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+        elif isinstance(error, commands.CheckFailure): await ctx.reply(embed = discord.Embed(title = "You don't have premium. Use command donate for more info.", color = discord.Color.red()))
         else:
             embed = discord.Embed(
                 title = "An error occurred!",
@@ -62,7 +62,7 @@ class ErrorHandler(Cog):
                 color = discord.Color.red()
             )
             embed.set_footer(text = f"Caused by: {ctx.command}")
-            await ctx.send(embed = embed)
+            await ctx.reply(embed = embed)
 
             #Support server embed
             embed = discord.Embed(
