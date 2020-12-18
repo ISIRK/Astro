@@ -213,6 +213,8 @@ class meta(commands.Cog):
         
         if dev in member.roles:
           bages.append('<:dev:759427919302492160>')
+        else:
+            pass
                 
         embed = discord.Embed(title=f"{member} {badges}", color=member.color)
         embed.add_field(name='**General:**',
