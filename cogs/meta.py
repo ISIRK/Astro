@@ -216,7 +216,7 @@ class meta(commands.Cog):
         else:
             badges.append('hi')
                 
-        embed = discord.Embed(title=f"{member}" +" ".join(badges), color=member.color)
+        embed = discord.Embed(title=f"{member} " +" ".join(badges), color=member.color)
         embed.add_field(name='**General:**',
                         value=f'Name: `{member}`\n' 
                               f'Status: {statuses[str(member.status)]}\n'
