@@ -210,12 +210,13 @@ class meta(commands.Cog):
         guild = self.bot.get_guild(743121194911531110)
             
         dev = guild.get_role(749808383619760151)
+        
         if dev in member.roles:
           bages.append('<:dev:759427919302492160>')
                 
-        embed = discord.Embed(title=f"{member}", color=member.color)
+        embed = discord.Embed(title=f"{member} {bages}", color=member.color)
         embed.add_field(name='**General:**',
-                        value=f'Name: `{member} {badges}`\n' 
+                        value=f'Name: `{member}`\n' 
                               f'Status: {statuses[str(member.status)]}\n'
                               f'Bot: `{member.bot}`\n'
                               f'Shared Guilds: `{shared}`\n'
