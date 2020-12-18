@@ -24,7 +24,6 @@ SOFTWARE.
 import discord, json, aiohttp, random, asyncio
 import subprocess as sp
 from discord.ext import commands, menus
-from .utils import checks
 
 tools = "tools/tools.json"
 with open(tools) as f:
@@ -82,18 +81,6 @@ class test(commands.Cog): #, command_attrs=dict(hidden=True)
         async with self.session.get("https://www.foaas.com/shakespeare/PB/isirk", headers=headers) as r:
             resp = await r.json()
         await ctx.send(resp['message'])
-
-    @commands.command()
-    async def has_premium(self, ctx, *, user:discord.Member=None):
-        '''Check to see if a user has premium'''
-        if user is None:
-            user = ctx.author
-            
-        with open('tools/premium.txt') as f:
-            if f'{user.id}' in f.read():
-                await ctx.send(f"{user} has premium.")
-            else:
-                await ctx.send(f"{user} does not have premium.")
         
     @commands.is_owner()
     @commands.command()
