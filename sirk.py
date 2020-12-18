@@ -56,8 +56,8 @@ bot.owner_ids = {542405601255489537}
 
 os.environ["JISHAKU_NO_UNDERSCORE"] = "True"
 
-# also 
-os.environ["JISHAKU_NO_DM_TRACEBACK"] = "True" 
+# also
+os.environ["JISHAKU_NO_DM_TRACEBACK"] = "True"
 os.environ["JISHAKU_HIDE"] = "True"
 
 
@@ -76,6 +76,14 @@ async def on_message(message):
     if message.content.endswith('<@751447995270168586>'):
         embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
         await message.channel.send(embed=embed)
+
+@loop(seconds=0)
+async def status_changer():
+    await asyncio.sleep(15)
+	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
+	await asyncio.sleep(60)
+	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"^help"))
+	await asyncio.sleep(45)
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
