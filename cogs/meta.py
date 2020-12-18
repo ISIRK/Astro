@@ -205,20 +205,7 @@ class meta(commands.Cog):
         roles = ' '.join([r.mention for r in member.roles if r != ctx.guild.default_role] or ['None'])
         shared = sum(g.get_member(member.id) is not None for g in self.bot.guilds)
         
-        badges = []
-        
-        
-        
-        guild = self.bot.get_guild(743121194911531110)
-        user = guild.get_member(member)
-        dev = guild.get_role(749808383619760151)
-        
-        if dev in user.roles:
-          badges.append('<:dev:759427919302492160>')
-        else:
-            badges.append('hi')
-                
-        embed = discord.Embed(title=f"{member} " +" ".join(badges), color=member.color)
+        embed = discord.Embed(title=f"{member}", color=member.color)
         embed.add_field(name='**General:**',
                         value=f'Name: `{member}`\n' 
                               f'Status: {statuses[str(member.status)]}\n'
