@@ -122,9 +122,9 @@ class meta(commands.Cog):
         embed = discord.Embed(title="Privacy Policy for Sirk Bot", url="https://asksirk.com/bot/privacy/", color=color)
         await ctx.send(embed=embed)
         
-    @commands.command(aliases=['buy', 'pay', 'premium'])
+    @commands.command()
     async def donate(self, ctx):
-        message = "Thank you for choosing to donate/buy premium. It is greatly appreciated."
+        message = "Thank you for choosing to donate. It is greatly appreciated."
         await ctx.send(embed=discord.Embed(title=message, url=f"https://donatebot.io/checkout/743121194911531110?buyer={ctx.author.id}", color=color))
 
     @commands.command()
