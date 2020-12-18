@@ -207,7 +207,7 @@ class meta(commands.Cog):
         
         badges = []
         
-        if member has_role(749808383619760151):
+        if member.has_role(749808383619760151):
             bages.append('<:dev:759427919302492160>')
                 
         embed = discord.Embed(title=f"{member}", color=member.color)
