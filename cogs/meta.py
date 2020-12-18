@@ -206,9 +206,10 @@ class meta(commands.Cog):
         shared = sum(g.get_member(member.id) is not None for g in self.bot.guilds)
         
         badges = []
-        
-        if member.has_role(749808383619760151):
-            bages.append('<:dev:759427919302492160>')
+            
+        dev = self.bot.get_role(749808383619760151)
+        if dev in member.roles:
+          bages.append('<:dev:759427919302492160>')
                 
         embed = discord.Embed(title=f"{member}", color=member.color)
         embed.add_field(name='**General:**',
