@@ -207,11 +207,13 @@ class meta(commands.Cog):
         
         badges = []
         
+        
+        
         guild = self.bot.get_guild(743121194911531110)
-            
+        user = guild.get_member(member)
         dev = guild.get_role(749808383619760151)
         
-        if dev in member.roles:
+        if dev in user.roles:
           badges.append('<:dev:759427919302492160>')
         else:
             badges.append('hi')
