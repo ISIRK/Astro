@@ -230,7 +230,7 @@ class meta(commands.Cog):
         if not member: # if member is no mentioned
             member = ctx.message.author # set member as the author
         userAvatar = member.avatar_url
-        avatarembed = discord.Embed(color=color)
+        avatarembed = discord.Embed(color=0x2F3136)
         avatarembed.set_author(name=member)
         avatarembed.set_image(url=userAvatar)
         await ctx.send(embed=avatarembed)
