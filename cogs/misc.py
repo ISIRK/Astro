@@ -231,7 +231,7 @@ class misc(commands.Cog):
 
     @commands.command()
     async def emoji(self, ctx):
-        await ctx.send('Looking for a bot/person emoji server?\n> https://discord.gg/pNrWf4MxFY')
+        await ctx.send('discord.gg/pNrWf4MxFY')
 
 def setup(bot):
     bot.add_cog(misc(bot))
