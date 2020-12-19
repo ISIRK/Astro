@@ -229,5 +229,9 @@ class misc(commands.Cog):
             return await ctx.send('No Spotify Activity Found')
         return await ctx.send('User is not playing anything.')
 
+    @commands.command()
+    async def emoji(self, ctx):
+        await ctx.send('discord.gg/pNrWf4MxFY')
+
 def setup(bot):
     bot.add_cog(misc(bot))
