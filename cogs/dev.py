@@ -377,8 +377,7 @@ class dev(commands.Cog):
     async def list(self, ctx):
         '''Get the todo list'''
         s = await self.bot.db.fetch("SELECT * FROM todo;")
-        num = 1
-        list = f'{num+1}\n'.join(x["value"] for x in s)
+        list = '\n'.join(x["value"] for x in s)
         embed = discord.Embed(
             title = f"{str(ctx.author)}'s Todo List",
             description = list,
