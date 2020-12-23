@@ -372,6 +372,14 @@ class dev(commands.Cog):
             await ctx.send(f'Added {thing} to your todo list!')
         except Exception as e:
             return await ctx.send(e)
+
+    @todo.command()
+    async def delete(self, ctx, *, think:str):
+        try:
+            await self.bot.db.execute("DELETE FROM todo WHERE value = $1", thing)
+            await ctx.send(f'Removed {thing} from your todo list!')
+        except Exception as e:
+            return await ctx.send(e)
         
     @todo.command()
     async def list(self, ctx):
