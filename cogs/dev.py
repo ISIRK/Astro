@@ -373,7 +373,7 @@ class dev(commands.Cog):
         except Exception as e:
             return await ctx.send(e)
 
-    @todo.command()
+    @todo.command(aliases=['remove'])
     async def delete(self, ctx, *, thing:str):
         try:
             await self.bot.db.execute("DELETE FROM todo WHERE value = $1", thing)
