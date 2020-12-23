@@ -15,7 +15,7 @@ class Jobs:
         money = random.randint()
 
 
-class Economy(commands.Cog):
+class economy(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.jobs = Jobs()
@@ -69,4 +69,4 @@ class Economy(commands.Cog):
     
 
 def setup(bot):
-    bot.add_cog(Economy(bot))
+    bot.add_cog(economy(bot))
