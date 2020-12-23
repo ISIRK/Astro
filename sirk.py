@@ -32,11 +32,16 @@ from datetime import datetime
 
 import json
 
+import configparser, asyncpg, aiohttp
+
 ##CONFIG
 tokenFile = "tools/config.json"
 with open(tokenFile) as f:
     data = json.load(f)
 token = data['TOKEN']
+user = data['DB-USER']
+password = data['DB-PWD']
+name = data['DB-NAME']
 
 prefixFile = "tools/tools.json"
 with open(prefixFile) as f:
@@ -53,6 +58,10 @@ bot.start_time = datetime.utcnow()
 
 bot.owner_ids = {542405601255489537}
 #bot.remove_command('help')
+
+#database
+bot.loop = asyncio.get_event_loop()
+bot.db = bot.loop.run_until_complete(asyncpg.connect(user=user, password=password, database=name, host='127.0.0.1'))
 
 os.environ["JISHAKU_NO_UNDERSCORE"] = "True"
 

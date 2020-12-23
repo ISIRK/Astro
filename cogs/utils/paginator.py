@@ -21,10 +21,16 @@ SOFTWARE.
 
 '''
 
-import asyncio
+import asyncio, json
 import discord
 from discord.ext.commands import Paginator as CommandPaginator
 from discord.ext import menus
+
+tools = "tools/tools.json"
+with open(tools) as f:
+    data = json.load(f)
+footer = data['FOOTER']
+color = int(data['COLOR'], 16)
 
 class RoboPages(menus.MenuPages):
     def __init__(self, source):
@@ -151,4 +157,4 @@ class SimplePages(RoboPages):
 
     def __init__(self, entries, *, per_page=12):
         super().__init__(SimplePageSource(entries, per_page=per_page))
-        self.embed = discord.Embed(colour=discord.Colour.from_rgb(48,162,242))
+        self.embed = discord.Embed(colour=color)
