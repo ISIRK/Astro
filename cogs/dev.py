@@ -356,10 +356,29 @@ class dev(commands.Cog):
         except menus.MenuError as f:
             await ctx.send(f)
             
-    @commands.command()
-    async def todo(self, ctx, *, thing:str):
+    @commands.is_owner()
+    @commands.group(invoke_without_command=True)
+    async def todo(self, ctx):
+        """Todo Commands"""
+
+        if ctx.invoked_subcommand is None:
+            await ctx.send_help(ctx.command)
+            
+    @todo.command()
+    async def add(self, ctx, *, thing:str):
         '''Add something to the todo list'''
         await self.bot.db.execute("INSERT INTO todo (value) VALUES($1)", thing)
+    @todo.command()
+    async def list(self, ctx):
+        '''Get the todo list'''
+        s = await self.bot.db.fetchrow("SELECT * FROM todo")
+        list = s['value']
+        embed = discord.Embed(
+            title = f"{str(user)}'s Todo List",
+            description = f"{list}",
+            color = color
+        )
+        await ctx.send(embed = embed)
     
 def setup(bot):
     bot.add_cog(dev(bot))
