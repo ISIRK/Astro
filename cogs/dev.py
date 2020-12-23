@@ -202,31 +202,37 @@ class dev(commands.Cog):
         if ctx.invoked_subcommand is None:
             await ctx.send_help(ctx.command)
             
+    @commands.is_owner()
     @status.command()
     async def playing(self, ctx, *, status: str):
         await self.bot.change_presence(activity=discord.Game(name=f"{status}"))
         await ctx.send(f'<:online:758139458767290421> Changed status to `Playing {status}`')
         
+    @commands.is_owner()
     @status.command()
     async def listening(self, ctx, *, status: str):
         await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f"{status}"))
         await ctx.send(f'<:online:758139458767290421> Changed status to `Listening to {status}`')
 
+    @commands.is_owner()
     @status.command()
     async def watching(self, ctx, *, status: str):
         await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{status}"))
         await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {status}`')
 
+    @commands.is_owner()
     @status.command()
     async def competing(self, ctx, *, status: str):
         await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.competing, name=f"{status}"))
         await ctx.send(f'<:online:758139458767290421> Changed status to `Competing in {status}`')
 
+    @commands.is_owner()
     @status.command()
     async def streaming(self, ctx, *, status: str):
         await self.bot.change_presence(activity=discord.Streaming(name=f"{status}", url="https://www.twitch.tv/isirk"))
         await ctx.send(f'<:streaming:769640090275151912> Changed status to `Streaming {status}`')
 
+    @commands.is_owner()
     @status.command()
     async def bot(self, ctx, *, type=None):
         if type is None:
@@ -239,6 +245,7 @@ class dev(commands.Cog):
             await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name=f"{len(self.bot.users)} users"))
             await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {len(self.bot.users)} users`')
 
+    @commands.is_owner()
     @status.command()
     async def reset(self, ctx):
         await self.bot.change_presence(status=discord.Status.online)
@@ -364,6 +371,7 @@ class dev(commands.Cog):
         if ctx.invoked_subcommand is None:
             await ctx.send_help(ctx.command)
             
+    @commands.is_owner()
     @todo.command()
     async def add(self, ctx, *, thing:str):
         '''Add something to the todo list'''
@@ -373,6 +381,7 @@ class dev(commands.Cog):
         except Exception as e:
             return await ctx.send(e)
 
+    @commands.is_owner()
     @todo.command(aliases=['remove'])
     async def delete(self, ctx, *, thing:str):
         '''Delete an item from your todo list'''
@@ -382,6 +391,7 @@ class dev(commands.Cog):
         except Exception as e:
             return await ctx.send(e)
         
+    @commands.is_owner()
     @todo.command()
     async def list(self, ctx):
         '''Get the todo list'''
