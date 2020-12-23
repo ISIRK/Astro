@@ -38,7 +38,7 @@ class economy(commands.Cog):
         s = await self.bot.db.fetchrow("SELECT * FROM economy WHERE userId = $1 and guildId = $2", ctx.author.id, ctx.guild.id)
         if s:
             await self.bot.db.execute("DELETE FROM economy WHERE userId = $1 AND guildId = $2", ctx.author.id, ctx.guild.id)
-            await ctx.send(embed = discord.Embed(description = "Succesfully closed your bank account for this guild.", color=color))
+            await ctx.send(embed = discord.Embed(description = "Successfully closed your bank account for this guild.", color=color))
         if not s:
             return await ctx.send(embed = discord.Embed(description = "You don't have an account!", color=color))
     
