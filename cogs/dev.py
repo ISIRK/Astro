@@ -376,11 +376,11 @@ class dev(commands.Cog):
     @todo.command()
     async def list(self, ctx):
         '''Get the todo list'''
-        s = await self.bot.db.fetchrow("SELECT * FROM todo")
-        list = s['value']
+        s = await self.bot.db.fetch("SELECT * FROM todo;")
+        list = '\n'.join(x["value"] for x in s)
         embed = discord.Embed(
             title = f"{str(ctx.author)}'s Todo List",
-            description = f"{list}",
+            description = list,
             color = color
         )
         await ctx.send(embed = embed)
