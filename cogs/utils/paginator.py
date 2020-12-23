@@ -144,7 +144,6 @@ class SimplePageSource(menus.ListPageSource):
 
         if self.initial_page and self.is_paginating():
             pages.append('')
-            pages.append('Confused? React with \N{INFORMATION SOURCE} for more info.')
             self.initial_page = False
 
         menu.embed.description = '\n'.join(pages)
