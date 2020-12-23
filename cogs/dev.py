@@ -278,7 +278,7 @@ class dev(commands.Cog):
     async def eval(self, ctx, *, code: str):
         '''Evaluate code'''
         cog = self.bot.get_cog("Jishaku")
-        res = codeblock_converter(code)
+        res = codeblocks.codeblock_converter(code)
         await cog.jsk_python(ctx, argument=res)
 
     @commands.is_owner()
