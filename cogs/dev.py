@@ -368,13 +368,14 @@ class dev(commands.Cog):
     async def add(self, ctx, *, thing:str):
         '''Add something to the todo list'''
         await self.bot.db.execute("INSERT INTO todo (value) VALUES($1)", thing)
+        
     @todo.command()
     async def list(self, ctx):
         '''Get the todo list'''
         s = await self.bot.db.fetchrow("SELECT * FROM todo")
         list = s['value']
         embed = discord.Embed(
-            title = f"{str(user)}'s Todo List",
+            title = f"{str(ctx.author)}'s Todo List",
             description = f"{list}",
             color = color
         )
