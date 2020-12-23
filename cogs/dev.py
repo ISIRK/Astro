@@ -355,7 +355,11 @@ class dev(commands.Cog):
             await p.start(ctx)
         except menus.MenuError as f:
             await ctx.send(f)
-
+            
+    @commands.command()
+    async def todo(self, ctx, *, thing:str):
+        '''Add something to the todo list'''
+        await self.bot.db.execute("INSERT INTO todo (value) VALUES($1)", thing)
     
 def setup(bot):
     bot.add_cog(dev(bot))
