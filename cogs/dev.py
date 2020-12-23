@@ -374,7 +374,7 @@ class dev(commands.Cog):
             return await ctx.send(e)
 
     @todo.command()
-    async def delete(self, ctx, *, think:str):
+    async def delete(self, ctx, *, thing:str):
         try:
             await self.bot.db.execute("DELETE FROM todo WHERE value = $1", thing)
             await ctx.send(f'Removed {thing} from your todo list!')
