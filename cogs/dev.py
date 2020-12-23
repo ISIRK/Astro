@@ -367,7 +367,11 @@ class dev(commands.Cog):
     @todo.command()
     async def add(self, ctx, *, thing:str):
         '''Add something to the todo list'''
-        await self.bot.db.execute("INSERT INTO todo (value) VALUES($1)", thing)
+        try:
+            await self.bot.db.execute("INSERT INTO todo (value) VALUES($1)", thing)
+            await ctx.send(f'Added {thing} to your todo list!')
+        except Exception as e:
+            return await ctx.send(e)
         
     @todo.command()
     async def list(self, ctx):
