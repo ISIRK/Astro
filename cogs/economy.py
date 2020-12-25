@@ -57,12 +57,14 @@ class economy(commands.Cog):
         )
         await ctx.send(embed = embed)
 
-    ''' WIP
     @commands.command()
     async def work(self, ctx):
-        cash 
-        await self.bot.db.execute("")
-    '''
+        s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
+        bal = s['cashbalance']
+        pay = random.randint(1, 100)
+        total = bal+pay
+        await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE guildId = $2 and userId = $3", paycheck, ctx.guild.id, ctx.author.id)
+        await ctx.send('You worked and gained ${total}!')
 
         
 
