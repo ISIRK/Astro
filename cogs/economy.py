@@ -63,7 +63,7 @@ class economy(commands.Cog):
         bal = s['cashbalance']
         pay = random.randint(1, 100)
         total = bal+pay
-        await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE guildId = $2 and userId = $3", paycheck, ctx.guild.id, ctx.author.id)
+        await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE guildId = $2 and userId = $3", total, ctx.guild.id, ctx.author.id)
         await ctx.send('You worked and gained ${total}!')
 
         
