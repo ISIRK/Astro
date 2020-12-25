@@ -2,6 +2,7 @@ from random import randint
 import discord
 from discord.ext import commands
 import random, json
+from discord.ext.commands.cooldowns import BucketType
 
 tools = "tools/tools.json"
 with open(tools) as f:
