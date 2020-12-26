@@ -408,7 +408,7 @@ class dev(commands.Cog):
     @commands.command()
     async def list(self, ctx):
         s = await self.bot.db.fetch("SELECT * FROM todo;")
-        list = x["value"] for x in s
+        list = [x["value"] for x in s]
         try:
             p = SqlPages(entries=list, per_page=10)
             await p.start(ctx)
