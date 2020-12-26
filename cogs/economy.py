@@ -71,6 +71,7 @@ class economy(commands.Cog):
         except Exception as e:
             return await ctx.send(f"User does not have a bank account.")
         
+    ''' WIP
     @commands.command()
     async def deposit(self, ctx):
         try:
@@ -81,6 +82,7 @@ class economy(commands.Cog):
             await ctx.send(f'Deposited {bal} into the bank.')
         except Exception as e:
             return await ctx.send(f"{e}") #User does not have a bank account.
+    '''
 
 def setup(bot):
     bot.add_cog(economy(bot))
