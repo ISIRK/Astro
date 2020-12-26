@@ -403,6 +403,17 @@ class dev(commands.Cog):
             color = color
         )
         await ctx.send(embed = embed)
+        
+    @commands.is_owner()
+    @commands.command()
+    async def list(self, ctx):
+        s = await self.bot.db.fetch("SELECT * FROM todo;")
+        list = '\n'.join(x["value"] for x in s)
+        try:
+            p = SqlPages(entries=list, per_page=10)
+            await p.start(ctx)
+        except menus.MenuError as f:
+            await ctx.send(f)
     
 def setup(bot):
     bot.add_cog(dev(bot))
