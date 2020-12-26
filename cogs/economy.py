@@ -17,6 +17,7 @@ class Jobs:
 
 
 class economy(commands.Cog):
+    '''Economy Commands'''
     def __init__(self, bot):
         self.bot = bot
         self.jobs = Jobs()
@@ -45,6 +46,7 @@ class economy(commands.Cog):
     
     @commands.command(aliases = ["bal"])
     async def balance(self, ctx, user: discord.Member = None):
+        '''See the balance of yourself or the mentioned user'''
         if not user: user = ctx.author
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, user.id)
         if not s: return await ctx.send("That user doesn't have a bank account!")
@@ -61,6 +63,7 @@ class economy(commands.Cog):
     @commands.cooldown(1,120,BucketType.user)
     @commands.command()
     async def work(self, ctx):
+        '''Work and get a random amount of money inbetween $1 and $100'''
         try:
             s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
             bal = s['cashbalance']
