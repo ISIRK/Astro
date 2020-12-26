@@ -408,10 +408,11 @@ class dev(commands.Cog):
     @commands.is_owner()
     @todo.command()
     async def list(self, ctx):
+        '''Get your todo list'''
         s = await self.bot.db.fetch("SELECT * FROM todo;")
         list = [x["value"] for x in s]
         try:
-            p = SqlPages(entries=list, per_page=10)
+            p = SimplePages(entries=list, per_page=10)
             await p.start(ctx)
         except menus.MenuError as f:
             await ctx.send(f)
