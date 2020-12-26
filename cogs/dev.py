@@ -390,11 +390,11 @@ class dev(commands.Cog):
             await ctx.send(f'Removed {thing} from your todo list!')
         except Exception as e:
             return await ctx.send(e)
-        
+    '''
     @commands.is_owner()
     @todo.command()
     async def list(self, ctx):
-        '''Get the todo list'''
+        Get the todo list
         s = await self.bot.db.fetch("SELECT * FROM todo;")
         list = '\n'.join(x["value"] for x in s)
         embed = discord.Embed(
@@ -403,9 +403,10 @@ class dev(commands.Cog):
             color = color
         )
         await ctx.send(embed = embed)
-        
+    '''
+    
     @commands.is_owner()
-    @commands.command()
+    @todo.command()
     async def list(self, ctx):
         s = await self.bot.db.fetch("SELECT * FROM todo;")
         list = [x["value"] for x in s]
