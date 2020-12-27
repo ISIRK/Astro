@@ -34,7 +34,7 @@ class logging(commands.Cog):
         
         @commands.command()
         @commands.has_permissions(manage_guild=True)
-        async def settings(self, ctx
+        async def settings(self, ctx):
             await ctx.send('Comming Soon!')
         
 def setup(bot):
