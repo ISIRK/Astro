@@ -197,9 +197,7 @@ class dev(commands.Cog):
     @commands.command()
     @commands.is_owner()
     async def status(self, ctx, kwarg: int, *, status: str):
-        if kwarg == 0:
-            await ctx.send("Playing | Watching | Listening")
-        elif kwarg == 1:
+        if kwarg == 1:
             await self.bot.change_presence(activity=discord.Game(name=status))
         elif kwarg == 2:
             activity = discord.Activity(
