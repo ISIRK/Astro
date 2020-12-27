@@ -18,6 +18,7 @@ SOFTWARE.
 
 import discord
 from discord.ext import commands
+from discord.ext.commands import Cog
 import json
 from discord.ext.commands.cooldowns import BucketType
 
@@ -32,6 +33,26 @@ class logging(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
+    # Listeners
+    @Cog.listener()
+    async def on_guild_join(self, guild: discord.Guild):
+        c = self.bot.get_channel(792869360925671444)
+        # Guild information sent to this channel
+        embed = discord.Embed(
+            title="Guild Joined!",
+            description=("```yaml\n"
+                         f"Guild Name - {guild}\n"
+                         f"Guild ID - {guild.id}\n"
+                         f"Guild Owner - {guild.owner} [{guild.owner.id}]\n"
+                         f"Guild Created - {guild.created_at.strftime('%b %d, %Y %I:%M %p')}\n"
+                         f"Guild Members - {len(guild.members)}\n"
+                         "```"
+                         ),
+            timestamp=datetime.datetime.utcnow()
+        )
+        await c.send(embed=embed)
+        
+    # Commands
     @commands.command()
     @commands.has_permissions(manage_guild=True)
     async def settings(self, ctx):
