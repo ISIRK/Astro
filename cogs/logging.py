@@ -32,10 +32,10 @@ class logging(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
-        @commands.command()
-        @commands.has_permissions(manage_guild=True)
-        async def settings(self, ctx):
-            await ctx.send('Comming Soon!')
+    @commands.command()
+    @commands.has_permissions(manage_guild=True)
+    async def settings(self, ctx):
+        await ctx.send('Comming Soon!')
         
 def setup(bot):
     bot.add_cog(logging(bot))
