@@ -199,6 +199,7 @@ class dev(commands.Cog):
     async def status(self, ctx, kwarg: int, *, status: str):
         if kwarg == 1:
             await self.bot.change_presence(activity=discord.Game(name=status))
+            await ctx.send(f'Changed status to `{kwarg}` | `{status}`')
         elif kwarg == 2:
             activity = discord.Activity(
                 name=status, type=discord.ActivityType.watching)
