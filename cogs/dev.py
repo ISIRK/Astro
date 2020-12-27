@@ -209,12 +209,6 @@ class dev(commands.Cog):
             activity = discord.Activity(
                 name=status, type=discord.ActivityType.listening)
             await self.bot.change_presence(activity=activity)
-
-    @commands.is_owner()
-    @status.command()
-    async def reset(self, ctx):
-        await self.bot.change_presence(status=discord.Status.online)
-        await ctx.send("<:online:758139458767290421> Reset Status")
         
     @commands.is_owner()
     @commands.command()
