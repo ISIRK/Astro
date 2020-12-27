@@ -204,12 +204,15 @@ class dev(commands.Cog):
             activity = discord.Activity(
                 name=status, type=discord.ActivityType.watching)
             await self.bot.change_presence(activity=activity)
+            await ctx.send(f'Changed status to `{kwarg}` | `{status}`')
         elif kwarg == 3:
             activity = discord.Activity(
                 name=status, type=discord.ActivityType.listening)
             await self.bot.change_presence(activity=activity)
+            await ctx.send(f'Changed status to `{kwarg}` | `{status}`')
         elif kwarg == 4:
             await self.bot.change_presence(status=discord.Status.online)
+            await ctx.send(f'Reset Status')
         
     @commands.is_owner()
     @commands.command()
