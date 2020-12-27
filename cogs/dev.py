@@ -197,19 +197,20 @@ class dev(commands.Cog):
     @commands.command()
     @commands.is_owner()
     async def status(self, ctx, kwarg: int, *, status: str):
+        '''Playing, Watching, Listening, Reset'''
         if kwarg == 1:
             await self.bot.change_presence(activity=discord.Game(name=status))
-            await ctx.send(f'Changed status to `{kwarg}` | `{status}`')
+            await ctx.send(f'Changed status to  `Playing {status}`')
         elif kwarg == 2:
             activity = discord.Activity(
                 name=status, type=discord.ActivityType.watching)
             await self.bot.change_presence(activity=activity)
-            await ctx.send(f'Changed status to `{kwarg}` | `{status}`')
+            await ctx.send(f'Changed status to `Watching {status}`')
         elif kwarg == 3:
             activity = discord.Activity(
                 name=status, type=discord.ActivityType.listening)
             await self.bot.change_presence(activity=activity)
-            await ctx.send(f'Changed status to `{kwarg}` | `{status}`')
+            await ctx.send(f'Changed status to `Listening to {status}`')
         elif kwarg == 4:
             await self.bot.change_presence(status=discord.Status.online)
             await ctx.send(f'Reset Status')
