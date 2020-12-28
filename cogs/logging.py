@@ -89,7 +89,7 @@ class logging(commands.Cog):
     async def on_kick(self, guild, user):
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
         channel = s['channel']
-        c = self.bot.get_channel(channel)
+        c = guild.get_channel(channel)
 
         if guild.me.guild_permissions.view_audit_log:
             log = await guild.audit_logs(limit=1).flatten()
@@ -102,8 +102,8 @@ class logging(commands.Cog):
             embed = discord.Embed(title="User Banned!",
                                       description="\n".join(returnList))
             await c.send(embed=embed)
-        except discord.Forbidden:
-            return
+        except Exception as e:
+            await guild.owner.send(f"```py\n{e}```")
         
     # Commands    
     @commands.command(aliases=['set'])
