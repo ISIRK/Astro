@@ -91,19 +91,19 @@ class logging(commands.Cog):
         channel = s['channel']
         c = self.bot.get_channel(channel)
 
-            if guild.me.guild_permissions.view_audit_log:
-                log = await guild.audit_logs(limit=1).flatten()
-                log = log[0]
-                if log.action is discord.AuditLogAction.ban:
-                    mod = log.user
-                    returnList.append(f"Moderator: {mod} [{mod.id}]")
-                    returnList.append(f"Reason: \n ```{log.reason}```")
-            try:
-                embed = discord.Embed(title="User Banned!",
+        if guild.me.guild_permissions.view_audit_log:
+            log = await guild.audit_logs(limit=1).flatten()
+            log = log[0]
+            if log.action is discord.AuditLogAction.ban:
+                mod = log.user
+                returnList.append(f"Moderator: {mod} [{mod.id}]")
+                returnList.append(f"Reason: \n ```{log.reason}```")
+        try:
+            embed = discord.Embed(title="User Banned!",
                                       description="\n".join(returnList))
-                await c.send(embed=embed)
-            except discord.Forbidden:
-                return
+            await c.send(embed=embed)
+        except discord.Forbidden:
+            return
         
     # Commands    
     @commands.command(aliases=['set'])
