@@ -23,7 +23,7 @@ SOFTWARE.
 
 import discord
 from discord.ext import commands
-import json, datetime
+import json, datetime, asyncio
 from discord.ext.commands.cooldowns import BucketType
 
 tools = "tools/tools.json"
