@@ -32,6 +32,10 @@ class logging(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
+    # Time Stuff
+    x = datetime.datetime.utcnow()
+    time = x.strftime("%b %d %Y %H:%M:%S")
+    
     # Listeners
     @commands.Cog.listener()
     async def on_guild_join(self, guild: discord.Guild):
@@ -46,7 +50,7 @@ class logging(commands.Cog):
                          f"Guild Members - {len(guild.members)}\n"
                          "```"
                          ),
-            timestamp=datetime.datetime.utcnow(),
+            timestamp=time,
             color=color
         )
         await c.send(embed=embed)
@@ -64,7 +68,7 @@ class logging(commands.Cog):
                          f"Guild Members - {len(guild.members)}\n"
                          "```"
                          ),
-            timestamp=datetime.datetime.utcnow(),
+            timestamp=time,
             color=color
         )
         await c.send(embed=embed)
