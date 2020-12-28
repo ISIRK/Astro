@@ -141,7 +141,7 @@ class logging(commands.Cog):
         except Exception as e:
             return await ctx.send(f"```py\n{e}```")
             
-        await ctx.send(f'{channel.mention} --> {log}')
+        await log.send(f'{channel.mention} --> {log}')
         
 def setup(bot):
     bot.add_cog(logging(bot))
