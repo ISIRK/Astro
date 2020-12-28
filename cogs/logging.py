@@ -157,7 +157,7 @@ class logging(commands.Cog):
             pass
         else:
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", False, ctx.guild.id)
-            await ctx.send('Logging Toggled Off!')
+            await m.edit(embed=embed)
             
         try:
             reaction, user = await self.bot.wait_for('reaction_add', timeout=60.0, check=ccheck)
@@ -165,7 +165,7 @@ class logging(commands.Cog):
             pass
         else:
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", True, ctx.guild.id)
-            await ctx.send('Logging Toggled On!')
+            await m.edit(embed=embed)
         
 def setup(bot):
     bot.add_cog(logging(bot))
