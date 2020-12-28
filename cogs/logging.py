@@ -141,7 +141,10 @@ class logging(commands.Cog):
         except Exception as e:
             return await ctx.send(f"```py\n{e}```")
         c = ctx.guild.get_channel(log)
-        await c.send(f'{channel.mention} --> {log}')
+        try:
+            await c.send(f'{channel.mention} --> {log}')
+        except Exception as e:
+            return await ctx.send(f"I do not have permissions to send in {log.mention}")
         
 def setup(bot):
     bot.add_cog(logging(bot))
