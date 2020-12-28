@@ -165,7 +165,7 @@ class logging(commands.Cog):
             pass
         else:
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", True, ctx.guild.id)
-            await m.edit('Logging Toggled On!)
+            await m.edit('Logging Toggled On!')
         
 def setup(bot):
     bot.add_cog(logging(bot))
