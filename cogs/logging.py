@@ -35,7 +35,6 @@ class logging(commands.Cog):
     # Listeners
     @commands.Cog.listener()
     async def on_guild_join(self, guild: discord.Guild):
-        x = datetime.datetime.utcnow()
         c = self.bot.get_channel(792869360925671444)
         embed = discord.Embed(
             title="Guild Joined!",
@@ -47,14 +46,13 @@ class logging(commands.Cog):
                          f"Guild Members - {len(guild.members)}\n"
                          "```"
                          ),
-            timestamp=x.strftime("%b %d %Y %H:%M:%S"),
+            timestamp=datetime.datetime.utcnow(),
             color=color
         )
         await c.send(embed=embed)
         
     @commands.Cog.listener()
     async def on_guild_leave(self, guild: discord.Guild):
-        x = datetime.datetime.utcnow()
         c = self.bot.get_channel(792869360925671444)
         embed = discord.Embed(
             title="Guild Left!",
@@ -66,7 +64,7 @@ class logging(commands.Cog):
                          f"Guild Members - {len(guild.members)}\n"
                          "```"
                          ),
-            timestamp=x.strftime("%b %d %Y %H:%M:%S"),
+            timestamp=datetime.datetime.utcnow(),
             color=color
         )
         await c.send(embed=embed)
