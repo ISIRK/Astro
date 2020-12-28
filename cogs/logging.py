@@ -41,6 +41,8 @@ class logging(commands.Cog):
         self.bot = bot
             
     # Listeners
+    
+    # Guild Events
     @commands.Cog.listener()
     async def on_guild_join(self, guild: discord.Guild):
         await self.bot.db.execute("INSERT INTO guilds (guildId, logging) VALUES($1, $2)", guild.id, False)
@@ -81,6 +83,27 @@ class logging(commands.Cog):
             color=color
         )
         await c.send(embed=embed)
+        
+    # Moderation Events
+    @commands.Cog.listener('on_memeber_remove')
+    async def on_kick(self, guild, user):
+        s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
+        channel = s['channel']
+        c = self.bot.get_channel(channel)
+
+            if guild.me.guild_permissions.view_audit_log:
+                log = await guild.audit_logs(limit=1).flatten()
+                log = log[0]
+                if log.action is discord.AuditLogAction.ban:
+                    mod = log.user
+                    returnList.append(f"Moderator: {mod} [{mod.id}]")
+                    returnList.append(f"Reason: \n ```{log.reason}```")
+            try:
+                embed = discord.Embed(title="User Banned!",
+                                      description="\n".join(returnList))
+                await c.send(embed=embed)
+            except discord.Forbidden:
+                return
         
     # Commands    
     @commands.command(aliases=['set'])
