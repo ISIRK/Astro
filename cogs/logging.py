@@ -115,10 +115,10 @@ class logging(commands.Cog):
         log = s['logging']
         if log:
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", False, ctx.guild.id)
-            await ctx.send('Toggled Off!')
+            await ctx.send('Logging Toggled Off!')
         elif not log:
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", True, ctx.guild.id)
-            await ctx.send('Toggled On!')
+            await ctx.send('Logging Toggled On!')
         
 def setup(bot):
     bot.add_cog(logging(bot))
