@@ -142,6 +142,9 @@ class logging(commands.Cog):
                               color=color
                              )
         await ctx.send(embed=embed)
+        
+        await ctx.message.add_reaction('<:xon:792824364658720808>')
+        await ctx.message.add_reaction('<:con:792824364558843956>')
 
         def xcheck(reaction, user):
             return user == ctx.author and str(reaction.emoji) == '<:xon:792824364658720808>'
@@ -157,7 +160,7 @@ class logging(commands.Cog):
             await ctx.send('Logging Toggled Off!')
             
         try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=ccheck)
+            reaction, user = await self.bot.wait_for('reaction_add', timeout=60.0, check=ccheck)
         except asyncio.TimeoutError:
             pass
         else:
