@@ -111,7 +111,7 @@ class GroupHelpPageSource(menus.ListPageSource):
         super().__init__(entries=commands, per_page=6)
         self.group = group
         self.prefix = prefix
-        self.title = f'{self.group.qualified_name} Commands'
+        self.title = f'{self.group.qualified_name}'
         self.description = self.group.description
 
     async def format_page(self, menu, commands):
