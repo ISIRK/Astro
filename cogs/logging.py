@@ -86,6 +86,7 @@ class logging(commands.Cog):
     @commands.command()
     @commands.has_permissions(manage_guild=True)
     async def settings(self, ctx):
+        '''See the toggleable guild settings.'''
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
         error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=color)
         if not s: return await ctx.send(embed=error)
@@ -106,6 +107,12 @@ class logging(commands.Cog):
                               color=color
                              )
         await ctx.send(embed=embed)
+    
+    @commands.is_owner()
+    @commands.command()
+    async def toggle(self, ctx):
+        await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", True, ctx.guild.id)
+        await ctx.send('Toggled!')
         
 def setup(bot):
     bot.add_cog(logging(bot))
