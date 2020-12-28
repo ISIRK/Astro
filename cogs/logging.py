@@ -119,6 +119,50 @@ class logging(commands.Cog):
         elif not log:
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", True, ctx.guild.id)
             await ctx.send('Logging Toggled On!')
+
+    @commands.command()
+    async def test(self, ctx):
+        s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
+        error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=color)
+        if not s: return await ctx.send(embed=error)
+        logging, channel = s['logging'], s['channel']
+
+        if logging is True:
+            emoji = on
+        else:
+            emoji = off
+        
+        if channel is None:
+            c = "No Channel Set"
+        else:
+            c = channel
+
+        embed = discord.Embed(title=f"{ctx.guild} Settings",
+                              description=f"Logging: {emoji}\n> Channel: `{c}`",
+                              color=color
+                             )
+        await ctx.send(embed=embed)
+
+        def xcheck(reaction, user):
+            return user == ctx.author and str(reaction.emoji) == '<:xon:792824364658720808>'
+        def ccheck(reaction, user):
+            return user == ctx.author and str(reaction.emoji) == '<:con:792824364558843956>'
+
+        try:
+            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=xcheck)
+        except asyncio.TimeoutError:
+            pass
+        else:
+            await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", False, ctx.guild.id)
+            await ctx.send('Logging Toggled Off!')
+            
+        try:
+            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=ccheck)
+        except asyncio.TimeoutError:
+            pass
+        else:
+            await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", True, ctx.guild.id)
+            await ctx.send('Logging Toggled On!')
         
 def setup(bot):
     bot.add_cog(logging(bot))
