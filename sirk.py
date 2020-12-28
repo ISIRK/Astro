@@ -85,6 +85,11 @@ async def on_message(message):
     if message.content.endswith('<@751447995270168586>'):
         embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
         await message.channel.send(embed=embed)
+@bot.event
+async def on_message_edit(before, after):
+    await bot.process_commands(after)
+    if after.attachments and before.attachments:
+        return
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):

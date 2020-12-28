@@ -43,6 +43,8 @@ class logging(commands.Cog):
     # Listeners
     @commands.Cog.listener()
     async def on_guild_join(self, guild: discord.Guild):
+        await self.bot.db.execute("INSERT INTO guilds (guildId, logging) VALUES($1, $2)", guild.id, False)
+
         c = self.bot.get_channel(792869360925671444)
         embed = discord.Embed(
             title="Guild Joined!",
@@ -59,8 +61,11 @@ class logging(commands.Cog):
         )
         await c.send(embed=embed)
         
-    @commands.Cog.listener()
-    async def on_guild_leave(self, guild: discord.Guild):
+    @commands.Cog.listener('on_guild_remove')
+    async def on_guild_leave(self, guild):
+
+        await self.bot.db.execute("DELETE FROM guilds WHERE guildID = $1", guild.id)
+
         c = self.bot.get_channel(792869360925671444)
         embed = discord.Embed(
             title="Guild Left!",
@@ -81,8 +86,23 @@ class logging(commands.Cog):
     @commands.command()
     @commands.has_permissions(manage_guild=True)
     async def settings(self, ctx):
+        s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
+        error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=color)
+        if not s: return await ctx.send(embed=error)
+        logging, channel = s['logging'], s['channel']
+
+        if logging is True:
+            emoji = on
+        else:
+            emoji = off
+        
+        if channel is None:
+            c = "No Channel Set"
+        else:
+            c = channel
+
         embed = discord.Embed(title=f"{ctx.guild} Settings",
-                              description=f"Logging: {off}\nModLog: {off}\nWelcome Messages: {off}",
+                              description=f"Logging: {emoji}\n> Channel: `{c}`",
                               color=color
                              )
         await ctx.send(embed=embed)
