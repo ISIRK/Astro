@@ -82,17 +82,10 @@ class logging(commands.Cog):
         )
         await c.send(embed=embed)
         
-    # Commands
-    @commands.group(aliases=['set'])
-    async def settings(self, ctx):
-        """Guild Settings"""
-
-        if ctx.invoked_subcommand is None:
-            await ctx.send_help(ctx.command)
-    
-    @settings.command()
+    # Commands    
+    @commands.command(aliases=['set'])
     @commands.has_permissions(manage_guild=True)
-    async def list(self, ctx):
+    async def settings(self, ctx):
         '''See the toggleable guild settings.'''
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
         error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=color)
@@ -115,8 +108,8 @@ class logging(commands.Cog):
                              )
         await ctx.send(embed=embed)
     
-    @commands.is_owner()
-    @settings.command()
+    @commands.command()
+    @commands.has_permissions(manage_guild=True)
     async def toggle(self, ctx):
         '''Toggle Logging
         *Note: You need to set a channel before it starts logging.*'''
@@ -124,10 +117,10 @@ class logging(commands.Cog):
         log = s['logging']
         if log:
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", False, ctx.guild.id)
-            await ctx.send('Logging Toggled Off!')
+            await ctx.send(f'{off} | Logging Toggled Off!')
         elif not log:
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", True, ctx.guild.id)
-            await ctx.send('Logging Toggled On!')
+            await ctx.send(f'{on} | Logging Toggled On!')
         
 def setup(bot):
     bot.add_cog(logging(bot))
