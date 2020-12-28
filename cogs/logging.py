@@ -134,7 +134,13 @@ class logging(commands.Cog):
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
         error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=color)
         if not s: return await ctx.send(embed=error)
-        log = s['channel']
+        log = channel
+        try:
+            await self.bot.db.execute("UPDATE guilds SET channel = $1 WHERE guildId = $2 ", log, ctx.guild.id)
+            await ctx.send(f'{off} | Logging Toggled Off!')
+        except Exception as e:
+            return await ctx.send(f"```py\n{e}```")
+            
         await ctx.send(f'{channel.mention} --> {log}')
         
 def setup(bot):
