@@ -141,10 +141,10 @@ class logging(commands.Cog):
                               description=f"Logging: {emoji}\n> Channel: `{c}`",
                               color=color
                              )
-        await ctx.send(embed=embed)
+        m = await ctx.send(embed=embed)
         
-        await embed.add_reaction('<:xon:792824364658720808>')
-        await embed.add_reaction('<:con:792824364558843956>')
+        await m.add_reaction('<:xon:792824364658720808>')
+        await m.add_reaction('<:con:792824364558843956>')
 
         def xcheck(reaction, user):
             return user == ctx.author and str(reaction.emoji) == '<:xon:792824364658720808>'
