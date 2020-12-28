@@ -156,8 +156,12 @@ class logging(commands.Cog):
         except asyncio.TimeoutError:
             pass
         else:
+            embed = discord.Embed(title=f"{ctx.guild} Settings",
+                                  description=f"Logging: {emoji}\n> Channel: `{c}`",
+                                  color=color
+                                  )
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", False, ctx.guild.id)
-            await m.edit(content='Logging Toggled Off!')
+            await m.edit(embed=embed)
             
         try:
             reaction, user = await self.bot.wait_for('reaction_add', timeout=60.0, check=ccheck)
@@ -165,7 +169,11 @@ class logging(commands.Cog):
             pass
         else:
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", True, ctx.guild.id)
-            await m.edit(content='Logging Toggled On!')
+            embed = discord.Embed(title=f"{ctx.guild} Settings",
+                                  description=f"Logging: {emoji}\n> Channel: `{c}`",
+                                  color=color
+                                  )
+            await m.edit(embed=embed)
         
 def setup(bot):
     bot.add_cog(logging(bot))
