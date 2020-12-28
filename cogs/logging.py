@@ -111,8 +111,10 @@ class logging(commands.Cog):
     @commands.command()
     @commands.has_permissions(manage_guild=True)
     async def toggle(self, ctx):
-        '''Toggle Logging
-        *Note: You need to set a channel before it starts logging.*'''
+        '''
+        Toggle Logging
+        *Note: You need to set a channel before it starts logging.*
+        '''
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
         log = s['logging']
         if log:
@@ -121,6 +123,15 @@ class logging(commands.Cog):
         elif not log:
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", True, ctx.guild.id)
             await ctx.send(f'{on} | Logging Toggled On!')
+            
+    @commands.command()
+    @commands.has_permissions(manage_guild=True)
+    async def channel(self, ctx, channel: discord.TextChannel):
+        '''
+        Set the logging channel
+        *Note: You need to toggle logging before it starts logging.*
+        '''
+        await ctx.send('good to go')
         
 def setup(bot):
     bot.add_cog(logging(bot))
