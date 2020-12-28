@@ -18,8 +18,7 @@ SOFTWARE.
 
 import discord
 from discord.ext import commands
-from discord.ext.commands import Cog
-import json
+import json, datetime
 from discord.ext.commands.cooldowns import BucketType
 
 tools = "tools/tools.json"
@@ -34,7 +33,7 @@ class logging(commands.Cog):
         self.bot = bot
         
     # Listeners
-    @Cog.listener()
+    @commands.Cog.listener()
     async def on_guild_join(self, guild: discord.Guild):
         c = self.bot.get_channel(792869360925671444)
         # Guild information sent to this channel
