@@ -112,10 +112,11 @@ class logging(commands.Cog):
     @commands.command()
     async def toggle(self, ctx):
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
-        if s:
+        log = s['logging']
+        if log:
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", False, ctx.guild.id)
             await ctx.send('Toggled Off!')
-        elif not s:
+        elif not log:
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", True, ctx.guild.id)
             await ctx.send('Toggled On!')
         
