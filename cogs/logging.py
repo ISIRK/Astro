@@ -140,8 +140,8 @@ class logging(commands.Cog):
             await ctx.send(f'Set {channel.mention} to be the mod-log channel.')
         except Exception as e:
             return await ctx.send(f"```py\n{e}```")
-            
-        await log.send(f'{channel.mention} --> {log}')
+        c = ctx.guild.get_channel(log)
+        await c.send(f'{channel.mention} --> {log}')
         
 def setup(bot):
     bot.add_cog(logging(bot))
