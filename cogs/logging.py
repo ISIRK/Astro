@@ -129,7 +129,7 @@ class logging(commands.Cog):
         '''
         Set the logging channel\n*Note: You need to toggle logging before it starts logging.*
         '''
-        await ctx.send('good to go')
+        await ctx.send(f'{channel.mention}')
         
 def setup(bot):
     bot.add_cog(logging(bot))
