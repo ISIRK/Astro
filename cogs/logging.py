@@ -32,6 +32,9 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
+xon = "<:xon:792824364658720808><:coff:792824364483477514>"
+con = "<:xoff:792824364545605683><:con:792824364558843956>"
+
 class logging(commands.Cog):
     '''Logging Commands'''
     def __init__(self, bot):
@@ -78,7 +81,11 @@ class logging(commands.Cog):
     @commands.command()
     @commands.has_permissions(manage_guild=True)
     async def settings(self, ctx):
-        await ctx.send('Comming Soon!')
+        embed = discord.Embed(title=f"{ctx.guild} Settings",
+                              description=f"Logging: {off}\nModLog: {off}\nWelcome Messages: {off}",
+                              color=color
+                             )
+        await ctx.send(embed=embed)
         
 def setup(bot):
     bot.add_cog(logging(bot))
