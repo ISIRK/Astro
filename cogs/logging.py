@@ -64,7 +64,7 @@ class logging(commands.Cog):
                          f"Guild Members - {len(guild.members)}\n"
                          "```"
                          ),
-            timestamp=datetime.datetime.utcnow().strftime('%B %d %Y - %H:%M:%S'),
+            timestamp=datetime.datetime.utcnow(),
             color=color
         )
         await c.send(embed=embed)
