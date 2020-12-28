@@ -100,10 +100,10 @@ class logging(commands.Cog):
         if channel is None:
             c = "No Channel Set"
         else:
-            c = channel
+            c = ctx.guild.get_channel(channel)
 
         embed = discord.Embed(title=f"{ctx.guild} Settings",
-                              description=f"Logging: {emoji}\n> Channel: `{c}`",
+                              description=f"Logging: {emoji}\n> Channel: {c.mention}",
                               color=color
                              )
         await ctx.send(embed=embed)
