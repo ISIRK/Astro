@@ -32,8 +32,8 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
-xon = "<:xon:792824364658720808><:coff:792824364483477514>"
-con = "<:xoff:792824364545605683><:con:792824364558843956>"
+off = "<:xon:792824364658720808><:coff:792824364483477514>"
+on = "<:xoff:792824364545605683><:con:792824364558843956>"
 
 class logging(commands.Cog):
     '''Logging Commands'''
