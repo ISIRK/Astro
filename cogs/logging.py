@@ -149,7 +149,7 @@ class logging(commands.Cog):
             return user == ctx.author and str(reaction.emoji) == '<:con:792824364558843956>'
 
         try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=xcheck)
+            reaction, user = await self.bot.wait_for('reaction_add', timeout=60.0, check=xcheck)
         except asyncio.TimeoutError:
             pass
         else:
