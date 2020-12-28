@@ -115,6 +115,8 @@ class logging(commands.Cog):
         Toggle Logging\n*Note: You need to set a channel before it starts logging.*
         '''
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
+        error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=color)
+        if not s: return await ctx.send(embed=error)
         log = s['logging']
         if log:
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", False, ctx.guild.id)
@@ -129,7 +131,11 @@ class logging(commands.Cog):
         '''
         Set the logging channel\n*Note: You need to toggle logging before it starts logging.*
         '''
-        await ctx.send(f'{channel.mention}')
+        s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
+        error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=color)
+        if not s: return await ctx.send(embed=error)
+        log = s['channel']
+        await ctx.send(f'{channel.mention} --> {log}')
         
 def setup(bot):
     bot.add_cog(logging(bot))
