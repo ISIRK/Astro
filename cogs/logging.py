@@ -56,6 +56,25 @@ class logging(commands.Cog):
     @commands.has_permissions(manage_guild=True)
     async def settings(self, ctx):
         await ctx.send('Comming Soon!')
+    
+    @commands.command()
+    async def test(self, ctx):
+        guild = ctx.guild
+        c = self.bot.get_channel(792869360925671444)
+        # Guild information sent to this channel
+        embed = discord.Embed(
+            title="Guild Joined!",
+            description=("```yaml\n"
+                         f"Guild Name - {guild}\n"
+                         f"Guild ID - {guild.id}\n"
+                         f"Guild Owner - {guild.owner} [{guild.owner.id}]\n"
+                         f"Guild Created - {guild.created_at.strftime('%b %d, %Y %I:%M %p')}\n"
+                         f"Guild Members - {len(guild.members)}\n"
+                         "```"
+                         ),
+            timestamp=datetime.datetime.utcnow()
+        )
+        await c.send(embed=embed)
         
 def setup(bot):
     bot.add_cog(logging(bot))
