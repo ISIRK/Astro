@@ -38,6 +38,11 @@ class mod(commands.Cog):
     '''Moderation Commands\n*Note: These commands required specific permissions.*'''
     def __init__(self,bot):
         self.bot = bot
+        
+    s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
+    logging = s['logging']
+    channel = s['channel']
+    c = ctx.guild.get_channel(channel)
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
@@ -144,6 +149,13 @@ class mod(commands.Cog):
             embed.set_footer(text=footer)
             await user.send(embed=embed)
             await ctx.send(f"<:help:758453150897799172> Warned {user}")
+            if logging:
+                if channel:
+                    await c.send('test')
+                else:
+                    pass
+            else:
+                pass
 
 
     @commands.command(aliases=['em'])
