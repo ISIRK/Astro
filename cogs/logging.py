@@ -201,7 +201,7 @@ class logging(commands.Cog):
         if not s: return await ctx.send(embed=error)
         try:
             await self.bot.db.execute("UPDATE guilds SET channel = $1 WHERE guildId = $2 ", None, ctx.guild.id)
-            await ctx.send(f'Set {channel.mention} to be the mod-log channel.')
+            await ctx.send(f'Removed your logging channel.')
         except Exception as e:
             return await ctx.send(f"Something went wrong, please try again.\n\nError:```py\n{e}```")
             
