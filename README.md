@@ -30,6 +30,8 @@ Meta - Utility Commands
 
 Mod - Moderation Commands
 
+Logging - Loogging Commands
+
 Misc - Miscellaneous Commands
 
 Games - Game Commands
@@ -48,7 +50,6 @@ Syntax for Sirk:
 
 **Upcomming Features**
 - Custom Prefix
-- DataBase
 - Wavelink/Lavalink Player for Music Commands
 - Optimizations
 
