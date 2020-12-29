@@ -85,26 +85,34 @@ class logging(commands.Cog):
         await c.send(embed=embed)
         
     # Moderation Events
-    @commands.Cog.listener('on_memeber_remove')
-    async def on_kick(self, guild, user):
-        s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
+    @commands.Cog.listener()
+    async def on_member_remove(self, member):
+        guild = member.guild
+        value = [f"User Name: {member.name}", f"User ID: {member.id}"]
+        s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild.id)
         channel = s['channel']
         c = guild.get_channel(channel)
 
-        if guild.me.guild_permissions.view_audit_log:
-            log = await guild.audit_logs(limit=1).flatten()
-            log = log[0]
-            if log.action is discord.AuditLogAction.ban:
-                mod = log.user
-                returnList.append(f"Moderator: {mod} [{mod.id}]")
-                returnList.append(f"Reason: \n ```{log.reason}```")
-        try:
-            embed = discord.Embed(title="User Banned!",
-                                      description="\n".join(returnList))
-            await c.send(embed=embed)
-        except Exception as e:
-            await guild.owner.send(f"```py\n{e}```")
-        
+        embed = discord.Embed(title=f"User Kicked!",
+                            description="\n".join(value),
+                            color=color
+                            )
+        await c.send(embed=embed)
+    
+    @commands.Cog.listener()
+    async def on_member_join(self, member):
+        guild = member.guild
+        value = [f"User Name: {member.name}", f"User ID: {member.id}"]
+        s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild.id)
+        channel = s['channel']
+        c = guild.get_channel(channel)
+
+        embed = discord.Embed(title=f"User Joined!",
+                            description="\n".join(value),
+                            color=color
+                            )
+        await c.send(embed=embed)
+
     # Commands    
     @commands.command(aliases=['set'])
     @commands.has_permissions(manage_guild=True)
