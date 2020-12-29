@@ -65,7 +65,7 @@ service-identity==16.0.0
 six==1.15.0
 ssh-import-id==5.7
 systemd-python==234
-Twisted==17.9.0
+Twisted==20.3.0
 typing-extensions==3.7.4.3
 ufw==0.36
 unattended-upgrades==0.1
