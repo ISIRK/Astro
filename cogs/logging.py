@@ -92,26 +92,30 @@ class logging(commands.Cog):
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild.id)
         channel = s['channel']
         c = guild.get_channel(channel)
-
-        embed = discord.Embed(title=f"User Kicked!",
-                            description="\n".join(value),
-                            color=color
-                            )
-        await c.send(embed=embed)
+        
+        if logging:
+            if channel is not None:
+                embed = discord.Embed(title=f"User Kicked!",
+                                    description="\n".join(value),
+                                    color=color
+                                    )
+                await c.send(embed=embed)
     
     @commands.Cog.listener()
     async def on_member_join(self, member):
         guild = member.guild
         value = [f"User Name: {member.name}", f"User ID: {member.id}"]
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild.id)
-        channel = s['channel']
+        logging, channel = s['logging'], s['channel']
         c = guild.get_channel(channel)
-
-        embed = discord.Embed(title=f"User Joined!",
-                            description="\n".join(value),
-                            color=color
-                            )
-        await c.send(embed=embed)
+        
+        if logging:
+            if channel is not None:
+                embed = discord.Embed(title=f"User Joined!",
+                                    description="\n".join(value),
+                                    color=color
+                                    )
+                await c.send(embed=embed)
 
     # Commands    
     @commands.command(aliases=['set'])
