@@ -98,8 +98,9 @@ class logging(commands.Cog):
             if channel is not None:
                 embed = discord.Embed(title=f"User Left!",
                                     description="\n".join(value),
-                                    color=color
+                                    color=discord.Color.red()
                                     )
+                embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
                 await c.send(embed=embed)
             else:
                 pass
@@ -121,6 +122,7 @@ class logging(commands.Cog):
                                     description='\n'.join(value),
                                     color=color
                                     )
+                embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
                 await c.send(embed=embed)
             else:
                 pass
