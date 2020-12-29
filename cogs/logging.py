@@ -100,6 +100,10 @@ class logging(commands.Cog):
                                     color=color
                                     )
                 await c.send(embed=embed)
+            else:
+                pass
+        else:
+            pass
     
     @commands.Cog.listener()
     async def on_member_join(self, member):
@@ -116,7 +120,11 @@ class logging(commands.Cog):
                                     color=color
                                     )
                 await c.send(embed=embed)
-
+            else:
+                pass
+        else:
+            pass
+        
     # Commands    
     @commands.command(aliases=['set'])
     @commands.has_permissions(manage_guild=True)
