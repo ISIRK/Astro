@@ -111,7 +111,7 @@ class logging(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member):
         guild = member.guild
-        value = [f"User: {member.mention} (`{member.id}`)", f"Joined: {joined}", f"Created Account: {account}]
+        value = [f"User: {member.mention} (`{member.id}`)", f"Joined: {joined}", f"Created Account: {account}"]
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild.id)
         logging, channel = s['logging'], s['channel']
         c = guild.get_channel(channel)
