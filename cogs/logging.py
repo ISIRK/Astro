@@ -113,12 +113,12 @@ class logging(commands.Cog):
         logging, channel = s['logging'], s['channel']
         c = guild.get_channel(channel)
         
-        value = f"User: {member.mention} (`{member.id}`)\nJoined: {datetime.datetime.strftime(member.joined_at, "%A %d %B %Y at %H:%M")}"
+        value = [f"User: {member.mention} (`{member.id}`)", f"Joined: {member.joined_at.strftime('%B %d %Y - %H:%M:%S')}"]
         
         if logging:
             if channel is not None:
                 embed = discord.Embed(title=f"User Joined!",
-                                    description=value,
+                                    description='\n'.join(value),
                                     color=color
                                     )
                 await c.send(embed=embed)
