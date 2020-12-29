@@ -141,7 +141,7 @@ class logging(commands.Cog):
             emoji = off
         
         if channel is None:
-            c = "No Channel Set"
+            c = "`No Channel Set`"
         else:
             d = ctx.guild.get_channel(channel)
             c = d.mention
@@ -150,6 +150,9 @@ class logging(commands.Cog):
                               description=f"Logging: {emoji}\n> Channel: {c}",
                               color=color
                              )
+        if logging:
+            if channel is not None:
+                embed.add_field(name="Currently Logging", value=" • Joins\n • Leaves\n • Kicks", inline=False)
         await ctx.send(embed=embed)
     
     @commands.command()
