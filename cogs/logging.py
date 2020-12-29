@@ -63,6 +63,28 @@ class logging(commands.Cog):
         )
         await c.send(embed=embed)
         
+        try:
+            to_send = sorted([chan for chan in guild.channels if chan.permissions_for(
+                guild.me).send_messages and isinstance(chan, discord.TextChannel)], key=lambda x: x.position)[0]
+        except IndexError:
+            pass
+        else:
+            if to_send.permissions_for(guild.me).embed_links:  # We can embed!
+                e = discord.Embed(
+                    color=color, title="Thanks for Adding Me!")
+                e.description = f"Thank you for adding me to this server!\nTo get started type `^help`\nIf you are a sever admin/moderator get the mod-log setup with `^help logging\nIf you have any questions feel free to ask in our [support server](https://discord.gg/7yZqHfG)`"
+                e.set_thumbnail(url='https://asksirk.com/img/sirk-christmas.png')
+                try:
+                    await to_send.send(embed=e)
+                except:
+                    pass
+            else:  # We were invited without embed perms...
+                msg = f"Thank you for adding me to this server!\nTo get started type `^help`\nIf you are a sever admin/moderator get the mod-log setup with `^help logging`\nIf you have any questions feel free to ask in our support server. (https://discord.gg/7yZqHfG)"
+                try:
+                    await to_send.send(msg)
+                except:
+                    pass
+        
     @commands.Cog.listener('on_guild_remove')
     async def on_guild_leave(self, guild):
 
