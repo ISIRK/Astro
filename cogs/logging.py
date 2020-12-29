@@ -72,7 +72,10 @@ class logging(commands.Cog):
             if to_send.permissions_for(guild.me).embed_links:  # We can embed!
                 e = discord.Embed(
                     color=color, title="Thanks for Adding Me!")
-                e.description = f"Thank you for adding me to this server!\nTo get started type `^help`\nIf you are a sever admin/moderator get the mod-log setup with `^help logging`\nIf you have any questions feel free to ask in our [support server](https://discord.gg/7yZqHfG)`"
+                e.description = f"Thank you for adding me to this server!"
+                e.add_field(name="Startup", value="To get started type `^help`", inline=False)
+                e.add_field(name="Logging", value="If you are a sever admin/moderator get the mod-log setup with `^help logging`", inline=False)
+                e.add_field(name="Support", value="If you have any questions feel free to ask in our [support server](https://discord.gg/7yZqHfG)", inline=False)
                 e.set_thumbnail(url='https://asksirk.com/img/sirk-christmas.jpg')
                 try:
                     await to_send.send(embed=e)
