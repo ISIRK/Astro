@@ -88,14 +88,14 @@ class logging(commands.Cog):
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         guild = member.guild
-        value = [f"User Name: {member.name}", f"User ID: {member.id}"]
+        value = [f"User Name: {member.name}(`{member.id}`)", f"User ID: {member.id}"]
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild.id)
         channel = s['channel']
         c = guild.get_channel(channel)
         
         if logging:
             if channel is not None:
-                embed = discord.Embed(title=f"User Kicked!",
+                embed = discord.Embed(title=f"User Left!",
                                     description="\n".join(value),
                                     color=color
                                     )
@@ -108,7 +108,7 @@ class logging(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member):
         guild = member.guild
-        value = [f"User Name: {member.name}", f"User ID: {member.id}"]
+        value = [f"User: {member.mention} (`{member.id}`)", f"Joined: {datetime.datetime.strftime(member.joined_at, "%A %d %B %Y at %H:%M")}, f"Created Account: {datetime.datetime.strftime(member.created_at, "%A %d %B %Y at %H:%M")}]
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild.id)
         logging, channel = s['logging'], s['channel']
         c = guild.get_channel(channel)
