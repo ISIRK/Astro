@@ -189,6 +189,22 @@ class logging(commands.Cog):
             await c.send(f'{channel.mention} --> {log}')
         except Exception as e:
             return await ctx.send(f"I do not have permissions to send in {c}\nPlease change my permissions and try again.")
+
+    @commands.command()
+    @commands.has_permissions(manage_guild=True)
+    async def remove(self, ctx):
+        '''
+        Remove the logging channel\n*Note: If this is removed, and logging is toggled on, it still will not log.*
+        '''
+        s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
+        error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=color)
+        if not s: return await ctx.send(embed=error)
+        try:
+            await self.bot.db.execute("UPDATE guilds SET channel = $1 WHERE guildId = $2 ", None, ctx.guild.id)
+            await ctx.send(f'Set {channel.mention} to be the mod-log channel.')
+        except Exception as e:
+            return await ctx.send(f"Something went wrong, please try again.\n\nError:```py\n{e}```")
+            
         
 def setup(bot):
     bot.add_cog(logging(bot))
