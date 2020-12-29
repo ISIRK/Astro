@@ -93,8 +93,8 @@ class logging(commands.Cog):
         channel = s['channel']
         c = guild.get_channel(channel)
         
-        joined = datetime.datetime.strftime(member.joined_at, "%A %d %B %Y at %H:%M")
-        account = datetime.datetime.strftime(member.created_at, "%A %d %B %Y at %H:%M")
+        joined = f"{datetime.datetime.strftime(member.joined_at, "%A %d %B %Y at %H:%M")}"
+        account = f"{datetime.datetime.strftime(member.created_at, "%A %d %B %Y at %H:%M")}"
         
         if logging:
             if channel is not None:
