@@ -101,6 +101,7 @@ class logging(commands.Cog):
                                     color=discord.Color.red()
                                     )
                 embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
+                embed.set_footer(text=footer)
                 await c.send(embed=embed)
             else:
                 pass
@@ -123,6 +124,7 @@ class logging(commands.Cog):
                                     color=color
                                     )
                 embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
+                embed.set_footer(text=footer)
                 await c.send(embed=embed)
             else:
                 pass
