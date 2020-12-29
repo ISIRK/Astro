@@ -88,13 +88,12 @@ class logging(commands.Cog):
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         guild = member.guild
-        value = [f"User Name: {member.name}(`{member.id}`)", f"User ID: {member.id}"]
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild.id)
         channel = s['channel']
         c = guild.get_channel(channel)
         
-        joined = f"{datetime.datetime.strftime(member.joined_at, "%A %d %B %Y at %H:%M")}"
-        account = f"{datetime.datetime.strftime(member.created_at, "%A %d %B %Y at %H:%M")}"
+        left = f"{datetime.datetime.utcnow().strftime('%B %d %Y - %H:%M:%S')}"
+        value = [f"User Name: {member.name}(`{member.id}`)", f"Left: {left}",]
         
         if logging:
             if channel is not None:
@@ -111,10 +110,13 @@ class logging(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member):
         guild = member.guild
-        value = [f"User: {member.mention} (`{member.id}`)", f"Joined: {joined}", f"Created Account: {account}"]
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild.id)
         logging, channel = s['logging'], s['channel']
         c = guild.get_channel(channel)
+        
+        joined = f"{datetime.datetime.strftime(member.joined_at, "%A %d %B %Y at %H:%M")}"
+        account = f"{datetime.datetime.strftime(member.created_at, "%A %d %B %Y at %H:%M")}"
+        value = [f"User: {member.mention} (`{member.id}`)", f"Joined: {joined}", f"Created Account: {account}"]
         
         if logging:
             if channel is not None:
