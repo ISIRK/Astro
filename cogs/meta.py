@@ -145,18 +145,12 @@ class meta(commands.Cog):
     async def server(self, ctx):
         '''Get information about the server.'''
 
-        statuses = collections.Counter([m.status for m in ctx.guild.members])
-
         embed = discord.Embed(title=f"{ctx.guild.name}", color=color)
         embed.description = ctx.guild.description if ctx.guild.description else None
         embed.add_field(name='**General:**',
                         value=f'Owner: **{ctx.guild.owner}**\n'
                               f'Created on: **{datetime.datetime.strftime(ctx.guild.created_at, "%A %d %B %Y at %H:%M")}**\n'
                               f'<:member:758139554652749835> **{ctx.guild.member_count}**\n'
-                              f'<:online:758139458767290421> **{statuses[discord.Status.online]:,}**\n'
-                              f'<:idle:758139458406711307> **{statuses[discord.Status.idle]:,}**\n'
-                              f'<:dnd:758139458598993921> **{statuses[discord.Status.dnd]:,}**\n'
-                              f'<:offline:758139458611970088> **{statuses[discord.Status.offline]:,}**\n'
                               f'<:boost4:724328585137225789> **Tier {ctx.guild.premium_tier}**\n'
                               f'Region: **{ctx.guild.region}**\n'
                               f'Boosters: **{ctx.guild.premium_subscription_count}**\n'
@@ -195,19 +189,13 @@ class meta(commands.Cog):
                     activity = '`None`'
         else:
             activity = '`None`'
-        statuses = {
-                    "online": "<:online:758139458767290421>",
-                    "idle": "<:idle:758139458406711307>",
-                    "dnd": "<:dnd:758139458598993921>",
-                    "offline": "<:offline:758139458611970088>"
-                    }
+            
         roles = ' '.join([r.mention for r in member.roles if r != ctx.guild.default_role] or ['None'])
         shared = sum(g.get_member(member.id) is not None for g in self.bot.guilds)
         
         embed = discord.Embed(title=f"{member}", color=member.color)
         embed.add_field(name='**General:**',
                         value=f'Name: `{member}`\n' 
-                              f'Status: {statuses[str(member.status)]}\n'
                               f'Bot: `{member.bot}`\n'
                               f'Shared Guilds: `{shared}`\n'
                               f'Account Created on: `{datetime.datetime.strftime(member.created_at, "%A %d %B %Y at %H:%M")}`', inline=False)
