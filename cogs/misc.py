@@ -203,28 +203,6 @@ class misc(commands.Cog):
         elif not code[0]: language = "txt"
         url = await self.myst.post(code[1], syntax = language)
         await ctx.send(f"{ctx.author.mention} Here is your code <:join:736719688956117043> {str(url)}")
-           
-    @commands.command()
-    async def spotify(self, ctx, user: discord.Member = None):
-        # Returns info about spotify playback.
-        if user == None:
-            user = ctx.author
-        if user.activities:
-            for activity in user.activities:
-                if isinstance(activity, Spotify):
-                    embed = discord.Embed(
-                        title = f"{user.name}'s Spotify",
-                        description = "Listening to {}".format(activity.title),
-                        color = activity.color)
-                    embed.set_thumbnail(url=activity.album_cover_url)
-                    embed.add_field(name="Artist", value=activity.artist)
-                    embed.add_field(name="Album", value=activity.album)
-                    embed.add_field(name="Duration", value=activity.duration, inline=False)
-                    embed.add_field(name="Elapsed", value="{}".format(activity.created_at.strftime("%H:%M")))
-                    embed.set_footer(text=footer)
-                    return await ctx.send(embed=embed)
-            return await ctx.send('No Spotify Activity Found')
-        return await ctx.send('User is not playing anything.')
 
 def setup(bot):
     bot.add_cog(misc(bot))
