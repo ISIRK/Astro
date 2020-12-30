@@ -203,10 +203,11 @@ class misc(commands.Cog):
         elif not code[0]: language = "txt"
         url = await self.myst.post(code[1], syntax = language)
         await ctx.send(f"{ctx.author.mention} Here is your code <:join:736719688956117043> {str(url)}")
-                                     
+           
+    '''                          
     @commands.command()
     async def spotify(self, ctx, user: discord.Member = None):
-        '''Returns info about spotify playback.'''
+        # Returns info about spotify playback.
         if user == None:
             user = ctx.author
         if user.activities:
@@ -225,10 +226,7 @@ class misc(commands.Cog):
                     return await ctx.send(embed=embed)
             return await ctx.send('No Spotify Activity Found')
         return await ctx.send('User is not playing anything.')
-
-    @commands.command()
-    async def emoji(self, ctx):
-        await ctx.send('discord.gg/pNrWf4MxFY')
+    '''
 
 def setup(bot):
     bot.add_cog(misc(bot))
