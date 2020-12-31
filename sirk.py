@@ -50,7 +50,7 @@ prefixes = data['PREFIXES']
 
 intents = discord.Intents.default()
 intents.members = True
-bot = commands.Bot(command_prefix=commands.when_mentioned_or("^"), intents=intents, allowed_mentions=discord.AllowedMentions(users=True, roles=True, everyone=False, replied_user=False))
+bot = commands.Bot(command_prefix=commands.when_mentioned_or("^"), intents=intents, case_insensitive=False, allowed_mentions=discord.AllowedMentions(users=True, roles=True, everyone=False, replied_user=False))
 # Might Wanna look at this: command_prefix=commands.when_mentioned_or(prefixes)
 
 bot.start_time = datetime.utcnow()
