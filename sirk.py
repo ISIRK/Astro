@@ -34,6 +34,8 @@ import json
 
 import configparser, asyncpg, aiohttp
 
+from typing import Tuple
+
 ##CONFIG
 tokenFile = "tools/config.json"
 with open(tokenFile) as f:
@@ -52,6 +54,7 @@ intents = discord.Intents.default()
 intents.members = True
 bot = commands.Bot(command_prefix=commands.when_mentioned_or("^"), intents=intents, allowed_mentions=discord.AllowedMentions(users=True, roles=True, everyone=False, replied_user=False))
 # Might Wanna look at this: command_prefix=commands.when_mentioned_or(prefixes)
+bot.mentions: Tuple[str] = None
 
 bot.start_time = datetime.utcnow()
 
@@ -69,26 +72,32 @@ os.environ["JISHAKU_NO_DM_TRACEBACK"] = "True"
 os.environ["JISHAKU_HIDE"] = "True"
 
 
+async def ainit():
+    await bot.wait_until_ready()
+    bot.mentions = (f"<@{bot.user.id}>", f"<@!{bot.user.id}>")
+
+
 @bot.event
 async def on_ready():
     print('{0.user} is up and running'.format(bot))
     # await bot.change_presence(status=discord.Status.idle)
 @bot.event
 async def on_message(message):
-    await bot.process_commands(message)
     if message.author == bot.user:
         return
-    if message.content.endswith('<@!751447995270168586>'):
+    if bot.mentions and message.content in bot.mentions:
         embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
         await message.channel.send(embed=embed)
-    if message.content.endswith('<@751447995270168586>'):
-        embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
-        await message.channel.send(embed=embed)
+    else:
+        await bot.process_commands(message)
 @bot.event
 async def on_message_edit(before, after):
     await bot.process_commands(after)
     if after.attachments and before.attachments:
         return
+
+
+bot.loop.create_task(ainit())
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
