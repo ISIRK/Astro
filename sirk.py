@@ -19,22 +19,18 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 '''
-
-import os
-
 import asyncio
-
-import discord
-
-from discord.ext import commands, menus
-
-from datetime import datetime
-
+# import configparser
 import json
-
-import configparser, asyncpg, aiohttp
-
+import os
+from datetime import datetime
 from typing import Tuple
+
+# import aiohttp
+import asyncpg
+import discord
+from discord.ext import commands  # , menus
+
 
 ##CONFIG
 tokenFile = "tools/config.json"
