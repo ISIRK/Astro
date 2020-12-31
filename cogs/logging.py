@@ -117,7 +117,7 @@ class logging(commands.Cog):
         channel = s['channel']
         c = guild.get_channel(channel)
         
-        value = [f"User: {member}(`{member.id}`)", f"Left: {datetime.datetime.utcnow().strftime('%B %d %Y - %H:%M:%S')}",]
+        value = [f"User: {member}(`{member.id}`)", f"Left: {datetime.datetime.utcnow().strftime('%B %d %Y - %H:%M:%S')}", f"Current Members: {member.guild.member_count}"]
         
         if logging:
             if channel is not None:
@@ -140,7 +140,7 @@ class logging(commands.Cog):
         logging, channel = s['logging'], s['channel']
         c = guild.get_channel(channel)
         
-        value = [f"User: {member.mention} (`{member}`)", f"Joined: {member.joined_at.strftime('%B %d %Y - %H:%M:%S')}", f"Created: {member.created_at.strftime('%B %d %Y - %H:%M:%S')}"]
+        value = [f"User: {member.mention} (`{member}`)", f"Joined: {member.joined_at.strftime('%B %d %Y - %H:%M:%S')}", f"Created: {member.created_at.strftime('%B %d %Y - %H:%M:%S')}", f"Current Members: {member.guild.member_count}"]
         
         if logging:
             if channel is not None:

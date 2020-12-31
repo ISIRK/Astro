@@ -58,27 +58,39 @@ class mod(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command()
+    @commands.guild_only()
     @commands.has_permissions(ban_members=True)
     @commands.bot_has_permissions(ban_members=True)
-    async def ban(self, ctx, user: typing.Union[discord.Member, discord.User]):
-        """Bans a user from the server."""
-        if ctx.author == user:
-            await ctx.send("You cannot ban yourself.")
-        if user.top_role >= ctx.author.top_role and ctx.author.id != 542405601255489537:            
-            await ctx.send("You can only ban people below you in role hierarchy.")
-            return
-        else:
-            # If user is not in the guild ban the user's object
-            if isinstance(user, discord.User):
-                user = discord.Object(user.id)
+    async def ban(self, ctx, member: discord.Member, *, reason=None):
+        """Bans a user"""
+        if member.id == ctx.author.id:
+            return await ctx.send("You can't do that to yourself!")
+        if member.top_role >= ctx.me.top_role:
+            return await ctx.send("That member's top role is higher or equal to mine!")
 
-            await ctx.guild.ban(user)
-            
-            embed = discord.Embed(title=f'User {user.name} has been banned.', color=color)
-            embed.add_field(name="Bai!", value=":hammer:")
-            embed.set_thumbnail(url=user.avatar_url)
-            embed.set_footer(text=footer)
-            await ctx.send(embed=embed)
+        guild = ctx.guild
+
+        try:
+            await member.send(f"You were banned from {guild.name} for {reason}")
+        except:
+            pass
+        await guild.ban(member, reason=reason)
+        await ctx.send(embed=discord.Embed(description=f"{member.name} was banned by {ctx.author.mention} for {reason}.", color=color))
+
+    @commands.command()
+    @commands.guild_only()
+    @commands.has_permissions(ban_members=True)
+    @commands.bot_has_permissions(ban_members=True)
+    async def unban(self, ctx, user: int, *, reason=None):
+        """Unbans a user with a given ID"""
+        if user == ctx.author.id:
+            return await ctx.send("You can't do that to yourself!")
+        member = discord.Object(id=user)
+        try:
+            await ctx.guild.unban(member, reason=reason)
+            await ctx.send(embed=discord.Embed(description=f"Unbanned {member.id} for {reason}.", color=color))
+        except discord.NotFound:
+            return await ctx.send(embed=discord.Embed(description="That user doesn't seem to be banned.", color=color))
 
     '''@commands.command()
     @commands.has_permissions(kick_members=True)
