@@ -83,7 +83,7 @@ class dev(commands.Cog):
 
         try:
             self.bot.reload_extension(f"cogs.{name}")
-            await ctx.message.add_reactions('🔄')
+            await ctx.message.add_reaction('🔄')
 
         except Exception as e:
             return await ctx.send(f"```py\n{e}```")
