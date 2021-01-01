@@ -77,7 +77,7 @@ class dev(commands.Cog):
         await ctx.send(f"📥 Loaded extension **`cogs/{name}.py`**")
 
     @commands.is_owner()
-    @commands.command()
+    @commands.command(aliases=['r'])
     async def reload(self, ctx, name: str):
         """Reloads an extension. """
 
