@@ -142,32 +142,34 @@ class meta(commands.Cog):
         await ctx.send(f"Been up for {days}d, {hours}h, {minutes}m, {seconds}s")
 
     @commands.command()
-    async def server(self, ctx):
+    async def server(self, ctx, guild:discord.Guild=None):
         '''Get information about the server.'''
-
-        embed = discord.Embed(title=f"{ctx.guild.name}", color=color)
-        embed.description = ctx.guild.description if ctx.guild.description else None
+        if guild is none:
+            guild = ctx.guild
+        embed = discord.Embed(title=f"{guild.name}", color=color)
+        embed.description = guild.description if guild.description else None
         embed.add_field(name='**General:**',
-                        value=f'Owner: **{ctx.guild.owner}**\n'
-                              f'Created on: **{datetime.datetime.strftime(ctx.guild.created_at, "%A %d %B %Y at %H:%M")}**\n'
-                              f'<:member:758139554652749835> **{ctx.guild.member_count}**\n'
-                              f'<:boost4:724328585137225789> **Tier {ctx.guild.premium_tier}**\n'
-                              f'Region: **{ctx.guild.region}**\n'
-                              f'Boosters: **{ctx.guild.premium_subscription_count}**\n'
-                              f'Max File Size: **{round(ctx.guild.filesize_limit / 1048576)} MB**\n'
-                              f'Bitrate: **{round(ctx.guild.bitrate_limit / 1000)} kbps**\n'
-                              f'Max Emojis: **{ctx.guild.emoji_limit}**\n', inline=False)
+                        value=f'Owner: **{guild.owner}**\n'
+                              f'Created on: **{datetime.datetime.strftime(guild.created_at, "%A %d %B %Y at %H:%M")}**\n'
+                              f'<:member:758139554652749835> **{guild.member_count}**\n'
+                              f'<:boost4:724328585137225789> **Tier {guild.premium_tier}**\n'
+                              f'Region: **{guild.region}**\n'
+                              f'Boosters: **{guild.premium_subscription_count}**\n'
+                              f'Max File Size: **{round(guild.filesize_limit / 1048576)} MB**\n'
+                              f'Bitrate: **{round(guild.bitrate_limit / 1000)} kbps**\n'
+                              f'Max Emojis: **{guild.emoji_limit}**\n'
+                              f'Emojis: **{len(guild.emojis)}', inline=False)
 
         embed.add_field(name='**Channel Information:**',
-                        value=f'AFK timeout: **{int(ctx.guild.afk_timeout / 60)}m**\n'
-                              f'AFK channel: **{ctx.guild.afk_channel}**\n'
-                              f'<:textchannel:724637677395116072> **{len(ctx.guild.text_channels)}**\n'
-                              f'<:voicechannel:724637677130875001> **{len(ctx.guild.voice_channels)}**\n', inline = False)
+                        value=f'AFK timeout: **{int(guild.afk_timeout / 60)}m**\n'
+                              f'AFK channel: **{guild.afk_channel}**\n'
+                              f'<:textchannel:724637677395116072> **{len(guild.text_channels)}**\n'
+                              f'<:voicechannel:724637677130875001> **{len(guild.voice_channels)}**\n', inline = False)
 
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-        embed.set_thumbnail(url=ctx.guild.icon_url)
-        embed.set_image(url=ctx.guild.banner_url)
-        embed.set_footer(text=f'Guild ID: {ctx.guild.id} | {footer}')
+        embed.set_thumbnail(url=guild.icon_url)
+        embed.set_image(url=guild.banner_url)
+        embed.set_footer(text=f'Guild ID: {guild.id} | {footer}')
 
         return await ctx.send(embed=embed)
 
