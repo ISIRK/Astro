@@ -142,14 +142,10 @@ class meta(commands.Cog):
         await ctx.send(f"Been up for {days}d, {hours}h, {minutes}m, {seconds}s")
 
     @commands.command()
-    async def server(self, ctx, guild=None):
+    async def server(self, ctx):
         '''Get information about the server.'''
+        guild = ctx.guild
         
-        if guild is not None:
-            guild = self.bot.get_guild(guild)
-        else:
-            guild = ctx.guild
-            
         embed = discord.Embed(title=f"{guild.name}", color=color)
         embed.description = guild.description if guild.description else None
         embed.add_field(name='**General:**',
