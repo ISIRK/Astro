@@ -142,7 +142,7 @@ class meta(commands.Cog):
         await ctx.send(f"Been up for {days}d, {hours}h, {minutes}m, {seconds}s")
 
     @commands.command()
-    async def server(self, ctx, guild):
+    async def server(self, ctx, guild=None):
         '''Get information about the server.'''
         
         if guild is not None:
