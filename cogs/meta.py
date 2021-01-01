@@ -142,11 +142,11 @@ class meta(commands.Cog):
         await ctx.send(f"Been up for {days}d, {hours}h, {minutes}m, {seconds}s")
 
     @commands.command()
-    async def server(self, ctx, guild:discord.Guild=None):
+    async def server(self, ctx, guild):
         '''Get information about the server.'''
         
         if guild is not None:
-            guild = self.bot.get_guild(guild.id)
+            guild = self.bot.get_guild(guild)
         else:
             guild = ctx.guild
             
@@ -162,7 +162,7 @@ class meta(commands.Cog):
                               f'Max File Size: **{round(guild.filesize_limit / 1048576)} MB**\n'
                               f'Bitrate: **{round(guild.bitrate_limit / 1000)} kbps**\n'
                               f'Max Emojis: **{guild.emoji_limit}**\n'
-                              f'Emojis: **{len(guild.emojis)}', inline=False)
+                              f'Emojis: **{len(guild.emojis)}**', inline=False)
 
         embed.add_field(name='**Channel Information:**',
                         value=f'AFK timeout: **{int(guild.afk_timeout / 60)}m**\n'
