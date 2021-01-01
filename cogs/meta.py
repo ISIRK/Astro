@@ -88,6 +88,23 @@ class meta(commands.Cog):
         embed.add_field(name="Vote!",
                         value="[Top.GG](https://top.gg/bot/751447995270168586/)\n[BotList.Space](https://botlist.space/bot/751447995270168586)\n[Discord Extreme List](https://discordextremelist.xyz/en-US/bots/sirk)")
         await ctx.send(embed=embed)
+
+    @commands.command()
+    async def linecount(self, ctx):
+        """Lines of the code used to create Sirk"""
+        pylines = 0
+        pyfiles = 0
+        for path, subdirs, files in os.walk('.'):
+            for name in files:
+                    if name.endswith('.py'):
+                        pyfiles += 1
+                        with codecs.open('./' + str(pathlib.PurePath(path, name)), 'r', 'utf-8') as f:
+                            for i, l in enumerate(f):
+                                if l.strip().startswith('#') or len(l.strip()) == 0:  # skip commented lines.
+                                    pass
+                                else:
+                                    pylines += 1
+        await ctx.send(f"I am made up of **{pylines:,}** lines of code in **{pyfiles:,}** files.")
         
     @commands.command()
     async def credits(self, ctx):
