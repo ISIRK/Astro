@@ -37,7 +37,7 @@ import random
 import psutil
 import json
 import platform
-import inspect, sys, multiprocessing, asyncio
+import inspect, sys, multiprocessing, asyncio, codecs
 
 from collections import Counter
 import time, datetime
@@ -193,19 +193,6 @@ class meta(commands.Cog):
         '''Get information about the mentioned user.'''
         if member is None:
             member = ctx.author
-
-        if len(member.activities) > 0:
-            for activity in member.activities:
-                if isinstance(activity, discord.Spotify):
-                    activity = 'Listening to `Spotify`'
-                elif isinstance(activity, discord.Game):
-                    activity = f'Playing `{activity.name}``'
-                elif isinstance(activity, discord.Streaming):
-                    activity = f'Streaming `{activity.name}`'
-                else:
-                    activity = '`None`'
-        else:
-            activity = '`None`'
             
         roles = ' '.join([r.mention for r in member.roles if r != ctx.guild.default_role] or ['None'])
         shared = sum(g.get_member(member.id) is not None for g in self.bot.guilds)
