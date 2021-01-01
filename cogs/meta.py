@@ -144,8 +144,12 @@ class meta(commands.Cog):
     @commands.command()
     async def server(self, ctx, guild:discord.Guild=None):
         '''Get information about the server.'''
-        if guild is none:
+        
+        if guild is not None:
+            guild = self.bot.get_guild(guild.id)
+        else:
             guild = ctx.guild
+            
         embed = discord.Embed(title=f"{guild.name}", color=color)
         embed.description = guild.description if guild.description else None
         embed.add_field(name='**General:**',
