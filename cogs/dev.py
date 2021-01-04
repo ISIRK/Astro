@@ -374,7 +374,7 @@ class dev(commands.Cog):
     async def list(self, ctx):
         '''Get your todo list'''
         s = await self.bot.db.fetch("SELECT * FROM todo;")
-        list = [x["thing"] for x in s]
+        list = [x["things"] for x in s]
         try:
             p = SimplePages(entries=list, per_page=10)
             await p.start(ctx)
