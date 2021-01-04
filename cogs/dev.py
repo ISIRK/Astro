@@ -376,7 +376,7 @@ class dev(commands.Cog):
         s = await self.bot.db.fetch("SELECT * FROM todo;")
         list = [x["thing"] for x in s]
         try:
-            p = SimplePages(title="Todo List", entries=list, per_page=10)
+            p = SimplePages(entries=list, per_page=10)
             await p.start(ctx)
         except Exception as e:
             await ctx.send(f"```py\n{e}```")
