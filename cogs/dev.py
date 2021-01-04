@@ -340,7 +340,7 @@ class dev(commands.Cog):
     async def add(self, ctx, *, thing:str):
         '''Add something to the todo list'''
         try:
-            await self.bot.db.execute("INSERT INTO todo (id, things) VALUES($1, $2)", 1, thing)
+            await self.bot.db.execute("INSERT INTO todo (thing) VALUES($1)", thing)
             await ctx.send(f'Added {thing} to your todo list!')
         except Exception as e:
             return await ctx.send(e)
@@ -374,7 +374,7 @@ class dev(commands.Cog):
     async def list(self, ctx):
         '''Get your todo list'''
         s = await self.bot.db.fetch("SELECT * FROM todo;")
-        list = [x["things"] for x in s]
+        list = [x["thing"] for x in s]
         try:
             p = SimplePages(entries=list, per_page=10)
             await p.start(ctx)
