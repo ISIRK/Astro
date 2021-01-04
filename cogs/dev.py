@@ -347,11 +347,11 @@ class dev(commands.Cog):
 
     @commands.is_owner()
     @todo.command(aliases=['remove'])
-    async def delete(self, ctx, *, id:int):
+    async def delete(self, ctx, *, thing:str):
         '''Delete an item from your todo list'''
         try:
-            await self.bot.db.execute("DELETE FROM todo WHERE id = $1", id)
-            await ctx.send(f'Removed {id} from your todo list!')
+            await self.bot.db.execute("DELETE FROM todo WHERE thing = $1", thing)
+            await ctx.send(f'Removed {thing} from your todo list!')
         except Exception as e:
             return await ctx.send(e)
     '''
@@ -376,7 +376,7 @@ class dev(commands.Cog):
         s = await self.bot.db.fetch("SELECT * FROM todo;")
         list = [x["thing"] for x in s]
         try:
-            p = SimplePages(entries=list, per_page=10)
+            p = SimplePages(title="Todo List", entries=list, per_page=10)
             await p.start(ctx)
         except menus.MenuError as f:
             await ctx.send(f)
