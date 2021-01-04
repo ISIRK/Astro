@@ -97,7 +97,7 @@ class economy(commands.Cog):
         try:
             s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
             bal = s['cashbalance']
-            cash = s['0']
+            cash = '0'
             await self.bot.db.execute("UPDATE economy SET cashbalance = $1 and bankbalance = $2 WHERE guildId = $3 and userId = $4", cash, bal, ctx.guild.id, ctx.author.id)
             await ctx.send(f'Deposited {bal} into the bank.')
         except Exception as e:
