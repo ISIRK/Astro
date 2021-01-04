@@ -324,8 +324,8 @@ class dev(commands.Cog):
         try:
             p = SqlPages(entries=e, per_page=10)
             await p.start(ctx)
-        except Exception as e:
-            await ctx.reply(f"```py\n{e}```")
+        except menus.MenuError as f:
+            await ctx.send(f)
             
     @commands.is_owner()
     @commands.group(invoke_without_command=True)
