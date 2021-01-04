@@ -347,7 +347,7 @@ class dev(commands.Cog):
 
     @commands.is_owner()
     @todo.command(aliases=['remove'])
-    async def delete(self, ctx, *, id):
+    async def delete(self, ctx, *, id:int):
         '''Delete an item from your todo list'''
         try:
             await self.bot.db.execute("DELETE FROM todo WHERE id = $1", id)
