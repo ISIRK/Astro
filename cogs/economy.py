@@ -48,7 +48,7 @@ class economy(commands.Cog):
         if s:
             return await ctx.send(embed = discord.Embed(description = "You already have an account!", color=color))
         elif not s:
-            await self.bot.db.execute("INSERT INTO economy(userId, guildId, cashBalance) VALUES($1, $2, $3)", ctx.author.id, ctx.guild.id, 50)
+            await self.bot.db.execute("INSERT INTO economy(userId, guildId, cashBalance, bankBalance) VALUES($1, $2, $3, $4)", ctx.author.id, ctx.guild.id, 50, 0)
             await ctx.send(embed = discord.Embed(description = "Bank account register succesful, to remove your account run: `delete`", color=color))
     
     @commands.command(name = "delete")
@@ -97,8 +97,7 @@ class economy(commands.Cog):
         try:
             s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
             bal = s['cashbalance']
-            cash = '0'
-            await self.bot.db.execute("UPDATE economy SET cashbalance = $1 and bankbalance = $2 WHERE guildId = $3 and userId = $4", cash, bal, ctx.guild.id, ctx.author.id)
+            await self.bot.db.execute("UPDATE economy SET cashbalance = $1 and bankbalance = $2 WHERE guildId = $3 and userId = $4", 0, bal, ctx.guild.id, ctx.author.id)
             await ctx.send(f'Deposited {bal} into the bank.')
         except Exception as e:
             return await ctx.send(f"{e}") #User does not have a bank account.
