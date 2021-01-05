@@ -66,7 +66,7 @@ class games(commands.Cog):
         '''Talk to chatbot'''
         async with self.session.get(f"http://bruhapi.xyz/cb/{message}") as r:
             resp = await r.json()
-        await ctx.send(resp['res'])
+        await ctx.reply(resp['res'])
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
