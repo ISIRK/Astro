@@ -99,7 +99,7 @@ class economy(commands.Cog):
         if not s: return await ctx.send("That user doesn't have a bank account!")
         try:
             bal = s['cashbalance']
-            await self.bot.db.execute("UPDATE economy SET cashbalance = 0 and bankbalance = cashbalance WHERE guildId = $1 and userId = $2", ctx.guild.id, ctx.author.id)
+            await self.bot.db.execute("UPDATE economy SET cashbalance = 0, bankbalance = cashbalance WHERE guildId = $1 and userId = $2", ctx.guild.id, ctx.author.id)
             await ctx.send(f'Deposited {bal} into the bank.')
         except Exception as e:
             return await ctx.send(f"{e}") #User does not have a bank account.
