@@ -158,7 +158,7 @@ class dev(commands.Cog):
     @commands.is_owner()
     @commands.command()
     async def leaveguildanddontchokeisirk(self, ctx):
-        '''Leave the current server.'''
+        '''[Pain](https://canary.discord.com/channels/336642139381301249/381963689470984203/779527415307173909)'''
         embed=discord.Embed(title='Goodbye', color=color)
         await ctx.send(embed=embed)
         await ctx.guild.leave()
