@@ -96,7 +96,7 @@ class economy(commands.Cog):
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
         if not s: return await ctx.send("That user doesn't have a bank account!")
         await self.bot.db.execute("UPDATE economy SET cashbalance = 0, bankbalance = cashbalance WHERE guildId = $1 and userId = $2", ctx.guild.id, ctx.author.id)
-        await ctx.send(f'Deposited ${bal} into the bank.')
+        await ctx.send(f'Deposited ${s['cashbalance']} into the bank.')
 
 def setup(bot):
     bot.add_cog(economy(bot))
