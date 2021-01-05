@@ -82,7 +82,7 @@ class economy(commands.Cog):
     @commands.command()
     async def work(self, ctx):
         '''Work and get a random amount of money inbetween $1 and $100'''
-        s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, user.id)
+        s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
         if not s: return await ctx.send("That user doesn't have a bank account!")
         try:
             bal = s['cashbalance']
@@ -95,7 +95,7 @@ class economy(commands.Cog):
         
     @commands.command()
     async def deposit(self, ctx):
-        s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, user.id)
+        s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
         if not s: return await ctx.send("That user doesn't have a bank account!")
         try:
             bal = s['cashbalance']
