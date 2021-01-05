@@ -73,7 +73,7 @@ class economy(commands.Cog):
         if not cash: cash = 0
         embed = discord.Embed(
             title = f"{str(user)}'s balance:",
-            description = f"Bank: ${bank}\nCash: ${cash}",
+            description = f"💰 Cash: ${cash}\n🏦 Bank: ${bank}",
             color = color
         )
         await ctx.send(embed = embed)
@@ -84,25 +84,19 @@ class economy(commands.Cog):
         '''Work and get a random amount of money inbetween $1 and $100'''
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
         if not s: return await ctx.send("That user doesn't have a bank account!")
-        try:
-            bal = s['cashbalance']
-            pay = random.randint(1, 100)
-            total = bal+pay
-            await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE guildId = $2 and userId = $3", total, ctx.guild.id, ctx.author.id)
-            await ctx.send(f'You worked and gained ${pay}!')
-        except Exception as e:
-            return await ctx.send(f"User does not have a bank account.")
+        bal = s['cashbalance']
+        pay = random.randint(1, 100)
+        total = bal+pay
+        await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE guildId = $2 and userId = $3", total, ctx.guild.id, ctx.author.id)
+        await ctx.send(f'You worked and gained ${pay}!')
         
     @commands.command()
     async def deposit(self, ctx):
+        '''Deposit all of your money into the bank.'''
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
         if not s: return await ctx.send("That user doesn't have a bank account!")
-        try:
-            bal = s['cashbalance']
-            await self.bot.db.execute("UPDATE economy SET cashbalance = 0, bankbalance = cashbalance WHERE guildId = $1 and userId = $2", ctx.guild.id, ctx.author.id)
-            await ctx.send(f'Deposited {bal} into the bank.')
-        except Exception as e:
-            return await ctx.send(f"{e}") #User does not have a bank account.
+        await self.bot.db.execute("UPDATE economy SET cashbalance = 0, bankbalance = cashbalance WHERE guildId = $1 and userId = $2", ctx.guild.id, ctx.author.id)
+        await ctx.send(f'Deposited ${bal} into the bank.')
 
 def setup(bot):
     bot.add_cog(economy(bot))
