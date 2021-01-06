@@ -57,7 +57,9 @@ class meta(commands.Cog):
         
     @commands.Cog.listener()
     async def on_message(self, message):
-        if "invite".lower() in message.content and "sirk".lower() in message.content:
+        sirk = 'SIRK'
+        invite  = 'INVITE'
+        if invite.upper() in message.content and sirk.upper() in message.content:
             await message.channel.send('<https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot>')
             
 
