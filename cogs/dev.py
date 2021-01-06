@@ -386,7 +386,7 @@ class dev(commands.Cog):
     async def test(self, ctx):
         '''test'''
         talk = True
-        while talk True:
+        while talk is True:
             try:
                 await ctx.send('Chatbot Started!\nType `cancel` to end.')
                 m = await self.bot.wait_for('message', timeout=60.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
