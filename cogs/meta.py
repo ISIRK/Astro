@@ -54,6 +54,12 @@ class meta(commands.Cog):
     '''Meta commands'''
     def __init__(self, bot):
         self.bot = bot
+        
+    @commands.Cog.listener()
+    async def on_message(message):
+        if "invite" in message and "sirk".lower() in message:
+            await message.channel.send('<https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot>')
+            
 
     @commands.command()
     async def stats(self, ctx):
