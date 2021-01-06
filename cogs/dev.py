@@ -29,7 +29,7 @@ from discord.ext import commands
 from discord.shard import ShardInfo
 from discord.ext.commands import bot
 
-import os, io, json, psutil, aiohttp, collections, time, datetime, random, requests
+import os, io, json, psutil, aiohttp, collections, time, datetime, random, requests, asyncio
 
 from datetime import datetime
 
