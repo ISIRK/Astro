@@ -397,6 +397,7 @@ class dev(commands.Cog):
                     pass
             except asyncio.TimeoutError:
                 await ctx.send('Timeout Error')
+                talk = False
             else:
                 async with self.session.get(f"http://bruhapi.xyz/cb/{m}") as r:
                     resp = await r.json()
