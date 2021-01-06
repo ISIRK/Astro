@@ -381,5 +381,22 @@ class dev(commands.Cog):
         except Exception as e:
             await ctx.send(f"```py\n{e}```")
     
+    @commands.is_owner()
+    @commands.command()
+    async def test(self, ctx):
+        '''test'''
+        talk = True
+        while talk True:
+            try:
+                await ctx.send('Chatbot Started!\nType `cancel` to end.')
+                m = await self.bot.wait_for('message', timeout=60.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+                if m is "cancel":
+                    break
+            except asyncio.TimeoutError:
+                await ctx.send('Timeout Error')
+            else:
+                async with self.session.get(f"http://bruhapi.xyz/cb/{m}") as r:
+                    resp = await r.json()
+                await ctx.reply(f"{resp['res']}")
 def setup(bot):
     bot.add_cog(dev(bot))
