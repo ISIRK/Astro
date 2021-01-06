@@ -90,7 +90,7 @@ class economy(commands.Cog):
         await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE guildId = $2 and userId = $3", total, ctx.guild.id, ctx.author.id)
         await ctx.send(f'You worked and gained ${pay}!')
         
-    @commands.command()
+    @commands.command(aliases=['dep'])
     async def deposit(self, ctx):
         '''Deposit all of your money into the bank.'''
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
