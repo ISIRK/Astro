@@ -392,6 +392,7 @@ class dev(commands.Cog):
                 m = await self.bot.wait_for('message', timeout=60.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
                 if m is "cancel":
                     talk = False
+                    await ctx.send(talk)
             except asyncio.TimeoutError:
                 await ctx.send('Timeout Error')
             else:
