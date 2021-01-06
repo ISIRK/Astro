@@ -395,7 +395,7 @@ class dev(commands.Cog):
                 talk = False
                 await ctx.send(talk)
             else:
-                if m.content is "cancel":
+                if m.content == "cancel":
                     talk = False
                     await ctx.send('Chatbot Session Ended.')
                 else:
