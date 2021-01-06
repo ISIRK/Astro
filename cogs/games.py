@@ -77,9 +77,10 @@ class games(commands.Cog):
                     talk = False
                     await ctx.send('Chatbot Session Ended.')
                 else:
-                    async with self.session.get(f"http://bruhapi.xyz/cb/{m}") as r:
-                        resp = await r.json()
-                    await m.reply(f"{resp['res']}")
+                    async with ctx.channel.typing():
+                        async with self.session.get(f"http://bruhapi.xyz/cb/{m}") as r:
+                            resp = await r.json()
+                        await m.reply(f"{resp['res']}")
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
