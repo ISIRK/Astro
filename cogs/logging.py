@@ -113,7 +113,6 @@ class logging(commands.Cog):
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         guild = member.guild
-        print(guild.id)
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild.id)
         logging, channel = s['logging'], s['channel']
         c = guild.get_channel(channel)
