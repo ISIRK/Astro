@@ -60,13 +60,26 @@ class games(commands.Cog):
     async def xmas(self, ctx):
         await ctx.send("Looking for some **Christmas Fun**?\n> https://asksirk.com/christmas/")
         
-    @commands.cooldown(1,3,BucketType.user)   
+    @commands.max_concurrency(1, per=BucketType.channel, wait=False)
     @commands.command(aliases=['cb'])
     async def chatbot(self, ctx, *, message):
         '''Talk to chatbot'''
-        async with self.session.get(f"http://bruhapi.xyz/cb/{message}") as r:
-            resp = await r.json()
-        await ctx.reply(resp['res'])
+        talk = True
+        await ctx.send('Chatbot Started!\nType `cancel` to end.')
+        while talk is True:
+            try:
+                m = await self.bot.wait_for('message', timeout=30, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+            except asyncio.TimeoutError:
+                await ctx.send('Timeout Error')
+                talk = False
+            else:
+                if m.content == "cancel":
+                    talk = False
+                    await ctx.send('Chatbot Session Ended.')
+                else:
+                    async with self.session.get(f"http://bruhapi.xyz/cb/{m}") as r:
+                        resp = await r.json()
+                    await m.reply(f"{resp['res']}")
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
