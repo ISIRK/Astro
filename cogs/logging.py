@@ -115,7 +115,7 @@ class logging(commands.Cog):
         guild = member.guild
         print(guild.id)
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild.id)
-        channel = s['channel']
+        logging, channel = s['logging'], s['channel']
         c = guild.get_channel(channel)
         
         value = [f"User: {member}(`{member.id}`)", f"Left: {datetime.datetime.utcnow().strftime('%B %d %Y - %H:%M:%S')}", f"Current Members: {member.guild.member_count}"]
