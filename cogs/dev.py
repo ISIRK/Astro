@@ -390,14 +390,15 @@ class dev(commands.Cog):
         while talk is True:
             try:
                 m = await self.bot.wait_for('message', timeout=60.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+                if m == "cancel":
+                    talk = False
+                await ctx.send(talk)
             except asyncio.TimeoutError:
                 await ctx.send('Timeout Error')
             else:
                 async with self.session.get(f"http://bruhapi.xyz/cb/{m}") as r:
                     resp = await r.json()
                 await ctx.send(f"{resp['res']}")
-            if m == "cancel":
-                talk = False
-                await ctx.send(talk)
+
 def setup(bot):
     bot.add_cog(dev(bot))
