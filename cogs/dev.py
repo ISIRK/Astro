@@ -397,6 +397,6 @@ class dev(commands.Cog):
             else:
                 async with self.session.get(f"http://bruhapi.xyz/cb/{m}") as r:
                     resp = await r.json()
-                await ctx.reply(f"{resp['res']}")
+                await ctx.send(f"{resp['res']}")
 def setup(bot):
     bot.add_cog(dev(bot))
