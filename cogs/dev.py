@@ -388,9 +388,6 @@ class dev(commands.Cog):
         talk = True
         await ctx.send('Chatbot Started!\nType `cancel` to end.')
         while talk is True:
-            if m is "cancel":
-                talk = False
-                await ctx.send(talk)
             try:
                 m = await self.bot.wait_for('message', timeout=60.0, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
             except asyncio.TimeoutError:
@@ -399,5 +396,8 @@ class dev(commands.Cog):
                 async with self.session.get(f"http://bruhapi.xyz/cb/{m}") as r:
                     resp = await r.json()
                 await ctx.send(f"{resp['res']}")
+            if m is "cancel":
+                talk = False
+                await ctx.send(talk)
 def setup(bot):
     bot.add_cog(dev(bot))
