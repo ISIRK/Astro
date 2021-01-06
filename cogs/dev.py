@@ -396,7 +396,7 @@ class dev(commands.Cog):
                 async with self.session.get(f"http://bruhapi.xyz/cb/{m}") as r:
                     resp = await r.json()
                 await ctx.send(f"{resp['res']}")
-            if m is "cancel":
+            if m == "cancel":
                 talk = False
                 await ctx.send(talk)
 def setup(bot):
