@@ -73,7 +73,7 @@ class games(commands.Cog):
                 await ctx.send('Timeout Error')
                 talk = False
             else:
-                if m.content == "cancel".lower():
+                if m.content.lower() == "cancel":
                     talk = False
                     await ctx.send('Chatbot Session Ended.')
                 else:
