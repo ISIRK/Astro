@@ -389,7 +389,7 @@ class dev(commands.Cog):
         await ctx.send('Chatbot Started!\nType `cancel` to end.')
         while talk is True:
             try:
-                m = await self.bot.wait_for('message', timeout=5, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
+                m = await self.bot.wait_for('message', timeout=30, check=lambda m:(ctx.author == m.author and ctx.channel == m.channel))
             except asyncio.TimeoutError:
                 await ctx.send('Timeout Error')
                 talk = False
