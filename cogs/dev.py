@@ -393,7 +393,6 @@ class dev(commands.Cog):
             except asyncio.TimeoutError:
                 await ctx.send('Timeout Error')
                 talk = False
-                await ctx.send(talk)
             else:
                 if m.content == "cancel":
                     talk = False
