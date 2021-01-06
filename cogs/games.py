@@ -62,7 +62,7 @@ class games(commands.Cog):
         
     @commands.max_concurrency(1, per=BucketType.channel, wait=False)
     @commands.command(aliases=['cb'])
-    async def chatbot(self, ctx, *, message):
+    async def chatbot(self, ctx):
         '''Talk to chatbot'''
         talk = True
         await ctx.send('Chatbot Started!\nType `cancel` to end.')
