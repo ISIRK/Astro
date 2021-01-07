@@ -110,7 +110,7 @@ class economy(commands.Cog):
         embed = discord.Embed(title=f"{ctx.guild.name}'s Shop", description="This command is a work in progress.", color=color)
         embed.add_field(name="Multiplier", value="💰 Multiply your earnings for the commadnd `work`!\nCost: **$1,000**", inline=False)
         embed.set_footer(text=footer)
-        embed.set_author(icon=ctx.guild.icon_url)
+        embed.set_author(icon_url=ctx.guild.icon_url)
 
 def setup(bot):
     bot.add_cog(economy(bot))
