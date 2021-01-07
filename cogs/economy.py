@@ -111,6 +111,8 @@ class economy(commands.Cog):
         embed.add_field(name="Multiplier", value="💰 Multiply your earnings for the commadnd `work`!\nCost: **$1,000**", inline=False)
         embed.set_footer(text=footer)
         embed.set_author(name="Shop", icon_url=ctx.guild.icon_url)
+        
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(economy(bot))
