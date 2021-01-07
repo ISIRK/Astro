@@ -104,15 +104,19 @@ class economy(commands.Cog):
             await ctx.send(f"Deposited ${cash} into the bank.")
 
     @commands.cooldown(1,3,BucketType.user)
-    @commands.command()
+    @commands.group()
+    
+    @commands.group(brief="Main commands")
     async def shop(self, ctx):
         '''A shop to buy things with your coins. WIP'''
+        
         embed = discord.Embed(title=f"{ctx.guild.name}'s Shop", description="This command is a work in progress.", color=color)
         embed.add_field(name="Multiplier", value="💰 Multiply your earnings for the commadnd `work`!\nCost: **$1,000**", inline=False)
         embed.set_footer(text=footer)
         embed.set_author(name="Shop", icon_url=ctx.guild.icon_url)
-        
-        await ctx.send(embed=embed)
+
+        if ctx.invoked_subcommand is None:
+            await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(economy(bot))
