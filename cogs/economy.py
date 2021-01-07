@@ -104,8 +104,6 @@ class economy(commands.Cog):
             await ctx.send(f"Deposited ${cash} into the bank.")
 
     @commands.cooldown(1,3,BucketType.user)
-    @commands.group()
-    
     @commands.group(brief="Main commands")
     async def shop(self, ctx):
         '''A shop to buy things with your coins. WIP'''
