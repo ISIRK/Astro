@@ -90,6 +90,7 @@ class economy(commands.Cog):
         await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE guildId = $2 and userId = $3", total, ctx.guild.id, ctx.author.id)
         await ctx.send(f'You worked and gained ${pay}!')
         
+    @commands.cooldown(1,3,BucketType.user)
     @commands.command(aliases=['dep'])
     async def deposit(self, ctx):
         '''Deposit all of your money into the bank.'''
@@ -101,6 +102,15 @@ class economy(commands.Cog):
         else:
             await self.bot.db.execute("UPDATE economy SET cashbalance = 0, bankbalance = cashbalance WHERE guildId = $1 and userId = $2", ctx.guild.id, ctx.author.id)
             await ctx.send(f"Deposited ${cash} into the bank.")
+
+    @commands.cooldown(1,3,BucketType.user)
+    @commands.command()
+    async def shop(self, ctx):
+        '''A shop to buy things with your coins. WIP'''
+        embed = discord.Embed(title=f"{ctx.guild.name}'s Shop", description="This command is a work in progress.", color=color)
+        embed.add_field(name="Multiplier", value="💰 Multiply your earnings for the commadnd `work`!\nCost: **$1,000**", inline=False)
+        embed.set_footer(text=footer)
+        embed.set_author(icon=ctx.guild.icon_url)
 
 def setup(bot):
     bot.add_cog(economy(bot))
