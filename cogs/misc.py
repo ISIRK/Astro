@@ -116,6 +116,7 @@ class misc(commands.Cog):
             resp = await resp.json()
         embed=discord.Embed(title=f"Stats for {resp['name']}", description=f"ID: `{resp['id']}`", color=color)
         embed.set_image(url=f"https://minotar.net/armor/body/{username}/100.png")
+        embed.set_image(url=f"http://optifine.net/capes/{username}.png")
         embed.set_thumbnail(url=f"https://minotar.net/helm/{username}/100.png")
         embed.set_thumbnail(url=f"https://mc-heads.net/avatar/{username}/100.png")
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
