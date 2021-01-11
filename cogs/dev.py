@@ -38,7 +38,7 @@ from multiprocessing.connection import Client
 import subprocess as sp
 
 from jishaku import codeblocks
-from .utils.paginator import SimplePageSource
+from .utils.paginator import SimplePages
 
 tools = "tools/tools.json"
 with open(tools) as f:
@@ -55,7 +55,7 @@ class SqlEntry:
     def __str__(self):
         return f'{self.data}'
 
-class SqlPages(SimplePageSource):
+class SqlPages(SimplePages):
     def __init__(self, entries, *, per_page=12):
         converted = [SqlEntry(entry) for entry in entries]
         super().__init__(converted, per_page=per_page)
@@ -376,7 +376,7 @@ class dev(commands.Cog):
         s = await self.bot.db.fetch("SELECT * FROM todo;")
         list = [x["thing"] for x in s]
         try:
-            p = SimplePageSource(entries=list, per_page=10)
+            p = SimplePages(entries=list, per_page=10)
             await p.start(ctx)
         except Exception as e:
             await ctx.send(f"```py\n{e}```")
