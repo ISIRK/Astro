@@ -322,7 +322,7 @@ class dev(commands.Cog):
         query = codeblocks.codeblock_converter(query)[1]
         e = await self.bot.db.fetch(query)
         try:
-            p = SqlPages(entries=e, per_page=10)
+            p = SqlPageSource(entries=e, per_page=10)
             await p.start(ctx)
         except menus.MenuError as f:
             await ctx.send(f)
