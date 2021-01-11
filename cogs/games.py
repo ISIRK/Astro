@@ -80,7 +80,7 @@ class games(commands.Cog):
                     async with ctx.channel.typing():
                         async with self.session.get(f"http://bruhapi.xyz/cb/{m}") as r:
                             resp = await r.json()
-                        await m.reply(f"{resp['res']}")
+                        await ctx.send(f"{resp['res']}")
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
