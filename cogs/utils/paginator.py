@@ -30,7 +30,7 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
-class SimplePage(menus.MenuPages):
+class Pages(menus.MenuPages):
     def __init__(self, source):
         super().__init__(source=source, check_embeds=True)
 
@@ -65,7 +65,7 @@ class SimplePageSource(menus.ListPageSource):
         menu.embed.description = '\n'.join(pages)
         return menu.embed
 
-class Simple(SimplePages):
+class Simple(Pages):
 
     def __init__(self, entries, *, per_page=12):
         super().__init__(SimplePageSource(entries, per_page=per_page))
