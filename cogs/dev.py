@@ -55,7 +55,7 @@ class SqlEntry:
     def __str__(self):
         return f'{self.data}'
 
-class SqlPages(SimplePages):
+class SqlPages(SimplePageSource):
     def __init__(self, entries, *, per_page=12):
         converted = [SqlEntry(entry) for entry in entries]
         super().__init__(converted, per_page=per_page)
@@ -322,7 +322,7 @@ class dev(commands.Cog):
         query = codeblocks.codeblock_converter(query)[1]
         e = await self.bot.db.fetch(query)
         try:
-            p = SqlPageSource(entries=e, per_page=10)
+            p = SqlPages(entries=e, per_page=10)
             await p.start(ctx)
         except menus.MenuError as f:
             await ctx.send(f)
