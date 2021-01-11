@@ -38,7 +38,7 @@ from multiprocessing.connection import Client
 import subprocess as sp
 
 from jishaku import codeblocks
-from .utils.paginator import SimplePages
+from .utils.paginator import Simple
 
 tools = "tools/tools.json"
 with open(tools) as f:
@@ -322,7 +322,7 @@ class dev(commands.Cog):
         query = codeblocks.codeblock_converter(query)[1]
         e = await self.bot.db.fetch(query)
         try:
-            p = SqlPages(entries=e, per_page=10)
+            p = Simple(entries=e, per_page=10)
             await p.start(ctx)
         except menus.MenuError as f:
             await ctx.send(f)
@@ -376,7 +376,7 @@ class dev(commands.Cog):
         s = await self.bot.db.fetch("SELECT * FROM todo;")
         list = [x["thing"] for x in s]
         try:
-            p = SimplePages(entries=list, per_page=10)
+            p = Simple(entries=list, per_page=10)
             await p.start(ctx)
         except Exception as e:
             await ctx.send(f"```py\n{e}```")
