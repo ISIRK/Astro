@@ -3,8 +3,6 @@
 This is taken from R. Danny's help command.
 I won't do all the licensing and stuff because I am gonna change this pretty soon.
 
-'''
-
 from discord.ext import commands, menus
 from .utils import checks, formats, time
 from .utils.paginator import RoboPages
@@ -116,7 +114,7 @@ class HelpMenu(RoboPages):
     def __init__(self, source):
         super().__init__(source)
 
-    '''
+    
     @menus.button('\N{WHITE QUESTION MARK ORNAMENT}', position=menus.Last(5))
     async def show_bot_help(self, payload):
         """shows how to use the bot"""
@@ -147,7 +145,7 @@ class HelpMenu(RoboPages):
             await self.show_page(self.current_page)
 
         self.bot.loop.create_task(go_back_to_current_page())
-        '''
+        
 
 class PaginatedHelpCommand(commands.HelpCommand):
     def __init__(self):
@@ -234,3 +232,5 @@ class HelpCog(commands.Cog, name = "Help"):
 
 def setup(bot):
     bot.add_cog(HelpCog(bot))
+
+'''
