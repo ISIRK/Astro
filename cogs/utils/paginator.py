@@ -21,9 +21,7 @@ SOFTWARE.
 
 '''
 
-import asyncio, json
-import discord
-from discord.ext.commands import Paginator as CommandPaginator
+import asyncio, json, discord
 from discord.ext import menus
 
 tools = "tools/tools.json"
@@ -32,7 +30,7 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
-class Simple(menus.MenuPages):
+class SimplePage(menus.MenuPages):
     def __init__(self, source):
         super().__init__(source=source, check_embeds=True)
 
@@ -67,7 +65,7 @@ class SimplePageSource(menus.ListPageSource):
         menu.embed.description = '\n'.join(pages)
         return menu.embed
 
-class SimplePages(Simple):
+class Simple(SimplePages):
 
     def __init__(self, entries, *, per_page=12):
         super().__init__(SimplePageSource(entries, per_page=per_page))
