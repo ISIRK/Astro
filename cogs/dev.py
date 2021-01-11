@@ -55,7 +55,7 @@ class SqlEntry:
     def __str__(self):
         return f'{self.data}'
 
-class SqlPages(SimplePages):
+class SqlPages(Simple):
     def __init__(self, entries, *, per_page=12):
         converted = [SqlEntry(entry) for entry in entries]
         super().__init__(converted, per_page=per_page)
