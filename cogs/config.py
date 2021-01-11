@@ -35,8 +35,8 @@ color = int(data['COLOR'], 16)
 off = "<:xon:792824364658720808><:coff:792824364483477514>"
 on = "<:xoff:792824364545605683><:con:792824364558843956>"
 
-class logging(commands.Cog):
-    '''Logging Commands'''
+class config(commands.Cog):
+    '''Configuration Commands'''
     def __init__(self, bot):
         self.bot = bot
             
@@ -241,4 +241,4 @@ class logging(commands.Cog):
             
         
 def setup(bot):
-    bot.add_cog(logging(bot))
+    bot.add_cog(config(bot))
