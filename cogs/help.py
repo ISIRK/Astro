@@ -52,22 +52,13 @@ class HelpCommand(commands.HelpCommand):
                               colour=color)
         embed.add_field(name="Usage:", value=f"{command.name} {command.signature}", inline=False)
         embed.add_field(name="Category:", value=f"{command.cog_name}", inline=False)
-        try:
-            use = await command.can_run(self.context)
-            if use:
-                use = "Yes"
-            else:
-                use = "No"
-        except commands.CommandError:
-            use = "No"
-        embed.add_field(name="Can Use:", value=use)
         if command.aliases:
             embed.add_field(name="Aliases:", value="\n".join(command.aliases), inline=False)
         embed.set_footer(text=footer)
         return await self.context.send(embed=embed)
 
     async def send_cog_help(self, cog):
-        embed = discord.Embed(title=f"Help on Category `{cog.qualified_name}`",
+        embed = discord.Embed(title=cog.qualified_name,
                               description=cog.description or "No info available.",
                               colour=color)
         embed.add_field(name="Commands in this Category:", value="\n".join(str(command) for command in cog.get_commands()) or "None")
@@ -75,7 +66,7 @@ class HelpCommand(commands.HelpCommand):
         return await self.context.send(embed=embed)
 
     async def send_group_help(self, group):
-        embed = discord.Embed(title=f"Help on Command Group `{group.name}`",
+        embed = discord.Embed(title=group.name,
                               description=group.help or "No info available.",
                               colour=color)
         embed.add_field(name="Signature:", value=f"{group.name} {group.signature}", inline=False)
