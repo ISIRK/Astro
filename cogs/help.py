@@ -17,7 +17,7 @@ class Source(menus.ListPageSource):
                               description="A bot Made by isirk",
                               color=color)
         embed.set_footer(text=f"Page {menu.current_page + 1}/{self.get_max_pages()} | {footer}")
-        _commands = "\n".join(f"{{command} - {command.help}") for command in page[1].get_commands() or "No commands in this category."
+        _commands = "\n".join(f"{command} - {command.help}") for command in page[1].get_commands() or "No commands in this category."
         embed.add_field(name=page[0], value=_commands)
         return embed
 
