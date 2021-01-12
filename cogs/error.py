@@ -31,7 +31,7 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
-class ErrorHandler(Cog):
+class error(Cog):
     def __init__(self, bot):
         self.bot = bot
         
@@ -83,4 +83,4 @@ class ErrorHandler(Cog):
             await c.send(embed = embed)
 
 def setup(bot):
-    bot.add_cog(ErrorHandler(bot))
+    bot.add_cog(error(bot))
