@@ -27,6 +27,7 @@ from discord.ext.commands.cooldowns import BucketType
 import asyncio
 import random
 from copy import deepcopy as dc
+import async_cleverbot as ac
 
 tools = "tools/tools.json"
 with open(tools) as f:
@@ -34,6 +35,7 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
+cleverbot = ac.Cleverbot("45wE<Yk3dhd]B$$sTmO/")
 
 def rps_winner(userOneChoice, userTwoChoice):
     if userOneChoice == "\U0001faa8":
@@ -75,12 +77,12 @@ class games(commands.Cog):
             else:
                 if m.content.lower() == "cancel":
                     talk = False
+                    await cleverbot.close()
                     await ctx.send('Chatbot Session Ended.')
                 else:
                     async with ctx.channel.typing():
-                        async with self.session.get(f"http://bruhapi.xyz/cb/{m}") as r:
-                            resp = await r.json()
-                        await ctx.send(f"{resp['res']}")
+                        response = await cleverbot.ask(m.content) # Ask a question, returns async_cleverbot.cleverbot.Response
+                        await ctx.send(response.text)
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
