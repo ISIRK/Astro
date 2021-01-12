@@ -13,7 +13,7 @@ class Source(menus.ListPageSource):
         super().__init__(data, per_page=1)
 
     async def format_page(self, menu: menus.MenuPages, page):
-        embed = discord.Embed(title=f"Help Menu for {menu.ctx.guild.me.nick}",
+        embed = discord.Embed(title=f"Help Menu for {menu.ctx.guild.me.display_name}",
                               description="A bot Made by isirk",
                               color=color)
         embed.set_footer(text=f"Page {menu.current_page + 1}/{self.get_max_pages()} | {footer}")
