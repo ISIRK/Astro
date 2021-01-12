@@ -71,7 +71,7 @@ class HelpCommand(commands.HelpCommand):
                               description=cog.description or "No info available.",
                               colour=color)
         embed.add_field(name="Commands in this Category:", value="\n".join(str(command) for command in cog.get_commands()) or "None")
-        embed.set_footer(text=f"Use {menu.ctx.prefix}help [command|module] for more info on a command.")
+        embed.set_footer(text=footer)
         return await self.context.send(embed=embed)
 
     async def send_group_help(self, group):
@@ -82,7 +82,7 @@ class HelpCommand(commands.HelpCommand):
         embed.add_field(name="Category:", value=f"{group.cog_name}", inline=False)
         embed.add_field(name="Aliases:", value="\n".join(group.aliases) or "None", inline=False)
         embed.add_field(name="Commands in this Group:", value="\n".join(str(command) for command in group.walk_commands()) or "None")
-        embed.set_footer(text=f"Use {menu.ctx.prefix}help [command|module] for more info on a command.")
+        embed.set_footer(text=footer)
         return await self.context.send(embed=embed)
 
 
