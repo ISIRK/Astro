@@ -40,10 +40,6 @@ class HelpCommand(commands.HelpCommand):
         data.update({num: cog_pair for num, cog_pair in enumerate(self.context.bot.cogs.items(), start=0)})
         pages = MenusHelp(source=Source(data), clear_reactions_after=True)
         await pages.start(self.context)
-        try:
-            await self.context.message.add_reaction('\N{WHITE HEAVY CHECK MARK}')
-        except discord.Forbidden:
-            pass
 
     async def send_command_help(self, command):
         use = await command.can_run(self.context)
