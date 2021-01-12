@@ -77,7 +77,6 @@ class games(commands.Cog):
             else:
                 if m.content.lower() == "cancel":
                     talk = False
-                    await cleverbot.close()
                     await ctx.send('Chatbot Session Ended.')
                 else:
                     async with ctx.channel.typing():
