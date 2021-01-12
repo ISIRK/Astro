@@ -50,12 +50,18 @@ prefixes = data['PREFIXES']
 
 intents = discord.Intents.default()
 intents.members = True
-bot = commands.Bot(command_prefix=commands.when_mentioned_or("^"), intents=intents, case_insensitive=True, allowed_mentions=discord.AllowedMentions(users=True, roles=True, everyone=False, replied_user=False))
+bot = commands.Bot(
+    command_prefix=commands.when_mentioned_or("^"), 
+    intents=intents, case_insensitive=True, 
+    allowed_mentions=discord.AllowedMentions(users=True, roles=True, everyone=False, replied_user=False),
+    owner_id=542405601255489537,
+    description="A minimalistic bot for discord Developed by isirk#0001"
+)
 # Might Wanna look at this: command_prefix=commands.when_mentioned_or(prefixes)
 
 bot.start_time = datetime.utcnow()
 
-bot.owner_ids = {542405601255489537}
+#bot.owner_ids = {542405601255489537}
 #bot.remove_command('help')
 
 #database
@@ -72,23 +78,23 @@ os.environ["JISHAKU_HIDE"] = "True"
 @bot.event
 async def on_ready():
     print('{0.user} is up and running'.format(bot))
-    # await bot.change_presence(status=discord.Status.idle)
+    
 @bot.event
-async def on_message(message):
+async def on_message(message: discord.Message):
+    if message.author.bot:
+        return
+    elif message.content.endswith('<@!751447995270168586>'):
+        embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
+        await message.channel.send(embed=embed)
+    elif message.content.endswith('<@751447995270168586>'):
+        embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
+        await message.channel.send(embed=embed)
     await bot.process_commands(message)
-    if message.author == bot.user:
-        return
-    if message.content.endswith('<@!751447995270168586>'):
-        embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
-        await message.channel.send(embed=embed)
-    if message.content.endswith('<@751447995270168586>'):
-        embed = discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136)
-        await message.channel.send(embed=embed)
+        
 @bot.event
-async def on_message_edit(before, after):
-    await bot.process_commands(after)
-    if after.attachments and before.attachments:
-        return
+async def on_message_edit(before: discord.Message, after: discord.Message):
+    if after.author.id == bot.owner_id:
+        await bot.process_commands(after)
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
