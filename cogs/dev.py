@@ -38,7 +38,7 @@ from multiprocessing.connection import Client
 import subprocess as sp
 
 from jishaku import codeblocks
-from .utils.paginator import Simple
+from tools.paginator import Simple
 
 tools = "tools/tools.json"
 with open(tools) as f:
