@@ -71,8 +71,7 @@ class HelpCommand(commands.HelpCommand):
         embed.add_field(name="Category:", value=f"{group.cog_name}", inline=False)
         if group.aliases:
             embed.add_field(name="Aliases:", value="\n".join(gruop.aliases), inline=False)
-        if group.walk_commands():
-            embed.add_field(name="Commands in this Group:", value="\n".join(str(command) for command in group.walk_commands()) or "None")
+        embed.add_field(name="Commands:", value="\n".join(str(command) for command in group.walk_commands()) or "None")
         embed.set_footer(text=footer)
         return await self.context.send(embed=embed)
 
