@@ -57,7 +57,7 @@ class HelpCommand(commands.HelpCommand):
         embed = discord.Embed(title=cog.qualified_name,
                               description=cog.description or "No info available.",
                               colour=color)
-        embed.add_field(name="Commands in this Category:", value="\n".join(str(command) for command in cog.get_commands()) or "None")
+        embed.add_field(name="Commands:", value="\n".join(str(command) for command in cog.get_commands()) or "None")
         embed.set_footer(text=footer)
         return await self.context.send(embed=embed)
 
@@ -65,9 +65,12 @@ class HelpCommand(commands.HelpCommand):
         embed = discord.Embed(title=group.name,
                               description=group.help or "No info available.",
                               colour=color)
-        embed.add_field(name="Signature:", value=f"{group.name} {group.signature}", inline=False)
+        '''
+        embed.add_field(name="Usage:", value=f"{group.name} {group.signature}", inline=False)
+        '''
         embed.add_field(name="Category:", value=f"{group.cog_name}", inline=False)
-        embed.add_field(name="Aliases:", value="\n".join(group.aliases) or "None", inline=False)
+        if command.aliases:
+            embed.add_field(name="Aliases:", value="\n".join(command.aliases), inline=False)
         embed.add_field(name="Commands in this Group:", value="\n".join(str(command) for command in group.walk_commands()) or "None")
         embed.set_footer(text=footer)
         return await self.context.send(embed=embed)
