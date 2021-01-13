@@ -21,7 +21,7 @@ class Source(menus.ListPageSource):
         '''
         embed.set_footer(text=f"Page {menu.current_page + 1}/{self.get_max_pages()} | {footer}")
         if menu.current_page == 0:
-            embed.add_field(name=f"{ctx.guild.me.display_name}", value=menu.ctx.bot.description)
+            embed.add_field(name=f"{menu.ctx.guild.me.display_name}", value=menu.ctx.bot.description)
         else:
             _commands = "\n".join(str(command) for command in page[1].get_commands()) or "No commands in this category."
             #embed.add_field(name=page[0], value=_commands)
@@ -45,7 +45,7 @@ class HelpCommand(commands.HelpCommand):
 
     async def send_bot_help(self, _):
         data = {0: None}
-        data.update({num: cog_pair for num, cog_pair in enumerate(self.context.bot.cogs.items(), start=0)})
+        data.update({num: cog_pair for num, cog_pair in enumerate(self.context.bot.cogs.items(), start=1)}) #0
         pages = MenusHelp(source=Source(data), delete_message_after=True) #clear_reactions_after=True)
         await pages.start(self.context)
 
