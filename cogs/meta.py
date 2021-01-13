@@ -68,14 +68,14 @@ class meta(commands.Cog):
         await asyncio.sleep(2)
         await msg.edit(embed=infoembed)
 
-    @commands.command(aliases=['info', 'i'])
+    @commands.command(aliases=['info'])
     async def about(self, ctx):
         """Displays bot info"""
         mem = psutil.virtual_memory()
         embed = discord.Embed(title="Bot Info", color=color)
         embed.set_author(name="isirk#0001", icon_url="https://asksirk.com/img/isirk.gif")
         embed.set_footer(text=footer)
-        embed.set_thumbnail(url="https://asksirk.com/img/sirk.png")
+        embed.set_thumbnail(url=self.bot.user.avatar_url)
         embed.add_field(name="About",
                         value=f"A minimalistic bot for discord made by [isirk](https://discord.com/users/542405601255489537)\n[Support Server](https://discord.gg/7yZqHfG)\n[Website](https://asksirk.com/bot/)")
         embed.add_field(name=f"Stats",
