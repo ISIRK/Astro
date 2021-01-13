@@ -20,12 +20,13 @@ class Source(menus.ListPageSource):
                               
         '''
         embed.set_footer(text=f"Page {menu.current_page + 1}/{self.get_max_pages()} | {footer}")
-        _commands = "\n".join(str(command) for command in page[1].get_commands()) or "No commands in this category."
-        '''
-        embed.add_field(name=page[0], value=_commands)
-        '''
-        embed.title = page[0]
-        embed.description = _commands
+        if menu.current_page == 0:
+            embed.add_field(name=f"{ctx.guild.me.display_name}", value=menu.ctx.bot.description)
+        else:
+            _commands = "\n".join(str(command) for command in page[1].get_commands()) or "No commands in this category."
+            #embed.add_field(name=page[0], value=_commands)
+            embed.title = page[0]
+            embed.description = _commands
         return embed
 
 
