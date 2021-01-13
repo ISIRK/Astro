@@ -19,9 +19,9 @@ class Source(menus.ListPageSource):
                               description=menu.ctx.bot.description,
                               
         '''
-        cmd = f"{command} - " + command.help or "No info available."
+        cmd = f"{command} - " + command.help or "No info available." for command in page[1].get_commands()) or "No commands in this category."
         embed.set_footer(text=f"Page {menu.current_page + 1}/{self.get_max_pages()} | {footer}")
-        _commands = "\n".join(str(cmd) for command in page[1].get_commands()) or "No commands in this category."
+        _commands = "\n".join(str(cmd)) ''' for command in page[1].get_commands()) or "No commands in this category."'''
         '''
         embed.add_field(name=page[0], value=_commands)
         '''
