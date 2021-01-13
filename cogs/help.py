@@ -13,12 +13,19 @@ class Source(menus.ListPageSource):
         super().__init__(data, per_page=1)
 
     async def format_page(self, menu: menus.MenuPages, page):
-        embed = discord.Embed(title=f"Help Menu for {menu.ctx.guild.me.display_name}",
+        embed = discord.Embed(color=color)
+        '''
+        title=f"Help Menu for {menu.ctx.guild.me.display_name}",
                               description=menu.ctx.bot.description,
-                              color=color)
+                              
+        '''
         embed.set_footer(text=f"Page {menu.current_page + 1}/{self.get_max_pages()} | {footer}")
         _commands = "\n".join(str(command) for command in page[1].get_commands()) or "No commands in this category."
+        '''
         embed.add_field(name=page[0], value=_commands)
+        '''
+        embed.title = page[0]
+        embed.description = _commands
         return embed
 
 
