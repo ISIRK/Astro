@@ -38,7 +38,7 @@ class HelpCommand(commands.HelpCommand):
     async def send_bot_help(self, _):
         data = {0: None}
         data.update({num: cog_pair for num, cog_pair in enumerate(self.context.bot.cogs.items(), start=0)})
-        pages = MenusHelp(source=Source(data), clear_reactions_after=True)
+        pages = MenusHelp(source=Source(data), delete_message_after=True) #clear_reactions_after=True)
         await pages.start(self.context)
 
     async def send_command_help(self, command):
