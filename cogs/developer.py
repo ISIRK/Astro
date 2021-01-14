@@ -38,7 +38,7 @@ from multiprocessing.connection import Client
 import subprocess as sp
 
 from jishaku import codeblocks
-from tools.utils import Simple
+from tools.utils import Simple, Paste
 
 tools = "tools/tools.json"
 with open(tools) as f:
@@ -154,13 +154,6 @@ class developer(commands.Cog):
             )
 
         await msg.edit(embed=embed)
-    
-    # Do not use because of ram usage, cuz it does not kill what is running.
-    '''@commands.is_owner()
-    @command.command()
-    async def restart(self, ctx):
-        output = sp.getoutput('python3 sirk.py &')
-        await ctx.bot.logout()'''
 
     @commands.is_owner()
     @dev.command()
@@ -169,37 +162,6 @@ class developer(commands.Cog):
         embed=discord.Embed(title='Goodbye', color=color)
         await ctx.send(embed=embed)
         await ctx.guild.leave()
-
-
-    '''
-    @commands.is_owner()
-    @commands.command()
-    async def status(self, ctx, type, *, status=None):
-        Change the Bot Status
-        if type == "playing":
-            await self.bot.change_presence(activity=discord.Game(name=f"{status}"))
-            await ctx.send(f'<:online:758139458767290421> Changed status to `Playing {status}`')
-        elif type == "listening":
-            await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f"{status}"))
-            await ctx.send(f'<:online:758139458767290421> Changed status to `Listening to {status}`')
-        elif type == "watching":
-            await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{status}"))
-            await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {status}`')
-        elif type == "bot":
-            await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name=f"{len(self.bot.users)} users in {len(self.bot.guilds)} servers"))
-            await ctx.send(f'<:online:758139458767290421> Changed status to `Watching {len(self.bot.users)} users in {len(self.bot.guilds)} servers`')
-        elif type == "competing":
-            await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.competing, name=f"{status}"))
-            await ctx.send(f'<:online:758139458767290421> Changed status to `Competing in {status}`')
-        elif type == "streaming":
-            await self.bot.change_presence(activity=discord.Streaming(name=f"{status}", url="https://www.twitch.tv/isirk"))
-            await ctx.send(f'<:streaming:769640090275151912> Changed status to `Streaming {status}`')
-        elif type == "reset":
-            await self.bot.change_presence(status=discord.Status.online)
-            await ctx.send("<:online:758139458767290421> Reset Status")
-        else:
-            await ctx.send("Type needs to be either `playing|listening|watching|streaming|competing|bot|reset`")
-            '''
     
     @dev.command()
     @commands.is_owner()
@@ -316,14 +278,14 @@ class developer(commands.Cog):
         await ctx.author.send(invite)
 
     @commands.is_owner()
-    @dev.command(hidden = True)
+    @dev.command()
     async def reply(self, ctx, messageId, *, reply = None):
         if not reply: return await ctx.reply("You didn't provide a reply!")
         e = await ctx.fetch_message(messageId) 
         await e.reply(reply)
     
     @commands.is_owner()
-    @dev.command(hidden = True)
+    @dev.command()
     async def sql(self, ctx, *, query):
         """Makes an sql SELECT query"""
         query = codeblocks.codeblock_converter(query)[1]
@@ -333,6 +295,12 @@ class developer(commands.Cog):
             await p.start(ctx)
         except menus.MenuError as f:
             await ctx.send(f)
+
+    @commands.is_owner()
+    @dev.command()
+    async def test(self, ctx, *, code):
+        u = await Paste(code)
+        await ctx.send(u)
             
     @commands.is_owner()
     @commands.group(invoke_without_command=True)
@@ -361,20 +329,6 @@ class developer(commands.Cog):
             await ctx.send(f'Removed {thing} from your todo list!')
         except Exception as e:
             return await ctx.send(e)
-    '''
-    @commands.is_owner()
-    @todo.command()
-    async def list(self, ctx):
-        Get the todo list
-        s = await self.bot.db.fetch("SELECT * FROM todo;")
-        list = '\n'.join(x["value"] for x in s)
-        embed = discord.Embed(
-            title = f"{str(ctx.author)}'s Todo List",
-            description = list,
-            color = color
-        )
-        await ctx.send(embed = embed)
-    '''
     
     @commands.is_owner()
     @todo.command()
