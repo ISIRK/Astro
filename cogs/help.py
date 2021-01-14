@@ -24,13 +24,7 @@ class Source(menus.ListPageSource):
             embed.title = menu.ctx.guild.me.display_name
             embed.description = menu.ctx.bot.description
             embed.add_field(name="How to use:", 
-                            value=
-                            "Use the ⏮️ Reaction Below to Move to the 1st Page.\n"
-                            "Use the ◀️ Reaction to Move one page back.\n"
-                            "Use the ▶️ Reaction to Move one page forward.\n"
-                            "Use the ⏭️ Reaction to Move to the last Page.\n"
-                            "Use the ⏹️ Reaction to delete the Message."
-                           )
+                            value="Use the reactions below to change the page.\n**Command Syntax:**\n`[arg]` - Optional\n`<arg>` - Required")
         else:
             _commands = "\n".join(str(command) for command in page[1].get_commands()) or "No commands in this category."
             #embed.add_field(name=page[0], value=_commands)
