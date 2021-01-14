@@ -58,10 +58,6 @@ class games(commands.Cog):
         self.bot = bot
         self.session = aiohttp.ClientSession()
         
-    @commands.command()
-    async def xmas(self, ctx):
-        await ctx.send("Looking for some **Christmas Fun**?\n> https://asksirk.com/christmas/")
-        
     @commands.max_concurrency(1, per=BucketType.channel, wait=False)
     @commands.command(aliases=['cb'])
     async def chatbot(self, ctx):

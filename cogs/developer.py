@@ -125,7 +125,7 @@ class developer(commands.Cog):
                 f"however the following failed...\n\n{output}"
             )
 
-        await ctx.send("**🔁 `Reloaded All Extentions`**")
+        await ctx.message.add_reaction('🔄')
 
     @dev.command(aliases=['s'])
     @commands.is_owner()
