@@ -21,7 +21,14 @@ class Source(menus.ListPageSource):
         '''
         embed.set_footer(text=f"Page {menu.current_page + 1}/{self.get_max_pages()} | {footer}")
         if menu.current_page == 0:
-            embed.add_field(name=f"{menu.ctx.guild.me.display_name}", value=menu.ctx.bot.description)
+            embed.title = menu.ctx.guild.me.display_name
+            embed.description = menu.ctx.bot.description
+            embed.add_field(name="How to use:", value="Use the ⏮️ Reaction Below to Move to the 1st Page."\n,
+                            "Use the ◀️ Reaction to Move one page back."\n
+                            "Use the ▶️ Reaction to Move one page forward."\n
+                            "Use the ⏭️ Reaction to Move to the last Page."\n
+                            "Use the ⏹️ Reaction to delete the Message."
+                           )
         else:
             _commands = "\n".join(str(command) for command in page[1].get_commands()) or "No commands in this category."
             #embed.add_field(name=page[0], value=_commands)
