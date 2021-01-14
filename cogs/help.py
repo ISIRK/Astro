@@ -19,9 +19,9 @@ class Source(menus.ListPageSource):
                               description=menu.ctx.bot.description,
                               
         '''
-        embed.set_thumbnail(url=menu.ctx.bot.user.avatar_url)
         embed.set_footer(text=f"Page {menu.current_page + 1}/{self.get_max_pages()} | {footer}")
         if menu.current_page == 0:
+            embed.set_thumbnail(url=menu.ctx.bot.user.avatar_url)
             embed.title = menu.ctx.guild.me.display_name
             embed.description = menu.ctx.bot.description
             embed.add_field(name="How to use:", value="Use the reactions below to change the page.", inline=False)
