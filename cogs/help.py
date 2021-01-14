@@ -24,10 +24,11 @@ class Source(menus.ListPageSource):
             embed.title = menu.ctx.guild.me.display_name
             embed.description = menu.ctx.bot.description
             embed.add_field(name="How to use:", 
-                            value="Use the ⏮️ Reaction Below to Move to the 1st Page."\n,
-                            "Use the ◀️ Reaction to Move one page back."\n
-                            "Use the ▶️ Reaction to Move one page forward."\n
-                            "Use the ⏭️ Reaction to Move to the last Page."\n
+                            value=
+                            "Use the ⏮️ Reaction Below to Move to the 1st Page.\n"
+                            "Use the ◀️ Reaction to Move one page back.\n"
+                            "Use the ▶️ Reaction to Move one page forward.\n"
+                            "Use the ⏭️ Reaction to Move to the last Page.\n"
                             "Use the ⏹️ Reaction to delete the Message."
                            )
         else:
