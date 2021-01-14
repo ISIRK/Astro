@@ -23,7 +23,8 @@ class Source(menus.ListPageSource):
         if menu.current_page == 0:
             embed.title = menu.ctx.guild.me.display_name
             embed.description = menu.ctx.bot.description
-            embed.add_field(name="How to use:", value="Use the ⏮️ Reaction Below to Move to the 1st Page."\n,
+            embed.add_field(name="How to use:", 
+                            value="Use the ⏮️ Reaction Below to Move to the 1st Page."\n,
                             "Use the ◀️ Reaction to Move one page back."\n
                             "Use the ▶️ Reaction to Move one page forward."\n
                             "Use the ⏭️ Reaction to Move to the last Page."\n
