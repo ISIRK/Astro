@@ -23,8 +23,8 @@ class Source(menus.ListPageSource):
         if menu.current_page == 0:
             embed.title = menu.ctx.guild.me.display_name
             embed.description = menu.ctx.bot.description
-            embed.add_field(name="How to use:", 
-                            value="Use the reactions below to change the page.\n**Command Syntax:**\n`[arg]` - Optional\n`<arg>` - Required")
+            embed.add_field(name="How to use:", value="Use the reactions below to change the page.")
+            embed.add_field(name="Command Syntax:", value="`[arg]` - Optional\n`<arg>` - Required")
         else:
             _commands = "\n".join(str(command) for command in page[1].get_commands()) or "No commands in this category."
             #embed.add_field(name=page[0], value=_commands)
