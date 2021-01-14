@@ -21,7 +21,7 @@ SOFTWARE.
 
 '''
 
-import asyncio, json, discord
+import asyncio, json, discord, mystbin
 from discord.ext import menus
 
 tools = "tools/tools.json"
@@ -29,6 +29,8 @@ with open(tools) as f:
     data = json.load(f)
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
+
+# Pagination
 
 class Pages(menus.MenuPages):
     def __init__(self, source):
@@ -70,3 +72,10 @@ class Simple(Pages):
     def __init__(self, entries, *, per_page=12):
         super().__init__(SimplePageSource(entries, per_page=per_page))
         self.embed = discord.Embed(colour=color)
+
+# Other Stuff
+myst = mystbin.Client()
+
+async def Paste(code):
+  url = await myst.post(code, syntax = "python") # Python for now
+  return str(url)
