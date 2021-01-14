@@ -24,7 +24,7 @@ class Source(menus.ListPageSource):
             embed.set_thumbnail(url=menu.ctx.bot.user.avatar_url)
             embed.title = menu.ctx.guild.me.display_name
             embed.description = menu.ctx.bot.description
-            embed.add_field(name="How to use:", value="Use the reactions below to change the page.", inline=False)
+            embed.add_field(name="How to use:", value=f"Use the reactions below to change the page and see the commands.\nYou can also type **{menu.ctx.prefix}help <command|module>** for more info.", inline=False)
             embed.add_field(name="Command Syntax:", value="`[arg]` - Optional\n`<arg>` - Required", inline=False)
         else:
             _commands = "\n".join(str(command) for command in page[1].get_commands()) or "No commands in this category."
