@@ -31,12 +31,6 @@ from discord.shard import ShardInfo
 from discord.ext.commands import context
 from discord.ext.commands.cooldowns import BucketType
 
-tools = "tools/tools.json"
-with open(tools) as f:
-    data = json.load(f)
-footer = data['FOOTER']
-color = int(data['COLOR'], 16)
-
 class misc(commands.Cog):
     '''Miscellaneous Commands'''
     def __init__(self, bot):
@@ -49,16 +43,16 @@ class misc(commands.Cog):
     @commands.cooldown(1,5,BucketType.user)
     async def joke(self, ctx):
         '''Get a joke'''
-        async with self.session.get("https://dadjoke-api.herokuapp.com/api/v1/dadjoke") as r:
+        async with self.bot.session.get("https://dadjoke-api.herokuapp.com/api/v1/dadjoke") as r:
             resp = await r.json()
         await ctx.send(resp['joke'])
         
     @commands.command()
     async def translate(self, ctx, *, message):
         '''Translate text to english.'''
-        async with self.session.get(f"http://bruhapi.xyz/translate/{message}") as r:
+        async with self.bot.session.get(f"http://bruhapi.xyz/translate/{message}") as r:
             resp = await r.json()
-        embed = discord.Embed(title="Translate", description=f"Original: {resp['original']}\nTranslation: {resp['text']}", color=color)
+        embed = discord.Embed(title="Translate", description=f"Original: {resp['original']}\nTranslation: {resp['text']}", color=self.bot.color)
         await ctx.send(embed=embed)
         
     @commands.command()
@@ -68,7 +62,7 @@ class misc(commands.Cog):
         if len(text) > 25:
             await ctx.send(f"{ctx.author}'s dick is too long")
         else:
-            async with self.session.get(f'https://some-random-api.ml/binary?text={text}') as resp:
+            async with self.bot.session.get(f'https://some-random-api.ml/binary?text={text}') as resp:
                 resp = await resp.json()
             await ctx.send(resp['binary'])
         
@@ -76,7 +70,7 @@ class misc(commands.Cog):
     @commands.cooldown(1,3,BucketType.user)
     async def text(self, ctx, *, binary: str):
         '''Change binary into text'''
-        async with self.session.get(f'https://some-random-api.ml/binary?decode={binary}') as resp:
+        async with self.bot.session.get(f'https://some-random-api.ml/binary?decode={binary}') as resp:
             resp = await resp.json()
         await ctx.send(resp['text'])
         
@@ -84,37 +78,37 @@ class misc(commands.Cog):
     @commands.cooldown(1,3,BucketType.user) 
     async def meme(self, ctx):
         '''Get a random meme'''
-        async with self.session.get('https://meme-api.herokuapp.com/gimme/dankmemes') as resp:
+        async with self.bot.session.get('https://meme-api.herokuapp.com/gimme/dankmemes') as resp:
             resp = await resp.json()
             
         if resp['nsfw'] == True and not ctx.channel.is_nsfw():
             return await ctx.send("⚠️ This meme is marked as NSFW and I can't post it in a non-nsfw channel.")
         else:
-            embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=color)
+            embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=self.bot.color)
             embed.set_image(url=resp['url'])
             embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-            embed.set_footer(text=f"r/Dankmemes | {footer}")
+            embed.set_footer(text=f"r/Dankmemes | {self.bot.footer}")
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['ph'])
     @commands.cooldown(1,3,BucketType.user) 
     async def programmerhumor(self, ctx):
         '''Get a programmer humor meme'''
-        async with self.session.get('https://meme-api.herokuapp.com/gimme/ProgrammerHumor') as resp:
+        async with self.bot.session.get('https://meme-api.herokuapp.com/gimme/ProgrammerHumor') as resp:
             resp = await resp.json()
-        embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=color)
+        embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=self.bot.color)
         embed.set_image(url=resp['url'])
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-        embed.set_footer(text=f"r/ProgrammerHumor | {footer}")
+        embed.set_footer(text=f"r/ProgrammerHumor | {self.bot.footer}")
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['mc'])
     @commands.cooldown(1,3,BucketType.user)
     async def minecraft(self, ctx, *, username):
         '''Get a minecraft users stats'''
-        async with self.session.get(f'https://api.mojang.com/users/profiles/minecraft/{username}?at=') as resp:
+        async with self.bot.session.get(f'https://api.mojang.com/users/profiles/minecraft/{username}?at=') as resp:
             resp = await resp.json()
-        embed=discord.Embed(title=f"Stats for {resp['name']}", description=f"ID: `{resp['id']}`", color=color)
+        embed=discord.Embed(title=f"Stats for {resp['name']}", description=f"ID: `{resp['id']}`", color=self.bot.color)
         '''
         embed.set_image(url=f"https://minotar.net/armor/body/{username}/100.png")
         '''
@@ -122,19 +116,19 @@ class misc(commands.Cog):
         embed.set_thumbnail(url=f"https://minotar.net/helm/{username}/100.png")
         embed.set_thumbnail(url=f"https://mc-heads.net/avatar/{username}/100.png")
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-        embed.set_footer(text=footer)
+        embed.set_footer(text=self.bot.footer)
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['mcs'])
     @commands.cooldown(1,3,BucketType.user)
     async def minecraftserver(self, ctx, *, server):
         '''Get a minecraft servers stats'''
-        async with self.session.get(f'http://mcapi.xdefcon.com/server/{server}/full/json') as resp:
+        async with self.bot.session.get(f'http://mcapi.xdefcon.com/server/{server}/full/json') as resp:
             resp = await resp.json()
                             
-        embed=discord.Embed(title=f"Stats for {server}", description=f"IP: {resp['serverip']}\nStatus: {resp['serverStatus']}\nPing: {resp['ping']}\nVersion: {resp['version']}\nPlayers: {resp['players']}\nMax Players: {resp['maxplayers']}", color=color)
+        embed=discord.Embed(title=f"Stats for {server}", description=f"IP: {resp['serverip']}\nStatus: {resp['serverStatus']}\nPing: {resp['ping']}\nVersion: {resp['version']}\nPlayers: {resp['players']}\nMax Players: {resp['maxplayers']}", color=self.bot.color)
         embed.set_thumbnail(url=f"https://api.minetools.eu/favicon/{server}/25565")
-        embed.set_footer(text=footer)
+        embed.set_footer(text=self.bot.footer)
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
@@ -161,13 +155,13 @@ class misc(commands.Cog):
                         title=f"Weather in {weather_response['name']}, {weather_response['sys']['country']}",
                         url = f"https://openweathermap.org/city/{weather_response['id']}",
                         description=weather_response['weather'][0]['description'],
-                        color=color,
+                        color=self.bot.color,
                     )
                     embed.add_field(name='Location:', value=f"**🏙️ City:** {weather_response['name']}\n**<:coordinates:727254888836235294> Longitude:** {weather_response['coord']['lon']}\n **<:coordinates:727254888836235294> Latitude:** {weather_response['coord']['lat']}", inline=False)
                     embed.add_field(name='Weather', value=f"**🌡️ Current Temp:** {weather_response['main']['temp']}°\n**🌡️ Feels Like:** {weather_response['main']['feels_like']}°\n**🌡️ Daily High:** {weather_response['main']['temp_max']}°\n**🌡️ Daily Low:** {weather_response['main']['temp_min']}°\n**<:humidity:727253612778094683> Humidity:** {weather_response['main']['humidity']}%\n**🌬️ Wind:** {weather_response['wind']['speed']} mph", inline=False)
                     embed.add_field(name='Time', value=f"**🕓 Local Time:** {localTime.strftime('%I:%M %p')}\n **🌅 Sunrise Time:** {sunriseTime.strftime('%I:%M %p')}\n **🌇 Sunset Time:** {sunsetTime.strftime('%I:%M %p')}")
                     embed.set_thumbnail(url=f"https://openweathermap.org/img/wn/{weather_response['weather'][0]['icon']}@2x.png")
-                    embed.set_footer(text=footer, icon_url=f"https://openweathermap.org/img/wn/{weather_response['weather'][0]['icon']}@2x.png")
+                    embed.set_footer(text=self.bot.footer, icon_url=f"https://openweathermap.org/img/wn/{weather_response['weather'][0]['icon']}@2x.png")
                     embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
                     await ctx.send(embed=embed)
 
@@ -187,8 +181,8 @@ class misc(commands.Cog):
         for i in options: 
             s += f"{num} - {i}\n" 
             num += 1
-        embed = discord.Embed(title = title, description = s, color=color)
-        embed.set_footer(text=footer)
+        embed = discord.Embed(title = title, description = s, color=self.bot.color)
+        embed.set_footer(text=self.bot.footer)
         try:
             await ctx.channel.purge(limit=1)
         except:
