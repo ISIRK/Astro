@@ -22,31 +22,13 @@ SOFTWARE.
 '''
 
 import discord
-
-from discord.user import User
-from discord.utils import get
 from discord.ext import commands, menus
-from discord.shard import ShardInfo
-from discord.ext.commands import bot
-
 import os, io, json, psutil, aiohttp, collections, time, datetime, random, requests, asyncio
-
 from datetime import datetime
-
-from multiprocessing.connection import Client
-
 import subprocess as sp
-
 from jishaku import codeblocks
 
 from tools.utils import Simple
-
-tools = "tools/tools.json"
-with open(tools) as f:
-    data = json.load(f)
-footer = data['FOOTER']
-color = int(data['COLOR'], 16)
-
 
 class SqlEntry:
     __slots__ = ('data')
