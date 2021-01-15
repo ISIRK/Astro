@@ -1,8 +1,5 @@
 import discord, json
 from discord.ext import commands, menus
-from tools.bot import Sirk
-
-bot = Sirk()
 
 class Source(menus.ListPageSource):
     '''Formatting for help command.'''
