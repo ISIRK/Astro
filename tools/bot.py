@@ -32,7 +32,7 @@ class Sirk(commands.Bot):
         )       
         self.start_time = datetime.utcnow()
         self.session = aiohttp.ClientSession()
-        self.pool = asyncio.get_event_loop().run_until_complete(asyncpg.create_pool(user=user, password=password, database=name, host='127.0.0.1'))
+        self.db = asyncio.get_event_loop().run_until_complete(asyncpg.create_pool(user=user, password=password, database=name, host='127.0.0.1'))
 
 
     #async def get_context(self, message: discord.Message, *, cls=None):
