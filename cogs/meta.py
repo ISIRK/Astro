@@ -44,12 +44,6 @@ import time, datetime
 
 from multiprocessing.connection import Client
 
-tools = "tools/tools.json"
-with open(tools) as f:
-    data = json.load(f)
-footer = data['FOOTER']
-color = int(data['COLOR'], 16)
-
 class meta(commands.Cog):
     '''Meta commands'''
     def __init__(self, bot):
@@ -58,13 +52,13 @@ class meta(commands.Cog):
     @commands.command()
     async def stats(self, ctx):
         '''Get statistics about the bot.'''
-        embed = discord.Embed(title="<a:loading:737722827112972449> Gathering Stats", color=color)
+        embed = discord.Embed(title="<a:loading:737722827112972449> Gathering Stats", color=self.bot.color)
         msg = await ctx.send(embed=embed)
         channel_types = Counter(type(c) for c in self.bot.get_all_channels())
         voice = channel_types[discord.channel.VoiceChannel]
         text = channel_types[discord.channel.TextChannel]
-        infoembed = discord.Embed(title="<a:settings:768181060734812230> Stats", description=f"<:member:758139554652749835> Member Count: `{len(self.bot.users):,}`\n<:discord:765251798629220382> Servers: `{len(self.bot.guilds)}`\n<:code:758447982688862238> Commands: `{len(self.bot.commands)}`\n<:textchannel:724637677395116072> Channels: `{text}`\n<:voicechannel:724637677130875001> Voice Channels: `{voice}`\n<:dpy:779749503216648233> DPY Version: `{discord.__version__}`\n<:python:758139554670313493> Python Version: `{platform.python_version()}`\n<:server:765946903803854898> Server: `{platform.system()}`\n> Ping:  `{round(self.bot.latency * 1000)}ms`\n> CPU Count: `{multiprocessing.cpu_count()}`\n> CPU Usage: `{psutil.cpu_percent()}%`\n> RAM: `{psutil.virtual_memory().percent}%`", color=color)
-        infoembed.set_footer(text=footer)
+        infoembed = discord.Embed(title="<a:settings:768181060734812230> Stats", description=f"<:member:758139554652749835> Member Count: `{len(self.bot.users):,}`\n<:discord:765251798629220382> Servers: `{len(self.bot.guilds)}`\n<:code:758447982688862238> Commands: `{len(self.bot.commands)}`\n<:textchannel:724637677395116072> Channels: `{text}`\n<:voicechannel:724637677130875001> Voice Channels: `{voice}`\n<:dpy:779749503216648233> DPY Version: `{discord.__version__}`\n<:python:758139554670313493> Python Version: `{platform.python_version()}`\n<:server:765946903803854898> Server: `{platform.system()}`\n> Ping:  `{round(self.bot.latency * 1000)}ms`\n> CPU Count: `{multiprocessing.cpu_count()}`\n> CPU Usage: `{psutil.cpu_percent()}%`\n> RAM: `{psutil.virtual_memory().percent}%`", color=self.bot.color)
+        infoembed.set_footer(text=self.bot.footer)
         await asyncio.sleep(2)
         await msg.edit(embed=infoembed)
 
@@ -72,9 +66,9 @@ class meta(commands.Cog):
     async def about(self, ctx):
         """Displays bot info"""
         mem = psutil.virtual_memory()
-        embed = discord.Embed(title="Bot Info", color=color)
+        embed = discord.Embed(title="Bot Info", color=self.bot.color)
         embed.set_author(name="isirk#0001", icon_url="https://asksirk.com/img/isirk.gif")
-        embed.set_footer(text=footer)
+        embed.set_footer(text=self.bot.footer)
         embed.set_thumbnail(url=self.bot.user.avatar_url)
         embed.add_field(name="About",
                         value=f"A minimalistic bot for discord made by [isirk](https://discord.com/users/542405601255489537)\n[Support Server](https://discord.gg/7yZqHfG)\n[Website](https://asksirk.com/bot/)")
@@ -92,15 +86,15 @@ class meta(commands.Cog):
     @commands.command()
     async def credits(self, ctx):
         '''See the credits for Sirk'''
-        embed = discord.Embed(title="Credits", description="<@!542405601255489537> (isirk#0001)** - Developer and Owner**\n<@!555709231697756160> (CraziiAce#0001)** - API Usage**\n<@!668906205799907348> (Cyrus#8315)** - Bot Optimizations**\n<@!296862365503193098> (LeSirH#0001)** - Optimizations and Advice**\n<@!345457928972533773> (Moksej#3335)** - Four Lines**\n<@!447422100798570496> (Vaskel#5683)** - License Blah Blah Blah**", color=color)
+        embed = discord.Embed(title="Credits", description="<@!542405601255489537> (isirk#0001)** - Developer and Owner**\n<@!555709231697756160> (CraziiAce#0001)** - API Usage**\n<@!668906205799907348> (Cyrus#8315)** - Bot Optimizations**\n<@!296862365503193098> (LeSirH#0001)** - Optimizations and Advice**\n<@!345457928972533773> (Moksej#3335)** - Four Lines**\n<@!447422100798570496> (Vaskel#5683)** - License Blah Blah Blah**", color=self.bot.color)
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-        embed.set_footer(text=footer)
+        embed.set_footer(text=self.bot.footer)
         await ctx.send(embed=embed)
         
     @commands.command()
     async def vote(self, ctx):
-        embed = discord.Embed(title="Vote", description="[Top.GG](https://top.gg/bot/751447995270168586/)\n[BotList.Space](https://botlist.space/bot/751447995270168586)\n[Discord Extreme List](https://discordextremelist.xyz/en-US/bots/sirk)", color=color)
-        embed.set_footer(text=footer)
+        embed = discord.Embed(title="Vote", description="[Top.GG](https://top.gg/bot/751447995270168586/)\n[BotList.Space](https://botlist.space/bot/751447995270168586)\n[Discord Extreme List](https://discordextremelist.xyz/en-US/bots/sirk)", color=self.bot.color)
+        embed.set_footer(text=self.bot.footer)
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
@@ -118,13 +112,13 @@ class meta(commands.Cog):
     @commands.command()
     async def privacy(self, ctx):
         '''See the bots privacy policy'''
-        embed = discord.Embed(title="Privacy Policy for Sirk Bot", url="https://asksirk.com/bot/privacy/", color=color)
+        embed = discord.Embed(title="Privacy Policy for Sirk Bot", url="https://asksirk.com/bot/privacy/", color=self.bot.color)
         await ctx.send(embed=embed)
         
     @commands.command()
     async def donate(self, ctx):
         message = "Thank you for choosing to donate. It is greatly appreciated."
-        await ctx.send(embed=discord.Embed(title=message, url=f"https://donatebot.io/checkout/743121194911531110?buyer={ctx.author.id}", color=color))
+        await ctx.send(embed=discord.Embed(title=message, url=f"https://donatebot.io/checkout/743121194911531110?buyer={ctx.author.id}", color=self.bot.color))
 
     @commands.command()
     async def ping(self, ctx):
@@ -149,7 +143,7 @@ class meta(commands.Cog):
         '''Get information about the server.'''
         guild = ctx.guild
         
-        embed = discord.Embed(title=f"{guild.name}", color=color)
+        embed = discord.Embed(title=f"{guild.name}", color=self.bot.color)
         embed.description = guild.description if guild.description else None
         embed.add_field(name='**General:**',
                         value=f'Owner: **{guild.owner}**\n'
@@ -172,7 +166,7 @@ class meta(commands.Cog):
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         embed.set_thumbnail(url=guild.icon_url)
         embed.set_image(url=guild.banner_url)
-        embed.set_footer(text=f'Guild ID: {guild.id} | {footer}')
+        embed.set_footer(text=f'Guild ID: {guild.id} | {self.bot.footer}')
 
         return await ctx.send(embed=embed)
 
@@ -199,7 +193,7 @@ class meta(commands.Cog):
 
         embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-        embed.set_footer(text=f'Member ID: {member.id} | {footer}')
+        embed.set_footer(text=f'Member ID: {member.id} | {self.bot.footer}')
 
         return await ctx.send(embed=embed)
 
@@ -224,9 +218,9 @@ class meta(commands.Cog):
 
         perms = '\n'.join(perm for perm, value in member.guild_permissions if value)
 
-        embed = discord.Embed(title='Permissions', description=f"```yaml\n{perms}```", colour=color)
+        embed = discord.Embed(title='Permissions', description=f"```yaml\n{perms}```", colour=self.bot.color)
         embed.set_author(icon_url=member.avatar_url, name=str(member))
-        embed.set_footer(text=footer)
+        embed.set_footer(text=self.bot.footer)
         await ctx.send(content=None, embed=embed)
                         
 def setup(bot):
