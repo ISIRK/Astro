@@ -7,13 +7,13 @@ class Source(menus.ListPageSource):
         super().__init__(data, per_page=1)
 
     async def format_page(self, menu: menus.MenuPages, page):
-        embed = discord.Embed(color=self.bot.color)
+        embed = discord.Embed(color=menu.ctx.bot.color)
         '''
         title=f"Help Menu for {menu.ctx.guild.me.display_name}",
                               description=menu.ctx.bot.description,
                               
         '''
-        embed.set_footer(text=f"Page {menu.current_page + 1}/{self.get_max_pages()} | {self.bot.footer}")
+        embed.set_footer(text=f"Page {menu.current_page + 1}/{self.get_max_pages()} | {menu.ctx.bot.footer}")
         if menu.current_page == 0:
             embed.set_thumbnail(url=menu.ctx.bot.user.avatar_url)
             embed.title = menu.ctx.guild.me.display_name
