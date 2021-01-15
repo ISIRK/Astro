@@ -35,7 +35,12 @@ with open(tools) as f:
 footer = data['FOOTER']
 color = int(data['COLOR'], 16)
 
-cleverbot = ac.Cleverbot("45wE<Yk3dhd]B$$sTmO/")
+config = "tools/config.json"
+with open(config) as f:
+    data = json.load(f)
+cb = data['CLEVERBOT']
+
+cleverbot = ac.Cleverbot(cb)
 
 def rps_winner(userOneChoice, userTwoChoice):
     if userOneChoice == "\U0001faa8":

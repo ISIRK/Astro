@@ -1,0 +1,60 @@
+import discord
+from discord.ext import commands, tasks
+from datetime import datetime
+import aiohttp
+import os
+import asyncio
+import asyncpg
+import json
+
+tokenFile = "tools/config.json"
+with open(tokenFile) as f:
+    data = json.load(f)
+token = data['TOKEN']
+user = data['DB-USER']
+password = data['DB-PWD']
+name = data['DB-NAME']
+
+intents = discord.Intents.default()
+intents.members = True
+
+class Sirk(commands.Bot):
+    """
+    Subclassed bot.
+    """
+    def __init__(self):
+        super().__init__(        
+            command_prefix=commands.when_mentioned_or("^"), 
+            intents=intents, case_insensitive=True, 
+            allowed_mentions=discord.AllowedMentions(users=True, roles=True, everyone=False, replied_user=False),
+            owner_id=542405601255489537,
+            description="A minimalistic bot for discord Developed by isirk#0001"
+        )       
+        self.start_time = datetime.utcnow()
+        self.session = aiohttp.ClientSession()
+        self.pool = asyncio.get_event_loop().run_until_complete(asyncpg.create_pool(user=user, password=password, database=name, host='127.0.0.1'))
+
+
+    #async def get_context(self, message: discord.Message, *, cls=None):
+        #return await super().get_context(message, cls=cls or CustomContext)
+
+    async def on_ready(self):
+        print(f"Logged in as {self.user}")
+
+    async def on_message_edit(self, before: discord.Message, after: discord.Message):
+        if after.author.id == self.owner_id:
+            await self.process_commands(after)
+
+    async def on_message(self, message: discord.Message):
+        if message.author.bot:
+            return
+        elif (
+            message.content == f"<@!{self.user.id}>"
+            or message.content == f"<@{self.user.id}>"
+        ):
+            await message.channel.send(embed=discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136))
+        await self.process_commands(message)
+
+    async def mystbin(self, data):
+        async with self.session.post('https://mystb.in/documents', data=data) as r:
+            return f"https://mystb.in/{(await r.json())['key']}"
