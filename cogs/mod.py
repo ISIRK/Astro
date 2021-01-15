@@ -28,12 +28,6 @@ import asyncio
 from asyncio import sleep
 import typing
 
-tools = "tools/tools.json"
-with open(tools) as f:
-    data = json.load(f)
-footer = data['FOOTER']
-color = int(data['COLOR'], 16)
-
 class mod(commands.Cog):
     '''Moderation Commands\n*Note: These commands required specific permissions.*'''
     def __init__(self,bot):
@@ -51,10 +45,10 @@ class mod(commands.Cog):
             return
         else:
             await user.kick()
-            embed = discord.Embed(title=f'User {user.name} has been kicked.', color=color)
+            embed = discord.Embed(title=f'User {user.name} has been kicked.', color=self.bot.color)
             embed.add_field(name="Bai!", value=":wave:")
             embed.set_thumbnail(url=user.avatar_url)
-            embed.set_footer(text=footer)
+            embed.set_footer(text=self.bot.footer)
             await ctx.send(embed=embed)
 
     @commands.command()
@@ -75,7 +69,7 @@ class mod(commands.Cog):
         except:
             pass
         await guild.ban(member, reason=reason)
-        await ctx.send(embed=discord.Embed(description=f"{member.name} was banned by {ctx.author.mention} for {reason}.", color=color))
+        await ctx.send(embed=discord.Embed(description=f"{member.name} was banned by {ctx.author.mention} for {reason}.", color=self.bot.color))
 
     @commands.command()
     @commands.guild_only()
@@ -88,9 +82,9 @@ class mod(commands.Cog):
         member = discord.Object(id=user)
         try:
             await ctx.guild.unban(member, reason=reason)
-            await ctx.send(embed=discord.Embed(description=f"Unbanned {member.id} for {reason}.", color=color))
+            await ctx.send(embed=discord.Embed(description=f"Unbanned {member.id} for {reason}.", color=self.bot.color))
         except discord.NotFound:
-            return await ctx.send(embed=discord.Embed(description="That user doesn't seem to be banned.", color=color))
+            return await ctx.send(embed=discord.Embed(description="That user doesn't seem to be banned.", color=self.bot.color))
 
     '''@commands.command()
     @commands.has_permissions(kick_members=True)
@@ -149,11 +143,11 @@ class mod(commands.Cog):
             return
         else:
             guild = ctx.guild
-            embed = discord.Embed(color=color)
+            embed = discord.Embed(color=self.bot.color)
             embed.set_author(name=f"Warned By {ctx.author}", icon_url=ctx.author.avatar_url)
             embed.add_field(name=f"You Have Been Warned in {guild}\n\nReason:", value=f'{reason}')
             embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758453150897799172.png?v=1")
-            embed.set_footer(text=footer)
+            embed.set_footer(text=self.bot.footer)
             await user.send(embed=embed)
             await ctx.send(f"<:help:758453150897799172> Warned {user}")
             s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
@@ -185,7 +179,7 @@ class mod(commands.Cog):
             except asyncio.TimeoutError:
                 await ctx.send('Timeout Error')
             else:
-                embed = discord.Embed(title=title.content, description=description.content, color=color)
+                embed = discord.Embed(title=title.content, description=description.content, color=self.bot.color)
                 await channel.send(embed=embed)
                 await ctx.send(f'`{title.content}` Embed sent in {channel.mention}')
 
