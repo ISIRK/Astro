@@ -23,7 +23,9 @@ SOFTWARE.
 
 import asyncio, json, discord, mystbin
 from discord.ext import menus
-from tools.bot import bot
+from tools.bot import Sirk
+
+bot = Sirk()
 
 tools = "tools/tools.json"
 with open(tools) as f:
