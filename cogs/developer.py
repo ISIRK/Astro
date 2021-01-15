@@ -39,6 +39,8 @@ import subprocess as sp
 
 from jishaku import codeblocks
 
+from tools.utils import Simple
+
 tools = "tools/tools.json"
 with open(tools) as f:
     data = json.load(f)
