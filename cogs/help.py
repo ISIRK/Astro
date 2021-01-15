@@ -1,11 +1,8 @@
 import discord, json
 from discord.ext import commands, menus
+from tools.bot import Sirk
 
-tools = "tools/tools.json"
-with open(tools) as f:
-    data = json.load(f)
-footer = data['FOOTER']
-color = int(data['COLOR'], 16)
+bot = Sirk()
 
 class Source(menus.ListPageSource):
     '''Formatting for help command.'''
@@ -13,13 +10,13 @@ class Source(menus.ListPageSource):
         super().__init__(data, per_page=1)
 
     async def format_page(self, menu: menus.MenuPages, page):
-        embed = discord.Embed(color=color)
+        embed = discord.Embed(color=bot.color)
         '''
         title=f"Help Menu for {menu.ctx.guild.me.display_name}",
                               description=menu.ctx.bot.description,
                               
         '''
-        embed.set_footer(text=f"Page {menu.current_page + 1}/{self.get_max_pages()} | {footer}")
+        embed.set_footer(text=f"Page {menu.current_page + 1}/{self.get_max_pages()} | {bot.footer}")
         if menu.current_page == 0:
             embed.set_thumbnail(url=menu.ctx.bot.user.avatar_url)
             embed.title = menu.ctx.guild.me.display_name
@@ -58,26 +55,26 @@ class HelpCommand(commands.HelpCommand):
         use = await command.can_run(self.context)
         embed = discord.Embed(title=command.name,
                               description=command.help or "No info available.",
-                              colour=color)
+                              colour=bot.color)
         embed.add_field(name="Usage:", value=f"{command.name} {command.signature}", inline=False)
         embed.add_field(name="Category:", value=f"{command.cog_name}", inline=False)
         if command.aliases:
             embed.add_field(name="Aliases:", value="\n".join(command.aliases), inline=False)
-        embed.set_footer(text=footer)
+        embed.set_footer(text=bot.footer)
         return await self.context.send(embed=embed)
 
     async def send_cog_help(self, cog):
         embed = discord.Embed(title=cog.qualified_name,
                               description=cog.description or "No info available.",
-                              colour=color)
+                              colour=bot.color)
         embed.add_field(name="Commands:", value="\n".join(f"**{command}** - {command.short_doc}" for command in cog.get_commands()) or "None")
-        embed.set_footer(text=footer)
+        embed.set_footer(text=bot.footer)
         return await self.context.send(embed=embed)
 
     async def send_group_help(self, group):
         embed = discord.Embed(title=group.name,
                               description=group.help or "No info available.",
-                              colour=color)
+                              colour=bot.color)
         '''
         embed.add_field(name="Usage:", value=f"{group.name} {group.signature}", inline=False)
         '''
@@ -85,7 +82,7 @@ class HelpCommand(commands.HelpCommand):
         if group.aliases:
             embed.add_field(name="Aliases:", value="\n".join(gruop.aliases), inline=False)
         embed.add_field(name="Commands:", value="\n".join(str(command) for command in group.walk_commands()) or "None")
-        embed.set_footer(text=footer)
+        embed.set_footer(text=bot.footer)
         return await self.context.send(embed=embed)
 
 
