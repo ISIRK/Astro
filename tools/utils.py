@@ -71,11 +71,4 @@ class Simple(Pages):
 
     def __init__(self, entries, *, per_page=12):
         super().__init__(SimplePageSource(entries, per_page=per_page))
-        self.embed = discord.Embed(colour=color)
-
-# Other Stuff
-myst = mystbin.Client()
-
-async def Paste(code):
-  url = await myst.post(code, syntax = "python") # Python for now
-  return str(url)
+        self.embed = discord.Embed(colour=self.bot.color)
