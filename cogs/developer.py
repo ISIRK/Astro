@@ -38,7 +38,6 @@ from multiprocessing.connection import Client
 import subprocess as sp
 
 from jishaku import codeblocks
-from tools.utils import Simple, Paste
 
 tools = "tools/tools.json"
 with open(tools) as f:
