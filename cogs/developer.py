@@ -136,7 +136,7 @@ class developer(commands.Cog):
         msg = await ctx.send(embed=embed)
         async with ctx.channel.typing():
             output = sp.getoutput('git pull')
-        embed = discord.Embed(title="Synced", description="<a:Animated_Checkmark:726140204045303860> Synced with GitHub and reloaded all the cogs.", color=color)
+        embed = discord.Embed(title="Synced", description="<a:Animated_Checkmark:726140204045303860> Synced with GitHub and reloaded all the cogs.", color=self.bot.color)
         # Reload Cogs as well
         error_collection = []
         for file in os.listdir("cogs"):
@@ -160,7 +160,7 @@ class developer(commands.Cog):
     @dev.command()
     async def leaveguildanddontchokeisirk(self, ctx):
         '''[Pain](https://canary.discord.com/channels/336642139381301249/381963689470984203/779527415307173909)'''
-        embed=discord.Embed(title='Goodbye', color=color)
+        embed=discord.Embed(title='Goodbye', color=self.bot.color)
         await ctx.send(embed=embed)
         await ctx.guild.leave()
     
@@ -189,10 +189,10 @@ class developer(commands.Cog):
     @dev.command()
     async def dm(self , ctx, user : discord.Member, *, content):
         '''Dm a Member'''
-        embed = discord.Embed(color=color)
+        embed = discord.Embed(color=self.bot.color)
         embed.set_author(name=f"Sent from {ctx.author}", icon_url=ctx.author.avatar_url)
         embed.add_field(name="Message:", value=f'{content}')
-        embed.set_footer(text=footer)
+        embed.set_footer(text=self.bot.footer)
         embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/726779670514630667.png?v=1")
         await user.send(embed=embed)
         await ctx.send(f"<:comment:726779670514630667> Message sent to {user}")
@@ -200,12 +200,12 @@ class developer(commands.Cog):
     @commands.is_owner()
     @dev.command(aliases = ["ss"])
     async def screenshot(self, ctx, url):
-        embed = discord.Embed(title = f"Screenshot of {url}", color=color)
+        embed = discord.Embed(title = f"Screenshot of {url}", color=self.bot.color)
         async with aiohttp.ClientSession() as session:
             async with session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
                 res = await r.read()
             embed.set_image(url="attachment://ss.png")
-            embed.set_footer(text=footer)
+            embed.set_footer(text=self.bot.footer)
             await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
     
     @commands.is_owner()
@@ -248,8 +248,8 @@ class developer(commands.Cog):
         s = ""
         for cog in self.bot.cogs.keys():
             s += f"\n {cog}"
-        embed = discord.Embed(title = "Active Cogs:", description = f"```yaml\n{s}```", color=color)
-        embed.set_footer(text=footer)
+        embed = discord.Embed(title = "Active Cogs:", description = f"```yaml\n{s}```", color=self.bot.color)
+        embed.set_footer(text=self.bot.footer)
         await ctx.send(embed=embed)
       
     @commands.is_owner()
@@ -300,7 +300,7 @@ class developer(commands.Cog):
     @commands.is_owner()
     @dev.command()
     async def test(self, ctx, *, code):
-        u = await Paste(code)
+        u = await self.bot.mystbin(code)
         await ctx.send(u)
             
     @commands.is_owner()
