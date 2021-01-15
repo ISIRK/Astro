@@ -21,19 +21,11 @@ SOFTWARE.
 
 '''
 
-import discord, random, json, time, asyncio, aiohttp
+import discord, random, json, time, asyncio
 from discord.ext import commands, menus
 from discord.ext.commands.cooldowns import BucketType
-import asyncio
-import random
 from copy import deepcopy as dc
 import async_cleverbot as ac
-
-tools = "tools/tools.json"
-with open(tools) as f:
-    data = json.load(f)
-footer = data['FOOTER']
-color = int(data['COLOR'], 16)
 
 config = "tools/config.json"
 with open(config) as f:
@@ -60,9 +52,7 @@ def rps_winner(userOneChoice, userTwoChoice):
 class games(commands.Cog):
     '''Game Commands'''
     def __init__(self, bot):
-        self.bot = bot
-        self.session = aiohttp.ClientSession()
-        
+        self.bot = bot        
     @commands.max_concurrency(1, per=BucketType.channel, wait=False)
     @commands.command(aliases=['cb'])
     async def chatbot(self, ctx):
@@ -89,9 +79,9 @@ class games(commands.Cog):
     async def dice(self, ctx):
         '''Roll a dice'''
         dice = ['1', '2', '3', '4', '5', '6', 'off the table...\n*You Found The Mystery!*']
-        embed = discord.Embed(title="Dice", description=f'The Dice Rolled {random.choice(dice)}', color=color)
+        embed = discord.Embed(title="Dice", description=f'The Dice Rolled {random.choice(dice)}', color=self.bot.color)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/758138226874908705/766312838910181421/unknown.png")
-        embed.set_footer(text=footer)
+        embed.set_footer(text=self.bot.footer)
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
@@ -138,7 +128,7 @@ class games(commands.Cog):
     async def rps(self, ctx):
         """Rock paper scissors, either play against the bot or against a user"""
         choices = ["\U0001f4f0", "\U0001faa8", "\U00002702"]
-        s = m = await ctx.send(embed = discord.Embed(title = f"Rock, Paper, Scissors.", description = f" {str(ctx.author)} Choose your weapon!", color=color))
+        s = m = await ctx.send(embed = discord.Embed(title = f"Rock, Paper, Scissors.", description = f" {str(ctx.author)} Choose your weapon!", color=self.bot.color))
         for i in choices:
             await m.add_reaction(i)
 
@@ -151,7 +141,7 @@ class games(commands.Cog):
             botChoice = random.choice(choices)
             result = rps_winner(reaction, botChoice)
 
-            await s.edit(embed= discord.Embed(title =result , description = f"I picked {botChoice} and you picked {reaction}.", color=color))
+            await s.edit(embed= discord.Embed(title =result , description = f"I picked {botChoice} and you picked {reaction}.", color=self.bot.color))
 
         except asyncio.TimeoutError: return await ctx.send("You didn't add a reaction in time!")
         
@@ -169,7 +159,7 @@ class games(commands.Cog):
         ]
         score = 0
         total = 0
-        embed=discord.Embed(title="2048", description=f"If a reaction is not received every 5 minutes, the game will time out.\n\n```{self.print_board(board)}```", color=color)
+        embed=discord.Embed(title="2048", description=f"If a reaction is not received every 5 minutes, the game will time out.\n\n```{self.print_board(board)}```", color=self.bot.color)
         message = await ctx.send(embed=embed)
         await message.add_reaction("\u2B06")
         await message.add_reaction("\u2B07")
