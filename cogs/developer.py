@@ -25,7 +25,7 @@ import discord
 
 from discord.user import User
 from discord.utils import get
-from discord.ext import commands
+from discord.ext import commands, menus
 from discord.shard import ShardInfo
 from discord.ext.commands import bot
 
