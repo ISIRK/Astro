@@ -23,6 +23,7 @@ SOFTWARE.
 
 import asyncio, json, discord, mystbin
 from discord.ext import menus
+from tools.bot import bot
 
 tools = "tools/tools.json"
 with open(tools) as f:
@@ -71,4 +72,4 @@ class Simple(Pages):
 
     def __init__(self, entries, *, per_page=12):
         super().__init__(SimplePageSource(entries, per_page=per_page))
-        self.embed = discord.Embed(colour=self.bot.color)
+        self.embed = discord.Embed(colour=bot.color)
