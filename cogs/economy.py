@@ -22,12 +22,6 @@ from discord.ext import commands
 import random, json
 from discord.ext.commands.cooldowns import BucketType
 
-tools = "tools/tools.json"
-with open(tools) as f:
-    data = json.load(f)
-footer = data['FOOTER']
-color = int(data['COLOR'], 16)
-
 class Jobs:
     
     def beg(self, balance):
@@ -46,10 +40,10 @@ class economy(commands.Cog):
         """Registers a bank account bound to the guild with $50"""
         s = await self.bot.db.fetchrow("SELECT * FROM economy WHERE userId = $1 and guildId = $2", ctx.author.id, ctx.guild.id)
         if s:
-            return await ctx.send(embed = discord.Embed(description = "You already have an account!", color=color))
+            return await ctx.send(embed = discord.Embed(description = "You already have an account!", color=self.bot.color))
         elif not s:
             await self.bot.db.execute("INSERT INTO economy(userId, guildId, cashBalance, bankBalance) VALUES($1, $2, $3, $4)", ctx.author.id, ctx.guild.id, 50, 0)
-            await ctx.send(embed = discord.Embed(description = "Bank account register succesful, to remove your account run: `delete`", color=color))
+            await ctx.send(embed = discord.Embed(description = "Bank account register succesful, to remove your account run: `delete`", color=self.bot.color))
     
     @commands.command(name = "delete")
     @commands.guild_only()
@@ -58,9 +52,9 @@ class economy(commands.Cog):
         s = await self.bot.db.fetchrow("SELECT * FROM economy WHERE userId = $1 and guildId = $2", ctx.author.id, ctx.guild.id)
         if s:
             await self.bot.db.execute("DELETE FROM economy WHERE userId = $1 AND guildId = $2", ctx.author.id, ctx.guild.id)
-            await ctx.send(embed = discord.Embed(description = "Successfully closed your bank account for this guild.", color=color))
+            await ctx.send(embed = discord.Embed(description = "Successfully closed your bank account for this guild.", color=self.bot.color))
         if not s:
-            return await ctx.send(embed = discord.Embed(description = "You don't have an account!", color=color))
+            return await ctx.send(embed = discord.Embed(description = "You don't have an account!", color=self.bot.color))
     
     @commands.command(aliases = ["bal"])
     async def balance(self, ctx, user: discord.Member = None):
@@ -74,7 +68,7 @@ class economy(commands.Cog):
         embed = discord.Embed(
             title = f"{str(user.name)}'s balance:",
             description = f"💰 Cash: ${cash}\n🏦 Bank: ${bank}",
-            color = color
+            color = self.bot.color
         )
         await ctx.send(embed = embed)
 
@@ -108,10 +102,10 @@ class economy(commands.Cog):
     async def shop(self, ctx):
         '''A shop to buy things with your coins. WIP'''
         
-        embed = discord.Embed(title=f"{ctx.guild.name}'s Shop", description="This command is a work in progress.", color=color)
+        embed = discord.Embed(title=f"{ctx.guild.name}'s Shop", description="This command is a work in progress.", color=self.bot.color)
         embed.add_field(name="Multiplier", value="💰 Multiply your earnings for the command `work`!\nCost: **$1,000**", inline=False)
         embed.add_field(name="SubCommands", value="`shop` - This Command", inline=False)
-        embed.set_footer(text=footer)
+        embed.set_footer(text=self.bot.footer)
         embed.set_author(name="Shop", icon_url=ctx.guild.icon_url)
 
         if ctx.invoked_subcommand is None:
