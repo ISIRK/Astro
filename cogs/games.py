@@ -208,7 +208,7 @@ class games(commands.Cog):
                     await message.delete()
                     return
                 board = nb
-                sem=discord.Embed(title=f"Score: **{score}**", description=f"```{self.print_board(board)}```", color=color)
+                sem=discord.Embed(title=f"Score: **{score}**", description=f"```{self.print_board(board)}```", color=self.bot.color)
                 'await message.edit(content=f"Score: **{score}**```{self.print_board(board)}```")'
                 await message.edit(embed=sem)
 
