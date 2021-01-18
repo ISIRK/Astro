@@ -50,7 +50,7 @@ class Sirk(commands.Bot):
             message.content == f"<@!{self.user.id}>"
             or message.content == f"<@{self.user.id}>"
         ):
-            await message.channel.send(embed=discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=0x2F3136))
+            await message.channel.send(embed=discord.Embed(title="Sirk Bot", description="Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: `@Sirk ` and `^`\nIf you would like to see my commands type `[prefix]help`", color=self.color))
         await self.process_commands(message)
 
     async def mystbin(self, data):

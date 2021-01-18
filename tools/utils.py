@@ -27,12 +27,6 @@ from tools.bot import Sirk
 
 bot = Sirk()
 
-tools = "tools/tools.json"
-with open(tools) as f:
-    data = json.load(f)
-footer = data['FOOTER']
-color = int(data['COLOR'], 16)
-
 # Pagination
 
 class Pages(menus.MenuPages):
