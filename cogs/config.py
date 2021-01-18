@@ -26,12 +26,6 @@ from discord.ext import commands
 import json, datetime, asyncio, datetime
 from discord.ext.commands.cooldowns import BucketType
 
-tools = "tools/tools.json"
-with open(tools) as f:
-    data = json.load(f)
-footer = data['FOOTER']
-color = int(data['COLOR'], 16)
-
 off = "<:xon:792824364658720808><:coff:792824364483477514>"
 on = "<:xoff:792824364545605683><:con:792824364558843956>"
 
@@ -39,6 +33,18 @@ class config(commands.Cog):
     '''Configuration Commands'''
     def __init__(self, bot):
         self.bot = bot
+
+    # Functions
+
+    async def Logging_Check(self, guild):
+        s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild)
+        logging, channel = s['logging'], s['channel']
+
+        if logging and channel is not None:
+            return channel
+        else:
+            return False
+
             
     # Listeners
     
@@ -59,7 +65,7 @@ class config(commands.Cog):
                          "```"
                          ),
             timestamp=datetime.datetime.utcnow(),
-            color=color
+            color=self.bot.color
         )
         await c.send(embed=embed)
         
@@ -71,7 +77,7 @@ class config(commands.Cog):
         else:
             if to_send.permissions_for(guild.me).embed_links:  # We can embed!
                 e = discord.Embed(
-                    color=color, title="Thanks for Adding Me!")
+                    color=self.bot.color, title="Thanks for Adding Me!")
                 e.description = f"Thank you for adding me to this server!"
                 e.add_field(name="Startup", value="To get started type `^help`", inline=False)
                 e.add_field(name="Logging", value="If you are a sever admin/moderator get the mod-log setup with `^help logging`", inline=False)
@@ -105,7 +111,7 @@ class config(commands.Cog):
                          "```"
                          ),
             timestamp=datetime.datetime.utcnow(),
-            color=color
+            color=self.bot.color
         )
         await c.send(embed=embed)
         
@@ -113,48 +119,38 @@ class config(commands.Cog):
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         guild = member.guild
-        s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild.id)
-        logging, channel = s['logging'], s['channel']
-        c = guild.get_channel(channel)
+
+        e = await config.Logging_Check(self, guild.id)
         
         value = [f"User: {member}(`{member.id}`)", f"Left: {datetime.datetime.utcnow().strftime('%B %d %Y - %H:%M:%S')}", f"Current Members: {member.guild.member_count}"]
         
-        if logging:
-            if channel is not None:
-                embed = discord.Embed(title=f"User Left!",
-                                    description="\n".join(value),
-                                    color=discord.Color.red()
-                                    )
-                embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
-                embed.set_footer(text=footer)
-                await c.send(embed=embed)
-            else:
-                pass
-        else:
-            pass
+        if e:
+            embed = discord.Embed(title=f"User Left!",
+                                description='\n'.join(value),
+                                color=discord.Colour.red()
+                                )
+            embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
+            embed.set_footer(text=self.bot.footer)
+            c = self.bot.get_channel(e)
+            await c.send(embed=embed)
     
     @commands.Cog.listener()
     async def on_member_join(self, member):
         guild = member.guild
-        s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild.id)
-        logging, channel = s['logging'], s['channel']
-        c = guild.get_channel(channel)
+
+        e = await config.Logging_Check(self, guild.id)
         
         value = [f"User: {member.mention} (`{member}`)", f"Joined: {member.joined_at.strftime('%B %d %Y - %H:%M:%S')}", f"Created: {member.created_at.strftime('%B %d %Y - %H:%M:%S')}", f"Current Members: {member.guild.member_count}"]
         
-        if logging:
-            if channel is not None:
-                embed = discord.Embed(title=f"User Joined!",
-                                    description='\n'.join(value),
-                                    color=color
-                                    )
-                embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
-                embed.set_footer(text=footer)
-                await c.send(embed=embed)
-            else:
-                pass
-        else:
-            pass
+        if e:
+            embed = discord.Embed(title=f"User Joined!",
+                                description='\n'.join(value),
+                                color=self.bot.color
+                                )
+            embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
+            embed.set_footer(text=self.bot.footer)
+            c = self.bot.get_channel(e)
+            await c.send(embed=embed)
         
     # Commands    
     @commands.command(aliases=['set'])
@@ -162,7 +158,7 @@ class config(commands.Cog):
     async def settings(self, ctx):
         '''See the toggleable guild settings.'''
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
-        error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=color)
+        error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=self.bot.color)
         if not s: return await ctx.send(embed=error)
         logging, channel = s['logging'], s['channel']
 
@@ -179,21 +175,28 @@ class config(commands.Cog):
 
         embed = discord.Embed(title=f"{ctx.guild} Settings",
                               description=f"Logging: {emoji}\n> Channel: {c}",
-                              color=color
+                              color=self.bot.color
                              )
         if logging:
             if channel is not None:
                 embed.add_field(name="Currently Logging", value=" • Joins\n • Leaves\n • Kicks", inline=False)
         await ctx.send(embed=embed)
+
+    @commands.group(aliases=['log'])
+    async def logging(self, ctx):
+        """Logging commands."""
+
+        if ctx.invoked_subcommand is None:
+            await ctx.send_help(ctx.command)
     
-    @commands.command()
+    @logging.command()
     @commands.has_permissions(manage_guild=True)
     async def toggle(self, ctx):
         '''
         Toggle Logging\n*Note: You need to set a channel before it starts logging.*
         '''
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
-        error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=color)
+        error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=self.bot.color)
         if not s: return await ctx.send(embed=error)
         log = s['logging']
         if log:
@@ -203,14 +206,14 @@ class config(commands.Cog):
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", True, ctx.guild.id)
             await ctx.send(f'{on} | Logging Toggled On!')
             
-    @commands.command()
+    @logging.command()
     @commands.has_permissions(manage_guild=True)
     async def channel(self, ctx, channel: discord.TextChannel):
         '''
         Set the logging channel\n*Note: You need to toggle logging before it starts logging.*
         '''
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
-        error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=color)
+        error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=self.bot.color)
         if not s: return await ctx.send(embed=error)
         log = channel.id
         try:
@@ -224,20 +227,29 @@ class config(commands.Cog):
         except Exception as e:
             return await ctx.send(f"I do not have permissions to send in {c}\nPlease change my permissions and try again.")
 
-    @commands.command()
+    @logging.command()
     @commands.has_permissions(manage_guild=True)
     async def remove(self, ctx):
         '''
         Remove the logging channel\n*Note: If this is removed, and logging is toggled on, it still will not log.*
         '''
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
-        error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=color)
+        error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=self.bot.color)
         if not s: return await ctx.send(embed=error)
         try:
             await self.bot.db.execute("UPDATE guilds SET channel = $1 WHERE guildId = $2 ", None, ctx.guild.id)
             await ctx.send(f'Removed your logging channel.')
         except Exception as e:
             return await ctx.send(f"Something went wrong, please try again.\n\nError:```py\n{e}```")
+
+    @commands.command()
+    @commands.is_owner()
+    async def test(self, ctx):
+        e = await config.Logging_Check(self, ctx.guild.id)
+        if e:
+            await ctx.send(e)
+        else:
+            await ctx.send(e)
             
         
 def setup(bot):
