@@ -159,7 +159,7 @@ class games(commands.Cog):
         ]
         score = 0
         total = 0
-        embed=discord.Embed(title="2048", description=f"If a reaction is not received every 5 minutes, the game will time out.\n\n```{self.print_board(board)}```", color=self.bot.color)
+        embed=discord.Embed(title="2048", description=f"If a reaction is not received every 2 minutes, the game will time out.\n\n```{self.print_board(board)}```", color=self.bot.color)
         message = await ctx.send(embed=embed)
         await message.add_reaction("\u2B06")
         await message.add_reaction("\u2B07")
@@ -177,7 +177,7 @@ class games(commands.Cog):
         while True:
             try:
                 reaction, user = await self.bot.wait_for(
-                    "reaction_add", check=check, timeout=300.0
+                    "reaction_add", check=check, timeout=120.0
                 )
             except asyncio.TimeoutError:
                 await ctx.send(f"Ending game.\nYour score was **{score}**")
