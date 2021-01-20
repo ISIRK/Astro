@@ -151,6 +151,16 @@ class config(commands.Cog):
             embed.set_footer(text=self.bot.footer)
             c = self.bot.get_channel(e)
             await c.send(embed=embed)
+
+    '''
+    # Reaction Role
+    @commands.Cog.listener()
+    async def on_raw_reaction_add(self, payload):
+        if str(payload.emoji) == '\U00002705' and int(payload.user_id) == 542405601255489537:
+            print("yes")
+        else:
+            pass
+    '''
         
     # Commands    
     @commands.command(aliases=['set'])
