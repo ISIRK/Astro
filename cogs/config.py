@@ -26,8 +26,8 @@ from discord.ext import commands
 import json, datetime, asyncio, datetime
 from discord.ext.commands.cooldowns import BucketType
 
-off = "<:xon:792824364658720808><:coff:792824364483477514>"
-on = "<:xoff:792824364545605683><:con:792824364558843956>"
+off = "<:off:801561937083105300>"
+on = "<:on:801561937472520201>"
 
 class config(commands.Cog):
     '''Configuration Commands'''
