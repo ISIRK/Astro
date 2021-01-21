@@ -186,26 +186,24 @@ class config(commands.Cog):
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
         error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=self.bot.color)
         if not s: return await ctx.send(embed=error)
-        logging, channel = s['logging'], s['channel']
-
-        if logging is True:
-            emoji = on
-        else:
-            emoji = off
-        
-        if channel is None:
-            c = "`No Channel Set`"
-        else:
-            d = ctx.guild.get_channel(channel)
-            c = d.mention
-
-        embed = discord.Embed(title=f"{ctx.guild} Settings",
-                              description=f"Logging: {emoji}\n> Channel: {c}",
-                              color=self.bot.color
-                             )
+        logging, channel, role, vchannel = s['logging'], s['channel'], s['role'], s['vchannel']
+        value = ""
         if logging:
-            if channel is not None:
-                embed.add_field(name="Currently Logging", value=" • Joins\n • Leaves\n • Kicks", inline=False)
+            value += f"**Logging:** {on}"
+        else:
+            value += f"**Logging:** {off}"
+
+        if channel is not None:
+            value += f"\n> {channel.mention}"
+        else:
+            pass
+
+        if role and vchannel is not None:
+            value += f"\n**Verification:** {on}\n> {role.mention} {vchannel.mention}"
+        else:
+            value += f"\n **Verification:** {off}"
+
+        embed = discord.Embed(title=f"{ctx.guild} Settings", description=value, color=self.bot.color)
         await ctx.send(embed=embed)
 
     @commands.group(aliases=['log'])
