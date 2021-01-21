@@ -190,6 +190,7 @@ class config(commands.Cog):
         channel = ctx.guild.get_channel(channel)
         role = ctx.guild.get_role(role)
         vchannel = ctx.guild.get_channel(vchannel)
+        '''
         value = ""
         if logging:
             value += f"**Logging:** {on}"
@@ -205,8 +206,11 @@ class config(commands.Cog):
             value += f"\n**Verification:** {on}\n> {role.mention} {vchannel.mention}"
         else:
             value += f"\n **Verification:** {off}"
+        '''
 
-        embed = discord.Embed(title=f"{ctx.guild} Settings", description=value, color=self.bot.color)
+        embed = discord.Embed(title=f"{ctx.guild} Settings", color=self.bot.color)
+        embed.add_field(name=f"**Logging:** {on if logging else off}", value=f"> {channel.mention if channel is not None else 'No Channel Set'}", inline=False)
+        embed.add_field(name=f"**Verify:** {on if role and vchannel is not None else off}", value=f"> {role.mention and vchannel.mention if role and vchannel is not None else 'No Channel or Role Set'}", inline=False)
         await ctx.send(embed=embed)
 
     @commands.group(aliases=['log'])
