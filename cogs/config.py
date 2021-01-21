@@ -286,10 +286,11 @@ class config(commands.Cog):
 
     @verify.command()
     @commands.has_permissions(manage_guild=True)
-    async def channel(self, ctx, channel : discord.TextChannel):
+    async def setup(self, ctx, channel : discord.TextChannel, role : discord.Role):
         c = ctx.guild.get_channel(channel.id)
-        await self.bot.db.execute("UPDATE guilds SET vchannel = $1 WHERE guildid = $2", c.id, ctx.guild.id)
-        await ctx.send(f"Set your verification channel to {c.mention}")
+        r = ctx.guild.get_role(role.id)
+        await self.bot.db.execute("UPDATE guilds SET vchannel = $1, role = $2 WHERE guildid = $3", c.id, r.id, ctx.guild.id)
+        await ctx.send(f"Set your verification channel to {c.mention} and your verification role to {r.mention}")
 
         c = await config.Verify_Check(self, ctx.guild.id)
 
@@ -300,16 +301,9 @@ class config(commands.Cog):
 
     @verify.command()
     @commands.has_permissions(manage_guild=True)
-    async def role(self, ctx, role : discord.Role):
-        r = ctx.guild.get_role(role.id)
-        await self.bot.db.execute("UPDATE guilds SET role = $1 WHERE guildid = $2", r.id, ctx.guild.id)
-        await ctx.send(f"Set your verification role to {r.mention}")
-
-        c = await config.Verify_Check(self, ctx.guild.id)
-
-        if c:
-            c = ctx.guild.get_channel(c)
-            await c.send("on")
+    async def reset(self, ctx):
+        await self.bot.db.execute("UPDATE guilds SET role = $1, $2 WHERE guildid = $3", None, None, ctx.guild.id)
+        await ctx.send(f"Reset your verification settings.")
 
 def setup(bot):
     bot.add_cog(config(bot))
