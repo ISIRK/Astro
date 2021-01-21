@@ -186,27 +186,12 @@ class config(commands.Cog):
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
         error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=self.bot.color)
         if not s: return await ctx.send(embed=error)
+                 
         logging, channel, role, vchannel = s['logging'], s['channel'], s['role'], s['vchannel']
+                 
         channel = ctx.guild.get_channel(channel)
         role = ctx.guild.get_role(role)
         vchannel = ctx.guild.get_channel(vchannel)
-        '''
-        value = ""
-        if logging:
-            value += f"**Logging:** {on}"
-        else:
-            value += f"**Logging:** {off}"
-
-        if channel is not None:
-            value += f"\n> {channel.mention}"
-        else:
-            pass
-
-        if role and vchannel is not None:
-            value += f"\n**Verification:** {on}\n> {role.mention} {vchannel.mention}"
-        else:
-            value += f"\n **Verification:** {off}"
-        '''
 
         embed = discord.Embed(title=f"{ctx.guild} Settings", color=self.bot.color)
         embed.add_field(name=f"**Logging:** {on if logging else off}", value=f"> {channel.mention if channel is not None else 'No Channel Set'}", inline=False)
@@ -273,15 +258,6 @@ class config(commands.Cog):
         except Exception as e:
             return await ctx.send(f"Something went wrong, please try again.\n\nError:```py\n{e}```")
 
-    @commands.command()
-    @commands.is_owner()
-    async def test(self, ctx):
-        e = await config.Logging_Check(self, ctx.guild.id)
-        if e:
-            await ctx.send(e)
-        else:
-            await ctx.send(e)
-
     @commands.group()
     async def verify(self, ctx):
         """Verification commands."""
@@ -292,6 +268,9 @@ class config(commands.Cog):
     @verify.command()
     @commands.has_permissions(manage_guild=True)
     async def setup(self, ctx, channel : discord.TextChannel, role : discord.Role):
+        '''
+        Setup React-to-Verify\n#channel @role
+        '''
         c = ctx.guild.get_channel(channel.id)
         r = ctx.guild.get_role(role.id)
         await self.bot.db.execute("UPDATE guilds SET vchannel = $1, role = $2 WHERE guildid = $3", c.id, r.id, ctx.guild.id)
@@ -307,6 +286,9 @@ class config(commands.Cog):
     @verify.command()
     @commands.has_permissions(manage_guild=True)
     async def reset(self, ctx):
+        '''
+        Reset role and channel for verification.
+        '''
         await self.bot.db.execute("UPDATE guilds SET role = $1, vchannel = $2 WHERE guildid = $3", None, None, ctx.guild.id)
         await ctx.send(f"Reset your verification settings.")
 
