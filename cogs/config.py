@@ -187,6 +187,9 @@ class config(commands.Cog):
         error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=self.bot.color)
         if not s: return await ctx.send(embed=error)
         logging, channel, role, vchannel = s['logging'], s['channel'], s['role'], s['vchannel']
+        channel = ctx.guild.get_channel(channel)
+        role = ctx.guild.get_role(role)
+        vchannel = ctx.guild.get_channel(vchannel)
         value = ""
         if logging:
             value += f"**Logging:** {on}"
