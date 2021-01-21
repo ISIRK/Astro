@@ -302,7 +302,7 @@ class config(commands.Cog):
     @verify.command()
     @commands.has_permissions(manage_guild=True)
     async def reset(self, ctx):
-        await self.bot.db.execute("UPDATE guilds SET role = $1, $2 WHERE guildid = $3", None, None, ctx.guild.id)
+        await self.bot.db.execute("UPDATE guilds SET role = $1, vchannel = $2 WHERE guildid = $3", None, None, ctx.guild.id)
         await ctx.send(f"Reset your verification settings.")
 
 def setup(bot):
