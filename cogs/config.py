@@ -45,6 +45,16 @@ class config(commands.Cog):
         else:
             return False
 
+    async def Verify_Check(self, guild):
+        s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild)
+        vchannel, role = s['vchannel'], s['role']
+
+        if vchannel and role is not None:
+            embed = discord.Embed(title=".", color=self.bot.color)
+            return vchannel
+        else:
+            return False
+
             
     # Listeners
     
@@ -156,9 +166,15 @@ class config(commands.Cog):
     # Reaction Role
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
-        if str(payload.emoji) == '\U00002705' and int(payload.user_id) == 542405601255489537:
-            print("yes")
-        else:
+        guild = payload.guild_id
+        s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild)
+        try:
+            role, vchannel = s['role'], s['vchannel']
+            if int(payload.channel_id) == int(vchannel) and str(payload.emoji) == '\U00002705':
+                print("yes")
+            else:
+                print("no")
+        except:
             pass
     '''
         
@@ -260,7 +276,40 @@ class config(commands.Cog):
             await ctx.send(e)
         else:
             await ctx.send(e)
-            
-        
+
+    @commands.group()
+    async def verify(self, ctx):
+        """Verification commands."""
+
+        if ctx.invoked_subcommand is None:
+            await ctx.send_help(ctx.command)
+
+    @verify.command()
+    @commands.has_permissions(manage_guild=True)
+    async def channel(self, ctx, channel : discord.TextChannel):
+        c = ctx.guild.get_channel(channel.id)
+        await self.bot.db.execute("UPDATE guilds SET vchannel = $1 WHERE guildid = $2", c.id, ctx.guild.id)
+        await ctx.send(f"Set your verification channel to {c.mention}")
+
+        c = await config.Verify_Check(self, ctx.guild.id)
+
+        if c:
+            c = ctx.guild.get_channel(c)
+            await c.send("on")
+
+
+    @verify.command()
+    @commands.has_permissions(manage_guild=True)
+    async def role(self, ctx, role : discord.Role):
+        r = ctx.guild.get_role(role.id)
+        await self.bot.db.execute("UPDATE guilds SET role = $1 WHERE guildid = $2", r.id, ctx.guild.id)
+        await ctx.send(f"Set your verification role to {r.mention}")
+
+        c = await config.Verify_Check(self, ctx.guild.id)
+
+        if c:
+            c = ctx.guild.get_channel(c)
+            await c.send("on")
+
 def setup(bot):
     bot.add_cog(config(bot))
