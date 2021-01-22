@@ -77,8 +77,7 @@ class HelpCommand(commands.HelpCommand):
         embed.add_field(name="Commands:", value="\n".join(str(command) for command in group.walk_commands()) or "None")
         embed.set_footer(text=self.context.bot.footer)
         return await self.context.send(embed=embed)
-def teardown(bot):
-    bot.help_command = None
+
     
 def setup(bot):
     bot.help_command = HelpCommand()
