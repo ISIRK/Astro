@@ -182,7 +182,7 @@ class config(commands.Cog):
                     try:
                         await m.add_roles(r, reason="Verification")
                     except:
-                        await g.owner.send(f'I could not verify {m.mention} due to an error. You might want to add the {r.name} role to them to manually verify them.')
+                        await g.owner.send(f'I could not verify {m.mention} due to an error. You might want to add the `{r.name}`**({r.id})** role to them to manually verify them.')
         except:
             pass
         
