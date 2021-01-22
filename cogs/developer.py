@@ -50,6 +50,7 @@ class developer(commands.Cog):
         self.session = aiohttp.ClientSession()
     
     @commands.group()
+    @commands.is_owner()
     async def dev(self, ctx):
         """Developer commands."""
 
