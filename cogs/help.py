@@ -42,11 +42,30 @@ class HelpCommand(commands.HelpCommand):
             "aliases": ["h"]
         })
 
-    async def send_bot_help(self, _):
+    async def send_bot_help(self, mapping): #_
+        '''
         data = {0: None}
         data.update({num: cog_pair for num, cog_pair in enumerate(self.context.bot.cogs.items(), start=1)}) #0
         pages = MenusHelp(source=Source(data), delete_message_after=True) #clear_reactions_after=True)
         await pages.start(self.context)
+        '''
+        embed = discord.Embed(title='Bot Commands', colour=self.context.bot.color)
+        description = self.context.bot.description
+        if description:
+            embed.description = description
+
+        for cog, commands in mapping.items():
+            name = 'No Category' if cog is None else cog.qualified_name
+            filtered = await self.filter_commands(commands, sort=True)
+            if filtered:
+                value = '\u2002'.join(c.name for c in commands)
+                if cog and cog.description:
+                    value = '{0}\n{1}'.format(cog.description, value)
+
+                embed.add_field(name=name, value=value)
+
+        embed.set_footer(text='Use {0}{1} [command] for more info on a command.'.format(self.clean_prefix, self.invoked_with))#self.get_ending_note())
+        await self.get_destination().send(embed=embed)
 
     async def send_command_help(self, command):
         use = await command.can_run(self.context)
