@@ -199,6 +199,7 @@ class config(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.group(aliases=['log'])
+    @commands.has_permissions(manage_guild=True)
     async def logging(self, ctx):
         """Logging commands."""
 
@@ -259,6 +260,7 @@ class config(commands.Cog):
             return await ctx.send(f"Something went wrong, please try again.\n\nError:```py\n{e}```")
 
     @commands.group()
+    @commands.has_permissions(manage_guild=True)
     async def verify(self, ctx):
         """Verification commands."""
 
