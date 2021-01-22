@@ -15,13 +15,7 @@ class HelpCommand(commands.HelpCommand):
             "aliases": ["h"]
         })
 
-    async def send_bot_help(self, mapping): #_
-        '''
-        data = {0: None}
-        data.update({num: cog_pair for num, cog_pair in enumerate(self.context.bot.cogs.items(), start=1)}) #0
-        pages = MenusHelp(source=Source(data), delete_message_after=True) #clear_reactions_after=True)
-        await pages.start(self.context)
-        '''
+    async def send_bot_help(self, mapping):
         embed = discord.Embed(title='Command List', colour=self.context.bot.color)
         description = self.context.bot.description
         if description:
