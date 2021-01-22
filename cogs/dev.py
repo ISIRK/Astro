@@ -255,8 +255,9 @@ class dev(commands.Cog):
     @commands.is_owner()
     @commands.command()
     async def test(self, ctx, *, code):
-        u = await self.bot.mystbin(code)
-        await ctx.send(u)
+        await ctx.send("Shutting Down")
+        await self.bot.close()
+        await self.bot.db.close()
             
     @commands.is_owner()
     @commands.group(invoke_without_command=True)
