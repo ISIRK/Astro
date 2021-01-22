@@ -91,8 +91,9 @@ class config(commands.Cog):
                 e.description = f"Thank you for adding me to this server!"
                 e.add_field(name="Startup", value="To get started type `^help`", inline=False)
                 e.add_field(name="Logging", value="If you are a sever admin/moderator get the mod-log setup with `^help logging`", inline=False)
+                e.add_field(name="Verification", value="If you are a server admin make use `^help verify` to setup the react-to-verify process.", inline=False)
                 e.add_field(name="Support", value="If you have any questions feel free to ask in our [support server](https://discord.gg/7yZqHfG)", inline=False)
-                e.set_thumbnail(url='https://asksirk.com/img/sirk-christmas.jpg')
+                e.set_thumbnail(url=self.bot.user.avatar_url)
                 try:
                     await to_send.send(embed=e)
                 except:
