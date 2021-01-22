@@ -175,7 +175,7 @@ class config(commands.Cog):
         m = g.get_member(payload.user_id)
 
         try:
-            if m is bot.user:
+            if m.bot:
                 pass
             else:
                 if int(payload.channel_id) == int(vchannel) and str(payload.emoji) == '\U00002705':
