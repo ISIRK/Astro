@@ -162,21 +162,29 @@ class config(commands.Cog):
             c = self.bot.get_channel(e)
             await c.send(embed=embed)
 
-    '''
     # Reaction Role
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
         guild = payload.guild_id
+
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild)
+        role, vchannel = s['role'], s['vchannel']
+
+        g = self.bot.get_guild(guild)
+        r = g.get_role(role)
+        m = g.get_member(payload.user_id)
+
         try:
-            role, vchannel = s['role'], s['vchannel']
-            if int(payload.channel_id) == int(vchannel) and str(payload.emoji) == '\U00002705':
-                print("yes")
+            if m is bot.user:
+                pass
             else:
-                print("no")
+                if int(payload.channel_id) == int(vchannel) and str(payload.emoji) == '\U00002705':
+                    try:
+                        await m.add_roles(r, reason="Verification")
+                    except:
+                        await g.owner.send(f'I could not verify {m.mention} due to an error. You might want to add the {r.mention} role to them to manually verify them.')
         except:
             pass
-    '''
         
     # Commands    
     @commands.command(aliases=['set'])
@@ -282,7 +290,9 @@ class config(commands.Cog):
 
         if c:
             c = ctx.guild.get_channel(c)
-            await c.send("on")
+            embed = discord.Embed(title="Verify", description="React to this message to gain access to the rest of the server.", color=self.bot.color)
+            m = await c.send(embed=embed)
+            await m.add_reaction('\U00002705')
 
 
     @verify.command()
