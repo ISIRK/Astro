@@ -46,7 +46,7 @@ class error(Cog):
             await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, discord.NotFound): await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, commands.CommandOnCooldown): await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
-        elif isinstance(error, commands.MaxConcurrencyReached): await ctx.reply(embed = discord.Embed(title = f"Command `{ctx.command}` is limited to `{error.number}` {'use' if error.number == 1 else 'uses'} per `{error.per.name}` at a time.", color = discord.Color.red()))
+        elif isinstance(error, commands.MaxConcurrencyReached): await ctx.reply(embed = discord.Embed(title = f"Command {ctx.command} is limited to `{error.number}` {'use' if error.number == 1 else 'uses'} per {error.per.name} at a time.", color = discord.Color.red()))
         elif isinstance(error, commands.CheckFailure): await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         else:
             embed = discord.Embed(
