@@ -253,8 +253,8 @@ class dev(commands.Cog):
             await ctx.send(f)
 
     @commands.is_owner()
-    @commands.command()
-    async def test(self, ctx, *, code):
+    @commands.command(aliases=['logout'])
+    async def shutdown(self, ctx):
         await ctx.send("Shutting Down")
         await self.bot.close()
         await self.bot.db.close()
