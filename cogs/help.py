@@ -1,11 +1,6 @@
 import discord, json
 from discord.ext import commands, menus
 
-class Source(menus.ListPageSource):
-    '''Formatting for help command.'''
-    def __init__(self, data):
-        super().__init__(data, per_page=1)
-
 class HelpCommand(commands.HelpCommand):
     '''Help Command.'''
     def __init__(self):
