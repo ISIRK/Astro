@@ -25,7 +25,7 @@ import discord
 from discord.ext import commands, menus
 import os, io, json, psutil, aiohttp, collections, time, datetime, random, requests, asyncio
 from datetime import datetime
-import subprocess as sp
+import subprocess
 from jishaku import codeblocks
 
 from tools.utils import Simple
@@ -106,29 +106,10 @@ class dev(commands.Cog):
     @commands.command(aliases=['s'])
     @commands.is_owner()
     async def sync(self, ctx):
-        """Sync with GitHub and reload all the cogs"""
-        embed = discord.Embed(title="Syncing...", description="<a:loading:737722827112972449> Syncing and reloading cogs.", color=self.bot.color)
-        msg = await ctx.send(embed=embed)
-        output = sp.getoutput('git pull')
-        embed = discord.Embed(title="Synced", description="<a:Animated_Checkmark:726140204045303860> Synced with GitHub and reloaded all the cogs.", color=self.bot.color)
-        # Reload Cogs as well
-        error_collection = []
-        for file in os.listdir("cogs"):
-            if file.endswith(".py"):
-                name = file[:-3]
-                try:
-                    self.bot.reload_extension(f"cogs.{name}")
-                except Exception as e:
-                    return await ctx.send(f"```py\n{e}```")
-
-        if error_collection:
-            err = "\n".join([f"**{g[0]}** ```diff\n- {g[1]}```" for g in error_collection])
-            return await ctx.send(
-                f"Attempted to reload all extensions, was able to reload, "
-                f"however the following failed...\n\n{err}"
-            )
-
-        await msg.edit(embed=embed)
+        """Sync with GitHub"""
+        out = subprocess.check_output("git pull", shell=True)
+        await ctx.send(f"```{out.decode('utf-8')}```")
+        await ctx.message.add_reaction("🔁")
 
     @commands.is_owner()
     @commands.command()
