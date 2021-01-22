@@ -43,22 +43,14 @@ class SqlPages(Simple):
         converted = [SqlEntry(entry) for entry in entries]
         super().__init__(converted, per_page=per_page)
 
-class developer(commands.Cog):
+class dev(commands.Cog):
     '''Developer Commands'''
     def __init__(self, bot):
         self.bot = bot
         self.session = aiohttp.ClientSession()
     
-    @commands.group()
     @commands.is_owner()
-    async def dev(self, ctx):
-        """Developer commands."""
-
-        if ctx.invoked_subcommand is None:
-            await ctx.send_help(ctx.command)
-    
-    @commands.is_owner()
-    @dev.command()
+    @command.command()
     async def load(self, ctx, name: str):
         """Loads an extension. """
         try:
@@ -68,7 +60,7 @@ class developer(commands.Cog):
         await ctx.send(f"📥 Loaded extension **`cogs/{name}.py`**")
 
     @commands.is_owner()
-    @dev.command(aliases=['r'])
+    @command.command(aliases=['r'])
     async def reload(self, ctx, name: str):
         """Reloads an extension. """
 
@@ -80,7 +72,7 @@ class developer(commands.Cog):
             return await ctx.send(f"```py\n{e}```")
 
     @commands.is_owner()
-    @dev.command()
+    @command.command()
     async def unload(self, ctx, name: str):
         """Unloads an extension. """
         try:
@@ -90,7 +82,7 @@ class developer(commands.Cog):
         await ctx.send(f"📤 Unloaded extension **`cogs/{name}.py`**")
     
     @commands.is_owner()
-    @dev.command(aliases=['ra'])
+    @command.command(aliases=['ra'])
     async def reloadall(self, ctx):
         """Reloads all extensions. """
         error_collection = []
@@ -111,7 +103,7 @@ class developer(commands.Cog):
 
         await ctx.message.add_reaction('🔄')
 
-    @dev.command(aliases=['s'])
+    @command.command(aliases=['s'])
     @commands.is_owner()
     async def sync(self, ctx):
         """Sync with GitHub and reload all the cogs"""
@@ -140,14 +132,14 @@ class developer(commands.Cog):
         await msg.edit(embed=embed)
 
     @commands.is_owner()
-    @dev.command()
+    @command.command()
     async def leaveguildanddontchokeisirk(self, ctx):
         '''[Pain](https://canary.discord.com/channels/336642139381301249/381963689470984203/779527415307173909)'''
         embed=discord.Embed(title='Goodbye', color=self.bot.color)
         await ctx.send(embed=embed)
         await ctx.guild.leave()
     
-    @dev.command()
+    @command.command()
     @commands.is_owner()
     async def status(self, ctx, kwarg: int, *, status: str):
         '''Playing, Watching, Listening, Reset'''
@@ -169,7 +161,7 @@ class developer(commands.Cog):
             await ctx.send(f'Reset Status')
         
     @commands.is_owner()
-    @dev.command()
+    @command.command()
     async def dm(self , ctx, user : discord.Member, *, content):
         '''Dm a Member'''
         embed = discord.Embed(color=self.bot.color)
@@ -181,7 +173,7 @@ class developer(commands.Cog):
         await ctx.send(f"<:comment:726779670514630667> Message sent to {user}")
         
     @commands.is_owner()
-    @dev.command(aliases = ["ss"])
+    @command.command(aliases = ["ss"])
     async def screenshot(self, ctx, url):
         embed = discord.Embed(title = f"Screenshot of {url}", color=self.bot.color)
         async with aiohttp.ClientSession() as session:
@@ -192,13 +184,13 @@ class developer(commands.Cog):
             await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
     
     @commands.is_owner()
-    @dev.command()
+    @command.command()
     async def say(self, ctx, *, content:str):
         '''Make the bot say something'''
         await ctx.send(content)
           
     @commands.is_owner()
-    @dev.command(aliases=['e'])
+    @command.command(aliases=['e'])
     async def eval(self, ctx, *, code: str):
         '''Evaluate code'''
         cog = self.bot.get_cog("Jishaku")
@@ -206,14 +198,14 @@ class developer(commands.Cog):
         await cog.jsk_python(ctx, argument=res)
 
     @commands.is_owner()
-    @dev.command()
+    @command.command()
     async def sudo(self, ctx, *, command:str):
         '''Sudo command'''
         cog = self.bot.get_cog("Jishaku")
         await cog.jsk_sudo(ctx, command_string=command)
         
     @commands.is_owner()
-    @dev.command()
+    @command.command()
     async def nick(self, ctx, *, name=None):
         if name is None:
             await ctx.guild.me.edit(nick=None)
@@ -226,7 +218,7 @@ class developer(commands.Cog):
                 await ctx.send(f"```{err}```")
         
     @commands.is_owner()
-    @dev.command()
+    @command.command()
     async def cogs(self, ctx):
         s = ""
         for cog in self.bot.cogs.keys():
@@ -236,7 +228,7 @@ class developer(commands.Cog):
         await ctx.send(embed=embed)
       
     @commands.is_owner()
-    @dev.command(aliases=['bp'])
+    @command.command(aliases=['bp'])
     async def botpurge(self, ctx, limit=50):
         channel = ctx.message.channel
 
@@ -247,7 +239,7 @@ class developer(commands.Cog):
         await channel.send(f"I have deleted `{len(deleted)}` out of the `{limit}` requested messages.", delete_after=10)
 
     @commands.is_owner()
-    @dev.command()
+    @command.command()
     async def get_invite(self, ctx, id: int):
         guild = self.bot.get_guild(id)
 
@@ -262,14 +254,14 @@ class developer(commands.Cog):
         await ctx.author.send(invite)
 
     @commands.is_owner()
-    @dev.command()
+    @command.command()
     async def reply(self, ctx, messageId, *, reply = None):
         if not reply: return await ctx.reply("You didn't provide a reply!")
         e = await ctx.fetch_message(messageId) 
         await e.reply(reply)
     
     @commands.is_owner()
-    @dev.command()
+    @command.command()
     async def sql(self, ctx, *, query):
         """Makes an sql SELECT query"""
         query = codeblocks.codeblock_converter(query)[1]
@@ -281,7 +273,7 @@ class developer(commands.Cog):
             await ctx.send(f)
 
     @commands.is_owner()
-    @dev.command()
+    @command.command()
     async def test(self, ctx, *, code):
         u = await self.bot.mystbin(code)
         await ctx.send(u)
@@ -327,4 +319,4 @@ class developer(commands.Cog):
             await ctx.send(f"```py\n{e}```")
 
 def setup(bot):
-    bot.add_cog(developer(bot))
+    bot.add_cog(dev(bot))
