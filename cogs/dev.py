@@ -66,7 +66,7 @@ class dev(commands.Cog):
 
         try:
             self.bot.reload_extension(f"cogs.{name}")
-            await ctx.message.add_reaction('🔄')
+            await ctx.message.add_reaction('🔁')
 
         except Exception as e:
             return await ctx.send(f"```py\n{e}```")
@@ -101,7 +101,7 @@ class dev(commands.Cog):
                 f"however the following failed...\n\n{output}"
             )
 
-        await ctx.message.add_reaction('🔄')
+        await ctx.message.add_reaction('🔁')
 
     @commands.command(aliases=['s'])
     @commands.is_owner()
