@@ -50,7 +50,6 @@ class config(commands.Cog):
         vchannel, role = s['vchannel'], s['role']
 
         if vchannel and role is not None:
-            embed = discord.Embed(title=".", color=self.bot.color)
             return vchannel
         else:
             return False
