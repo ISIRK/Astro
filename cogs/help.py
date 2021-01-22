@@ -81,3 +81,6 @@ class HelpCommand(commands.HelpCommand):
 
 def setup(bot):
     bot.help_command = HelpCommand()
+
+def teardown(bot):
+    bot.help_command = None
