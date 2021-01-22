@@ -49,7 +49,7 @@ class HelpCommand(commands.HelpCommand):
         pages = MenusHelp(source=Source(data), delete_message_after=True) #clear_reactions_after=True)
         await pages.start(self.context)
         '''
-        embed = discord.Embed(title='Bot Commands', colour=self.context.bot.color)
+        embed = discord.Embed(title='Command List', colour=self.context.bot.color)
         description = self.context.bot.description
         if description:
             embed.description = description
@@ -62,9 +62,9 @@ class HelpCommand(commands.HelpCommand):
                 if cog and cog.description:
                     value = '{0}\n{1}'.format(cog.description, value)
 
-                embed.add_field(name=name, value=value)
+                embed.add_field(name=name, value=value, inline=False)
 
-        embed.set_footer(text='Use {0}{1} [command] for more info on a command.'.format(self.clean_prefix, self.invoked_with))#self.get_ending_note())
+        embed.set_footer(text='Use {0}{1} [command|module] for more info.'.format(self.clean_prefix, self.invoked_with))#self.get_ending_note())
         await self.get_destination().send(embed=embed)
 
     async def send_command_help(self, command):
