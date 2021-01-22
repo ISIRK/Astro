@@ -43,6 +43,15 @@ class HelpCommand(commands.HelpCommand):
                               colour=self.context.bot.color)
         embed.add_field(name="Usage:", value=f"{command.name} {command.signature}", inline=False)
         embed.add_field(name="Category:", value=f"{command.cog_name}", inline=False)
+        try:
+            can_run = await command.can_run(self.context)
+            if can_run:
+                can_run = "<:green_tick:802239639712563241>"
+            else:
+                can_run = "<:red_tick:802239639561437204>"
+        except commands.CommandError:
+            can_run = "<:red_tick:802239639561437204>"
+        embed.add_field(name="Can use:", value=can_run)
         if command.aliases:
             embed.add_field(name="Aliases:", value="\n".join(command.aliases), inline=False)
         embed.set_footer(text=self.context.bot.footer)
