@@ -108,7 +108,7 @@ class dev(commands.Cog):
     async def sync(self, ctx):
         """Sync with GitHub"""
         out = subprocess.check_output("git pull", shell=True)
-        await ctx.reply(f"```{out.decode('utf-8')}```")
+        await ctx.send(f"```{out.decode('utf-8')}```")
         await ctx.message.add_reaction("🔁")
 
     @commands.is_owner()
