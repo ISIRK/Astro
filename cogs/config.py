@@ -286,6 +286,8 @@ class config(commands.Cog):
         r = ctx.guild.get_role(role.id)
         await self.bot.db.execute("UPDATE guilds SET vchannel = $1, role = $2 WHERE guildid = $3", c.id, r.id, ctx.guild.id)
         await ctx.send(f"Set your verification channel to {c.mention} and your verification role to {r.mention}")
+        if r > ctx.me.top_role:
+            await ctx.send(f"In order for me to add roles to people, please put my role **HIGHER** than the {r.mention} role.")
 
         c = await config.Verify_Check(self, ctx.guild.id)
 
