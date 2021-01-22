@@ -37,7 +37,6 @@ class HelpCommand(commands.HelpCommand):
         await self.get_destination().send(embed=embed)
 
     async def send_command_help(self, command):
-        #use = await command.can_run(self.context)
         embed = discord.Embed(title=command.name,
                               description=command.help or "No info available.",
                               colour=self.context.bot.color)
