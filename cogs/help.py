@@ -6,33 +6,6 @@ class Source(menus.ListPageSource):
     def __init__(self, data):
         super().__init__(data, per_page=1)
 
-    async def format_page(self, menu: menus.MenuPages, page):
-        embed = discord.Embed(color=menu.ctx.bot.color)
-        '''
-        title=f"Help Menu for {menu.ctx.guild.me.display_name}",
-                              description=menu.ctx.bot.description,
-                              
-        '''
-        embed.set_footer(text=f"Page {menu.current_page + 1}/{self.get_max_pages()} | {menu.ctx.bot.footer}")
-        if menu.current_page == 0:
-            embed.set_thumbnail(url=menu.ctx.bot.user.avatar_url)
-            embed.title = menu.ctx.guild.me.display_name
-            embed.description = menu.ctx.bot.description
-            embed.add_field(name="How to use:", value=f"Use the reactions below to change the page and see the commands.\nYou can also type **{menu.ctx.prefix}help <command|module>** for more info.", inline=False)
-            embed.add_field(name="Command Syntax:", value="`[arg]` - Optional\n`<arg>` - Required", inline=False)
-        else:
-            cmd = "\n".join(f"**{command}** - {command.short_doc}" for command in page[1].get_commands()) or "No commands in this category."
-            #_commands = "\n".join(str(command) for command in page[1].get_commands()) or "No commands in this category."
-            #embed.add_field(name=page[0], value=_commands)
-            embed.title = page[0]
-            embed.description = cmd #_commands
-        return embed
-
-
-class MenusHelp(menus.MenuPages):
-    '''Help command utilizing menus.'''
-
-
 class HelpCommand(commands.HelpCommand):
     '''Help Command.'''
     def __init__(self):
