@@ -33,7 +33,7 @@ class Sirk(commands.Bot):
         self.start_time = datetime.utcnow()
         self.session = aiohttp.ClientSession()
         self.db = asyncio.get_event_loop().run_until_complete(asyncpg.create_pool(user=user, password=password, database=name, host='127.0.0.1'))
-        self.footer = "Sirk Bot v2.0"
+        self.footer = "Sirk Bot v2.0.1"
         self.color = 0x7289DA
 
     async def on_ready(self):
