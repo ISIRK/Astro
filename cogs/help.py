@@ -25,9 +25,11 @@ class HelpCommand(commands.HelpCommand):
             name = 'No Category' if cog is None else cog.qualified_name
             filtered = await self.filter_commands(commands, sort=True)
             if filtered:
-                value = '\u2002'.join(c.name for c in commands)
+                value = ' '.join(f'`{c.name}`' for c in commands)
+                '''
                 if cog and cog.description:
                     value = '{0}\n{1}'.format(cog.description, value)
+                '''
 
                 embed.add_field(name=name, value=value, inline=False)
 
