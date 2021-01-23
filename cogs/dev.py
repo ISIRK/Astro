@@ -263,9 +263,10 @@ class dev(commands.Cog):
     @commands.group(invoke_without_command=True)
     async def todo(self, ctx):
         """Todo Commands"""
-
-        if ctx.invoked_subcommand is None:
-            await ctx.send_help(ctx.command)
+        s = await self.bot.db.fetch("SELECT * FROM todo;")
+        list = [x["thing"] for x in s]
+        p = Simple(entries=list, per_page=10)
+        await p.start(ctx)
             
     @commands.is_owner()
     @todo.command()
@@ -286,18 +287,6 @@ class dev(commands.Cog):
             await ctx.send(f'Removed {thing} from your todo list!')
         except Exception as e:
             return await ctx.send(e)
-    
-    @commands.is_owner()
-    @todo.command()
-    async def list(self, ctx):
-        '''Get your todo list'''
-        s = await self.bot.db.fetch("SELECT * FROM todo;")
-        list = [x["thing"] for x in s]
-        try:
-            p = Simple(entries=list, per_page=10)
-            await p.start(ctx)
-        except Exception as e:
-            await ctx.send(f"```py\n{e}```")
 
 def setup(bot):
     bot.add_cog(dev(bot))
