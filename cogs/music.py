@@ -148,7 +148,7 @@ class MusicPlayer:
 
             self._guild.voice_client.play(source, after=lambda _: self.bot.loop.call_soon_threadsafe(self.next.set))
             embed=discord.Embed(title="Playing", description=f"Now playing `{source.title}`\n> Requested by `{source.requester}`", color=self.bot.color)
-            embed.set_footer(text=footer)
+            embed.set_footer(text=self.bot.footer)
             self.np = await self._channel.send(embed=embed)
             '''self.np = await self._channel.send(f'**Now Playing:** `{source.title}` requested by '
                                                f'`{source.requester}`')'''
@@ -336,7 +336,7 @@ class music(commands.Cog):
 
         fmt = '\n'.join(f'**`{_["title"]}`**' for _ in upcoming)
         embed = discord.Embed(title=f'Upcoming - Next {len(upcoming)}', description=fmt, color=self.bot.color)
-        embed.set_footer(text=footer)
+        embed.set_footer(text=self.bot.footer)
         await ctx.send(embed=embed)
 
     @commands.command(name='now_playing', aliases=['np'])
