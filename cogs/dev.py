@@ -47,8 +47,7 @@ class dev(commands.Cog):
     '''Developer Commands'''
     def __init__(self, bot):
         self.bot = bot
-        self.session = aiohttp.ClientSession()
-    
+        
     @commands.is_owner()
     @commands.command()
     async def load(self, ctx, name: str):
@@ -258,6 +257,7 @@ class dev(commands.Cog):
         await ctx.send("Shutting Down")
         await self.bot.close()
         await self.bot.db.close()
+        await self.bot.session.close()
             
     @commands.is_owner()
     @commands.group(invoke_without_command=True)
