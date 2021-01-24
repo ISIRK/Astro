@@ -18,13 +18,22 @@ name = data['DB-NAME']
 intents = discord.Intents.default()
 intents.members = True
 
+async def get_prefix(bot, message : discord.Message):
+    '''
+    Get Prefix
+    '''
+    if message.author.id == bot.owner_id:
+        return commands.when_mentioned_or("")
+    else:
+        return commands.when_mentioned_or("^")
+
 class Sirk(commands.Bot):
     """
     Subclassed bot.
     """
     def __init__(self):
         super().__init__(        
-            command_prefix=commands.when_mentioned_or("^"), 
+            command_prefix=get_prefix, #commands.when_mentioned_or("^"), 
             intents=intents, case_insensitive=True, 
             allowed_mentions=discord.AllowedMentions(users=True, roles=True, everyone=False, replied_user=False),
             owner_id=542405601255489537,
