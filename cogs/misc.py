@@ -206,7 +206,7 @@ class misc(commands.Cog):
         await ctx.reply('bossbadi is a cool dude and a great bot dev')
 
     @commands.max_concurrency(1, per=commands.BucketType.channel)
-    @commands.command(aliases=["c"])
+    @commands.command() #aliases=["c"]
     async def cookie(self, ctx):
         """
         Yum yum.
