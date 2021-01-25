@@ -5,9 +5,14 @@ class dbl(commands.Cog):
     '''Discord Bot Lists Commands/Tasks'''
     def __init__(self, bot):
         self.bot = bot
+        self.space.start()
         
     @tasks.loop(seconds=30.0)
-    async def bot_list_space(self):
+    async def space(self):
+        '''
+        BOTLIST.SPACE
+        https://botlist.space
+        '''
         url = "https://api.botlist.space/v1/bots/751447995270168586"
         token = "24981b666bc4a21833e516dba8da3760bea7f55b23613d6ddb85baacaec11e94cfca11893250be38fd4684bb1fcefaa9"
         headers = {"Authorization": token, "Content-Type": 'application/json'}
