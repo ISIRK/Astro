@@ -297,7 +297,7 @@ class dev(commands.Cog):
         r = await self.bot.session.post(url, headers=headers, data=json.dumps({'server_count': len(self.bot.guilds)}))
         result = json.loads(await r.text())
         message = result['message']
-        await ctx.send(f"{message} **({len{self.bot.guilds})**")
+        await ctx.send(f"{message} **({len(self.bot.guilds)})**")
 
 def setup(bot):
     bot.add_cog(dev(bot))
