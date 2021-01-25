@@ -265,7 +265,7 @@ class dev(commands.Cog):
         """Todo Commands"""
         s = await self.bot.db.fetch("SELECT * FROM todo;")
         list = [x["thing"] for x in s]
-        p = Simple(entries=list, per_page=10)
+        p = Simple(entries=list, per_page=3)
         await p.start(ctx)
             
     @commands.is_owner()
