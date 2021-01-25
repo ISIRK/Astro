@@ -152,9 +152,9 @@ class games(commands.Cog):
         """
         Yum yum.
         """
-        #cookies = ["🍪", "🥠"]
+        cookie = ["🍪"]
         #reaction = random.choices(cookies, weights=[0.9, 0.1], k=1)[0]
-        embed = discord.Embed(description=f"Fastest person to eat {reaction} wins!", colour=self.bot.color)
+        embed = discord.Embed(description=f"Fastest person to eat {cookie} wins!", colour=self.bot.color)
         message = await ctx.send(embed=embed)
         await asyncio.sleep(4)
         for i in reversed(range(1, 4)):
@@ -162,14 +162,14 @@ class games(commands.Cog):
             await asyncio.sleep(1)
         await asyncio.sleep(random.randint(0, 3))
         await message.edit(embed=discord.Embed(description="Eat the cookie!", colour=self.bot.color))
-        await message.add_reaction("🍪")
+        await message.add_reaction(cookie)
         start = time.perf_counter()
         try:
             _, user = await ctx.bot.wait_for(
                 "reaction_add",
                 check=lambda _reaction, user: _reaction.message.guild == ctx.guild
                 and _reaction.message.channel == ctx.message.channel
-                and _reaction.message == message and str(_reaction.emoji) == reaction and user != ctx.bot.user
+                and _reaction.message == message and str(_reaction.emoji) == cookie and user != ctx.bot.user
                 and not user.bot,
                 timeout=60,)
         except asyncio.TimeoutError:
