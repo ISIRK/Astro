@@ -1,4 +1,4 @@
-import discord
+import discord, json
 from discord.ext import commands, tasks
 
 class dbl(commands.Cog):
