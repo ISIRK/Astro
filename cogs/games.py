@@ -153,7 +153,6 @@ class games(commands.Cog):
         Yum yum.
         """
         cookie = "🍪"
-        #reaction = random.choices(cookies, weights=[0.9, 0.1], k=1)[0]
         embed = discord.Embed(description=f"Fastest person to eat {cookie} wins!", colour=self.bot.color)
         message = await ctx.send(embed=embed)
         await asyncio.sleep(4)
@@ -183,7 +182,6 @@ class games(commands.Cog):
     async def twenty(self, ctx):
         """Starts a 2048 game inside of Discord.
         Join the support server to post your score!"""
-        ## Made by NeuroAssassin [https://github.com/NeuroAssassin/Toxic-Cogs/blob/master/twenty/twenty.py]
         board = [
             ["_", "_", "_", "_"],
             ["_", "_", "_", "_"],
