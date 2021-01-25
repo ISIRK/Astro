@@ -52,7 +52,8 @@ def rps_winner(userOneChoice, userTwoChoice):
 class games(commands.Cog):
     '''Game Commands'''
     def __init__(self, bot):
-        self.bot = bot        
+        self.bot = bot
+        
     @commands.max_concurrency(1, per=BucketType.channel, wait=False)
     @commands.command(aliases=['cb'])
     async def chatbot(self, ctx):
@@ -144,6 +145,38 @@ class games(commands.Cog):
             await s.edit(embed= discord.Embed(title =result , description = f"I picked {botChoice} and you picked {reaction}.", color=self.bot.color))
 
         except asyncio.TimeoutError: return await ctx.send("You didn't add a reaction in time!")
+
+    @commands.max_concurrency(1, per=commands.BucketType.channel)
+    @commands.command() #aliases=["c"]
+    async def cookie(self, ctx):
+        """
+        Yum yum.
+        """
+        #cookies = ["🍪", "🥠"]
+        #reaction = random.choices(cookies, weights=[0.9, 0.1], k=1)[0]
+        embed = discord.Embed(description=f"Fastest person to eat {reaction} wins!", colour=self.bot.color)
+        message = await ctx.send(embed=embed)
+        await asyncio.sleep(4)
+        for i in reversed(range(1, 4)):
+            await message.edit(embed=discord.Embed(description=str(i), colour=self.bot.color))
+            await asyncio.sleep(1)
+        await asyncio.sleep(random.randint(0, 3))
+        await message.edit(embed=discord.Embed(description="Eat the cookie!", colour=self.bot.color))
+        await message.add_reaction("🍪")
+        start = time.perf_counter()
+        try:
+            _, user = await ctx.bot.wait_for(
+                "reaction_add",
+                check=lambda _reaction, user: _reaction.message.guild == ctx.guild
+                and _reaction.message.channel == ctx.message.channel
+                and _reaction.message == message and str(_reaction.emoji) == reaction and user != ctx.bot.user
+                and not user.bot,
+                timeout=60,)
+        except asyncio.TimeoutError:
+            return await message.edit(embed=discord.Embed(description="No one ate the cookie...",
+                                                          colour=self.bot.color))
+        end = time.perf_counter()
+        await message.edit(embed=discord.Embed(description=f"**{user}** ate the cookie in `{end - start:.3f}` seconds!", colour=self.bot.color))
         
     @commands.max_concurrency(1, per=BucketType.guild, wait=False)
     @commands.command(aliases=['2048', '24'])
