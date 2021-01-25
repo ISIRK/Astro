@@ -152,7 +152,7 @@ class games(commands.Cog):
         """
         Yum yum.
         """
-        cookie = ["🍪"]
+        cookie = "🍪"
         #reaction = random.choices(cookies, weights=[0.9, 0.1], k=1)[0]
         embed = discord.Embed(description=f"Fastest person to eat {cookie} wins!", colour=self.bot.color)
         message = await ctx.send(embed=embed)
