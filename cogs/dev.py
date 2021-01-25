@@ -291,8 +291,11 @@ class dev(commands.Cog):
     @commands.is_owner()
     @commands.command()
     async def test(self, ctx):
+        url = "https://api.botlist.space/v1/bots/751447995270168586"
         headers = {"Authorization": "24981b666bc4a21833e516dba8da3760bea7f55b23613d6ddb85baacaec11e94cfca11893250be38fd4684bb1fcefaa9", "Content-Type": 'application/json'}
-        r = async with self.bot.session.post("https://api.botlist.space/v1/bots/751447995270168586", headers=headers, body={'server_count': f'{len(self.bot.guilds)'})
+        r = async with self.bot.session.post(url,
+                                             headers=headers,
+                                             body={'server_count': f'{len(self.bot.guilds)}')
         result = json.loads(await r.text())
         message = result['message']
         await ctx.send(f"{message}")
