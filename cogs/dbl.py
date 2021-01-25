@@ -7,7 +7,7 @@ class dbl(commands.Cog):
         self.bot = bot
         self.space.start()
         
-    @tasks.loop(seconds=30.0)
+    @tasks.loop(minutes=30.0)
     async def space(self):
         '''
         BOTLIST.SPACE
@@ -22,9 +22,8 @@ class dbl(commands.Cog):
             message = result['message']
             c = self.bot.get_channel(793312077083181080)
             await c.send(f"{message} **({len(self.bot.guilds)})**")
-            print(f"{message} **({len(self.bot.guilds)})**")
-        except Exception as e:
-            print(e)
+        except:
+            pass
         
 def setup(bot):
     bot.add_cog(dbl(bot))
