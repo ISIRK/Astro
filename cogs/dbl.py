@@ -16,6 +16,7 @@ class dbl(commands.Cog):
         message = result['message']
         c = self.bot.get_channel(793312077083181080)
         await c.send(f"{message} **({len(self.bot.guilds)})**")
+        print(f"{message} **({len(self.bot.guilds)})**")
         
 def setup(bot):
     bot.add_cog(dbl(bot))
