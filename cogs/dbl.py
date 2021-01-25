@@ -21,7 +21,7 @@ class dbl(commands.Cog):
             result = json.loads(await r.text())
             message = result['message']
             c = self.bot.get_channel(803413039256043590)
-            await c.send(f"{message} **({len(self.bot.guilds)})**")
+            await c.send(f"__**BotList.Space**__ - {message} **({len(self.bot.guilds)})**")
         except:
             pass
         
