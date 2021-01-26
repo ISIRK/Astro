@@ -293,12 +293,8 @@ class dev(commands.Cog):
     @commands.is_owner()
     async def test(self,ctx, *, words):
         channel = ctx.channel
-        for i in await channel.webhooks():
-            if i.name == "Translations":
-                url = i.url
-            else:
-                i = await channel.create_webhook(name="Hook")
-                url = i.url
+        i = await channel.create_webhook(name="Hook")
+        url = i.url
         await ctx.message.delete()
         try:
             async with aiohttp.ClientSession() as session:
