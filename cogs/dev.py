@@ -305,7 +305,7 @@ class dev(commands.Cog):
                 await webhook.send(words, username=ctx.author.name, avatar_url=ctx.author.avatar_url)
             return
         except Exception as e:
-            await ctx.send("```py\n{e}```")
+            await ctx.send(f"```py\n{e}```")
 
 def setup(bot):
     bot.add_cog(dev(bot))
