@@ -28,7 +28,7 @@ async def get_prefix(bot, message : discord.Message):
     except:
         pass
     
-    if s is not None:
+    if p is not None:
         return commands.when_mentioned_or(p)(bot, message)
     elif message.author.id == bot.owner_id:
         return commands.when_mentioned_or("^", "")(bot, message)
