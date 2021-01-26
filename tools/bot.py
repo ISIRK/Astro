@@ -62,7 +62,9 @@ class Sirk(commands.Bot):
             message.content == f"<@!{self.user.id}>"
             or message.content == f"<@{self.user.id}>"
         ):
-            await message.channel.send(embed=discord.Embed(title="Sirk Bot", description=f"Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: {self.user.mention} and `{get_prefix()}`\nIf you would like to see my commands type `[prefix]help`", color=self.color))
+            s = await bot.db.fetchrow(" SELECT prefix FROM guilds WHERE guildid = $1", message.guild.id)
+            p = str(s['prefix'])
+            await message.channel.send(embed=discord.Embed(title="Sirk Bot", description=f"Hey there :wave: Seems like you mentioned me.\n\nMy prefixes are: {self.user.mention} and `{p}`\nIf you would like to see my commands type `[prefix]help`", color=self.color))
         await self.process_commands(message)
 
     async def mystbin(self, data):
