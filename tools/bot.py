@@ -26,15 +26,9 @@ async def get_prefix(bot, message : discord.Message):
     p = str(s['prefix'])
 
     if message.author.id == bot.owner_id:
-        try:
-            return commands.when_mentioned_or(p, "")(bot, message)
-        except:
-            return commands.when_mentioned_or("^", "")(bot, message)
+        return commands.when_mentioned_or(p, "")(bot, message)
     else:
-        try:
-            return commands.when_mentioned_or(p)(bot, message)
-        except:
-            return commands.when_mentioned_or("^")(bot, message)
+        return commands.when_mentioned_or(p)(bot, message)
 
 class Sirk(commands.Bot):
     """
