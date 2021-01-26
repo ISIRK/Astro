@@ -38,7 +38,7 @@ class Sirk(commands.Bot):
     """
     def __init__(self):
         super().__init__(        
-            command_prefix="^", #get_prefix,
+            command_prefix=get_prefix,
             intents=intents, case_insensitive=True, 
             allowed_mentions=discord.AllowedMentions(users=True, roles=True, everyone=False, replied_user=False),
             owner_id=542405601255489537,
