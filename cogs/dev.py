@@ -291,6 +291,7 @@ class dev(commands.Cog):
 
     @commands.command()
     @commands.is_owner()
+    @commands.bot_has_permissions(manage_webhooks=True)
     async def test(self,ctx, *, words):
         channel = ctx.channel
         i = await channel.create_webhook(name="Hook")
