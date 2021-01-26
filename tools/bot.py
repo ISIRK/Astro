@@ -25,7 +25,7 @@ async def get_prefix(bot, message : discord.Message):
     s = await bot.db.fetchrow(" SELECT prefix FROM guilds WHERE guildid = $1", message.guild.id)
     p = str(s['prefix'])
 
-    if p is None:
+    if p:
         return commands.when_mentioned_or("^")(bot, message)
     elif message.author.id == bot.owner_id:
         return commands.when_mentioned_or(p, "")(bot, message)
