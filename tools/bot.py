@@ -22,17 +22,16 @@ async def get_prefix(bot, message : discord.Message):
     '''
     Get Prefix
     '''
-    s = await bot.db.fetchrow(" SELECT prefix FROM guilds WHERE guildid = $1", message.guild.id)
-    if s is not None:
-        try:
-            p = s['prefix']
-            p = str(p)
-            return commands.when_mentioned_or(p)(bot, message)
-        except:
-            return commands.when_mentioned_or("^")(bot, message)
-    elif message.author.id == bot.owner_id:
-        return commands.when_mentioned_or("^", "")(bot, message)
+    try:
+        s = await bot.db.fetchrow(" SELECT prefix FROM guilds WHERE guildid = $1", message.guild.id)
+        p = s['prefix']
+        p = str(p)
+        return commands.when_mentioned_or(p)(bot, message)
+    except:
+        return commands.when_mentioned_or("^")(bot, message)
     else:
+        if message.author.id == bot.owner_id:
+            return commands.when_mentioned_or("^", "")(bot, message)
         return commands.when_mentioned_or("^")(bot, message)
 
 class Sirk(commands.Bot):
