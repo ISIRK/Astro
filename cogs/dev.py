@@ -299,10 +299,13 @@ class dev(commands.Cog):
                 i = await channel.create_webhook(name="Hook")
                 url = i.url
         await ctx.message.delete()
-        async with aiohttp.ClientSession() as session:
-            webhook = Webhook.from_url(str(url), adapter=AsyncWebhookAdapter(session))
-            await webhook.send(words, username=ctx.author.name, avatar_url=ctx.author.avatar_url)
-        return
+        try:
+            async with aiohttp.ClientSession() as session:
+                webhook = Webhook.from_url(str(url), adapter=AsyncWebhookAdapter(session))
+                await webhook.send(words, username=ctx.author.name, avatar_url=ctx.author.avatar_url)
+            return
+        except Exception as e:
+            await ctx.send("```py\n{e}```")
 
 def setup(bot):
     bot.add_cog(dev(bot))
