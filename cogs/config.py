@@ -206,6 +206,16 @@ class config(commands.Cog):
         embed.add_field(name=f"**Verify:** {on if role and vchannel is not None else off}", value=f"> {role.mention} {vchannel.mention}" if role and vchannel is not None else 'No Channel or Role Set', inline=False)
         await ctx.send(embed=embed)
 
+    @commands.command()
+    @commands.has_permissions(manage_guild=True)
+    async def prefix(self, ctx, prefix:str):
+        '''Change the command Prefix'''
+        try:
+            await self.bot.db.execute("UPDATE guilds SET prefix = $1 WHERE guildid = $2", str(prefix), ctx.guild.id)
+            await ctx.send(f'Set prefix to **{prefix}**.')
+        except Exception as e:
+            await ctx.send(f'Error in setting prefix.\n```py\nError:\n{e}```')
+
     @commands.group(aliases=['log'])
     @commands.has_permissions(manage_guild=True)
     async def logging(self, ctx):
