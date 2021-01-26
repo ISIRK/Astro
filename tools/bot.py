@@ -23,7 +23,7 @@ async def get_prefix(bot, message : discord.Message):
     Get Prefix
     '''
     s = await bot.db.fetchrow(" SELECT prefix FROM guilds WHERE guildid = $1", message.guild.id)
-    if s:
+    if s is not None:
         try:
             p = s['prefix']
             p = str(p)
