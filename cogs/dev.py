@@ -288,10 +288,21 @@ class dev(commands.Cog):
         except Exception as e:
             return await ctx.send(e)
 
-    @commands.is_owner()
     @commands.command()
-    async def test(self, ctx):
-        await ctx.send('Nothing Yet!')
+    @commands.is_owner()
+    async def test(self,ctx, *, words):
+        channel = ctx.channel
+        for i in await channel.webhooks():
+            if i.name == "Translations":
+                url = i.url
+            else:
+                i = await channel.create_webhook(name="Hook")
+                url = i.url
+        await ctx.message.delete()
+        async with aiohttp.ClientSession() as session:
+            webhook = Webhook.from_url(str(url), adapter=AsyncWebhookAdapter(session))
+            await webhook.send(words, username=ctx.author.name, avatar_url=ctx.author.avatar_url)
+        return
 
 def setup(bot):
     bot.add_cog(dev(bot))
