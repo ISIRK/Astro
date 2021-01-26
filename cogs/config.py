@@ -212,7 +212,7 @@ class config(commands.Cog):
         '''Change the command Prefix'''
         try:
             await self.bot.db.execute("UPDATE guilds SET prefix = $1 WHERE guildid = $2", str(prefix), ctx.guild.id)
-            await ctx.send(f'Set prefix to **{prefix}**.')
+            await ctx.send(f'Set the prefix to **`{prefix}`**')
             try:
                 await ctx.guild.me.edit(nick=f'[{prefix}] Sirk')
             except:
