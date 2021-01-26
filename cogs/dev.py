@@ -293,6 +293,7 @@ class dev(commands.Cog):
     @commands.is_owner()
     @commands.bot_has_permissions(manage_webhooks=True)
     async def test(self,ctx, *, words):
+        '''Make a custom webhook with your avatar, name, and a bot tag.'''
         channel = ctx.channel
         i = await channel.create_webhook(name="Hook")
         url = i.url
