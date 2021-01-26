@@ -213,6 +213,10 @@ class config(commands.Cog):
         try:
             await self.bot.db.execute("UPDATE guilds SET prefix = $1 WHERE guildid = $2", str(prefix), ctx.guild.id)
             await ctx.send(f'Set prefix to **{prefix}**.')
+            try:
+                await ctx.guild.me.edit(nick=f'[{prefix}] Sirk')
+            except:
+                pass
         except Exception as e:
             await ctx.send(f'Error in setting prefix.\n```py\nError:\n{e}```')
 
