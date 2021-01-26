@@ -106,8 +106,7 @@ class meta(commands.Cog):
     @commands.command()
     async def invite(self , ctx):
         '''Get the invite for the bot.'''
-        await ctx.message.add_reaction('\U0001f4ec')
-        await ctx.author.send('<https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot>')
+        await ctx.send('<https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=805694678&scope=bot>')
         
     @commands.command()
     async def privacy(self, ctx):
