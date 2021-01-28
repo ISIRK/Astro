@@ -154,7 +154,7 @@ class meta(commands.Cog):
                               f'Max File Size: **{round(guild.filesize_limit / 1048576)} MB**\n'
                               f'Bitrate: **{round(guild.bitrate_limit / 1000)} kbps**\n'
                               f'Max Emojis: **{guild.emoji_limit}**\n'
-                              f'Emojis: **{len(guild.emojis)}**', inline=False)
+                              f'Emojis: **{" ".join(str(e) for e in guild.emojis[:5])} + {len(guild.emojis) - 5} more**', inline=False)
 
         embed.add_field(name='**Channel Information:**',
                         value=f'AFK timeout: **{int(guild.afk_timeout / 60)}m**\n'
