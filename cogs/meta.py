@@ -176,19 +176,19 @@ class meta(commands.Cog):
         if member is None:
             member = ctx.author
             
-        roles = ' '.join([r.mention for r in member.roles if r != ctx.guild.default_role] or ['None'])
+        roles = ' '.join([r.mention + f"+ {len(member.roles) - 10} more" for r in member.roles[:10] if r != ctx.guild.default_role] or ['None'])
         shared = sum(g.get_member(member.id) is not None for g in self.bot.guilds)
         
         embed = discord.Embed(title=f"{member}", color=member.color)
         embed.add_field(name='**General:**',
-                        value=f'Name: `{member}`\n' 
-                              f'Bot: `{member.bot}`\n'
-                              f'Shared Guilds: `{shared}`\n'
-                              f'Account Created on: `{datetime.datetime.strftime(member.created_at, "%A %d %B %Y at %H:%M")}`', inline=False)
+                        value=f'Name: **{member}**\n' 
+                              f'Bot: **{"Yes" if member.bot else "No"}**\n'
+                              f'Shared Guilds: **{shared}**\n'
+                              f'Account Created on: **{datetime.datetime.strftime(member.created_at, "%A %d %B %Y at %H:%M")}**', inline=False)
 
         embed.add_field(name='**Guild related information:**',
-                        value=f'Joined guild: `{datetime.datetime.strftime(member.joined_at, "%A %d %B %Y at %H:%M")}`\n'
-                              f'Nickname: `{member.nick}`\n'
+                        value=f'Joined guild: **{datetime.datetime.strftime(member.joined_at, "%A %d %B %Y at %H:%M")}**\n'
+                              f'Nickname: **{member.nick}**\n'
                               f'Roles: {roles}', inline=False)
 
         embed.set_thumbnail(url=member.avatar_url_as(static_format='png'))
