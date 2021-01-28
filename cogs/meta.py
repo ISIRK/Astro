@@ -176,7 +176,7 @@ class meta(commands.Cog):
         if member is None:
             member = ctx.author
             
-        roles = ' '.join([r.mention + f"+ {len(member.roles) - 10} more" for r in member.roles[:10] if r != ctx.guild.default_role] or ['None'])
+        roles = ' '.join([r.mention for r in member.roles[:10] if r != ctx.guild.default_role] or ['None'])
         shared = sum(g.get_member(member.id) is not None for g in self.bot.guilds)
         
         embed = discord.Embed(title=f"{member}", color=member.color)
