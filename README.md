@@ -12,6 +12,8 @@ Sirk is a simple, easy to use, discord bot made to make your use of discord easy
 
 If you have any questions please either dm isirk#0001 or join our support server below.
 
+&nbsp;
+
 [Invite Link](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot)
 
 [Discord](https://discord.gg/7yZqHfG)
@@ -49,8 +51,8 @@ Syntax for Sirk:
 &nbsp;
 
 **Upcomming Features**
-- Custom Prefix
-- Wavelink/Lavalink Player for Music Commands
+- Todo Commands
+- New website
 - Optimizations
 
 &nbsp;
