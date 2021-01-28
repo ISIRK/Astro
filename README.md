@@ -28,11 +28,13 @@ Meta - Utility Commands
 
 Mod - Moderation Commands
 
-Logging - Loogging Commands
+Config - Loogging Commands
 
 Misc - Miscellaneous Commands
 
 Games - Game Commands
+
+Music - Music Commands
 
 &nbsp;
 
