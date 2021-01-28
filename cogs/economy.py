@@ -91,7 +91,7 @@ class economy(commands.Cog):
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
         if not s: return await ctx.send("That user doesn't have a bank account!")
         cash = s['cashbalance']
-        if cash is 0:
+        if cash == 0:
             await ctx.send('No Money in your wallet.')
         else:
             await self.bot.db.execute("UPDATE economy SET cashbalance = 0, bankbalance = cashbalance WHERE guildId = $1 and userId = $2", ctx.guild.id, ctx.author.id)

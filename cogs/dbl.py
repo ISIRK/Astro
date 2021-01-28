@@ -1,6 +1,11 @@
 import discord, json
 from discord.ext import commands, tasks
 
+File = "tools/config.json"
+with open(File) as f:
+    data = json.load(f)
+space = data['SPACE']
+
 class dbl(commands.Cog):
     '''Discord Bot Lists Commands/Tasks'''
     def __init__(self, bot):
@@ -14,8 +19,7 @@ class dbl(commands.Cog):
         https://botlist.space
         '''
         url = "https://api.botlist.space/v1/bots/751447995270168586"
-        token = "24981b666bc4a21833e516dba8da3760bea7f55b23613d6ddb85baacaec11e94cfca11893250be38fd4684bb1fcefaa9"
-        headers = {"Authorization": token, "Content-Type": 'application/json'}
+        headers = {"Authorization": space, "Content-Type": 'application/json'}
         try:
             r = await self.bot.session.post(url, headers=headers, data=json.dumps({'server_count': len(self.bot.guilds)}))
             result = json.loads(await r.text())
