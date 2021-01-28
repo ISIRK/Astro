@@ -1,6 +1,6 @@
 # Sirk - Discord Bot
   
-  [![Version](https://img.shields.io/badge/v2.0.1-7289DA?style=for-the-badge)](https://asksirk.com/bot)
+  [![Version](https://img.shields.io/badge/v2.0.1-blue?style=for-the-badge)](https://asksirk.com/bot)
   
   [![Discord](https://img.shields.io/discord/743121194911531110?color=7289DA&label=Sirk&logo=Discord&style=for-the-badge)](https://discord.gg/7yZqHfG)
   
