@@ -27,6 +27,8 @@ async def get_prefix(bot, message : discord.Message):
 
     if message.author.id == bot.owner_id:
         return commands.when_mentioned_or(p, "")(bot, message)
+    elif not message.guild:
+        pass
     else:
         return commands.when_mentioned_or(p)(bot, message)
 
@@ -58,6 +60,8 @@ class Sirk(commands.Bot):
     async def on_message(self, message: discord.Message):
         if message.author.bot:
             return
+        elif not message.guild:
+            pass
         elif (
             message.content == f"<@!{self.user.id}>"
             or message.content == f"<@{self.user.id}>"

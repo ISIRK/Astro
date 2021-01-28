@@ -21,7 +21,7 @@ SOFTWARE.
 
 '''
 
-import discord, os, io, datetime, time, json, asyncio, aiohttp, random, collections, mystbin
+import discord, os, io, datetime, time, json, asyncio, random, collections, mystbin
 from discord import Spotify
 from discord.user import User
 from discord.utils import get
@@ -35,7 +35,6 @@ class misc(commands.Cog):
     '''Miscellaneous Commands'''
     def __init__(self, bot):
         self.bot = bot
-        self.session = aiohttp.ClientSession()
         self.myst = mystbin.Client()
         
         
@@ -137,7 +136,7 @@ class misc(commands.Cog):
     async def weather(self, ctx, *, city_name:str):
         """Get the weather of a city/town by its name. State code is US only."""
         # Code By CraziiAce#0001
-        async with aiohttp.ClientSession() as session:
+        async with self.bot.session as session:
             url = "http://api.openweathermap.org/data/2.5/weather?q=" + city_name + "&appid=168ced82a72953d81d018f75eec64aa0&units=imperial"
             async with session.get(url) as response:
                 weather_response = await response.json()

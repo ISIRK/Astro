@@ -24,7 +24,7 @@ SOFTWARE.
 import discord
 from discord import Webhook, AsyncWebhookAdapter
 from discord.ext import commands, menus
-import os, io, json, psutil, aiohttp, collections, time, datetime, random, requests, asyncio
+import os, io, json, psutil, collections, time, datetime, random, requests, asyncio
 from datetime import datetime
 import subprocess
 from jishaku import codeblocks
@@ -157,12 +157,11 @@ class dev(commands.Cog):
     async def screenshot(self, ctx, url):
         '''Screenshot given website'''
         embed = discord.Embed(title = f"Screenshot of {url}", color=self.bot.color)
-        async with aiohttp.ClientSession() as session:
-            async with session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
-                res = await r.read()
-            embed.set_image(url="attachment://ss.png")
-            embed.set_footer(text=self.bot.footer)
-            await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
+        async with self.bot.session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
+            res = await r.read()
+        embed.set_image(url="attachment://ss.png")
+        embed.set_footer(text=self.bot.footer)
+        await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
     
     @commands.is_owner()
     @commands.command()
@@ -300,9 +299,8 @@ class dev(commands.Cog):
         url = i.url
         await ctx.message.delete()
         try:
-            async with aiohttp.ClientSession() as session:
-                webhook = Webhook.from_url(str(url), adapter=AsyncWebhookAdapter(session))
-                await webhook.send(words, username=ctx.author.name, avatar_url=ctx.author.avatar_url)
+            webhook = Webhook.from_url(str(url), adapter=AsyncWebhookAdapter(self.bot.session))
+            await webhook.send(words, username=ctx.author.name, avatar_url=ctx.author.avatar_url)
             return
         except Exception as e:
             await ctx.send(f"```py\n{e}```")
