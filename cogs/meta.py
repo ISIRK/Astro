@@ -147,8 +147,9 @@ class meta(commands.Cog):
         embed.add_field(name='**General:**',
                         value=f'Owner: **{guild.owner}**\n'
                               f'Created on: **{datetime.datetime.strftime(guild.created_at, "%A %d %B %Y at %H:%M")}**\n'
-                              f'<:member:758139554652749835> **{guild.member_count}**\n'
-                              f'<:boost4:724328585137225789> **Tier {guild.premium_tier}**\n'
+                              f'Members: **{guild.member_count}**\n'
+                              f'Bots: **{len([x for x in guild.members if x.bot])}**\n'
+                              f'Boost: **Tier {guild.premium_tier}**\n'
                               f'Region: **{guild.region}**\n'
                               f'Boosters: **{guild.premium_subscription_count}**\n'
                               f'Max File Size: **{round(guild.filesize_limit / 1048576)} MB**\n'
