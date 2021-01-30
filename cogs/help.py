@@ -11,7 +11,7 @@ class HelpCommand(commands.HelpCommand):
         })
 
     async def send_bot_help(self, mapping):
-        embed = discord.Embed(title='Command List', colour=self.context.bot.color)
+        embed = discord.Embed(title='Command List', url="https://asksirk.com/bot/commands", colour=self.context.bot.color)
         description = self.context.bot.description
         if description:
             embed.description = description
