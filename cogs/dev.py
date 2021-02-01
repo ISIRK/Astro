@@ -310,7 +310,7 @@ class dev(commands.Cog):
     async def votecheck(self, ctx):
         async with self.bot.session.get(f'https://top.gg/api//bots/{self.bot.user.id}/check?userId={ctx.author.id}') as resp:
             r = await resp.json()
-        v = r['voted']
+        v = r["voted"]
         if v:
             await ctx.send(f'{ctx.author.name} has voted.')
         else:
