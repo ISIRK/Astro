@@ -106,7 +106,7 @@ class economy(commands.Cog):
         await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE guildId = $2 and userId = $3", 1000, ctx.guild.id, ctx.author.id)
         await ctx.send("Collected **1,000** daily coins!")
 
-    @daily.error()
+    @daily.error
     async def daily_error(self, ctx, error):
         if isinstance(error, commands.CommandOnCooldown):
             await ctx.send(f"You have already collected your daily coins. Come back in **{error.retry_after:.2f}** seconds.")
