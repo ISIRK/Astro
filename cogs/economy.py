@@ -96,6 +96,21 @@ class economy(commands.Cog):
         else:
             await self.bot.db.execute("UPDATE economy SET cashbalance = 0, bankbalance = cashbalance+bankbalance WHERE guildId = $1 and userId = $2", ctx.guild.id, ctx.author.id)
             await ctx.send(f"Deposited ${cash} into the bank.")
+    
+    @commands.cooldown(1, 43200, BucketType.user)
+    @commands.command()
+    async def daily(self, ctx):
+        '''Get daily coins.'''
+        s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
+        if not s: return await ctx.send("That user doesn't have a bank account!")
+        await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE guildId = $2 and userId = $3", 1000, ctx.guild.id, ctx.author.id)
+        await ctx.send("Collected **1,000** daily coins!")
+
+    @daily.error()
+    async def daily_error(ctx, error):
+        if isinstance(error, commands.CommandOnCooldown):
+            await ctx.send(f"You have already collected your daily coins. Come back in **{error.retry_after:.2f}** seconds.")
+        
 
     @commands.cooldown(1,3,BucketType.user)
     @commands.group(brief="Main commands")
