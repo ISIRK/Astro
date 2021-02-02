@@ -103,7 +103,7 @@ class economy(commands.Cog):
         '''Get daily coins.'''
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
         if not s: return await ctx.send("That user doesn't have a bank account!")
-        await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE guildId = $2 and userId = $3", 1000, ctx.guild.id, ctx.author.id)
+        await self.bot.db.execute("UPDATE economy SET cashbalance = cashbalance+1000 WHERE guildId = $1 and userId = $2", ctx.guild.id, ctx.author.id)
         await ctx.send("Collected **1,000** daily coins!")
         
 
