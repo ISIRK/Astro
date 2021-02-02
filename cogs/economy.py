@@ -94,7 +94,7 @@ class economy(commands.Cog):
         if cash == 0:
             await ctx.send('No Money in your wallet.')
         else:
-            await self.bot.db.execute("UPDATE economy SET cashbalance = 0, bankbalance = cashbalance WHERE guildId = $1 and userId = $2", ctx.guild.id, ctx.author.id)
+            await self.bot.db.execute("UPDATE economy SET cashbalance = 0, bankbalance = cashbalance+bankbalance WHERE guildId = $1 and userId = $2", ctx.guild.id, ctx.author.id)
             await ctx.send(f"Deposited ${cash} into the bank.")
 
     @commands.cooldown(1,3,BucketType.user)
