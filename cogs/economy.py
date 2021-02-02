@@ -109,7 +109,7 @@ class economy(commands.Cog):
     @daily.error()
     async def daily_error(self, ctx, error):
         if isinstance(error, commands.CommandOnCooldown):
-            await ctx.send(f"You have already collected your daily coins. Come back in **{error.cooldown}** seconds.")
+            await ctx.send(f"You have already collected your daily coins. Come back in **{error.retry_after:.2f}** seconds.")
         
 
     @commands.cooldown(1,3,BucketType.user)
