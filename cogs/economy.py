@@ -107,7 +107,7 @@ class economy(commands.Cog):
         await ctx.send("Collected **1,000** daily coins!")
 
     @daily.error()
-    async def daily_error(ctx, error):
+    async def daily_error(self, ctx, error):
         if isinstance(error, commands.CommandOnCooldown):
             await ctx.send(f"You have already collected your daily coins. Come back in **{error.retry_after:.2f}** seconds.")
         
