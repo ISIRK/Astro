@@ -131,6 +131,26 @@ class misc(commands.Cog):
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
+    @commands.cooldown(1,3,BucketType.user)
+    @commands.command()
+    async def hot(self, ctx, *, user: discord.Member = None):
+        """ Returns a random percent for how hot is a discord user """
+        user = user or ctx.author
+
+        random.seed(user.id)
+        r = random.randint(1, 100)
+        hot = r / 1.17
+
+        emoji = "💔"
+        if hot > 25:
+            emoji = "❤"
+        if hot > 50:
+            emoji = "💖"
+        if hot > 75:
+            emoji = "💞"
+
+        await ctx.send(f"**{user.name}** is **{hot:.2f}%** hot {emoji}")
+
     @commands.cooldown(1,10,BucketType.user)
     @commands.command()
     async def weather(self, ctx, *, city_name:str):
