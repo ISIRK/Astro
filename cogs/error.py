@@ -21,7 +21,7 @@ SOFTWARE.
 
 '''
 
-import discord, json, datetime
+import discord, json, datetime, humanize
 from discord.ext.commands import Cog
 from discord.ext import commands
 
@@ -45,7 +45,7 @@ class error(Cog):
         elif isinstance(error, commands.BotMissingPermissions):
             await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         elif isinstance(error, discord.NotFound): await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
-        elif isinstance(error, commands.CommandOnCooldown): await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
+        elif isinstance(error, commands.CommandOnCooldown): await ctx.reply(embed = discord.Embed(title = f"You are on cooldown. Try again in {humanize.naturaldelta(datetime.timedelta(seconds=error.retry_after))}", color = discord.Color.red()))
         elif isinstance(error, commands.MaxConcurrencyReached): await ctx.reply(embed = discord.Embed(title = f"Command {ctx.command} is limited to `{error.number}` {'use' if error.number == 1 else 'uses'} per {error.per.name} at a time.", color = discord.Color.red()))
         elif isinstance(error, commands.CheckFailure): await ctx.reply(embed = discord.Embed(title = str(error), color = discord.Color.red()))
         else:
