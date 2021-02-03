@@ -77,7 +77,9 @@ class economy(commands.Cog):
     async def work(self, ctx):
         '''Work and get a random amount of money in between $1 and $100'''
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
-        if not s: return await ctx.send("That user doesn't have a bank account!")
+        if not s:
+            await ctx.send("That user doesn't have a bank account!")
+            await ctx.command.reset_cooldown()
         bal = s['cashbalance']
         pay = random.randint(1, 100)
         total = bal+pay
