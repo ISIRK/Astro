@@ -79,7 +79,7 @@ class economy(commands.Cog):
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not s:
             await ctx.send("That user doesn't have a bank account!")
-            await ctx.command.reset_cooldown()
+            ctx.command.reset_cooldown()
         bal = s['cashbalance']
         pay = random.randint(1, 100)
         total = bal+pay
