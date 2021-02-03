@@ -38,20 +38,20 @@ class economy(commands.Cog):
     @commands.guild_only()
     async def register(self, ctx):
         """Registers a bank account bound to the guild with $50"""
-        s = await self.bot.db.fetchrow("SELECT * FROM economy WHERE userId = $1 and guildId = $2", ctx.author.id, ctx.guild.id)
+        s = await self.bot.db.fetchrow("SELECT * FROM economy WHERE userId = $1", ctx.author.id)
         if s:
             return await ctx.send(embed = discord.Embed(description = "You already have an account!", color=self.bot.color))
         elif not s:
-            await self.bot.db.execute("INSERT INTO economy(userId, guildId, cashBalance, bankBalance) VALUES($1, $2, $3, $4)", ctx.author.id, ctx.guild.id, 50, 0)
+            await self.bot.db.execute("INSERT INTO economy(userId, cashBalance, bankBalance) VALUES($1, $2, $3)", ctx.author.id, 50, 0)
             await ctx.send(embed = discord.Embed(description = "Bank account register succesful, to remove your account run: `delete`", color=self.bot.color))
     
     @commands.command(name = "delete")
     @commands.guild_only()
     async def delete_account(self, ctx):
         """Closes your account in this guild"""
-        s = await self.bot.db.fetchrow("SELECT * FROM economy WHERE userId = $1 and guildId = $2", ctx.author.id, ctx.guild.id)
+        s = await self.bot.db.fetchrow("SELECT * FROM economy WHERE userId = $1", ctx.author.id)
         if s:
-            await self.bot.db.execute("DELETE FROM economy WHERE userId = $1 AND guildId = $2", ctx.author.id, ctx.guild.id)
+            await self.bot.db.execute("DELETE FROM economy WHERE userId = $1", ctx.author.id)
             await ctx.send(embed = discord.Embed(description = "Successfully closed your bank account for this guild.", color=self.bot.color))
         if not s:
             return await ctx.send(embed = discord.Embed(description = "You don't have an account!", color=self.bot.color))
@@ -60,7 +60,7 @@ class economy(commands.Cog):
     async def balance(self, ctx, user: discord.Member = None):
         '''See the balance of yourself or the mentioned user'''
         if not user: user = ctx.author
-        s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, user.id)
+        s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", user.id)
         if not s: return await ctx.send("That user doesn't have a bank account!")
         bank, cash = s['bankbalance'], s['cashbalance']
         if not bank: bank = 0
@@ -76,34 +76,34 @@ class economy(commands.Cog):
     @commands.command()
     async def work(self, ctx):
         '''Work and get a random amount of money in between $1 and $100'''
-        s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
+        s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not s: return await ctx.send("That user doesn't have a bank account!")
         bal = s['cashbalance']
         pay = random.randint(1, 100)
         total = bal+pay
-        await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE guildId = $2 and userId = $3", total, ctx.guild.id, ctx.author.id)
+        await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", total, ctx.author.id)
         await ctx.send(f'You worked and gained ${pay}!')
         
     @commands.cooldown(1,3,BucketType.user)
     @commands.command(aliases=['dep'])
     async def deposit(self, ctx):
         '''Deposit all of your money into the bank.'''
-        s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
+        s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not s: return await ctx.send("That user doesn't have a bank account!")
         cash = s['cashbalance']
         if cash == 0:
             await ctx.send('No Money in your wallet.')
         else:
-            await self.bot.db.execute("UPDATE economy SET cashbalance = 0, bankbalance = cashbalance+bankbalance WHERE guildId = $1 and userId = $2", ctx.guild.id, ctx.author.id)
+            await self.bot.db.execute("UPDATE economy SET cashbalance = 0, bankbalance = cashbalance+bankbalance WHERE userId = $1", ctx.author.id)
             await ctx.send(f"Deposited ${cash} into the bank.")
     
     @commands.cooldown(1, 43200, BucketType.user)
     @commands.command()
     async def daily(self, ctx):
         '''Get daily coins.'''
-        s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE guildid = $1 and userid = $2", ctx.guild.id, ctx.author.id)
+        s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not s: return await ctx.send("That user doesn't have a bank account!")
-        await self.bot.db.execute("UPDATE economy SET cashbalance = cashbalance+1000 WHERE guildId = $1 and userId = $2", ctx.guild.id, ctx.author.id)
+        await self.bot.db.execute("UPDATE economy SET cashbalance = cashbalance+1000 WHERE userId = $1", ctx.author.id)
         await ctx.send("Collected **1,000** daily coins!")
         
 
