@@ -37,7 +37,7 @@ class economy(commands.Cog):
     @commands.command()
     @commands.guild_only()
     async def register(self, ctx):
-        """Registers a bank account bound to the guild with $50"""
+        """Registers a bank account with $50"""
         s = await self.bot.db.fetchrow("SELECT * FROM economy WHERE userId = $1", ctx.author.id)
         if s:
             return await ctx.send(embed = discord.Embed(description = "You already have an account!", color=self.bot.color))
@@ -48,11 +48,11 @@ class economy(commands.Cog):
     @commands.command(name = "delete")
     @commands.guild_only()
     async def delete_account(self, ctx):
-        """Closes your account in this guild"""
+        """Closes your account"""
         s = await self.bot.db.fetchrow("SELECT * FROM economy WHERE userId = $1", ctx.author.id)
         if s:
             await self.bot.db.execute("DELETE FROM economy WHERE userId = $1", ctx.author.id)
-            await ctx.send(embed = discord.Embed(description = "Successfully closed your bank account for this guild.", color=self.bot.color))
+            await ctx.send(embed = discord.Embed(description = "Successfully closed your bank account.", color=self.bot.color))
         if not s:
             return await ctx.send(embed = discord.Embed(description = "You don't have an account!", color=self.bot.color))
     
