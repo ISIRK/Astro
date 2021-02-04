@@ -120,7 +120,7 @@ class economy(commands.Cog):
         lucky = random.choice([False, True])
 
         if amount > a['cashbalance']:
-            await ctx.send("You can't bet what you dont have.')
+            await ctx.send("You can't bet what you dont have.")
         elif amount < a['cashbalance']:
             if lucky:
                 await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']+amount, ctx.author.id)
