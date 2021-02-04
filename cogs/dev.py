@@ -169,7 +169,7 @@ class dev(commands.Cog):
         '''Evaluate code'''
         cog = self.bot.get_cog("Jishaku")
         res = codeblocks.codeblock_converter(code)
-        output = await cog.jsk_python(ctx, argument=res)
+        output = return await cog.jsk_python(ctx, argument=res)
         await ctx.send(embed=discord.Embed(title="Eval", description=f"**Output:**\n{output.content}", color=self.bot.color))
 
     @commands.command()
