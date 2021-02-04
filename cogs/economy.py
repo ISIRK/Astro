@@ -61,7 +61,7 @@ class economy(commands.Cog):
         if not cash: cash = 0
         embed = discord.Embed(
             title = f"{str(user.name)}'s balance:",
-            description = f"💰 Cash: ${cash}\n🏦 Bank: ${bank}",
+            description = f"💰 Cash: ${cash:,}\n🏦 Bank: ${bank:,}",
             color = self.bot.color
         )
         await ctx.send(embed = embed)
