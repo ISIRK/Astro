@@ -230,7 +230,7 @@ class misc(commands.Cog):
         Get information about a pypi package
         '''
         data = await self.bot.session.request(
-            "https://pypi.org/pypi/"+ "-".join(package) +"/json",
+            url="https://pypi.org/pypi/"+ "-".join(package) +"/json",
             json=True
         )
         
