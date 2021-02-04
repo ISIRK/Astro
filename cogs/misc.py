@@ -229,9 +229,8 @@ class misc(commands.Cog):
         '''
         Get information about a pypi package
         '''
-        data = await self.bot.session.request(
-            url="https://pypi.org/pypi/"+ "-".join(package) +"/json",
-            json=True
+        data = await self.bot.session.get(
+            "https://pypi.org/pypi/"+ "-".join(package) +"/json"
         )
         
         await ctx.embed(title=data['info']['name'], description=data['info']['summary'], fields={
