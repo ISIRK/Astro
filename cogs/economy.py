@@ -22,11 +22,6 @@ from discord.ext import commands
 import random, json
 from discord.ext.commands.cooldowns import BucketType
 
-class Jobs:
-    
-    def beg(self, balance):
-        money = random.randint()
-
 
 class economy(commands.Cog):
     '''Economy Commands'''
