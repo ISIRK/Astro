@@ -88,7 +88,7 @@ class economy(commands.Cog):
 
     @commands.cooldown(1,60,BucketType.user)
     @commands.command()
-    async def rob(self, ctx, * user: discord.User):
+    async def rob(self, ctx, *, user: discord.User):
         '''
         Rob another user
         '''
