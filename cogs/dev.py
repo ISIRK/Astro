@@ -170,7 +170,7 @@ class dev(commands.Cog):
         cog = self.bot.get_cog("Jishaku")
         res = codeblocks.codeblock_converter(code)
         output = await cog.jsk_python(ctx, argument=res)
-        await ctx.send(embed=discord.Embed(title="Eval", description=f"**Output:**\n{output}", color=self.bot.color))
+        await ctx.send(embed=discord.Embed(title="Eval", description=f"**Output:**\n{output.content}", color=self.bot.color))
 
     @commands.command()
     async def sudo(self, ctx, *, command:str):
