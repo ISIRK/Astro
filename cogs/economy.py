@@ -100,11 +100,11 @@ class economy(commands.Cog):
         if not u:
             await ctx.send("That user doesn't have a bank account!")
         
-        c = 1#random.randint(100, 200)
+        c = random.randint(100, 200)
         
-        if u['cashbalance'] < c:
+        if u['cashbalance'] <= c:
             await ctx.send(f"<:PepePoint:759934591590203423> **{user}** doesn't have enough money. Try robbing someone with more money.")
-        else:
+        elif u['cashbalance'] > c:
             try:
                 await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']-c, user.id)
                 await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", u['cashbalance']+c, ctx.author.id)
