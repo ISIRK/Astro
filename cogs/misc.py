@@ -224,5 +224,23 @@ class misc(commands.Cog):
     async def bossbadi(self, ctx):
         await ctx.reply('bossbadi is a cool dude and a great bot dev')
 
+    @commands.command()
+    async def pypi(self, ctx, *, package):
+        '''
+        Get information about a pypi package
+        '''
+        data = await self.bot.session.request(
+            "https://pypi.org/pypi/"+ "-".join(args) +"/json",
+            json=True
+        )
+        
+        nl = "\n"
+        await ctx.embed(title=data['info']['name'], description=data['info']['summary'], fields={
+            "Links": f"**Home Page: **{'[click here]('+data['info']['home_page']+')' if data['info']['home_page'] else '`<no links available>`'}\n**Download Link: **{'[click here]('+data['info']['download_url']+')' if data['info']['download_url'] else '`<no links available>`'}",
+            "Author": f"{data['info']['author']} {'('+data['info']['author_email']+')' if data['info']['author_email'] else ''}\n",
+            "Version": f"**Current Version: **[{data['info']['version']}]({data['info']['release_url']})\n**Uploaded at: **{ctx.bot.util.timestamp(data['releases'][data['info']['version']][0]['upload_time'])}",
+            "Keywords": data['info']['keywords'].replace(',', ', ') if data['info']['keywords'] else '`<no keywords>`'
+        }, url=data['info']['package_url'])
+
 def setup(bot):
     bot.add_cog(misc(bot))
