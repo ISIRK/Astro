@@ -102,7 +102,7 @@ class economy(commands.Cog):
         
         c = random.randint(100, 200)
         
-        if u['cashbalance'] <= c:
+        if u['cashbalance'] < 400:
             await ctx.send(f"<:PepePoint:759934591590203423> **{user}** doesn't have enough money. Try robbing someone with more money.")
         elif u['cashbalance'] > c:
             try:
