@@ -164,7 +164,7 @@ class economy(commands.Cog):
 
     @commands.command()
     @commands.is_owner()
-    async def give(self, ctx, user: discord.User, amount: int):
+    async def take(self, ctx, user: discord.User, amount: int):
         '''
         Take money from someone
         '''
