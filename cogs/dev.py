@@ -330,8 +330,9 @@ class dev(commands.Cog):
                 return match.group(1)
             # couldn't match
             return argument
-
-    @admin.command(name="neweval")
+    
+    @commands.is_owner()
+    @commands.command(name="neweval")
     async def _eval(self, ctx, *, code: StripCodeblocks):
         '''
         Evaluates code. Inspired by [R. Danny's eval](https://github.com/Rapptz/RoboDanny/blob/rewrite/cogs/admin.py#L217).
