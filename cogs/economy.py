@@ -100,7 +100,7 @@ class economy(commands.Cog):
         if not u:
             await ctx.send("That user doesn't have a bank account!")
         
-        c = random.randint(100, 200)
+        c = 1#random.randint(100, 200)
         
         if u['cashbalance'] < c:
             await ctx.send(f"<:PepePoint:759934591590203423> **{user}** doesn't have enough money. Try robbing someone with more money.")
@@ -147,6 +147,8 @@ class economy(commands.Cog):
 
         if ctx.invoked_subcommand is None:
             await ctx.send(embed=embed)
+
+    #Owner Only
 
     @commands.command()
     @commands.is_owner()
