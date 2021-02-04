@@ -315,7 +315,62 @@ class dev(commands.Cog):
             await ctx.send(f'{ctx.author.name} has voted.')
         else:
             await ctx.send(f'{ctx.author.name} has not voted.')
-        
+
+    class StripCodeblocks(commands.Converter):
+        async def convert(self, ctx, argument):
+            double_codeblock = re.compile(r"```(.*\n)?(.+)```", flags=re.IGNORECASE)
+            inline_codeblock = re.compile(r"`(.+)`", flags=re.IGNORECASE)
+            # first, try double codeblock
+            match = double_codeblock.fullmatch(argument)
+            if match:
+                return match.group(2)
+            # try inline codeblock
+            match = inline_codeblock.fullmatch(argument)
+            if match:
+                return match.group(1)
+            # couldn't match
+            return argument
+
+    @admin.command(name="neweval")
+    async def _eval(self, ctx, *, code: StripCodeblocks):
+        '''
+        Evaluates code. Inspired by [R. Danny's eval](https://github.com/Rapptz/RoboDanny/blob/rewrite/cogs/admin.py#L217).
+        '''
+        environment = {
+            "ctx": ctx,
+            "bot": ctx.bot,
+            "author": ctx.author,
+            "channel": ctx.channel,
+            "guild": ctx.guild,
+            "message": ctx.message
+        }
+        stdout = io.StringIO()
+        code = textwrap.indent(code, prefix="\t")
+        eval_func = f"async def eval_func():\n{code}"
+
+        try:
+            exec(eval_func, environment)
+        except Exception as e:
+            with suppress(discord.HTTPException):
+                await ctx.message.add_reaction("❗")
+            return await ctx.send(f"```py\n{e.__class__.__name__}: {e}```")
+
+        eval_func = environment["eval_func"]
+        try:
+            with redirect_stdout(stdout):
+                val = await eval_func()
+        except Exception as e:
+            with suppress(discord.HTTPException):
+                await ctx.message.add_reaction("‼️")
+            tb = "".join(traceback.format_exception(type(e), e, e.__traceback__))
+            return await ctx.author.send(f"```py\n{tb}```")
+
+        with suppress(discord.HTTPException):
+            await ctx.message.add_reaction("✅")
+        embed = discord.Embed(title="Stdout", description=f"```py\n{stdout.getvalue() or 'None'}```",
+                              colour=self.bot.color)
+        embed.add_field(name="Return Value", value=f"```py\n{val or 'None'}```")
+        await ctx.send(embed=embed)  
 
 def setup(bot):
     bot.add_cog(dev(bot))
