@@ -27,7 +27,6 @@ class economy(commands.Cog):
     '''Economy Commands'''
     def __init__(self, bot):
         self.bot = bot
-        self.jobs = Jobs()
     
     @commands.command()
     @commands.guild_only()
