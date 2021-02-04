@@ -92,7 +92,7 @@ class economy(commands.Cog):
         '''
         Rob another user
         '''
-        user = ctx.guild.get_user(user)
+        user = ctx.guild.get_member(user)
         a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not a:
             await ctx.send("You don't have a bank account!")
