@@ -88,11 +88,11 @@ class economy(commands.Cog):
 
     @commands.cooldown(1,60,BucketType.user)
     @commands.command()
-    async def rob(self, ctx, * user: discord.Member):
+    async def rob(self, ctx, * user: discord.User):
         '''
         Rob another user
         '''
-        user = ctx.guild.get_member(user)
+        user = self.bot.get_user(user.id)
         a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not a:
             await ctx.send("You don't have a bank account!")
