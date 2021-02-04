@@ -49,7 +49,11 @@ class dev(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
-    @commands.is_owner()
+    async def cog_check(self, ctx):
+        if not await self.bot.owner_id(ctx.author.id):
+            raise commands.NotOwner
+        return True
+        
     @commands.command()
     async def load(self, ctx, name: str):
         """Loads an extension. """
@@ -59,7 +63,6 @@ class dev(commands.Cog):
             return await ctx.send(f"```py\n{e}```")
         await ctx.send(f"📥 Loaded extension **`cogs/{name}.py`**")
 
-    @commands.is_owner()
     @commands.command(aliases=['r'])
     async def reload(self, ctx, name: str):
         """Reloads an extension. """
@@ -71,7 +74,6 @@ class dev(commands.Cog):
         except Exception as e:
             return await ctx.send(f"```py\n{e}```")
 
-    @commands.is_owner()
     @commands.command()
     async def unload(self, ctx, name: str):
         """Unloads an extension. """
@@ -81,7 +83,6 @@ class dev(commands.Cog):
             return await ctx.send(f"```py\n{e}```")
         await ctx.send(f"📤 Unloaded extension **`cogs/{name}.py`**")
     
-    @commands.is_owner()
     @commands.command(aliases=['ra'])
     async def reloadall(self, ctx):
         """Reloads all extensions. """
@@ -104,14 +105,12 @@ class dev(commands.Cog):
         await ctx.message.add_reaction('🔁')
 
     @commands.command(aliases=['s'])
-    @commands.is_owner()
     async def sync(self, ctx):
         """Sync with GitHub"""
         out = subprocess.check_output("git pull", shell=True)
         await ctx.send(f"```{out.decode('utf-8')}```")
         await ctx.message.add_reaction("🔁")
 
-    @commands.is_owner()
     @commands.command()
     async def leaveguildanddontchokeisirk(self, ctx):
         '''[Pain](https://canary.discord.com/channels/336642139381301249/381963689470984203/779527415307173909)'''
@@ -120,7 +119,6 @@ class dev(commands.Cog):
         await ctx.guild.leave()
     
     @commands.command()
-    @commands.is_owner()
     async def status(self, ctx, kwarg: int, *, status: str):
         '''Playing, Watching, Listening, Reset'''
         if kwarg == 1:
@@ -140,7 +138,6 @@ class dev(commands.Cog):
             await self.bot.change_presence(status=discord.Status.online)
             await ctx.send(f'Reset Status')
         
-    @commands.is_owner()
     @commands.command()
     async def dm(self , ctx, user : discord.Member, *, content):
         '''Dm a Member'''
@@ -152,7 +149,6 @@ class dev(commands.Cog):
         await user.send(embed=embed)
         await ctx.send(f"<:comment:726779670514630667> Message sent to {user}")
         
-    @commands.is_owner()
     @commands.command(aliases = ["ss"])
     async def screenshot(self, ctx, url):
         '''Screenshot given website'''
@@ -163,13 +159,11 @@ class dev(commands.Cog):
         embed.set_footer(text=self.bot.footer)
         await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
     
-    @commands.is_owner()
     @commands.command()
     async def say(self, ctx, *, content:str):
         '''Make the bot say something'''
         await ctx.send(content)
           
-    @commands.is_owner()
     @commands.command(aliases=['e'])
     async def eval(self, ctx, *, code: str):
         '''Evaluate code'''
@@ -177,14 +171,12 @@ class dev(commands.Cog):
         res = codeblocks.codeblock_converter(code)
         await cog.jsk_python(ctx, argument=res)
 
-    @commands.is_owner()
     @commands.command()
     async def sudo(self, ctx, *, command:str):
         '''Sudo command'''
         cog = self.bot.get_cog("Jishaku")
         await cog.jsk_sudo(ctx, command_string=command)
         
-    @commands.is_owner()
     @commands.command()
     async def nick(self, ctx, *, name=None):
         if name is None:
@@ -197,7 +189,6 @@ class dev(commands.Cog):
             except discord.HTTPException as err:
                 await ctx.send(f"```{err}```")
         
-    @commands.is_owner()
     @commands.command()
     async def cogs(self, ctx):
         s = ""
@@ -207,7 +198,6 @@ class dev(commands.Cog):
         embed.set_footer(text=self.bot.footer)
         await ctx.send(embed=embed)
       
-    @commands.is_owner()
     @commands.command(aliases=['bp'])
     async def botpurge(self, ctx, limit=50):
         channel = ctx.message.channel
@@ -218,7 +208,6 @@ class dev(commands.Cog):
         deleted = await channel.purge(limit=limit, check=is_me, bulk=False)
         await channel.send(f"I have deleted `{len(deleted)}` out of the `{limit}` requested messages.", delete_after=10)
 
-    @commands.is_owner()
     @commands.command()
     async def get_invite(self, ctx, id: int):
         guild = self.bot.get_guild(id)
@@ -233,14 +222,12 @@ class dev(commands.Cog):
 
         await ctx.author.send(invite)
 
-    @commands.is_owner()
     @commands.command()
     async def reply(self, ctx, messageId, *, reply = None):
         if not reply: return await ctx.reply("You didn't provide a reply!")
         e = await ctx.fetch_message(messageId) 
         await e.reply(reply)
     
-    @commands.is_owner()
     @commands.command()
     async def sql(self, ctx, *, query):
         """Makes an sql SELECT query"""
@@ -252,7 +239,6 @@ class dev(commands.Cog):
         except menus.MenuError as f:
             await ctx.send(f)
 
-    @commands.is_owner()
     @commands.command(aliases=['logout'])
     async def shutdown(self, ctx):
         await ctx.send("Shutting Down")
@@ -260,7 +246,6 @@ class dev(commands.Cog):
         await self.bot.db.close()
         await self.bot.session.close()
             
-    @commands.is_owner()
     @commands.group(invoke_without_command=True)
     async def todo(self, ctx):
         """Todo Commands"""
@@ -269,7 +254,6 @@ class dev(commands.Cog):
         p = Simple(entries=list, per_page=10)
         await p.start(ctx)
             
-    @commands.is_owner()
     @todo.command()
     async def add(self, ctx, *, thing:str):
         '''Add something to the todo list'''
@@ -279,7 +263,6 @@ class dev(commands.Cog):
         except Exception as e:
             return await ctx.send(e)
 
-    @commands.is_owner()
     @todo.command(aliases=['remove'])
     async def delete(self, ctx, *, thing:str):
         '''Delete an item from your todo list'''
@@ -290,7 +273,6 @@ class dev(commands.Cog):
             return await ctx.send(e)
 
     @commands.command()
-    @commands.is_owner()
     @commands.bot_has_permissions(manage_webhooks=True)
     async def test(self,ctx, *, words):
         '''Make a custom webhook with your avatar, name, and a bot tag.'''
@@ -305,7 +287,6 @@ class dev(commands.Cog):
         except Exception as e:
             await ctx.send(f"```py\n{e}```")
 
-    @commands.is_owner()
     @commands.command()
     async def votecheck(self, ctx):
         async with self.bot.session.get(f'https://top.gg/api//bots/{self.bot.user.id}/check?userId={ctx.author.id}') as resp:
