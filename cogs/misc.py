@@ -230,11 +230,10 @@ class misc(commands.Cog):
         Get information about a pypi package
         '''
         data = await self.bot.session.request(
-            "https://pypi.org/pypi/"+ "-".join(args) +"/json",
+            "https://pypi.org/pypi/"+ "-".join(package) +"/json",
             json=True
         )
         
-        nl = "\n"
         await ctx.embed(title=data['info']['name'], description=data['info']['summary'], fields={
             "Links": f"**Home Page: **{'[click here]('+data['info']['home_page']+')' if data['info']['home_page'] else '`<no links available>`'}\n**Download Link: **{'[click here]('+data['info']['download_url']+')' if data['info']['download_url'] else '`<no links available>`'}",
             "Author": f"{data['info']['author']} {'('+data['info']['author_email']+')' if data['info']['author_email'] else ''}\n",
