@@ -85,6 +85,31 @@ class economy(commands.Cog):
         total = bal+pay
         await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", total, ctx.author.id)
         await ctx.send(f'You worked and gained ${pay}!')
+
+    @commands.cooldown(1,60,BucketType.user)
+    @commands.command()
+    async def rob(self, ctx, * user: discord.User):
+        '''
+        Rob another user
+        '''
+        user = self.bot.get_user(user)
+        a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
+        if not a:
+            await ctx.send("You don't have a bank account!")
+        u = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", user.id)
+        if not u:
+            await ctx.send("That user doesn't have a bank account!")
+        
+        c = random.choice(100, 200)
+        
+        if u['cashbalance'] < c:
+            await ctx.send(f"<:PepePoint:759934591590203423> {user} doesn't have enough money. Try robbing someone with more money.")
+        try:
+            await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']-c, user.id)
+            await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", u['cashbalance']+c, ctx.author.id)
+            await ctx.send(f'You stole ${c} from **{user.name}**')
+        except Exception as e:
+            await ctx.send(f'```py\n{e}```')
         
     @commands.cooldown(1,3,BucketType.user)
     @commands.command(aliases=['dep'])
@@ -107,7 +132,6 @@ class economy(commands.Cog):
         if not s: return await ctx.send("That user doesn't have a bank account!")
         await self.bot.db.execute("UPDATE economy SET cashbalance = cashbalance+1000 WHERE userId = $1", ctx.author.id)
         await ctx.send("Collected **1,000** daily coins!")
-        
 
     @commands.cooldown(1,3,BucketType.user)
     @commands.group(brief="Main commands")
