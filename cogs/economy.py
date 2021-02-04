@@ -104,12 +104,13 @@ class economy(commands.Cog):
         
         if u['cashbalance'] < c:
             await ctx.send(f"<:PepePoint:759934591590203423> {user} doesn't have enough money. Try robbing someone with more money.")
-        try:
-            await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']-c, user.id)
-            await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", u['cashbalance']+c, ctx.author.id)
-            await ctx.send(f'You stole ${c} from **{user.name}**')
-        except Exception as e:
-            await ctx.send(f'```py\n{e}```')
+        else:
+            try:
+                await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']-c, user.id)
+                await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", u['cashbalance']+c, ctx.author.id)
+                await ctx.send(f'You stole ${c} from **{user.name}**')
+            except Exception as e:
+                await ctx.send(f'```py\n{e}```')
         
     @commands.cooldown(1,3,BucketType.user)
     @commands.command(aliases=['dep'])
