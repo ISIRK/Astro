@@ -50,9 +50,8 @@ class dev(commands.Cog):
         self.bot = bot
         
     async def cog_check(self, ctx):
-        if ctx.author.id is not self.bot.owner_id:
+        if ctx.author.id != self.bot.owner_id:
             raise commands.NotOwner
-        return True
         
     @commands.command()
     async def load(self, ctx, name: str):
