@@ -148,5 +148,18 @@ class economy(commands.Cog):
         if ctx.invoked_subcommand is None:
             await ctx.send(embed=embed)
 
+    @commands.command()
+    @commands.is_owner()
+    async def give(self, ctx, user: discord.User, amount: int):
+        '''
+        Give someone money
+        '''
+        user = self.bot.get_user(user.id)
+        a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", user.id)
+        if not a:
+            await ctx.send(f"{user.name} doesn't have a bank account!")
+        else:
+            await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", amount, user.id)
+
 def setup(bot):
     bot.add_cog(economy(bot))
