@@ -111,7 +111,29 @@ class economy(commands.Cog):
                 await ctx.send(f'You stole ${c} from **{user.name}**')
             except Exception as e:
                 await ctx.send(f'```py\n{e}```')
+
+    @commands.cooldown(1,60,BucketType.user)
+    @commands.command()
+    async def bet(self, ctx, amount: int):
+        '''
+        Bet a certain amount of money
+        '''
+        a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
+        if not a:
+            await ctx.send("You don't have a bank account!")
         
+        lucky = random.choice([False, True])
+
+        if amount > a['cashbalance']:
+            await ctx.send("You can't bet what you dont have.')
+        elif amount < a['cashbalance']:
+            if lucky:
+                await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']+amount, ctx.author.id)
+                await ctx.send(f"You got lucky and won ${amount}!")
+            else:
+                await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']-amount, ctx.author.id)
+                await ctx.send(f"Fate doesn't like you, you lost ${amount}.")
+
     @commands.cooldown(1,3,BucketType.user)
     @commands.command(aliases=['dep'])
     async def deposit(self, ctx):
