@@ -262,12 +262,15 @@ class music(commands.Cog):
         search: str [Required]
             The song to search and retrieve using YTDL. This could be a simple search, an ID or URL.
         """
-        await ctx.trigger_typing()
 
         vc = ctx.voice_client
 
         if not vc:
-            await ctx.invoke(self.connect_)
+            channel = ctx.author.voice.channel
+            try:
+                await channel.connect()
+            except Exception as e:
+                await ctx.send(f"Error in connecting to channel\n```py\nError:\n{e}```")
 
         player = self.get_player(ctx)
 
