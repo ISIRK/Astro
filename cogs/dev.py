@@ -24,7 +24,7 @@ SOFTWARE.
 import discord
 from discord import Webhook, AsyncWebhookAdapter
 from discord.ext import commands, menus
-import os, io, json, psutil, collections, time, datetime, random, requests, asyncio
+import os, io, json, psutil, collections, time, datetime, random, requests, asyncio, re
 from datetime import datetime
 import subprocess
 from jishaku import codeblocks
