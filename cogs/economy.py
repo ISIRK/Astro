@@ -237,7 +237,7 @@ class economy(commands.Cog):
         '''A shop to buy things with your coins. WIP'''
         
         embed = discord.Embed(title=f"{ctx.guild.name}'s Shop", description="This command is a work in progress.", color=self.bot.color)
-        embed.add_field(name="`1` - Multiplier", value="💰 Multiply your earnings when you work!\n> Cost: **$100,000**", inline=False)
+        embed.add_field(name="`0` - Multiplier", value="💰 Multiply your earnings when you work!\n> Cost: **$100,000**", inline=False)
         embed.add_field(name="SubCommands", value="`shop` - This Command\n`buy` - Buy and item.", inline=False)
         embed.set_footer(text=self.bot.footer)
         embed.set_author(name="Shop", icon_url=ctx.guild.icon_url)
