@@ -68,6 +68,10 @@ class economy(commands.Cog):
                 description = f"💰 Cash: ${cash:,}\n🏦 Bank: ${bank:,}",
                 color = self.bot.color
             )
+            if s['inv']:
+                embed.add_field(name="Inventory", value=''.join[f"\n{thing}" for thing in s['inv']]
+            else:
+                pass
             await ctx.send(embed = embed)
 
     @commands.cooldown(1,120,BucketType.user)
