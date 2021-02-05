@@ -150,15 +150,6 @@ class economy(commands.Cog):
         if not s: return await ctx.send("That user doesn't have a bank account!")
         await self.bot.db.execute("UPDATE economy SET cashbalance = cashbalance+1000 WHERE userId = $1", ctx.author.id)
         await ctx.send("Collected **1,000** daily coins!")
-
-    @commands.command(aliases=['lb'])
-    async def leaderboard(self, ctx):
-        '''
-        See the global leaderboard
-        '''
-        s = await self.bot.db.fetchrow("SELECT userid FROM economy ORDER BY bankbalance+cashbalance LIMIT 10")
-        p = Simple(entries=s, per_page=10)
-        await p.start(ctx)
         
 
     @commands.cooldown(1,3,BucketType.user)
