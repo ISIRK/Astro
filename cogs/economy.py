@@ -259,7 +259,7 @@ class economy(commands.Cog):
                 if a['bankbalance'] < 100000:
                     await ctx.send("You dont have enought money for this item.")
                 else:
-                    inv = a['inv'] += ['Multiplier']
+                    inv = a['inv'].join(['Multiplier'])
                     await self.bot.db.execute("UPDATE economy SET inv = $1 WHERE userId = $2", inv, ctx.author.id)
             else:
                 await ctx.send('Invalid product.')
