@@ -93,10 +93,10 @@ class economy(commands.Cog):
         '''
         user = self.bot.get_user(user.id)
         a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
+        u = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", user.id)
         if not a:
             await ctx.send("You don't have a bank account!")
             ctx.command.reset_cooldown(ctx)
-        u = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", user.id)
         elif not u:
             await ctx.send("That user doesn't have a bank account!")
             ctx.command.reset_cooldown(ctx)
