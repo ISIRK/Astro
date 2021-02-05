@@ -164,7 +164,7 @@ class economy(commands.Cog):
             await ctx.send('No Money in your bank.')
         elif amount is None:
             await self.bot.db.execute("UPDATE economy SET cashbalance = cashbalance+bankbalance, bankbalance = 0 WHERE userId = $1", ctx.author.id)
-            await ctx.send(f"Withdrawn ${cash} from the bank.")
+            await ctx.send(f"Withdrawn ${bank} from the bank.")
         else:
             await self.bot.db.execute("UPDATE economy SET cashbalance = $1, bankbalance = $2 WHERE userId = $3", s['cashbalance']+amount, s['bankbalance']-amount, ctx.author.id)
             await ctx.send(f"Withdrawn ${amount} from the bank.")
