@@ -259,7 +259,7 @@ class economy(commands.Cog):
             try:
                 await self.bot.db.execute("UPDATE TABLE economy SET inv = $1 WHERE userId = $2", inv[product], ctx.author.id)
             except Exception as e:
-                await ctx.send(f'```py\n{e}```)
+                await ctx.send(f'```py\n{e}```')
                                
     #Owner Only
 
