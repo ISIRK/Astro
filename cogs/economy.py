@@ -150,7 +150,7 @@ class economy(commands.Cog):
             await ctx.send(f"Deposited ${amount} into the bank.")
 
     @commands.cooldown(1,3,BucketType.user)
-    @commands.command(aliases=['dep'])
+    @commands.command(aliases=['wd'])
     async def withdraw(self, ctx, amount: int = None):
         '''
         Withdraw your money from the bank.
