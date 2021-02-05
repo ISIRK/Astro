@@ -143,7 +143,7 @@ class economy(commands.Cog):
             await ctx.send(f"Deposited ${cash} into the bank.")
         else:
             await self.bot.db.execute("UPDATE economy SET cashbalance = $1, bankbalance = $2 WHERE userId = $3", s['cashbalance']-amount, s['bankbalance']+amount, ctx.author.id)
-            await ctx.send(f"Deposited ${cash} into the bank.")
+            await ctx.send(f"Deposited ${amount} into the bank.")
     
     @commands.cooldown(1, 43200, BucketType.user)
     @commands.command()
