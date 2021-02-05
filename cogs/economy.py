@@ -70,7 +70,7 @@ class economy(commands.Cog):
             )
             if s['inv']:
                 inventory = s['inv']
-                embed.add_field(name="Inventory", value=''.join[f'\n{item}' for item in inventory], inline=False)
+                embed.add_field(name="Inventory", value=''.join([f'\n{item}' for item in inventory]), inline=False)
             else:
                 pass
             await ctx.send(embed = embed)
