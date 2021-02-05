@@ -155,10 +155,10 @@ class economy(commands.Cog):
             win = False
 
         if win:
-            await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']+500, ctx.author.id)
+            await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']+5000, ctx.author.id)
 
         embed = discord.Embed(title="Slot Machine", description=f"```{out1} {out2} {out3}```", color=self.bot.color)
-        embed.add_field(name="Earnings", value=f"{'$10,000' if win else 'None'}")
+        embed.add_field(name="Earnings", value=f"{'$5000' if win else 'None'}")
         await ctx.send(embed=embed)
 
     @commands.cooldown(1,3,BucketType.user)
