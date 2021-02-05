@@ -132,7 +132,11 @@ class economy(commands.Cog):
     @commands.cooldown(1,3,BucketType.user)
     @commands.command(aliases=['dep'])
     async def deposit(self, ctx, amount: int = None):
-        '''Deposit all of your money into the bank.'''
+        '''
+        Deposit your money into the bank.
+        
+        If `amount` is none then it will deposit everything.
+        '''
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not s: return await ctx.send("That user doesn't have a bank account!")
         cash = s['cashbalance']
@@ -144,6 +148,26 @@ class economy(commands.Cog):
         else:
             await self.bot.db.execute("UPDATE economy SET cashbalance = $1, bankbalance = $2 WHERE userId = $3", s['cashbalance']-amount, s['bankbalance']+amount, ctx.author.id)
             await ctx.send(f"Deposited ${amount} into the bank.")
+
+    @commands.cooldown(1,3,BucketType.user)
+    @commands.command(aliases=['dep'])
+    async def withdraw(self, ctx, amount: int = None):
+        '''
+        Withdraw your money from the bank.
+        
+        If `amount` is none then it will withdraw everything.
+        '''
+        s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
+        if not s: return await ctx.send("That user doesn't have a bank account!")
+        bank = s['bankbalance']
+        if bank == 0:
+            await ctx.send('No Money in your bank.')
+        elif amount is None:
+            await self.bot.db.execute("UPDATE economy SET cashbalance = cashbalance+bankbalance, bankbalance = 0 WHERE userId = $1", ctx.author.id)
+            await ctx.send(f"Withdrawn ${cash} from the bank.")
+        else:
+            await self.bot.db.execute("UPDATE economy SET cashbalance = $1, bankbalance = $2 WHERE userId = $3", s['cashbalance']+amount, s['bankbalance']-amount, ctx.author.id)
+            await ctx.send(f"Withdrawn ${amount} from the bank.")
     
     @commands.cooldown(1, 43200, BucketType.user)
     @commands.command()
