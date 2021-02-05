@@ -258,6 +258,7 @@ class economy(commands.Cog):
             inv = ['Multiplier']
             try:
                 i = a['inv']
+                await ctx.send(f"{i}")
                 items = i.append(inv[product])
                 await self.bot.db.execute("UPDATE TABLE economy SET inv = $1 WHERE userId = $2", items, ctx.author.id)
             except Exception as e:
