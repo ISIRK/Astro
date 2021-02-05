@@ -69,7 +69,7 @@ class economy(commands.Cog):
                 color = self.bot.color
             )
             if s['inv']:
-                embed.add_field(name="Inventory", value=''.join[f"\n{thing}" for thing in s['inv']]
+                embed.add_field(name="Inventory", value=''.join[f"\n{thing}" for thing in s['inv']], inline=False)
             else:
                 pass
             await ctx.send(embed = embed)
