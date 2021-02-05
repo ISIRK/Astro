@@ -52,7 +52,7 @@ class economy(commands.Cog):
             return await ctx.send(embed = discord.Embed(description = "You don't have an account!", color=self.bot.color))
     
     @commands.command(aliases = ["bal"])
-    async def balance(self, ctx, user: discord.Member = None):
+    async def balance(self, ctx, *, user: discord.Member = None):
         '''See the balance of yourself or the mentioned user'''
         if not user: user = ctx.author
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", user.id)
@@ -74,14 +74,14 @@ class economy(commands.Cog):
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not s:
             await ctx.send("That user doesn't have a bank account!")
-            #ctx.command.reset_cooldown(ctx)
+            ctx.command.reset_cooldown(ctx)
         bal = s['cashbalance']
         pay = random.randint(1, 100)
         total = bal+pay
         await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", total, ctx.author.id)
         await ctx.send(f'You worked and gained ${pay}!')
 
-    @commands.cooldown(1,60,BucketType.user)
+    @commands.cooldown(1,30,BucketType.user)
     @commands.command()
     async def rob(self, ctx, *, user: discord.User):
         '''
@@ -91,14 +91,17 @@ class economy(commands.Cog):
         a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not a:
             await ctx.send("You don't have a bank account!")
+            ctx.command.reset_cooldown(ctx)
         u = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", user.id)
         if not u:
             await ctx.send("That user doesn't have a bank account!")
+            ctx.command.reset_cooldown(ctx)
         
         c = random.randint(100, 200)
         
         if u['cashbalance'] < 400:
             await ctx.send(f"<:PepePoint:759934591590203423> **{user}** doesn't have enough money. Try robbing someone with more money.")
+            ctx.command.reset_cooldown(ctx)
         elif u['cashbalance'] > c:
             try:
                 await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", u['cashbalance']-c, user.id)
@@ -107,7 +110,7 @@ class economy(commands.Cog):
             except Exception as e:
                 await ctx.send(f'```py\n{e}```')
 
-    @commands.cooldown(1,60,BucketType.user)
+    @commands.cooldown(1,15,BucketType.user)
     @commands.command()
     async def bet(self, ctx, amount: int):
         '''
@@ -116,6 +119,7 @@ class economy(commands.Cog):
         a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not a:
             await ctx.send("You don't have a bank account!")
+            ctx.command.reset_cooldown(ctx)
         
         lucky = random.choice([False, True])
 
@@ -128,6 +132,34 @@ class economy(commands.Cog):
             else:
                 await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']-amount, ctx.author.id)
                 await ctx.send(f"Fate doesn't like you, you lost ${amount}.")
+
+    @commands.cooldown(1,15,BucketType.user)
+    @commands.command()
+    async def slots(self, ctx):
+        '''
+        Use the slot machines to try and win money
+        '''
+        a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
+        if not a:
+            await ctx.send("You don't have a bank account!")
+            ctx.command.reset_cooldown(ctx)
+
+        slots = ['🎁', '⭐', '7️⃣']
+        out1 = random.choice(slots)
+        out2 = random.choice(slots)
+        out3 = random.choice(slots)
+
+        if out1 is out2 and out3 is out2:
+            win = True
+        else:
+            win = False
+
+        if win:
+            await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']+500, ctx.author.id)
+
+        embed = discord.Embed(title="Slot Machine", description=f"```{out1} {out2} {out3}```", color=self.bot.color)
+        embed.add_field(name="Earnings", value=f"{'$10,000' if win else 'None'}")
+        await ctx.send(embed=embed)
 
     @commands.cooldown(1,3,BucketType.user)
     @commands.command(aliases=['dep'])
@@ -178,7 +210,9 @@ class economy(commands.Cog):
     async def daily(self, ctx):
         '''Get daily coins.'''
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
-        if not s: return await ctx.send("That user doesn't have a bank account!")
+        if not s: 
+            await ctx.send("That user doesn't have a bank account!")
+            ctx.command.reset_cooldown(ctx)
         await self.bot.db.execute("UPDATE economy SET cashbalance = cashbalance+1000 WHERE userId = $1", ctx.author.id)
         await ctx.send("Collected **1,000** daily coins!")
         
