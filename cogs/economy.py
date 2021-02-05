@@ -131,7 +131,7 @@ class economy(commands.Cog):
 
     @commands.cooldown(1,3,BucketType.user)
     @commands.command(aliases=['dep'])
-    async def deposit(self, ctx, amount: int):
+    async def deposit(self, ctx, amount):
         '''Deposit all of your money into the bank.'''
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not s: return await ctx.send("That user doesn't have a bank account!")
@@ -141,7 +141,7 @@ class economy(commands.Cog):
         elif amount.lower() == "all":
             await self.bot.db.execute("UPDATE economy SET cashbalance = 0, bankbalance = cashbalance+bankbalance WHERE userId = $1", ctx.author.id)
             await ctx.send(f"Deposited ${cash} into the bank.")
-        else:
+        elif amount = int:
             await self.bot.db.execute("UPDATE economy SET cashbalance = $1, bankbalance = $2 WHERE userId = $3", s['cashbalance']-amount, s['bankbalance']+amount, ctx.author.id)
             await ctx.send(f"Deposited ${cash} into the bank.")
     
