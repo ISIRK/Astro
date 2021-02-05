@@ -156,7 +156,7 @@ class economy(commands.Cog):
         '''
         See the global leaderboard
         '''
-        s = await self.bot.db.fetchrow("SELECT userid, cashbalance+bankbalance FROM economy ORDER BY bankbalance+cashbalance DESC LIMIT 10")
+        s = await self.bot.db.fetchrow("SELECT userid, bankbalance FROM economy ORDER BY bankbalance+cashbalance LIMIT 10")
         p = Simple(entries=s, per_page=10)
         await p.start(ctx)
         
