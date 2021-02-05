@@ -257,7 +257,8 @@ class economy(commands.Cog):
         else:
             inv = ['Multiplier']
             try:
-                items = [a['inv'].append(inv[product])]
+                items = a['inv']
+                items.append(inv[product])
                 await ctx.send(f'{items}')
                 await self.bot.db.execute("UPDATE economy SET inv = $1 WHERE userId = $2", items, ctx.author.id)
                 await ctx.send(f'Successfully bought **{inv[product]}**')
