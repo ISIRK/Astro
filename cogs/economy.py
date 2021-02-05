@@ -21,6 +21,7 @@ import discord
 from discord.ext import commands
 import random, json
 from discord.ext.commands.cooldowns import BucketType
+from tools.utils import Simple
 
 
 class economy(commands.Cog):
