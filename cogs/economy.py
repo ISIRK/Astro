@@ -255,15 +255,12 @@ class economy(commands.Cog):
             await ctx.send("You don't have a bank account!")
             ctx.command.reset_cooldown(ctx)
         else:
-            if product == 1:
-                if a['bankbalance'] < 100000:
-                    await ctx.send("You dont have enought money for this item.")
-                else:
-                    inv = a['inv'].join(['Multiplier'])
-                    await self.bot.db.execute("UPDATE economy SET inv = $1 WHERE userId = $2", inv, ctx.author.id)
-            else:
-                await ctx.send('Invalid product.')
-
+            inv = ['Multiplier']
+            try:
+                await self.bot.db.execute("UPDATE TABLE economy SET inv = $1 WHERE userId = $2", inv[product], ctx.author.id)
+            except Exception as e:
+                await ctx.send(f'```py\n{e}```)
+                               
     #Owner Only
 
     @commands.command()
