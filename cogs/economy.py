@@ -260,9 +260,12 @@ class economy(commands.Cog):
             inv = ['Multiplier', 'idk', 'test']
             try:
                 items = a['inv']
-                items.append(inv[product])
-                await self.bot.db.execute("UPDATE economy SET inv = $1 WHERE userId = $2", items, ctx.author.id)
-                await ctx.send(f'Successfully bought **{inv[product]}**')
+                if inv[product] in items:
+                    await ctx.send('You already have that.')
+                else:
+                    items.append(inv[product])
+                    await self.bot.db.execute("UPDATE economy SET inv = $1 WHERE userId = $2", items, ctx.author.id)
+                    await ctx.send(f'Successfully bought **{inv[product]}**')
             except Exception as e:
                 await ctx.send(f'```py\n{e}```')
                                
