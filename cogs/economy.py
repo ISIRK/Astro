@@ -141,7 +141,7 @@ class economy(commands.Cog):
         elif amount.lower() == "all":
             await self.bot.db.execute("UPDATE economy SET cashbalance = 0, bankbalance = cashbalance+bankbalance WHERE userId = $1", ctx.author.id)
             await ctx.send(f"Deposited ${cash} into the bank.")
-        elif amount == int:
+        elif amount == int(amount):
             await self.bot.db.execute("UPDATE economy SET cashbalance = $1, bankbalance = $2 WHERE userId = $3", s['cashbalance']-amount, s['bankbalance']+amount, ctx.author.id)
             await ctx.send(f"Deposited ${cash} into the bank.")
     
