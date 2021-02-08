@@ -69,3 +69,27 @@ class Simple(Pages):
     def __init__(self, entries, *, per_page=12):
         super().__init__(SimplePageSource(entries, per_page=per_page))
         self.embed = discord.Embed(colour=bot.color)
+
+class EmbedConfirm(menus.Menu):
+    def __init__(self, embed, *, timeout=120.0, delete_message_after=True, clear_reactions_after=False):
+        super().__init__(
+            timeout=timeout, delete_message_after=delete_message_after, clear_reactions_after=clear_reactions_after)
+        self.embed = embed
+        self.result = None
+
+    async def send_initial_message(self, ctx, channel):
+        return await channel.send(embed=self.embed)
+
+    @menus.button('\N{WHITE HEAVY CHECK MARK}')
+    async def do_confirm(self, _):
+        self.result = True
+        self.stop()
+
+    @menus.button('\N{CROSS MARK}')
+    async def do_deny(self, _):
+        self.result = False
+        self.stop()
+
+    async def prompt(self, ctx):
+        await self.start(ctx, wait=True)
+        return self.result
