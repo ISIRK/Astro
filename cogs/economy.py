@@ -254,13 +254,14 @@ class economy(commands.Cog):
             await ctx.send("You don't have a bank account!")
             ctx.command.reset_cooldown(ctx)
         else:
+            product = product-1
             inv = ['Multiplier']
             try:
                 items = a['inv']
                 if inv[product] in items:
                     await ctx.send('You already have that.')
                 else:
-                    items.append(inv[product-1])
+                    items.append(inv[product])
                     await self.bot.db.execute("UPDATE economy SET inv = $1 WHERE userId = $2", items, ctx.author.id)
                     await ctx.send(f'Successfully bought **{inv[product]}**')
             except Exception as e:
