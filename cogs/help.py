@@ -12,12 +12,13 @@ class HelpCommand(commands.HelpCommand):
 
     async def send_bot_help(self, mapping):
         embed = discord.Embed(title='Command List', description=self.context.bot.description, url="https://asksirk.com/bot/commands", colour=self.context.bot.color)
-
-        name = 'No Category' if cmd.cog.qualified_name is None else cmd.cog.qualified_name
-        filtered = await self.filter_commands(self.contect.bot.commands, sort=True)
-        if filtered:
-            value = ' '.join(f'`{c.name}`' for c in self.context.bot.commands)
-            embed.add_field(name=name, value=value, inline=False)
+        
+        for cog in self.context.bot.cogs:
+            name = 'No Category' if cog.qualified_name is None else cog.qualified_name    
+            filtered = await self.filter_commands(self.context.bot.commands, sort=True)
+            if filtered:
+                value = ' '.join(f'`{c.name}`' for c in self.context.bot.commands)
+                embed.add_field(name=name, value=value, inline=False)
 
         embed.set_footer(text='Use {0}{1} [command|module] for more info.'.format(self.clean_prefix, self.invoked_with))#self.get_ending_note())
         await self.get_destination().send(embed=embed)
