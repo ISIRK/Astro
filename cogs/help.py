@@ -10,7 +10,7 @@ class HelpCommand(commands.HelpCommand):
             "aliases": ["h"]
         })
 
-    async def send_bot_help(self, mapping):
+    async def send_bot_help(self):
         embed = discord.Embed(title='Command List', url="https://asksirk.com/bot/commands", colour=self.context.bot.color)
         description = self.context.bot.description
         if description:
@@ -21,11 +21,6 @@ class HelpCommand(commands.HelpCommand):
             filtered = await self.filter_commands(commands, sort=True)
             if filtered:
                 value = ' '.join(f'`{c.name}`' for c in commands)
-                '''
-                if cog and cog.description:
-                    value = '{0}\n{1}'.format(cog.description, value)
-                '''
-
                 embed.add_field(name=name, value=value, inline=False)
 
         embed.set_footer(text='Use {0}{1} [command|module] for more info.'.format(self.clean_prefix, self.invoked_with))#self.get_ending_note())
