@@ -14,7 +14,7 @@ class HelpCommand(commands.HelpCommand):
         embed = discord.Embed(title='Command List', description=self.context.bot.description, url="https://asksirk.com/bot/commands", colour=self.context.bot.color)
         
         for cog, commands in mapping.items():
-            name = 'No Category' if cog.qualified_name is None else cog.qualified_name
+            name = 'No Category' if cog is None else cog.qualified_name
             filtered = await self.filter_commands(commands, sort=True)
             if filtered:
                 value = ' '.join(f'`{c.name}`' for c in commands)
