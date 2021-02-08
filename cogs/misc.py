@@ -147,7 +147,7 @@ class misc(commands.Cog):
     @commands.command()
     async def weather(self, ctx, *, city_name:str):
         """Get the weather of a city/town by its name. State code is US only."""
-            url = "http://api.openweathermap.org/data/2.5/weather?q=" + city_name + "&appid=168ced82a72953d81d018f75eec64aa0&units=imperial"
+        url = "http://api.openweathermap.org/data/2.5/weather?q=" + city_name + "&appid=168ced82a72953d81d018f75eec64aa0&units=imperial"
         async with self.bot.session.get(url) as resp:
                 weather_response = await resp.json()
                 if weather_response['cod'] != 200:
