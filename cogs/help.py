@@ -15,7 +15,7 @@ class HelpCommand(commands.HelpCommand):
         
         for cog, commands in mapping.items():
             name = 'No Category' if cog is None else cog.qualified_name
-            filtered = await self.filter_commands(commands, sort=False)
+            filtered = await self.filter_commands(commands, sort=True)
             if filtered:
                 value = ' '.join(f'`{c.name}`' for c in commands)
                 embed.add_field(name=name, value=value, inline=False)
