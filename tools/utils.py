@@ -23,9 +23,6 @@ SOFTWARE.
 
 import asyncio, json, discord, mystbin
 from discord.ext import menus
-from tools.bot import Sirk
-
-bot = Sirk()
 
 # Pagination
 
