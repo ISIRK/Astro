@@ -50,13 +50,10 @@ class economy(commands.Cog):
                                                    delete_message_after=False)
             confirm = await confirm_embed.prompt(ctx)
             if confirm:
-                await confirm_embed.message.edit(
-                    embed=discord.Embed(
-                        title="Successfully closed your bank account.",
-                        colour=self.bot.color
-                        )
                 await self.bot.db.execute("DELETE FROM economy WHERE userId = $1", ctx.author.id)
-            await confirm_embed.message.delete()
+                await confirm_embed.message.edit(
+                    embed=discord.Embed(title="Successfully closed your bank account.",colour=self.bot.color)
+                await confirm_embed.message.delete()
         if not s:
             return await ctx.send(embed = discord.Embed(description = "You don't have an account!", color=self.bot.color))
     
