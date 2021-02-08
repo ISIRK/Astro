@@ -246,7 +246,7 @@ class dev(commands.Cog):
     async def add(self, ctx, *, thing:str):
         '''Add something to the todo list'''
         try:
-            await self.bot.db.execute("UPDATE todo SET todo = todo.append($1) WHERE userid = $2", thing, ctx.author.id)
+            await self.bot.db.execute("INSERT INTO todo VALUES ($1, $2) ON CONFLICT UPDATE todo SET todo = todo.append($1) WHERE userid = $2", thing, ctx.author.id)
             await ctx.send(f'Added {thing} to your todo list!')
         except Exception as e:
             return await ctx.send(e)
