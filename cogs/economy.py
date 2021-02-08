@@ -237,7 +237,7 @@ class economy(commands.Cog):
         '''A shop to buy things with your coins. WIP'''
         
         embed = discord.Embed(title=f"{ctx.guild.name}'s Shop", description=f"To buy and item use **{ctx.prefix}shop buy <number>**", color=self.bot.color)
-        embed.add_field(name="`0` - Multiplier", value="💰 Multiply your earnings when you work!\n> Cost: **$100,000**", inline=False)
+        embed.add_field(name="`1` - Multiplier", value="💰 Multiply your earnings when you work!\n> Cost: **$100,000**", inline=False)
         embed.set_footer(text=self.bot.footer)
         embed.set_author(name="Shop", icon_url=ctx.guild.icon_url)
 
@@ -260,7 +260,7 @@ class economy(commands.Cog):
                 if inv[product] in items:
                     await ctx.send('You already have that.')
                 else:
-                    items.append(inv[product])
+                    items.append(inv[product-1])
                     await self.bot.db.execute("UPDATE economy SET inv = $1 WHERE userId = $2", items, ctx.author.id)
                     await ctx.send(f'Successfully bought **{inv[product]}**')
             except Exception as e:
