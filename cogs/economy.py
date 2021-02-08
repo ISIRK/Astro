@@ -90,6 +90,8 @@ class economy(commands.Cog):
         else:
             bal = s['cashbalance']
             pay = random.randint(1, 100)
+            if 'Multiplier' in s['inv']:
+                pay = pay*2
             total = bal+pay
             await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", total, ctx.author.id)
             await ctx.send(f'You worked and gained ${pay}!')
