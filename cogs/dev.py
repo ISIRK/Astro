@@ -261,21 +261,6 @@ class dev(commands.Cog):
             return await ctx.send(e)
 
     @commands.command()
-    @commands.bot_has_permissions(manage_webhooks=True)
-    async def test(self,ctx, *, words):
-        '''Make a custom webhook with your avatar, name, and a bot tag.'''
-        channel = ctx.channel
-        i = await channel.create_webhook(name="Hook")
-        url = i.url
-        await ctx.message.delete()
-        try:
-            webhook = Webhook.from_url(str(url), adapter=AsyncWebhookAdapter(self.bot.session))
-            await webhook.send(words, username=ctx.author.name, avatar_url=ctx.author.avatar_url)
-            return
-        except Exception as e:
-            await ctx.send(f"```py\n{e}```")
-
-    @commands.command()
     async def votecheck(self, ctx):
         async with self.bot.session.get(f'https://top.gg/api//bots/{self.bot.user.id}/check?userId={ctx.author.id}') as resp:
             r = await resp.json()
