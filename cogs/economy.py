@@ -54,7 +54,7 @@ class economy(commands.Cog):
                     embed=discord.Embed(
                         title="Successfully closed your bank account.",
                         colour=self.bot.color
-                    )
+                        )
                 await self.bot.db.execute("DELETE FROM economy WHERE userId = $1", ctx.author.id)
             await confirm_embed.message.delete()
         if not s:
