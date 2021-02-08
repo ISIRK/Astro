@@ -59,19 +59,11 @@ class misc(commands.Cog):
     async def binary(self, ctx, *, text: str):
         '''Change text into binary'''
         if len(text) > 25:
-            await ctx.send(f"{ctx.author}'s dick is too long")
+            await ctx.send(f"Text given is too long.")
         else:
             async with self.bot.session.get(f'https://some-random-api.ml/binary?text={text}') as resp:
                 resp = await resp.json()
             await ctx.send(resp['binary'])
-        
-    @commands.command()
-    @commands.cooldown(1,3,BucketType.user)
-    async def text(self, ctx, *, binary: str):
-        '''Change binary into text'''
-        async with self.bot.session.get(f'https://some-random-api.ml/binary?decode={binary}') as resp:
-            resp = await resp.json()
-        await ctx.send(resp['text'])
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user) 
