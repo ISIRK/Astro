@@ -239,7 +239,7 @@ class dev(commands.Cog):
     async def todo(self, ctx):
         """Todo Commands"""
         s = await self.bot.db.fetch("SELECT * FROM todo")
-        p = self.bot.utils.Simple(entries=[t for t in s['todo']], per_page=10)
+        p = self.bot.utils.Simple(entries=[s['todo'] for x in s], per_page=10)
         await p.start(ctx)
             
     @todo.command()
