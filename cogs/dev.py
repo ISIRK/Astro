@@ -238,7 +238,7 @@ class dev(commands.Cog):
     @commands.group(invoke_without_command=True)
     async def todo(self, ctx):
         """Todo Commands"""
-        s = await self.bot.db.fetch("SELECT * FROM todo WHERE userid = $1", ctx.author.id)
+        s = await self.bot.db.fetch("SELECT * FROM todo")
         p = self.bot.utils.Simple(entries=s, per_page=10)
         await p.start(ctx)
             
@@ -246,7 +246,7 @@ class dev(commands.Cog):
     async def add(self, ctx, *, thing:str):
         '''Add something to the todo list'''
         try:
-            await self.bot.db.execute("INSERT INTO todo VALUES ($1, $2) ON CONFLICT DO UPDATE todo SET todo = todo.append($1) WHERE userid = $2", thing, ctx.author.id)
+            await self.bot.db.execute("INSERT INTO todo VALUES ($1)", thing)
             await ctx.send(f'Added {thing} to your todo list!')
         except Exception as e:
             return await ctx.send(e)
@@ -255,7 +255,7 @@ class dev(commands.Cog):
     async def delete(self, ctx, *, thing:str):
         '''Delete an item from your todo list'''
         try:
-            await self.bot.db.execute("DELETE FROM todo WHERE thing = $1", thing)
+            await self.bot.db.execute("DELETE FROM todo WHERE todo = $1", thing)
             await ctx.send(f'Removed {thing} from your todo list!')
         except Exception as e:
             return await ctx.send(e)
