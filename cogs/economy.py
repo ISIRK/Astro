@@ -46,7 +46,7 @@ class economy(commands.Cog):
         """Closes your account"""
         s = await self.bot.db.fetchrow("SELECT * FROM economy WHERE userId = $1", ctx.author.id)
         if s:
-            confirm_embed = self.bot.utils.EmbedConfirm(discord.Embed(title="Are you sure you want to close your account?", colour=ctx.bot.embed_colour),
+            confirm_embed = self.bot.utils.EmbedConfirm(discord.Embed(title="Are you sure you want to close your account?", colour=ctx.bot.color),
                                                    delete_message_after=False)
             confirm = await confirm_embed.prompt(ctx)
             if confirm:
