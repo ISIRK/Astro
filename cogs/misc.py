@@ -147,11 +147,9 @@ class misc(commands.Cog):
     @commands.command()
     async def weather(self, ctx, *, city_name:str):
         """Get the weather of a city/town by its name. State code is US only."""
-        # Code By CraziiAce#0001
-        async with self.bot.session as session:
             url = "http://api.openweathermap.org/data/2.5/weather?q=" + city_name + "&appid=168ced82a72953d81d018f75eec64aa0&units=imperial"
-            async with session.get(url) as response:
-                weather_response = await response.json()
+        async with self.bot.session.get(url) as resp:
+                weather_response = await resp.json()
                 if weather_response['cod'] != 200:
                     await ctx.send(f"An error ocurred: `{weather_response['message']}`.")
                 else:
