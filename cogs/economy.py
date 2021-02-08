@@ -278,7 +278,7 @@ class economy(commands.Cog):
                         await ctx.send("You don't have enough money in your wallet.")
                     else:
                         inventory.append(item)
-                        await self.bot.db.execute("UPDATE economy SET inv = $1 WHERE userId = $2", inventory, ctx.author.id)
+                        await self.bot.db.execute("UPDATE economy SET inv = $1, cashbalance = $2 WHERE userId = $3", inventory, a['cashbalance']-price, ctx.author.id)
                         await ctx.send(f'Successfully bought **{item}** for `{price}`!')
             except Exception as e:
                 await ctx.send(f'```py\n{e}```')
