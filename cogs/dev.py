@@ -238,7 +238,7 @@ class dev(commands.Cog):
     @commands.group(invoke_without_command=True)
     async def todo(self, ctx):
         """Todo Commands"""
-        s = await self.bot.db.fetch("SELECT * FROM todo;")
+        s = await self.bot.db.fetch("SELECT * FROM todo WHERE userid = $1", ctx.author.id)
         p = self.bot.utils.Simple(entries=s, per_page=10)
         await p.start(ctx)
             
@@ -246,7 +246,7 @@ class dev(commands.Cog):
     async def add(self, ctx, *, thing:str):
         '''Add something to the todo list'''
         try:
-            await self.bot.db.execute("INSERT INTO todo (todo) VALUES(todo.append($1))", thing)
+            await self.bot.db.execute("UPDATE todo SET todo = todo.append($1) WHERE userid = $2", thing, ctx.author.id)
             await ctx.send(f'Added {thing} to your todo list!')
         except Exception as e:
             return await ctx.send(e)
