@@ -14,10 +14,10 @@ class HelpCommand(commands.HelpCommand):
         embed = discord.Embed(title='Command List', description=self.context.bot.description, url="https://asksirk.com/bot/commands", colour=self.context.bot.color)
 
         for cmd in self.context.bot.commands:
-            name = 'No Category' if command.cog.qualified_name is None else command.qualified_name
-            filtered = await self.filter_commands(commands, sort=True)
+            name = 'No Category' if cmd.cog.qualified_name is None else cmd.cog.qualified_name
+            filtered = await self.filter_commands(cmd, sort=True)
             if filtered:
-                value = ' '.join(f'`{c.name}`' for c in commands)
+                value = ' '.join(f'`{c.name}`' for c in cmd)
                 embed.add_field(name=name, value=value, inline=False)
 
         embed.set_footer(text='Use {0}{1} [command|module] for more info.'.format(self.clean_prefix, self.invoked_with))#self.get_ending_note())
