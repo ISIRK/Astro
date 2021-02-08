@@ -90,8 +90,8 @@ class economy(commands.Cog):
         else:
             bal = s['cashbalance']
             pay = random.randint(1, 100)
-            thing = [' **(x2 With Multiplier)**' if 'Multiplier' in s['inv']]
             if 'Multiplier' in s['inv']:
+                thing = " **(x2 With Multiplier)**"
                 pay = pay*2
             total = bal+pay
             await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", total, ctx.author.id)
