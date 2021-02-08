@@ -10,7 +10,7 @@ class HelpCommand(commands.HelpCommand):
             "aliases": ["h"]
         })
 
-    async def send_bot_help(self):
+    async def send_bot_help(self, mapping):
         embed = discord.Embed(title='Command List', url="https://asksirk.com/bot/commands", colour=self.context.bot.color)
         description = self.context.bot.description
         if description:
