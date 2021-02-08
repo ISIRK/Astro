@@ -264,7 +264,8 @@ class economy(commands.Cog):
         else:
             product = product-1
             inv = {
-                'Multiplier' : 100000
+                'Multiplier' : 100000,
+                'test' : 69
             }
             item = list(inv.keys())[product-1]
             price = inv[item]
