@@ -90,7 +90,7 @@ class economy(commands.Cog):
         else:
             bal = s['cashbalance']
             pay = random.randint(1, 100)
-            thing = ' **(x2 With Multiplier)**' if 'Multiplier' in s['inv']
+            thing = [' **(x2 With Multiplier)**' if 'Multiplier' in s['inv']]
             if 'Multiplier' in s['inv']:
                 pay = pay*2
             total = bal+pay
