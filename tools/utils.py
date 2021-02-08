@@ -65,7 +65,7 @@ class Simple(Pages):
 
     def __init__(self, entries, *, per_page=12):
         super().__init__(SimplePageSource(entries, per_page=per_page))
-        self.embed = discord.Embed(colour=bot.color)
+        self.embed = discord.Embed(colour=menu.ctx.bot.color)
 
 class EmbedConfirm(menus.Menu):
     def __init__(self, embed, *, timeout=120.0, delete_message_after=True, clear_reactions_after=False):
