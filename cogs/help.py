@@ -12,11 +12,10 @@ class HelpCommand(commands.HelpCommand):
 
     async def send_bot_help(self, mapping):
         embed = discord.Embed(title='Command List', url="https://asksirk.com/bot/commands", colour=self.context.bot.color)
-        description = self.context.bot.description
         if description:
-            embed.description = description
+            embed.description = self.context.bot.description
 
-        for command in self.context.bot.commands:
+        for cmd in self.context.bot.commands:
             name = 'No Category' if command.cog.qualified_name is None else command.qualified_name
             filtered = await self.filter_commands(commands, sort=True)
             if filtered:
