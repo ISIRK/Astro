@@ -29,21 +29,6 @@ from datetime import datetime
 import subprocess
 from jishaku import codeblocks
 
-from tools.utils import Simple
-
-class SqlEntry:
-    __slots__ = ('data')
-    def __init__(self, entry):
-        self.data = str(entry)
-
-    def __str__(self):
-        return f'{self.data}'
-
-class SqlPages(Simple):
-    def __init__(self, entries, *, per_page=12):
-        converted = [SqlEntry(entry) for entry in entries]
-        super().__init__(converted, per_page=per_page)
-
 class dev(commands.Cog):
     '''Developer Commands'''
     def __init__(self, bot):
@@ -234,7 +219,7 @@ class dev(commands.Cog):
         query = codeblocks.codeblock_converter(query)[1]
         e = await self.bot.db.fetch(query)
         try:
-            p = Simple(entries=e, per_page=10)
+            p = self.bot.utils.Simple(entries=e, per_page=10)
             await p.start(ctx)
         except menus.MenuError as f:
             await ctx.send(f)
@@ -251,7 +236,7 @@ class dev(commands.Cog):
         """Todo Commands"""
         s = await self.bot.db.fetch("SELECT * FROM todo;")
         list = [x["thing"] for x in s]
-        p = Simple(entries=list, per_page=10)
+        p = self.bot.utils.Simple(entries=list, per_page=10)
         await p.start(ctx)
             
     @todo.command()
