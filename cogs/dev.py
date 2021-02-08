@@ -217,12 +217,16 @@ class dev(commands.Cog):
     async def sql(self, ctx, *, query):
         """Makes an sql SELECT query"""
         query = codeblocks.codeblock_converter(query)[1]
-        e = await self.bot.db.fetch(query)
-        try:
-            p = self.bot.utils.Simple(entries=e, per_page=10)
-            await p.start(ctx)
-        except menus.MenuError as f:
-            await ctx.send(f)
+        if not query.lower().startswith("select"):
+            data = await self.bot.db.execute(query)
+            return await ctx.send(data)
+        else:
+            e = await self.bot.db.fetch(query)
+            try:
+                p = self.bot.utils.Simple(entries=e, per_page=10)
+                await p.start(ctx)
+            except menus.MenuError as f:
+                await ctx.send(f)
 
     @commands.command(aliases=['logout'])
     async def shutdown(self, ctx):
