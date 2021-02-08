@@ -263,7 +263,12 @@ class economy(commands.Cog):
             ctx.command.reset_cooldown(ctx)
         else:
             product = product-1
-            inv = ['Multiplier']
+            inv = {
+                'Multiplier' : 100000
+            }
+            item = list(inv.keys())[product-1]
+            price = inv[item]
+            await ctx.send(f'{item} : {price}')
             try:
                 items = a['inv']
                 if inv[product] in items:
