@@ -11,9 +11,7 @@ class HelpCommand(commands.HelpCommand):
         })
 
     async def send_bot_help(self, mapping):
-        embed = discord.Embed(title='Command List', url="https://asksirk.com/bot/commands", colour=self.context.bot.color)
-        if description:
-            embed.description = self.context.bot.description
+        embed = discord.Embed(title='Command List', description=self.context.bot.description, url="https://asksirk.com/bot/commands", colour=self.context.bot.color)
 
         for cmd in self.context.bot.commands:
             name = 'No Category' if command.cog.qualified_name is None else command.qualified_name
