@@ -267,7 +267,7 @@ class economy(commands.Cog):
                 'Multiplier' : 100000,
                 'test' : 69
             }
-            item = list(inv.keys())[product-1]
+            item = list(inv)[product-1]
             price = inv[item]
             inventory = a['inv']
             balance = a['cashbalance']
