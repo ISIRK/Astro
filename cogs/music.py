@@ -715,9 +715,11 @@ class music(commands.Cog, wavelink.WavelinkMixin):
             return await ctx.send('There are no more songs in the queue.', delete_after=15)
 
         entries = [track.title for track in player.queue._queue]
+        paginator = ctx.bot.utils.Simple(entries=entries, per_page=5)
+        '''
         pages = PaginatorSource(entries=entries)
         paginator = menus.MenuPages(source=pages, timeout=None, delete_message_after=True)
-
+        '''
         await paginator.start(ctx)
 
     @commands.command(aliases=['np', 'now_playing', 'current'])
