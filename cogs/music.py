@@ -303,23 +303,6 @@ class InteractiveController(menus.Menu):
         await self.bot.invoke(ctx)
 
 
-class PaginatorSource(menus.ListPageSource):
-    """Player queue paginator class."""
-
-    def __init__(self, entries, *, per_page=8):
-        super().__init__(entries, per_page=per_page)
-
-    async def format_page(self, menu: menus.Menu, page):
-        embed = discord.Embed(title='Coming Up...', colour=menu.ctx.bot.color)
-        embed.description = '\n'.join(f'`{index}. {title}`' for index, title in enumerate(page, 1))
-
-        return embed
-
-    def is_paginating(self):
-        # We always want to embed even on 1 page of results...
-        return True
-
-
 class music(commands.Cog, wavelink.WavelinkMixin):
     """Music Cog."""
 
