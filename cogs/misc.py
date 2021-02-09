@@ -22,7 +22,6 @@ SOFTWARE.
 '''
 
 import discord, os, io, datetime, time, json, asyncio, random, collections, mystbin
-from discord import Webhook, AsyncWebhookAdapter
 from discord.user import User
 from discord.utils import get
 from jishaku import codeblocks
@@ -213,22 +212,6 @@ class misc(commands.Cog):
     @commands.command()
     async def bossbadi(self, ctx):
         await ctx.reply('bossbadi is a cool dude and a great bot dev')
-
-    @commands.command()
-    @commands.cooldown(1,3,BucketType.user)
-    @commands.bot_has_permissions(manage_webhooks=True)
-    async def hook(self,ctx, *, words):
-        '''Make a custom webhook with your avatar, name, and a bot tag.'''
-        channel = ctx.channel
-        i = await channel.create_webhook(name="Hook")
-        url = i.url
-        await ctx.message.delete()
-        try:
-            webhook = Webhook.from_url(str(url), adapter=AsyncWebhookAdapter(self.bot.session))
-            await webhook.send(words, username=ctx.author.name, avatar_url=ctx.author.avatar_url)
-            return
-        except Exception as e:
-            await ctx.send(f'{e}')
                                      
 def setup(bot):
     bot.add_cog(misc(bot))
