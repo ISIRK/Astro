@@ -85,44 +85,6 @@ class games(commands.Cog):
         embed.set_footer(text=self.bot.footer)
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
-
-    @commands.command()
-    @commands.cooldown(1,3,BucketType.user)
-    async def quiz(self, ctx):
-        '''Take a Chritmas quiz'''
-        qa = {
-            "`Was King William I of England was crowned on Christmas Day.(Yes/No)`": "YES",
-            "`When is Christmas?`": "DECEMBER 25",
-            "`Who delivers toys?`" : "SANTA"
-        }
-        total_questions = len(qa)
-        start_time = time.time()
-
-        def check(message):
-            return ctx.author == message.author and ctx.channel == message.channel
-
-        for i, (question, answer) in enumerate(qa.items()):
-            content = ""
-            append = "Type your answer below"
-
-            if i == 0:
-                content += "Quiz Started!\n"
-            else:
-                content += "Correct!\n"
-            content += (f"**Question {i+1})** {question}\n"
-                        f"{append}")
-            await ctx.send(content)
-
-            try:
-                message = await self.bot.wait_for("message", timeout=45.0, check=check)
-            except asyncio.TimeoutError:
-                return await ctx.send("Timeout Error")
-
-            if message.content.upper() != answer:
-                return await ctx.send(f"Incorrect.\nIf you would like to try again type `{ctx.prefix}quiz`")
-        time_taken = time.time()- start_time
-        await ctx.send(f"Correct!\nYou took **{time_taken:,.2f} seconds!**")
-
     
     @commands.cooldown(1,3,BucketType.user)
     @commands.command()
