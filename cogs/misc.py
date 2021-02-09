@@ -227,8 +227,8 @@ class misc(commands.Cog):
             webhook = Webhook.from_url(str(url), adapter=AsyncWebhookAdapter(self.bot.session))
             await webhook.send(words, username=ctx.author.name, avatar_url=ctx.author.avatar_url)
             return
-        except:
-            pass
-
+        except Exception as e:
+            await ctx.send('e')
+                                     
 def setup(bot):
     bot.add_cog(misc(bot))
