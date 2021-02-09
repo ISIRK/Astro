@@ -22,7 +22,7 @@ SOFTWARE.
 '''
 
 import discord, os, io, datetime, time, json, asyncio, random, collections, mystbin
-from discord import Spotify
+from discord import Webhook, AsyncWebhookAdapter
 from discord.user import User
 from discord.utils import get
 from jishaku import codeblocks
