@@ -115,7 +115,7 @@ class games(commands.Cog):
         Yum yum.
         """
         cookie = "🍪"
-        embed = discord.Embed(description=f"Fastest person to eat {cookie} wins!", colour=self.bot.color)
+        embed = discord.Embed(description=f"Fastest person to eat the {cookie} wins!", colour=self.bot.color)
         message = await ctx.send(embed=embed)
         await asyncio.sleep(4)
         for i in reversed(range(1, 4)):
