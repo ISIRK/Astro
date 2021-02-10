@@ -283,36 +283,6 @@ class economy(commands.Cog):
                         await ctx.send(f'Successfully bought **{item}** for `{price}`!')
             except Exception as e:
                 await ctx.send(f'```py\n{e}```')
-                               
-    #Owner Only
-
-    @commands.command()
-    @commands.is_owner()
-    async def give(self, ctx, user: discord.User, amount: int):
-        '''
-        Give someone money
-        '''
-        user = self.bot.get_user(user.id)
-        a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", user.id)
-        if not a:
-            await ctx.send(f"{user.name} doesn't have a bank account!")
-        else:
-            await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']+amount, user.id)
-            await ctx.send(f'Gave **{user.name}** `{amount}`.')
-
-    @commands.command()
-    @commands.is_owner()
-    async def take(self, ctx, user: discord.User, amount: int):
-        '''
-        Take money from someone
-        '''
-        user = self.bot.get_user(user.id)
-        a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", user.id)
-        if not a:
-            await ctx.send(f"{user.name} doesn't have a bank account!")
-        else:
-            await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']-amount, user.id)
-            await ctx.send(f'Took `{amount}` from **{user.name}**')
 
 def setup(bot):
     bot.add_cog(economy(bot))
