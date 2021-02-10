@@ -118,7 +118,7 @@ class image(commands.Cog):
             member = ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
-            buffer = self.Quantize(url)
+            buffer = self.Quantize(str(url))
         await ctx.send(file=discord.File(buffer, filename="quantize.gif"))
 
 def setup(bot):
