@@ -5,7 +5,6 @@ from io import BytesIO
 
 class image(commands.Cog):
     """Image manipulation commands"""
-
     def __init__(self, bot):
         self.bot = bot
 
