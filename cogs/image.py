@@ -8,6 +8,7 @@ class image(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.quantize = Quantize()
         
     def Quantize(img):
         with Image.open(img) as image:
@@ -120,7 +121,7 @@ class image(commands.Cog):
         avatar = BytesIO(await avatarUrl.read())
         image = Image.open(avatar)
         async with ctx.typing():
-            buffer = Quantize(image)
+            buffer = self.quantize(image)
         await ctx.send(file=discord.File(buffer, filename="quantize.gif"))
 
 def setup(bot):
