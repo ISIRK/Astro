@@ -69,5 +69,20 @@ class image(commands.Cog):
             buffer.seek(0)
         await ctx.send(file=discord.File(buffer, filename="emboss.png"))
 
+    @commands.command()
+    async def color(self, ctx, member: discord.Member = None):
+        """Colors the avatar"""
+        if not member:
+            member = ctx.author
+        avatarUrl = member.avatar_url_as(size=512, format="png")
+        avatar = BytesIO(await avatarUrl.read())
+        image = Image.open(avatar)
+        async with ctx.typing():
+            image = image.quantize(colors=100)
+            buffer = BytesIO()
+            image.save(buffer, format="PNG")
+            buffer.seek(0)
+        await ctx.send(file=discord.File(buffer, filename="quantize.png"))
+
 def setup(bot):
     bot.add_cog(image(bot))
