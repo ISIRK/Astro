@@ -62,11 +62,11 @@ class image(commands.Cog):
         avatarUrl = member.avatar_url_as(size=512, format="png")
         avatar = BytesIO(await avatarUrl.read())
         image = Image.open(avatar)
-
-        image = image.filter(ImageFilter.EMBOSS)
-        buffer = BytesIO()
-        image.save(buffer, format="PNG")
-        buffer.seek(0)
+        async with ctx.typing():
+            image = image.filter(ImageFilter.EMBOSS)
+            buffer = BytesIO()
+            image.save(buffer, format="PNG")
+            buffer.seek(0)
         await ctx.send(file=discord.File(buffer, filename="emboss.png"))
 
 def setup(bot):
