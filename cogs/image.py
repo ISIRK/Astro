@@ -4,7 +4,7 @@ from discord.ext.commands.cooldowns import BucketType
 from PIL import Image, ImageFilter
 from io import BytesIO
 
-class image(commands.Cog):
+class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, commands.BucketType.user)}):
     """Image manipulation commands"""
     def __init__(self, bot):
         self.bot = bot
@@ -47,7 +47,6 @@ class image(commands.Cog):
             buffer.seek(0)
             return buffer
 
-    @commands.cooldown(1,30,BucketType.user)
     @commands.command()
     async def sharpen(self, ctx, member: discord.Member = None):
         """Sharpens the avatar"""
@@ -63,7 +62,6 @@ class image(commands.Cog):
             buffer.seek(0)
         await ctx.send(file=discord.File(buffer, filename="sharpen.png"))
 
-    @commands.cooldown(1,30,BucketType.user)
     @commands.command()
     async def emboss(self, ctx, member: discord.Member = None):
         """Embosses the avatar"""
@@ -79,7 +77,6 @@ class image(commands.Cog):
             buffer.seek(0)
         await ctx.send(file=discord.File(buffer, filename="emboss.png"))
 
-    @commands.cooldown(1,30,BucketType.user)
     @commands.command()
     async def color(self, ctx, member: discord.Member = None):
         """Colors the avatar"""
