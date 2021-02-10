@@ -10,8 +10,7 @@ class image(commands.Cog):
         self.bot = bot
 
     @staticmethod
-    async def Quantize(url:str):
-        img = BytesIO(await url.read())
+    async def Quantize(img):
         with Image.open(img) as image:
             siz = 300
             newsize = (siz,siz)
@@ -115,7 +114,12 @@ class image(commands.Cog):
             member = ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
-            buffer = await self.Quantize(str(url))
+            session = aiohttp.ClientSession()
+            image = url
+            datass2 = BytesIO(await image.read())
+            datass2.seek(0)
+            await session.close()
+            buffer = await self.Quantize(datass2)
         await ctx.send(file=discord.File(buffer, filename="quantize.gif"))
 
 def setup(bot):
