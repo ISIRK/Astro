@@ -10,10 +10,9 @@ class image(commands.Cog):
         self.bot = bot
 
     @staticmethod
-    async def Quantize(img):
+    async def Quantize(url:str):
+            img = BytesIO(await url.read())
             with Image.open(img) as image:
-
-
 
                 siz = 300
                 newsize = (siz,siz)
@@ -117,11 +116,9 @@ class image(commands.Cog):
         """Colors the avatar"""
         if not member:
             member = ctx.author
-        avatarUrl = member.avatar_url_as(size=512, format="png")
-        avatar = BytesIO(await avatarUrl.read())
-        image = Image.open(avatar)
+        url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
-            buffer = self.Quantize(avatar)
+            buffer = self.Quantize(url)
         await ctx.send(file=discord.File(buffer, filename="quantize.gif"))
 
 def setup(bot):
