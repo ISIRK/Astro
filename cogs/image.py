@@ -48,36 +48,6 @@ class image(commands.Cog):
             return buffer
 
     @commands.command()
-    async def flip(self, ctx, member: discord.Member = None):
-        """Flips the avatar"""
-        if not member:
-            member = ctx.author
-        avatarUrl = member.avatar_url_as(size=512, format="png")
-        avatar = BytesIO(await avatarUrl.read())
-        image = Image.open(avatar)
-        async with ctx.typing():
-            image = image.rotate(180)
-            buffer = BytesIO()
-            image.save(buffer, format="PNG")
-            buffer.seek(0)
-        await ctx.send(file=discord.File(buffer, filename="flip.png"))
-
-    @commands.command()
-    async def blur(self, ctx, member: discord.Member = None):
-        """Blurs the avatar"""
-        if not member:
-            member = ctx.author
-        avatarUrl = member.avatar_url_as(size=512, format="png")
-        avatar = BytesIO(await avatarUrl.read())
-        image = Image.open(avatar)
-        async with ctx.typing():
-            image = image.filter(ImageFilter.BLUR)
-            buffer = BytesIO()
-            image.save(buffer, format="PNG")
-            buffer.seek(0)
-        await ctx.send(file=discord.File(buffer, filename="blur.png"))
-
-    @commands.command()
     async def sharpen(self, ctx, member: discord.Member = None):
         """Sharpens the avatar"""
         if not member:
