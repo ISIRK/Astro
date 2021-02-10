@@ -17,11 +17,11 @@ class image(commands.Cog):
         avatarUrl = member.avatar_url_as(size=512, format="png")
         avatar = BytesIO(await avatarUrl.read())
         image = Image.open(avatar)
-
-        image = image.rotate(180)
-        buffer = BytesIO()
-        image.save(buffer, format="PNG")
-        buffer.seek(0)
+        async with ctx.typing():
+            image = image.rotate(180)
+            buffer = BytesIO()
+            image.save(buffer, format="PNG")
+            buffer.seek(0)
         await ctx.send(file=discord.File(buffer, filename="flip.png"))
 
     @commands.command()
@@ -32,11 +32,11 @@ class image(commands.Cog):
         avatarUrl = member.avatar_url_as(size=512, format="png")
         avatar = BytesIO(await avatarUrl.read())
         image = Image.open(avatar)
-
-        image = image.filter(ImageFilter.BLUR)
-        buffer = BytesIO()
-        image.save(buffer, format="PNG")
-        buffer.seek(0)
+        async with ctx.typing():
+            image = image.filter(ImageFilter.BLUR)
+            buffer = BytesIO()
+            image.save(buffer, format="PNG")
+            buffer.seek(0)
         await ctx.send(file=discord.File(buffer, filename="blur.png"))
 
     @commands.command()
@@ -47,11 +47,11 @@ class image(commands.Cog):
         avatarUrl = member.avatar_url_as(size=512, format="png")
         avatar = BytesIO(await avatarUrl.read())
         image = Image.open(avatar)
-
-        image = image.filter(ImageFilter.SHARPEN)
-        buffer = BytesIO()
-        image.save(buffer, format="PNG")
-        buffer.seek(0)
+        async with ctx.typing():
+            image = image.filter(ImageFilter.SHARPEN)
+            buffer = BytesIO()
+            image.save(buffer, format="PNG")
+            buffer.seek(0)
         await ctx.send(file=discord.File(buffer, filename="sharpen.png"))
 
     @commands.command()
