@@ -114,11 +114,11 @@ class image(commands.Cog):
             member = ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
-            session = aiohttp.ClientSession()
+            #session = aiohttp.ClientSession()
             image = url
             datass2 = BytesIO(await image.read())
             datass2.seek(0)
-            await session.close()
+            #await session.close()
             buffer = await self.Quantize(datass2)
         await ctx.send(file=discord.File(buffer, filename="quantize.gif"))
 
