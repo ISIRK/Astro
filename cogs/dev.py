@@ -260,6 +260,34 @@ class dev(commands.Cog):
             return await ctx.send(e)
 
     @commands.command()
+    @commands.is_owner()
+    async def give(self, ctx, user: discord.User, amount: int):
+        '''
+        Give someone money
+        '''
+        user = self.bot.get_user(user.id)
+        a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", user.id)
+        if not a:
+            await ctx.send(f"{user.name} doesn't have a bank account!")
+        else:
+            await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']+amount, user.id)
+            await ctx.send(f'Gave **{user.name}** `{amount}`.')
+
+    @commands.command()
+    @commands.is_owner()
+    async def take(self, ctx, user: discord.User, amount: int):
+        '''
+        Take money from someone
+        '''
+        user = self.bot.get_user(user.id)
+        a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", user.id)
+        if not a:
+            await ctx.send(f"{user.name} doesn't have a bank account!")
+        else:
+            await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']-amount, user.id)
+            await ctx.send(f'Took `{amount}` from **{user.name}**')
+
+    @commands.command()
     async def votecheck(self, ctx):
         async with self.bot.session.get(f'https://top.gg/api//bots/{self.bot.user.id}/check?userId={ctx.author.id}') as resp:
             r = await resp.json()
