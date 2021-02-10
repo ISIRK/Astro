@@ -8,6 +8,48 @@ class image(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        
+    def Quantize(img):
+        with Image.open(img) as image:
+
+
+
+            siz = 300
+            newsize = (siz,siz)
+
+            w, h = image.size
+            if w > h:
+                the_key = w / siz
+                image = image.resize((siz,int(h / the_key))).convert("RGBA")
+            elif h > w:
+                the_key = h / siz
+                image = image.resize((int(w / the_key),siz)).convert("RGBA")
+            else:
+                image = image.resize(newsize).convert("RGBA")
+
+
+            images1 = []
+            for i in range(60):
+                try:
+                    im = image.copy()
+                    im = im.quantize(colors=i + 1, method=2)
+                    images1.append(im)
+
+                except:
+                    break
+
+            images2 = list(reversed(images1))
+            images = images1 + images2
+
+            buffer = BytesIO()
+            images[0].save(buffer,
+                           format='gif',
+                           save_all=True,
+                           append_images=images[1:],
+                           duration=1,
+                           loop=0)
+            buffer.seek(0)
+            return buffer
 
     @commands.command()
     async def flip(self, ctx, member: discord.Member = None):
@@ -78,11 +120,8 @@ class image(commands.Cog):
         avatar = BytesIO(await avatarUrl.read())
         image = Image.open(avatar)
         async with ctx.typing():
-            image = image.quantize(colors=2, method=2)
-            buffer = BytesIO()
-            image.save(buffer, format="PNG")
-            buffer.seek(0)
-        await ctx.send(file=discord.File(buffer, filename="quantize.png"))
+            buffer = Quantize(image)
+        await ctx.send(file=discord.File(buffer, filename="quantize.gif"))
 
 def setup(bot):
     bot.add_cog(image(bot))
