@@ -121,7 +121,7 @@ class image(commands.Cog):
         avatar = BytesIO(await avatarUrl.read())
         image = Image.open(avatar)
         async with ctx.typing():
-            buffer = self.Quantize(image)
+            buffer = self.Quantize(avatar)
         await ctx.send(file=discord.File(buffer, filename="quantize.gif"))
 
 def setup(bot):
