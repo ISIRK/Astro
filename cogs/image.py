@@ -78,7 +78,7 @@ class image(commands.Cog):
         avatar = BytesIO(await avatarUrl.read())
         image = Image.open(avatar)
         async with ctx.typing():
-            image = image.quantize(colors=100)
+            image = image.quantize(colors=100, method=2)
             buffer = BytesIO()
             image.save(buffer, format="PNG")
             buffer.seek(0)
