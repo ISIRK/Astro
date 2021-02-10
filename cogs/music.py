@@ -1,4 +1,5 @@
-"""The MIT License (MIT)
+'''
+The MIT License (MIT)
 
 Copyright (c) 2019-2020 PythonistaGuild
 
@@ -27,7 +28,8 @@ This example uses the following whihch must be installed prior to running:
     - menus version >= 1.0.0-a (pip install -U git+https://github.com/Rapptz/discord-ext-menus.git)
     - Python 3.7+
 --------------------------------------------------------------------------------
-"""
+'''
+
 import asyncio
 import async_timeout
 import copy
@@ -699,10 +701,6 @@ class music(commands.Cog, wavelink.WavelinkMixin):
 
         entries = [track.title for track in player.queue._queue]
         paginator = ctx.bot.utils.Simple(entries=entries, per_page=5)
-        '''
-        pages = PaginatorSource(entries=entries)
-        paginator = menus.MenuPages(source=pages, timeout=None, delete_message_after=True)
-        '''
         await paginator.start(ctx)
 
     @commands.command(aliases=['np', 'now_playing', 'current'])

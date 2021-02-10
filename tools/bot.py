@@ -23,15 +23,17 @@ async def get_prefix(bot, message : discord.Message):
     '''
     Get Prefix
     '''
-    s = await bot.db.fetchrow(" SELECT prefix FROM guilds WHERE guildid = $1", message.guild.id)
-    p = str(s['prefix'])
+    try:
+        s = await bot.db.fetchrow("SELECT prefix FROM guilds WHERE guildid = $1", message.guild.id)
+        p = str(s['prefix'])
 
-    if message.author.id == bot.owner_id:
-        return commands.when_mentioned_or(p, "")(bot, message)
-    elif not message.guild:
+        if message.author.id == bot.owner_id:
+            return commands.when_mentioned_or(p, "")(bot, message)
+        else:
+            return commands.when_mentioned_or(p)(bot, message)
+    except:
+        await bot.db.execute("INSERT INTO guilds (guildId) VALUES($1)", message.guild.id)
         pass
-    else:
-        return commands.when_mentioned_or(p)(bot, message)
 
 class Sirk(commands.Bot):
     """
@@ -56,7 +58,9 @@ class Sirk(commands.Bot):
         print(f"Logged in as {self.user}")
 
     async def on_message_edit(self, before: discord.Message, after: discord.Message):
-        if after.author.id == self.owner_id:
+        if before.content == after.content:
+            return
+        elif after.author.id == self.owner_id:
             await self.process_commands(after)
 
     async def on_message(self, message: discord.Message):
@@ -68,7 +72,7 @@ class Sirk(commands.Bot):
             message.content == f"<@!{self.user.id}>"
             or message.content == f"<@{self.user.id}>"
         ):
-            s = await self.db.fetchrow(" SELECT prefix FROM guilds WHERE guildid = $1", message.guild.id)
+            s = await self.db.fetchrow("SELECT prefix FROM guilds WHERE guildid = $1", message.guild.id)
             p = str(s['prefix'])
             await message.channel.send(embed=discord.Embed(title="Prefix", description=f"My prefix for {message.guild.name} is {self.user.mention} and `{p}`", color=self.color))
         await self.process_commands(message)

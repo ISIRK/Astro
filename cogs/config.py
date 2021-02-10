@@ -37,12 +37,15 @@ class config(commands.Cog):
     # Functions
 
     async def Logging_Check(self, guild):
-        s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild)
-        logging, channel = s['logging'], s['channel']
+        try:
+            s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", guild)
+            channel = s['channel']
 
-        if logging and channel is not None:
-            return channel
-        else:
+            if channel:
+                return channel
+            else:
+                return False
+        except:
             return False
 
     async def Verify_Check(self, guild):
@@ -60,7 +63,7 @@ class config(commands.Cog):
     # Guild Events
     @commands.Cog.listener()
     async def on_guild_join(self, guild: discord.Guild):
-        await self.bot.db.execute("INSERT INTO guilds (guildId, logging) VALUES($1, $2)", guild.id, False)
+        await self.bot.db.execute("INSERT INTO guilds (guildId) VALUES($1)", guild.id)
 
         c = self.bot.get_channel(792869360925671444)
         embed = discord.Embed(
@@ -195,15 +198,15 @@ class config(commands.Cog):
         error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=self.bot.color)
         if not s: return await ctx.send(embed=error)
                  
-        logging, channel, role, vchannel = s['logging'], s['channel'], s['role'], s['vchannel']
+        channel, role, vchannel = s['channel'], s['role'], s['vchannel']
                  
         channel = ctx.guild.get_channel(channel)
         role = ctx.guild.get_role(role)
         vchannel = ctx.guild.get_channel(vchannel)
 
         embed = discord.Embed(title=f"{ctx.guild} Settings", color=self.bot.color)
-        embed.add_field(name=f"**Logging:** {on if logging else off}", value=f"> {channel.mention if channel is not None else 'No Channel Set'}", inline=False)
-        embed.add_field(name=f"**Verify:** {on if role and vchannel is not None else off}", value=f"> {role.mention} {vchannel.mention}" if role and vchannel is not None else 'No Channel or Role Set', inline=False)
+        embed.add_field(name=f"**Logging:** {on if channel else off}", value=f"> {channel.mention if channel is not None else 'No Channel Set'}", inline=False)
+        embed.add_field(name=f"**Verify:** {on if role and vchannel is not None else off}", value=f"> {role.mention} {vchannel.mention}" if role and vchannel is not None else '> No Channel or Role Set', inline=False)
         await ctx.send(embed=embed)
 
     @commands.command()
@@ -228,12 +231,13 @@ class config(commands.Cog):
         if ctx.invoked_subcommand is None:
             await ctx.send_help(ctx.command)
     
+    '''
     @logging.command()
     @commands.has_permissions(manage_guild=True)
     async def toggle(self, ctx):
-        '''
+        
         Toggle Logging\n*Note: You need to set a channel before it starts logging.*
-        '''
+        
         s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
         error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=self.bot.color)
         if not s: return await ctx.send(embed=error)
@@ -244,6 +248,7 @@ class config(commands.Cog):
         elif not log:
             await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", True, ctx.guild.id)
             await ctx.send(f'{on} | Logging Toggled On!')
+    '''
             
     @logging.command()
     @commands.has_permissions(manage_guild=True)
