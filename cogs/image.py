@@ -101,7 +101,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
             d = ImageDraw.Draw(img)
             d.text((10,10), text, fill=(255,255,0))
             buffer = BytesIO()
-            image.save(buffer, format="PNG")
+            img.save(buffer, format="PNG")
             buffer.seek(0)
         await ctx.send(file=discord.File(buffer, filename="text.png"))
 
