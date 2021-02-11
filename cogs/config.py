@@ -230,29 +230,10 @@ class config(commands.Cog):
 
         if ctx.invoked_subcommand is None:
             await ctx.send_help(ctx.command)
-    
-    '''
-    @logging.command()
-    @commands.has_permissions(manage_guild=True)
-    async def toggle(self, ctx):
-        
-        Toggle Logging\n*Note: You need to set a channel before it starts logging.*
-        
-        s = await self.bot.db.fetchrow("SELECT * FROM guilds WHERE guildid = $1", ctx.guild.id)
-        error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=self.bot.color)
-        if not s: return await ctx.send(embed=error)
-        log = s['logging']
-        if log:
-            await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", False, ctx.guild.id)
-            await ctx.send(f'{off} | Logging Toggled Off!')
-        elif not log:
-            await self.bot.db.execute("UPDATE guilds SET logging = $1 WHERE guildId = $2 ", True, ctx.guild.id)
-            await ctx.send(f'{on} | Logging Toggled On!')
-    '''
             
     @logging.command()
     @commands.has_permissions(manage_guild=True)
-    async def channel(self, ctx, channel: discord.TextChannel):
+    async def setup(self, ctx, channel: discord.TextChannel):
         '''
         Set the logging channel\n*Note: You need to toggle logging before it starts logging.*
         '''
@@ -273,7 +254,7 @@ class config(commands.Cog):
 
     @logging.command()
     @commands.has_permissions(manage_guild=True)
-    async def remove(self, ctx):
+    async def reset(self, ctx):
         '''
         Remove the logging channel\n*Note: If this is removed, and logging is toggled on, it still will not log.*
         '''
