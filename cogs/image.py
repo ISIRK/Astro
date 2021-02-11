@@ -105,6 +105,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
             buffer.seek(0)
         await ctx.send(file=discord.File(buffer, filename="text.png"))
 
+    """ TO BE CONTINUED
     @commands.command()
     async def merge(self, ctx, m1: discord.Member, m2: discord.Member = None):
         '''Merge two avatars together'''
@@ -120,6 +121,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
             out.save(buffer, format="PNG")
             buffer.seek(0)
         await ctx.send(file=discord.File(buffer, filename="merge.png"))
+    """
 
     @commands.command()
     async def color(self, ctx, member: discord.Member = None):
