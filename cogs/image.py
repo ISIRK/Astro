@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
-from PIL import Image, ImageFilter, ImageDraw, ImageMath
+from PIL import Image, ImageFilter, ImageDraw
 from io import BytesIO
 
 class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, commands.BucketType.user)}):
@@ -128,9 +128,9 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
         url1 = m1.avatar_url_as(size=512, format="png")
         url2 = m2.avatar_url_as(size=512, format="png")
         async with ctx.typing():
-            img1 = Image.open(BytesIO(await url1.read())).convert('L')
-            img2 = Image.open(BytesIO(await url2.read())).convert('L')
-            out = ImageMath.eval("convert(min(a, b), 'L')", a = img1, b = img2) 
+            img1 = Image.open(BytesIO(await url1.read()))
+            img2 = Image.open(BytesIO(await url2.read()))
+            out = Image.blend(im1, im2, 0.0)
             buffer = BytesIO()
             out.save(buffer, format="PNG")
             buffer.seek(0)
