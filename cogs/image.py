@@ -91,7 +91,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
             buffer = BytesIO()
             image.save(buffer, format="PNG")
             buffer.seek(0)
-        await ctx.send(file=discord.File(buffer, filename="emboss.png"))
+        await ctx.send(file=discord.File(buffer, filename="pixel.png"))
 
     @commands.command()
     async def color(self, ctx, member: discord.Member = None):
