@@ -78,6 +78,21 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
         await ctx.send(file=discord.File(buffer, filename="emboss.png"))
 
     @commands.command()
+    async def enhance(self, ctx, member: discord.Member = None):
+        '''Enhance the edges of the avatar'''
+        if not member:
+            member = ctx.author
+        avatarUrl = member.avatar_url_as(size=512, format="png")
+        avatar = BytesIO(await avatarUrl.read())
+        image = Image.open(avatar)
+        async with ctx.typing():
+            image = image.filter(ImageFilter.EDGE_ENHANCE)
+            buffer = BytesIO()
+            image.save(buffer, format="PNG")
+            buffer.seek(0)
+        await ctx.send(file=discord.File(buffer, filename="enhance.png"))
+
+    @commands.command()
     async def pixel(self, ctx, member: discord.Member = None):
         '''Pixelizes the avatar'''
         if not member:
