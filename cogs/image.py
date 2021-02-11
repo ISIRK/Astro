@@ -130,8 +130,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
         async with ctx.typing():
             img1 = Image.open(BytesIO(await url1.read()))
             img2 = Image.open(BytesIO(await url2.read()))
-            img1.resize(512, 512)
-            img2.resize(512, 512)
+            img1.resize((512, 512))
+            img2.resize((512, 512))
             if img1.mode != img2.mode:
                 img1 = img1.convert(img2.mode)
             elif img2.mode != img1.mode:
