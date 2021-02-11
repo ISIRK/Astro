@@ -170,7 +170,10 @@ class mod(commands.Cog):
         Make a custom embed
         
         To make an embed use `{}` and insert your args.
-        **args:** `title` `description` `author` `color` `footer`
+        
+        **args:** `title` `description` `author` `color` `footer` `fields`
+
+        Example: ```{"title" : "This is the title","description" : "This is the description", "author" : {"name" : "The Author"}, "color" : 7506394, "footer" : {"text" : "This is the footer"}, "fields" : [{"name" : "Field Title", "value" : "Field Description", "inline" : false}]}```
         '''
         await ctx.send(embed=discord.Embed().from_dict(code))
 
