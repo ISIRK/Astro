@@ -48,7 +48,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             return buffer
 
     @commands.command()
-    async def sharpen(self, ctx, member: discord.Member = None):
+    async def sharpen(self, ctx, *, member: discord.Member = None):
         '''Sharpens the avatar'''
         if not member:
             member = ctx.author
@@ -63,7 +63,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         await ctx.send(file=discord.File(buffer, filename="sharpen.png"))
 
     @commands.command()
-    async def emboss(self, ctx, member: discord.Member = None):
+    async def emboss(self, ctx, *, member: discord.Member = None):
         '''Embosses the avatar'''
         if not member:
             member = ctx.author
@@ -78,7 +78,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         await ctx.send(file=discord.File(buffer, filename="emboss.png"))
 
     @commands.command()
-    async def edge(self, ctx, member: discord.Member = None):
+    async def edge(self, ctx, *, member: discord.Member = None):
         '''Enhance the edges of the avatar'''
         if not member:
             member = ctx.author
@@ -93,7 +93,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         await ctx.send(file=discord.File(buffer, filename="edge.png"))
 
     @commands.command()
-    async def pixel(self, ctx, member: discord.Member = None):
+    async def pixel(self, ctx, *, member: discord.Member = None):
         '''Pixelizes the avatar'''
         if not member:
             member = ctx.author
@@ -141,7 +141,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         await ctx.send(file=discord.File(buffer, filename="merge.png"))
 
     @commands.command()
-    async def color(self, ctx, member: discord.Member = None):
+    async def color(self, ctx, *, member: discord.Member = None):
         '''Colors the avatar'''
         if not member:
             member = ctx.author
