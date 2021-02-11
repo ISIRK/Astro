@@ -88,6 +88,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
         async with ctx.typing():
             imgSmall = img.resize((36, 36), resample=Image.BILINEAR)
             image = imgSmall.resize(img.size, Image.NEAREST)
+            buffer = BytesIO()
             image.save(buffer, format="PNG")
             buffer.seek(0)
         await ctx.send(file=discord.File(buffer, filename="emboss.png"))
