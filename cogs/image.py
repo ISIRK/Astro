@@ -86,7 +86,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
         avatar = BytesIO(await avatarUrl.read())
         image = Image.open(avatar)
         async with ctx.typing():
-            image = image.filter(ImageFilter.EDGE_ENHANCE)
+            #image = image.filter(ImageFilter.EDGE_ENHANCE)
             image = image.filter(ImageFilter.EDGE_ENHANCE_MORE)
             buffer = BytesIO()
             image.save(buffer, format="PNG")
