@@ -106,10 +106,10 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
         await ctx.send(file=discord.File(buffer, filename="text.png"))
 
     @commands.command()
-    async def merge(self, ctx, m1: discord.Member = None, m2: discord.Member):
+    async def merge(self, ctx, m1: discord.Member, m2: discord.Member = None):
         '''Merge two avatars together'''
-        if not m1:
-            m1 = ctx.author
+        if not m2:
+            m2 = ctx.author
         url1 = m1.avatar_url_as(size=512, format="png")
         url2 = m2.avatar_url_as(size=512, format="png")
         async with ctx.typing():
