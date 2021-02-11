@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
-from PIL import Image, ImageFilter, ImageDraw
+from PIL import Image, ImageFilter, ImageDraw, ImageMath
 from io import BytesIO
 
 class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, commands.BucketType.user)}):
@@ -104,6 +104,22 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
             img.save(buffer, format="PNG")
             buffer.seek(0)
         await ctx.send(file=discord.File(buffer, filename="text.png"))
+
+    @commands.command()
+    async def merge(self, ctx, m1: discord.Member = None, m2: discord.Member):
+        '''Merge two avatars together'''
+        if not m1:
+            m1 = ctx.author
+        url1 = m1.avatar_url_as(size=512, format="png")
+        url2 = m2.avatar_url_as(size=512, format="png")
+        async with ctx.typing():
+            img1 = BytesIO(await url1.read())
+            img2 = BytesIO(await url2.read())
+            out = ImageMath.eval("convert(min(a, b), 'L')", a = img1, b = img2) 
+            buffer = BytesIO()
+            out.save(buffer, format="PNG")
+            buffer.seek(0)
+        await ctx.send(file=discord.File(buffer, filename="merge.png"))
 
     @commands.command()
     async def color(self, ctx, member: discord.Member = None):
