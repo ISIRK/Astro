@@ -99,7 +99,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
         async with ctx.typing():
             img = Image.new('RGB', (100, 30), color = (114, 137, 218))
             d = ImageDraw.Draw(img)
-            d.text((10,10), text, fill=(255,255,0))
+            d.text((10,10), text, fill=(255,255,255))
             buffer = BytesIO()
             img.save(buffer, format="PNG")
             buffer.seek(0)
