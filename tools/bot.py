@@ -74,7 +74,7 @@ class Sirk(commands.Bot):
         ):
             s = await self.db.fetchrow("SELECT prefix FROM guilds WHERE guildid = $1", message.guild.id)
             p = str(s['prefix'])
-            await message.channel.send(embed=discord.Embed(title="Prefix", description=f"My prefix for {message.guild.name} is {self.user.mention} and `{p}`", color=self.color))
+            await message.channel.send(embed=discord.Embed(title="Prefix", description=f"My prefix for {message.guild.name} are {self.user.mention} and `{p}`", color=self.color))
         await self.process_commands(message)
 
     async def mystbin(self, data):
