@@ -97,7 +97,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
     async def type(self, ctx, *, text: str):
         '''Type words on an image'''
         async with ctx.typing():
-            img = Image.new('RGB', (100, 30), color = (114, 137, 218))
+            img = Image.new('RGB', (100, 100), color = (114, 137, 218))
             d = ImageDraw.Draw(img)
             d.text((10,10), text, fill=(255,255,255))
             buffer = BytesIO()
