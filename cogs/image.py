@@ -78,6 +78,21 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
         await ctx.send(file=discord.File(buffer, filename="emboss.png"))
 
     @commands.command()
+    async def pixel(self, ctx, member: discord.Member = None):
+        '''Pixelizes the avatar'''
+        if not member:
+            member = ctx.author
+        avatarUrl = member.avatar_url_as(size=512, format="png")
+        avatar = BytesIO(await avatarUrl.read())
+        img = Image.open(avatar)
+        async with ctx.typing():
+            imgSmall = img.resize((36, 36), resample=Image.BILINEAR)
+            result = imgSmall.resize(img.size, Image.NEAREST)
+            image.save(buffer, format="PNG")
+            buffer.seek(0)
+        await ctx.send(file=discord.File(buffer, filename="emboss.png"))
+
+    @commands.command()
     async def color(self, ctx, member: discord.Member = None):
         """Colors the avatar"""
         if not member:
