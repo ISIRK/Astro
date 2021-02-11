@@ -10,7 +10,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
         self.bot = bot
 
     @staticmethod
-    async def Quantize(img):
+    async def quantize(img):
         with Image.open(img) as image:
             siz = 300
             newsize = (siz,siz)
@@ -102,7 +102,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
         async with ctx.typing():
             img = BytesIO(await url.read())
             img.seek(0)
-            buffer = await self.Quantize(img)
+            buffer = await self.quantize(img)
         await ctx.send(file=discord.File(buffer, filename="quantize.gif"))
 
 def setup(bot):
