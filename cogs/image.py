@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
-from PIL import Image, ImageFilter
+from PIL import Image, ImageFilter, ImageDraw
 from io import BytesIO
 
 class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, commands.BucketType.user)}):
@@ -92,6 +92,18 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
             image.save(buffer, format="PNG")
             buffer.seek(0)
         await ctx.send(file=discord.File(buffer, filename="pixel.png"))
+
+    @commands.command()
+    async def type(self, ctx, *, text: str):
+        '''Type words on an image'''
+        async with ctx.typing():
+            img = Image.new('RGB', (100, 30), color = (114, 137, 218))
+            d = ImageDraw.Draw(img)
+            d.text((10,10), text, fill=(255,255,0))
+            buffer = BytesIO()
+            image.save(buffer, format="PNG")
+            buffer.seek(0)
+        await ctx.send(file=discord.File(buffer, filename="text.png"))
 
     @commands.command()
     async def color(self, ctx, member: discord.Member = None):
