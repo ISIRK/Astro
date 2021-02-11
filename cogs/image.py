@@ -130,14 +130,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         async with ctx.typing():
             img1 = Image.open(BytesIO(await url1.read()))
             img2 = Image.open(BytesIO(await url2.read()))
-            img1.resize((512, 512))
-            img2.resize((512, 512))
-            '''
-            if img1.mode != img2.mode:
-                img1 = img1.convert(img2.mode)
-            elif img2.mode != img1.mode:
-                img2 = img2.convert(img1.mode)
-            '''
+            img1.resize((512, 512)).convert("RGBA")
+            img2.resize((512, 512)).convert("RGBA")
             out = Image.blend(img1, img2, 0.5)
             buffer = BytesIO()
             out.save(buffer, format="PNG")
