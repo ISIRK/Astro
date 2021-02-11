@@ -94,8 +94,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
         await ctx.send(file=discord.File(buffer, filename="pixel.png"))
 
     @commands.command()
-    async def type(self, ctx, *, text: str):
-        '''Type words on an image'''
+    async def text(self, ctx, *, text: str):
+        '''Display text on an image'''
         async with ctx.typing():
             img = Image.new('RGB', (100, 50), color = (114, 137, 218))
             d = ImageDraw.Draw(img)
