@@ -172,7 +172,7 @@ class mod(commands.Cog):
         To make an embed use `{}` and insert your args.
         **args:** `title` `description` `author` `color` `footer`
         '''
-        await ctx.send(embed=discord.Embed().from_dict(thing))
+        await ctx.send(embed=discord.Embed().from_dict(code))
 
 def setup(bot):
     bot.add_cog(mod(bot))
