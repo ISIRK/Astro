@@ -130,7 +130,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
         async with ctx.typing():
             img1 = Image.open(BytesIO(await url1.read()))
             img2 = Image.open(BytesIO(await url2.read()))
-            out = Image.blend(im1, im2, 0.0)
+            out = Image.blend(img1, img2, 0.0)
             buffer = BytesIO()
             out.save(buffer, format="PNG")
             buffer.seek(0)
