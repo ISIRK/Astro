@@ -49,7 +49,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
 
     @commands.command()
     async def sharpen(self, ctx, member: discord.Member = None):
-        """Sharpens the avatar"""
+        '''Sharpens the avatar'''
         if not member:
             member = ctx.author
         avatarUrl = member.avatar_url_as(size=512, format="png")
@@ -64,7 +64,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
 
     @commands.command()
     async def emboss(self, ctx, member: discord.Member = None):
-        """Embosses the avatar"""
+        '''Embosses the avatar'''
         if not member:
             member = ctx.author
         avatarUrl = member.avatar_url_as(size=512, format="png")
@@ -95,7 +95,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
 
     @commands.command()
     async def color(self, ctx, member: discord.Member = None):
-        """Colors the avatar"""
+        '''Colors the avatar'''
         if not member:
             member = ctx.author
         url = member.avatar_url_as(size=512, format="png")
