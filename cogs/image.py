@@ -128,8 +128,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 30, co
         url1 = m1.avatar_url_as(size=512, format="png")
         url2 = m2.avatar_url_as(size=512, format="png")
         async with ctx.typing():
-            img1 = Image.open(BytesIO(await url1.read()))
-            img2 = Image.open(BytesIO(await url2.read()))
+            img1 = Image.open(BytesIO(await url1.read())).convert('L')
+            img2 = Image.open(BytesIO(await url2.read())).convert('L')
             out = Image.blend(img1, img2, 0.5)
             buffer = BytesIO()
             out.save(buffer, format="PNG")
