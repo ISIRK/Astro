@@ -93,7 +93,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Sharpened Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://sharpen.png")
-        await ctx.send(embed=e)
+        await ctx.send(file=file, embed=e)
 
     @commands.command()
     async def emboss(self, ctx, *, member: discord.Member = None):
