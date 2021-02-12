@@ -1,4 +1,4 @@
-import discord
+import discord, numpy
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
 from PIL import Image, ImageFilter, ImageDraw
@@ -44,6 +44,34 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
                            append_images=images[1:],
                            duration=1,
                            loop=0)
+            buffer.seek(0)
+            return buffer
+
+    @staticmethod
+    async def sketch(img):
+        ele = numpy.pi/2.2
+        azi = numpy.pi/4.
+        dep = 10.
+
+        with Image.open(img) as img:
+            a = numpy.asarray(img).astype('float')
+            grad = numpy.gradient(a)
+            grad_x, grad_y = grad
+            gd = numpy.cos(ele)
+            dx = gd*numpy.cos(azi)
+            dy = gd*numpy.sin(azi)
+            dz = numpy.sin(ele)
+            grad_x = grad_x*dep/100.
+            grad_y = grad_y*dep/100.
+            leng = numpy.sqrt(grad_x**2 + grad_y**2 + 1.)
+            uni_x = grad_x/leng
+            uni_y = grad_y/leng
+            uni_z = 1./leng
+            a2 = 255*(dx*uni_x + dy*uni_y + dz*uni_z)
+            a2 = a2.clip(0,255)
+            img2 = Image.fromarray(a2.astype('uint8')) 
+            buffer = BytesIO()
+            img2.save(buffer, format="PNG")
             buffer.seek(0)
             return buffer
 
@@ -119,6 +147,18 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             img.save(buffer, format="PNG")
             buffer.seek(0)
         await ctx.send(file=discord.File(buffer, filename="text.png"))
+
+    @commands.command()
+    async def sketch(self, ctx, *, member: discord.Member = None):
+        '''Sketches the avatar'''
+        if not member:
+            member = ctx.author
+        url = member.avatar_url_as(size=512, format="png")
+        async with ctx.typing():
+            img = BytesIO(await url.read())
+            img.seek(0)
+            buffer = await self.sketch(img)
+        await ctx.send(file=discord.File(buffer, filename="sketch.png"))
 
     @commands.command()
     async def merge(self, ctx, m1: discord.Member, m2: discord.Member = None):
