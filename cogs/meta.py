@@ -134,7 +134,7 @@ class meta(commands.Cog):
     @commands.command()
     async def uptime(self, ctx):
         """Displays the uptime"""
-        await ctx.send(f"{humanize.precisedelta(self.bot.uptime, minimum_unit='seconds', suppress=(), format='%0.0f')}")
+        await ctx.send(f"{humanize.precisedelta(self.bot.uptime, format='%0.0f')}")
 
     @commands.command()
     async def server(self, ctx):
