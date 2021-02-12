@@ -48,7 +48,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             return buffer
 
     @staticmethod
-    async def sketch(img):
+    async def do_sketch(img):
         ele = numpy.pi/2.2
         azi = numpy.pi/4.
         dep = 10.
@@ -149,7 +149,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         await ctx.send(file=discord.File(buffer, filename="text.png"))
 
     @commands.command()
-    async def sketch(self, ctx: commands.Context, *, member: discord.Member = None):
+    async def sketch(self, ctxt, *, member: discord.Member = None):
         '''Sketches the avatar'''
         if not member:
             member = ctx.author
@@ -157,7 +157,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         async with ctx.typing():
             img = BytesIO(await url.read())
             img.seek(0)
-            buffer = await self.sketch(img)
+            buffer = await self.do_sketch(img)
         await ctx.send(file=discord.File(buffer, filename="sketch.png"))
 
     @commands.command()
