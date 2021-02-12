@@ -1,4 +1,4 @@
-import discord, numpy
+import discord, numpy, textwrap
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
 from PIL import Image, ImageFilter, ImageDraw
@@ -108,7 +108,11 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             buffer = BytesIO()
             image.save(buffer, format="PNG")
             buffer.seek(0)
-        await ctx.send(file=discord.File(buffer, filename="emboss.png"))
+        file=discord.File(buffer, filename="emboss.png")
+        e=discord.Embed(color=self.invis)
+        e.set_author(name="Embossed Avatar", icon_url=member.avatar_url)
+        e.set_image(url="attachment://emboss.png")
+        await ctx.send(file=file, embed=e)
 
     @commands.command()
     async def edge(self, ctx, *, member: discord.Member = None):
@@ -123,7 +127,11 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             buffer = BytesIO()
             image.save(buffer, format="PNG")
             buffer.seek(0)
-        await ctx.send(file=discord.File(buffer, filename="edge.png"))
+        file=discord.File(buffer, filename="edge.png")
+        e=discord.Embed(color=self.invis)
+        e.set_author(name="Edges Enhanced Avatar", icon_url=member.avatar_url)
+        e.set_image(url="attachment://edge.png")
+        await ctx.send(file=file, embed=e)
 
     @commands.command()
     async def pixel(self, ctx, *, member: discord.Member = None):
@@ -139,15 +147,20 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             buffer = BytesIO()
             image.save(buffer, format="PNG")
             buffer.seek(0)
-        await ctx.send(file=discord.File(buffer, filename="pixel.png"))
+        file=discord.File(buffer, filename="pixel.png")
+        e=discord.Embed(color=self.invis)
+        e.set_author(name="Pixelated Avatar", icon_url=member.avatar_url)
+        e.set_image(url="attachment://pixel.png")
+        await ctx.send(file=file, embed=e)
 
     @commands.command()
     async def text(self, ctx, *, text: str):
         '''Display text on an image'''
         async with ctx.typing():
-            img = Image.new('RGB', (100, 50), color = (114, 137, 218))
+            img = Image.new('RGB', (200, 100), color = (114, 137, 218))
             d = ImageDraw.Draw(img)
-            d.text((10,10), text, fill=(255,255,255))
+            text = '\n'.join(textwrap.wrap(text, width=50))
+            d.text((10,10), text, fill='white')
             buffer = BytesIO()
             img.save(buffer, format="PNG")
             buffer.seek(0)
@@ -163,7 +176,11 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             img = BytesIO(await url.read())
             img.seek(0)
             buffer = await self.do_sketch(img)
-        await ctx.send(file=discord.File(buffer, filename="sketch.png"))
+        file=discord.File(buffer, filename="sketch.png")
+        e=discord.Embed(color=self.invis)
+        e.set_author(name="Sketched Avatar", icon_url=member.avatar_url)
+        e.set_image(url="attachment://sketch.png")
+        await ctx.send(file=file, embed=e)
 
     @commands.command()
     async def merge(self, ctx, m1: discord.Member, m2: discord.Member = None):
@@ -183,7 +200,11 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             buffer = BytesIO()
             out.save(buffer, format="PNG")
             buffer.seek(0)
-        await ctx.send(file=discord.File(buffer, filename="merge.png"))
+        file=discord.File(buffer, filename="merge.png")
+        e=discord.Embed(color=self.invis)
+        e.set_author(name="Merged Avatars", icon_url=m1.avatar_url)
+        e.set_image(url="attachment://merge.png")
+        await ctx.send(file=file, embed=e)
 
     @commands.command()
     async def color(self, ctx, *, member: discord.Member = None):
@@ -195,7 +216,11 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             img = BytesIO(await url.read())
             img.seek(0)
             buffer = await self.quantize(img)
-        await ctx.send(file=discord.File(buffer, filename="quantize.gif"))
+        file=discord.File(buffer, filename="quantize.gif")
+        e=discord.Embed(color=self.invis)
+        e.set_author(name="Colored Avatar", icon_url=member.avatar_url)
+        e.set_image(url="attachment://quantize.gif")
+        await ctx.send(file=file, embed=e)
 
 def setup(bot):
     bot.add_cog(image(bot))
