@@ -47,7 +47,7 @@ class Sirk(commands.Bot):
             owner_id=542405601255489537,
             description="A minimalistic bot for discord Developed by isirk#0001"
         )       
-        self.start_time = datetime.utcnow()
+        self.uptime = datetime.utcnow()
         self.session = aiohttp.ClientSession()
         self.db = asyncio.get_event_loop().run_until_complete(asyncpg.create_pool(user=user, password=password, database=name, host='127.0.0.1'))
         self.footer = "Sirk Bot v2.0.1"
