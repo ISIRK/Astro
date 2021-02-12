@@ -8,6 +8,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
     """Image manipulation commands"""
     def __init__(self, bot):
         self.bot = bot
+        self.invis = 0x2F3136
 
     @staticmethod
     async def quantize(img):
@@ -88,7 +89,11 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             buffer = BytesIO()
             image.save(buffer, format="PNG")
             buffer.seek(0)
-        await ctx.send(file=discord.File(buffer, filename="sharpen.png"))
+        file=discord.File(buffer, filename="sharpen.png")
+        e=discord.Embed(color=self.invis)
+        e.set_author(name="Sharpened Avatar", icon_url=member.avatar_url)
+        e.set_image(url="attachment://sharpen.png")
+        await ctx.send(embed=e)
 
     @commands.command()
     async def emboss(self, ctx, *, member: discord.Member = None):
