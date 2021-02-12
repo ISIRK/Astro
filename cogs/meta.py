@@ -82,8 +82,8 @@ class meta(commands.Cog):
                         inline=False)
         embed.add_field(name="Version Info",
                         value=f"```Python: {platform.python_version()}\nDiscord.py: {discord.__version__}```")
-        embed.add_field(name="Vote!",
-                        value="[Support Server](https://discord.gg/7yZqHfG)\n[Website](https://asksirk.com/bot/)\n[Top.GG](https://top.gg/bot/751447995270168586/)\n[BotList.Space](https://botlist.space/bot/751447995270168586)")
+        embed.add_field(name="Links",
+                        value="[Support Server](https://discord.gg/7yZqHfG)\n[Website](https://asksirk.com/bot/)\n[TOP.GG](https://top.gg/bot/751447995270168586/) [BotList.Space](https://botlist.space/bot/751447995270168586)")
         await ctx.send(embed=embed)
         
     @commands.command()
