@@ -53,7 +53,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         azi = numpy.pi/4.
         dep = 10.
 
-        with Image.open(img) as img:
+        with Image.open(img).convert('L') as img:
             a = numpy.asarray(img).astype('float')
             grad = numpy.gradient(a)
             grad_x, grad_y = grad
