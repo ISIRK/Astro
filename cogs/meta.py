@@ -134,11 +134,7 @@ class meta(commands.Cog):
     @commands.command()
     async def uptime(self, ctx):
         """Displays the uptime"""
-        delta_uptime = datetime.datetime.utcnow() - self.bot.start_time
-        hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
-        minutes, seconds = divmod(remainder, 60)
-        days, hours = divmod(hours, 24)
-        await ctx.send(f"Been up for {days}d, {hours}h, {minutes}m, {seconds}s")
+        await ctx.send(f"{humanize.precisedelta(self.bot.start_time, minimum_unit='seconds', suppress=(), format='%2f')}")
 
     @commands.command()
     async def server(self, ctx):
