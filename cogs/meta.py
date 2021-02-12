@@ -72,7 +72,7 @@ class meta(commands.Cog):
         embed.set_footer(text=self.bot.footer)
         embed.set_thumbnail(url=self.bot.user.avatar_url)
         embed.add_field(name="About",
-                        value=f"{self.bot.description}\n[Support Server](https://discord.gg/7yZqHfG)\n[Website](https://asksirk.com/bot/)"
+                        value=f"{self.bot.description}"
                        )
         embed.add_field(name=f"Stats",
                         value=f"Servers: {len(self.bot.guilds)}\nUsers: {len(self.bot.users):,}\nCommands: {len(self.bot.commands)}"
@@ -83,7 +83,7 @@ class meta(commands.Cog):
         embed.add_field(name="Version Info",
                         value=f"```Python: {platform.python_version()}\nDiscord.py: {discord.__version__}```")
         embed.add_field(name="Vote!",
-                        value="[Top.GG](https://top.gg/bot/751447995270168586/)\n[BotList.Space](https://botlist.space/bot/751447995270168586)\n[Discord Extreme List](https://discordextremelist.xyz/en-US/bots/sirk)")
+                        value="[Support Server](https://discord.gg/7yZqHfG)\n[Website](https://asksirk.com/bot/)\n[Top.GG](https://top.gg/bot/751447995270168586/)\n[BotList.Space](https://botlist.space/bot/751447995270168586)")
         await ctx.send(embed=embed)
         
     @commands.command()
