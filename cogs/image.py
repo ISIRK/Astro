@@ -149,7 +149,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         await ctx.send(file=discord.File(buffer, filename="text.png"))
 
     @commands.command()
-    async def sketch(self, ctxt, *, member: discord.Member = None):
+    async def sketch(self, ctx, *, member: discord.Member = None):
         '''Sketches the avatar'''
         if not member:
             member = ctx.author
