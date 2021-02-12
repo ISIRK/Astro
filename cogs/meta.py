@@ -37,7 +37,7 @@ import random
 import psutil
 import json
 import platform
-import inspect, sys, multiprocessing, asyncio
+import inspect, sys, multiprocessing, asyncio, humanize
 
 from collections import Counter
 import time, datetime
@@ -67,13 +67,16 @@ class meta(commands.Cog):
         """Displays bot info"""
         mem = psutil.virtual_memory()
         embed = discord.Embed(title="Bot Info", color=self.bot.color)
-        embed.set_author(name="isirk#0001", icon_url="https://asksirk.com/img/isirk.gif")
+        owner = await self.bot.get_user(self.bot.owner_id)
+        embed.set_author(name=str(owner), icon_url=owner.avatar_url)
         embed.set_footer(text=self.bot.footer)
         embed.set_thumbnail(url=self.bot.user.avatar_url)
         embed.add_field(name="About",
-                        value=f"A minimalistic bot for discord made by [isirk](https://discord.com/users/542405601255489537)\n[Support Server](https://discord.gg/7yZqHfG)\n[Website](https://asksirk.com/bot/)")
+                        value=f"{self.bot.description}\n[Support Server](https://discord.gg/7yZqHfG)\n[Website](https://asksirk.com/bot/)"
+                       )
         embed.add_field(name=f"Stats",
-                        value=f"Servers: {len(self.bot.guilds)}\nUsers: {len(self.bot.users):,}\nCommands: {len(self.bot.commands)}")
+                        value=f"Servers: {len(self.bot.guilds)}\nUsers: {len(self.bot.users):,}\nCommands: {len(self.bot.commands)}\nUptime: {humanize.precisedelta(self.bot.start_time, minimum_unit='seconds', suppress=(), format='%0.0f')}"
+                       )
         embed.add_field(name="Usage:",
                         value=f"```CPU Usage: {psutil.cpu_percent()}%\n{mem[1] / 1000000:.3f} MB available ({100 - mem[2]:.2f}%)```",
                         inline=False)
