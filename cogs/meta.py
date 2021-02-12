@@ -67,7 +67,7 @@ class meta(commands.Cog):
         """Displays bot info"""
         mem = psutil.virtual_memory()
         embed = discord.Embed(title="Bot Info", color=self.bot.color)
-        owner = await self.bot.get_user(self.bot.owner_id)
+        owner = self.bot.get_user(self.bot.owner_id)
         embed.set_author(name=str(owner), icon_url=owner.avatar_url)
         embed.set_footer(text=self.bot.footer)
         embed.set_thumbnail(url=self.bot.user.avatar_url)
