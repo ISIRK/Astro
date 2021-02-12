@@ -75,7 +75,7 @@ class meta(commands.Cog):
                         value=f"{self.bot.description}\n[Support Server](https://discord.gg/7yZqHfG)\n[Website](https://asksirk.com/bot/)"
                        )
         embed.add_field(name=f"Stats",
-                        value=f"Servers: {len(self.bot.guilds)}\nUsers: {len(self.bot.users):,}\nCommands: {len(self.bot.commands)}\nUptime: {humanize.precisedelta(self.bot.start_time, minimum_unit='seconds', suppress=(), format='%0.0f')}"
+                        value=f"Servers: {len(self.bot.guilds)}\nUsers: {len(self.bot.users):,}\nCommands: {len(self.bot.commands)}"
                        )
         embed.add_field(name="Usage:",
                         value=f"```CPU Usage: {psutil.cpu_percent()}%\n{mem[1] / 1000000:.3f} MB available ({100 - mem[2]:.2f}%)```",
