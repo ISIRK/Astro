@@ -62,7 +62,7 @@ class dbl(commands.Cog):
             status = "✅"
         else:
             status = "❌"
-        await ctx.send(f'{status}')
+        await ctx.send(f'{vote}')
         
 def setup(bot):
     bot.add_cog(dbl(bot))
