@@ -123,7 +123,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         avatar = BytesIO(await avatarUrl.read())
         image = Image.open(avatar)
         async with ctx.typing():
-            img_arry = np.array(image) 
+            img_arry = numpy.array(image) 
             img_arry = 25 - img_arry 
             image = Image.fromarray(img_arry)
             buffer = BytesIO()
