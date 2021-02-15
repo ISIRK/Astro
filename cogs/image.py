@@ -124,7 +124,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         image = Image.open(avatar)
         async with ctx.typing():
             img_arry = numpy.array(image) 
-            img_arry = 255 - img_arry 
+            img_arry = img_arry - 255 
             image = Image.fromarray(img_arry)
             buffer = BytesIO()
             image.save(buffer, format="PNG")
