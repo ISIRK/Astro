@@ -116,7 +116,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         await ctx.send(file=file, embed=e)
 
     @commands.command()
-    async def solarize(self, ctx, member: discord.Member = None, *flags):
+    async def solarize(self, ctx, member: discord.Member = None):
         '''Solarizes the avatar'''
         if not member:
             member = ctx.author
@@ -124,12 +124,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         avatar = BytesIO(await avatarUrl.read())
         image = Image.open(avatar)
         async with ctx.typing():
-            if "-s" or "--solarize" in flags:
-                threshold = *flag
-            else:
-                threshold = 128
             image = image.convert("RGB")
-            image = ImageOps.solarize(image, threshold=threshold)
+            image = ImageOps.solarize(image, threshold=64)
             buffer = BytesIO()
             image.save(buffer, format="PNG")
             buffer.seek(0)
