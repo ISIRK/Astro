@@ -1,7 +1,7 @@
 import discord, numpy, textwrap
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
-from PIL import Image, ImageFilter, ImageDraw, ImageOps
+from PIL import Image, ImageFilter, ImageDraw, ImageChops
 from io import BytesIO
 
 class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, commands.BucketType.user)}):
@@ -123,7 +123,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         avatar = BytesIO(await avatarUrl.read())
         image = Image.open(avatar)
         async with ctx.typing():
-            image = ImageOps.invert(image)
+            image = ImageChops.invert(image)
             buffer = BytesIO()
             image.save(buffer, format="PNG")
             buffer.seek(0)
