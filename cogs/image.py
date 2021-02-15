@@ -129,7 +129,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             buffer.seek(0)
         file=discord.File(buffer, filename="invert.png")
         e=discord.Embed(color=self.invis)
-        e.set_author(name="Embossed Avatar", icon_url=member.avatar_url)
+        e.set_author(name="Inverted Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://invert.png")
         await ctx.send(file=file, embed=e)
 
