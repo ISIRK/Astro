@@ -135,22 +135,23 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         await ctx.send(file=file, embed=e)
 
     @commands.command()
-    async def edge(self, ctx, *, member: discord.Member = None):
-        '''Enhance the edges of the avatar'''
+    async def solarize(self, ctx, *, member: discord.Member = None):
+        '''Solarizes the avatar'''
         if not member:
             member = ctx.author
         avatarUrl = member.avatar_url_as(size=512, format="png")
         avatar = BytesIO(await avatarUrl.read())
         image = Image.open(avatar)
         async with ctx.typing():
-            image = image.filter(ImageFilter.EDGE_ENHANCE_MORE)
+            image = image.convert("RGB")
+            image = ImageOps.solarize(image, threshold=128)
             buffer = BytesIO()
             image.save(buffer, format="PNG")
             buffer.seek(0)
-        file=discord.File(buffer, filename="edge.png")
+        file=discord.File(buffer, filename="solarize.png")
         e=discord.Embed(color=self.invis)
-        e.set_author(name="Edges Enhanced Avatar", icon_url=member.avatar_url)
-        e.set_image(url="attachment://edge.png")
+        e.set_author(name="Solarized Avatar", icon_url=member.avatar_url)
+        e.set_image(url="attachment://solarized.png")
         await ctx.send(file=file, embed=e)
 
     @commands.command()
