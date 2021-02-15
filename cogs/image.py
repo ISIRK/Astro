@@ -123,7 +123,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         avatar = BytesIO(await avatarUrl.read())
         image = Image.open(avatar)
         async with ctx.typing():
-            image = image.convert("RGBA")
+            image = image.convert("RGB")
             image = ImageOps.invert(image)
             buffer = BytesIO()
             image.save(buffer, format="PNG")
