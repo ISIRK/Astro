@@ -286,15 +286,5 @@ class dev(commands.Cog):
             await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']-amount, user.id)
             await ctx.send(f'Took `{amount}` from **{user.name}**')
 
-    @commands.command()
-    async def votecheck(self, ctx):
-        async with self.bot.session.get(f'https://top.gg/api//bots/{self.bot.user.id}/check?userId={ctx.author.id}') as resp:
-            r = await resp.json()
-        v = r["voted"]
-        if v:
-            await ctx.send(f'{ctx.author.name} has voted.')
-        else:
-            await ctx.send(f'{ctx.author.name} has not voted.')
-
 def setup(bot):
     bot.add_cog(dev(bot))
