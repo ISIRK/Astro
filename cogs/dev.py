@@ -93,7 +93,6 @@ class dev(commands.Cog):
         """Sync with GitHub"""
         out = subprocess.check_output("git pull", shell=True)
         await ctx.send(f"```{out.decode('utf-8')}```")
-        await ctx.message.add_reaction("🔁")
 
     @commands.command()
     async def leaveguildanddontchokeisirk(self, ctx):
