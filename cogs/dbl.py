@@ -1,4 +1,5 @@
-import discord, json, dbl
+import discord, json
+import dbl as top
 from discord.ext import commands, tasks
 
 File = "tools/config.json"
@@ -8,13 +9,13 @@ space = data['SPACE']
 top = data['TOP']
 delly = data['DELLY']
 
-class bl(commands.Cog):
+class dbl(commands.Cog):
     '''Discord Bot Lists Commands/Tasks'''
     def __init__(self, bot):
         self.bot = bot
         self.space.start()
         self.delly.start()
-        self.dblpy = dbl.DBLClient(self.bot, top, autopost=True)
+        self.dblpy = top.DBLClient(self.bot, top, autopost=True)
 
     def cog_unload(self):
         self.delly.cancel()
@@ -53,4 +54,4 @@ class bl(commands.Cog):
             pass
         
 def setup(bot):
-    bot.add_cog(bl(bot))
+    bot.add_cog(dbl(bot))
