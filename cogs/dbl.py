@@ -57,12 +57,12 @@ class dbl(commands.Cog):
     async def vcheck(self, ctx, *, member: discord.Member=None):
         if member is None:
             member = ctx.author
-        vote = self.dblpy.get_user_vote(member.id)
+        vote = await self.dblpy.get_user_vote(member.id)
         if vote:
             status = "✅"
         else:
             status = "❌"
-        await ctx.send(f'{vote}')
+        await ctx.send(f'{status}')
         
 def setup(bot):
     bot.add_cog(dbl(bot))
