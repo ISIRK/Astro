@@ -116,7 +116,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         await ctx.send(file=file, embed=e)
 
     @commands.command()
-    async def solarize(self, ctx, *, member: discord.Member = None, threshold=128):
+    async def solarize(self, ctx, threshold=128, *, member: discord.Member = None):
         '''Solarizes the avatar'''
         if not member:
             member = ctx.author
