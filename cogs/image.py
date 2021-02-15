@@ -1,7 +1,7 @@
 import discord, numpy, textwrap
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
-from PIL import Image, ImageFilter, ImageDraw
+from PIL import Image, ImageFilter, ImageDraw, ImageOps
 from io import BytesIO
 
 class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, commands.BucketType.user)}):
@@ -112,6 +112,25 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Embossed Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://emboss.png")
+        await ctx.send(file=file, embed=e)
+
+    @commands.command()
+    async def invert(self, ctx, *, member: discord.Member = None):
+        '''Inverts the avatar'''
+        if not member:
+            member = ctx.author
+        avatarUrl = member.avatar_url_as(size=512, format="png")
+        avatar = BytesIO(await avatarUrl.read())
+        image = Image.open(avatar)
+        async with ctx.typing():
+            image = ImageOps.invert(image)
+            buffer = BytesIO()
+            image.save(buffer, format="PNG")
+            buffer.seek(0)
+        file=discord.File(buffer, filename="invert.png")
+        e=discord.Embed(color=self.invis)
+        e.set_author(name="Embossed Avatar", icon_url=member.avatar_url)
+        e.set_image(url="attachment://invert.png")
         await ctx.send(file=file, embed=e)
 
     @commands.command()
