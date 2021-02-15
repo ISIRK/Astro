@@ -6,7 +6,7 @@ File = "tools/config.json"
 with open(File) as f:
     data = json.load(f)
 space = data['SPACE']
-top = data['TOP']
+topgg = data['TOP']
 delly = data['DELLY']
 
 class dbl(commands.Cog):
@@ -15,7 +15,7 @@ class dbl(commands.Cog):
         self.bot = bot
         self.space.start()
         self.delly.start()
-        self.dblpy = top.DBLClient(self.bot, top, autopost=True)
+        self.dblpy = top.DBLClient(self.bot, topgg, autopost=True)
 
     def cog_unload(self):
         self.delly.cancel()
