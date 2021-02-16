@@ -45,7 +45,7 @@ class misc(commands.Cog):
             resp = await r.json()
         await ctx.send(resp['joke'])
         
-    @commands.command()
+    @commands.command(enabled=False)
     async def translate(self, ctx, *, message):
         '''Translate text to english.'''
         async with self.bot.session.get(f"http://bruhapi.xyz/translate/{message}") as r:
