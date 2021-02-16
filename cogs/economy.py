@@ -21,8 +21,6 @@ import discord
 from discord.ext import commands
 import random, json
 from discord.ext.commands.cooldowns import BucketType
-from tools.utils import Simple
-
 
 class economy(commands.Cog):
     '''Economy Commands'''
@@ -237,6 +235,15 @@ class economy(commands.Cog):
         else:
             await self.bot.db.execute("UPDATE economy SET cashbalance = cashbalance+1000 WHERE userId = $1", ctx.author.id)
             await ctx.send("Collected **1,000** daily coins!")
+
+    @commands.command()
+    async def cooldowns(self, ctx):
+        '''See what commands can be used.'''
+        no = '❌'
+        yes = '✅'
+        daily = self.bot.get_command('daily').is_on_cooldown(cxt)
+        work = self.bot.get_command('work').is_on_cooldown(cxt)
+        await ctx.send(f'Daily: {yes if daily else no}\nWork: {yes if work else no}')
         
 
     @commands.cooldown(1,3,BucketType.user)
