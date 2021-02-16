@@ -24,7 +24,7 @@ class HelpCommand(commands.HelpCommand):
         await self.get_destination().send(embed=embed)
 
     async def send_command_help(self, command):
-        embed = discord.Embed(title=f"{command.name} | {' | '.join(command.aliases)} {command.signature}" if len(command.aliases) > 0 else f'{command.name} {command.signature}',
+        embed = discord.Embed(title=f"{self.clean_prefix}{command.name} | {' | '.join(command.aliases)} {command.signature}" if len(command.aliases) > 0 else f'{self.clean_prefix}{command.name} {command.signature}',
                               description=command.help or "No info available.",
                               colour=self.context.bot.color)
         embed.add_field(name="Category:", value=f"{command.cog_name}", inline=False)
@@ -37,8 +37,6 @@ class HelpCommand(commands.HelpCommand):
         except commands.CommandError:
             can_run = "<:red_tick:802239639561437204>"
         embed.add_field(name="Can use:", value=can_run)
-        if command.aliases:
-            embed.add_field(name="Aliases:", value="\n".join(command.aliases), inline=False)
         embed.set_footer(text=self.context.bot.footer)
         return await self.context.send(embed=embed)
 
