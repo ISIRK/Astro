@@ -239,8 +239,8 @@ class economy(commands.Cog):
     @commands.command()
     async def cooldowns(self, ctx):
         '''See what commands can be used.'''
-        no = '❌'
-        yes = '✅'
+        yes = '❌'
+        no = '✅'
         daily = self.bot.get_command('daily').is_on_cooldown(ctx)
         work = self.bot.get_command('work').is_on_cooldown(ctx)
         embed=discord.Embed(title="Cooldowns", description=f'Daily: {yes if daily else no}\nWork: {yes if work else no}', color=self.bot.color)
