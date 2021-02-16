@@ -47,9 +47,9 @@ class misc(commands.Cog):
         await ctx.send(resp['joke'])
         
     @commands.command()
-    async def translate(self, ctx, *, message):
+    async def translate(self, ctx, *, message: str):
         '''Translate text to english.'''
-        translated = self.translator.translate(f'{str(message)}')
+        translated = self.translator.translate(message)
         embed = discord.Embed(title="Translate", description=f"Original: {message}\nTranslation: {translated.text}", color=self.bot.color)
         await ctx.send(embed=embed)
         
