@@ -26,6 +26,7 @@ from discord.user import User
 from discord.utils import get
 from jishaku import codeblocks
 from discord.ext import commands
+from googletrans import Translator
 from discord.shard import ShardInfo
 from discord.ext.commands import context
 from discord.ext.commands.cooldowns import BucketType
@@ -35,7 +36,7 @@ class misc(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.myst = mystbin.Client()
-        
+        self.translator = Translator()
         
     @commands.command()
     @commands.cooldown(1,5,BucketType.user)
@@ -45,12 +46,11 @@ class misc(commands.Cog):
             resp = await r.json()
         await ctx.send(resp['joke'])
         
-    @commands.command(enabled=False)
+    @commands.command()
     async def translate(self, ctx, *, message):
         '''Translate text to english.'''
-        async with self.bot.session.get(f"http://bruhapi.xyz/translate/{message}") as r:
-            resp = await r.json()
-        embed = discord.Embed(title="Translate", description=f"Original: {resp['original']}\nTranslation: {resp['text']}", color=self.bot.color)
+        translated = self.translator.translate(str(message))
+        embed = discord.Embed(title="Translate", description=f"Original: {message}\nTranslation: {translated}", color=self.bot.color)
         await ctx.send(embed=embed)
         
     @commands.command()
