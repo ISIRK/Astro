@@ -126,7 +126,7 @@ class economy(commands.Cog):
                     await ctx.send(f'```py\n{e}```')
 
     @commands.cooldown(1,15,BucketType.user)
-    @commands.command()
+    @commands.command(cooldown_after_parsing=True)
     async def bet(self, ctx, amount: int):
         '''
         Bet a certain amount of money
