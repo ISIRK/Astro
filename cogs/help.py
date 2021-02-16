@@ -18,7 +18,7 @@ class HelpCommand(commands.HelpCommand):
             filtered = await self.filter_commands(commands, sort=True)
             if filtered:
                 value = ' '.join(f'`{c.name}`' for c in commands)
-                embed.add_field(name=name, value=value, inline=True)
+                embed.add_field(name=name, value=value, inline=False)
 
         embed.set_footer(text='Use {0}{1} [command|module] for more info.'.format(self.clean_prefix, self.invoked_with))#self.get_ending_note())
         await self.get_destination().send(embed=embed)
@@ -27,7 +27,6 @@ class HelpCommand(commands.HelpCommand):
         embed = discord.Embed(title=f"{self.clean_prefix}{command.name} | {' | '.join(command.aliases)} {command.signature}" if len(command.aliases) > 0 else f'{self.clean_prefix}{command.name} {command.signature}',
                               description=command.help or "No info available.",
                               colour=self.context.bot.color)
-        embed.add_field(name="Category:", value=f"{command.cog_name}", inline=False)
         try:
             can_run = await command.can_run(self.context)
             if can_run:
