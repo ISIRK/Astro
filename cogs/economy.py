@@ -243,7 +243,8 @@ class economy(commands.Cog):
         yes = '✅'
         daily = self.bot.get_command('daily').is_on_cooldown(ctx)
         work = self.bot.get_command('work').is_on_cooldown(ctx)
-        await ctx.send(f'Daily: {yes if daily else no}\nWork: {yes if work else no}')
+        embed=discord.Embed(title="Cooldowns", description=f'Daily: {yes if daily else no}\nWork: {yes if work else no}', color=self.bot.color)
+        await ctx.send(embed=embed)
         
 
     @commands.cooldown(1,3,BucketType.user)
