@@ -92,7 +92,7 @@ class misc(commands.Cog):
         embed.set_footer(text=f"r/ProgrammerHumor | {self.bot.footer}")
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['mc'], disabled=True)
+    @commands.command(aliases=['mc'], enabled=False)
     @commands.cooldown(1,3,BucketType.user)
     async def minecraft(self, ctx, *, username):
         '''Get a minecraft users stats'''
