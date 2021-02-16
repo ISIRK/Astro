@@ -97,7 +97,7 @@ class economy(commands.Cog):
             await ctx.send(f"You worked and gained ${pay}!{thing}")
 
     @commands.cooldown(1,30,BucketType.user)
-    @commands.command()
+    @commands.command(cooldown_after_parsing=True)
     async def rob(self, ctx, *, user: discord.User):
         '''
         Rob another user
