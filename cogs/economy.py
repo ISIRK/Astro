@@ -241,8 +241,8 @@ class economy(commands.Cog):
         '''See what commands can be used.'''
         no = '❌'
         yes = '✅'
-        daily = self.bot.get_command('daily').is_on_cooldown(cxt)
-        work = self.bot.get_command('work').is_on_cooldown(cxt)
+        daily = self.bot.get_command('daily').is_on_cooldown(ctx)
+        work = self.bot.get_command('work').is_on_cooldown(ctx)
         await ctx.send(f'Daily: {yes if daily else no}\nWork: {yes if work else no}')
         
 
