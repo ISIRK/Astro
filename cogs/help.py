@@ -27,7 +27,6 @@ class HelpCommand(commands.HelpCommand):
         embed = discord.Embed(title=f'{self.clean_prefix}{command.name} {command.signature}',
                               description=command.help or "No info available.",
                               colour=self.context.bot.color)
-        embed.add_field(name="Usage:", value=f"{command.name} {command.signature}", inline=False)
         embed.add_field(name="Category:", value=f"{command.cog_name}", inline=False)
         try:
             can_run = await command.can_run(self.context)
