@@ -24,7 +24,7 @@ class HelpCommand(commands.HelpCommand):
         await self.get_destination().send(embed=embed)
 
     async def send_command_help(self, command):
-        embed = discord.Embed(title=command.name,
+        embed = discord.Embed(title=f'{self.clean_prefix}{command.name} {command.signature}',
                               description=command.help or "No info available.",
                               colour=self.context.bot.color)
         embed.add_field(name="Usage:", value=f"{command.name} {command.signature}", inline=False)
