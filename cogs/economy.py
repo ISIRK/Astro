@@ -243,7 +243,10 @@ class economy(commands.Cog):
         no = '✅'
         daily = self.bot.get_command('daily').is_on_cooldown(ctx)
         work = self.bot.get_command('work').is_on_cooldown(ctx)
-        embed=discord.Embed(title="Cooldowns", description=f'Daily: {yes if daily else no}\nWork: {yes if work else no}', color=self.bot.color)
+        rob = self.bot.get_command('rob').is_on_cooldown(ctx)
+        bet = self.bot.get_command('bet').is_on_cooldown(ctx)
+        slots = self.bot.get_command('slots').is_on_cooldown(ctx)
+        embed=discord.Embed(title="Cooldowns", description=f'Daily: {yes if daily else no}\nWork: {yes if work else no}\nRob: {yes if rob else no}\nBet: {yes if bet else no}\nSlots: {yes if slots else no}', color=self.bot.color)
         await ctx.send(embed=embed)
         
 
