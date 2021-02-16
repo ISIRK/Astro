@@ -53,6 +53,7 @@ class dbl(commands.Cog):
         except:
             pass
 
+    '''
     @commands.command()
     async def vcheck(self, ctx, *, member: discord.Member=None):
         if member is None:
@@ -63,6 +64,7 @@ class dbl(commands.Cog):
         else:
             status = "❌"
         await ctx.send(f'{status}')
+    '''
         
 def setup(bot):
     bot.add_cog(dbl(bot))
