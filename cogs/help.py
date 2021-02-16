@@ -18,7 +18,7 @@ class HelpCommand(commands.HelpCommand):
             filtered = await self.filter_commands(commands, sort=True)
             if filtered:
                 value = ' '.join(f'`{c.name}`' for c in commands)
-                embed.add_field(name=name, value=value, inline=False)
+                embed.add_field(name=name, value=value, inline=True)
 
         embed.set_footer(text='Use {0}{1} [command|module] for more info.'.format(self.clean_prefix, self.invoked_with))#self.get_ending_note())
         await self.get_destination().send(embed=embed)
