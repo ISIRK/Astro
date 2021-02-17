@@ -233,7 +233,7 @@ class config(commands.Cog):
             
     @logging.command()
     @commands.has_permissions(manage_guild=True)
-    async def setup(self, ctx, channel: discord.TextChannel):
+    async def setup(self, ctx, *, channel: discord.TextChannel):
         '''
         Set the logging channel\n*Note: You need to toggle logging before it starts logging.*
         '''
