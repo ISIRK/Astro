@@ -26,9 +26,9 @@ from discord.user import User
 from discord.utils import get
 from jishaku import codeblocks
 from discord.ext import commands
-from googletrans import Translator
 from discord.shard import ShardInfo
 from discord.ext.commands import context
+from google_trans_new import google_translator
 from discord.ext.commands.cooldowns import BucketType
 
 class misc(commands.Cog):
@@ -36,7 +36,7 @@ class misc(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.myst = mystbin.Client()
-        self.translator = Translator()
+        self.translator = google_translator()
         
     @commands.command()
     @commands.cooldown(1,5,BucketType.user)
@@ -49,8 +49,8 @@ class misc(commands.Cog):
     @commands.command()
     async def translate(self, ctx, *, message: str):
         '''Translate text to english.'''
-        translated = self.translator.translate(message)
-        embed = discord.Embed(title="Translate", description=f"Original: {message}\nTranslation: {translated.text}", color=self.bot.color)
+        translated = self.translator.translate(message, lang_tgt='en')
+        embed = discord.Embed(title="Translate", description=f"Original: {message}\nTranslation: {translated}", color=self.bot.color)
         await ctx.send(embed=embed)
         
     @commands.command()
