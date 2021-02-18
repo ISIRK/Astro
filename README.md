@@ -51,6 +51,7 @@ Syntax for Sirk:
 &nbsp;
 
 **Upcomming Features**
+- [x] Custom Prefixes
 - [ ] Todo Commands
 - [ ] New website
 - [ ] Optimizations
