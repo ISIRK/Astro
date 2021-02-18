@@ -51,14 +51,14 @@ Syntax for Sirk:
 &nbsp;
 
 **Upcomming Features**
-- Todo Commands
-- New website
-- Optimizations
+- [ ] Todo Commands
+- [ ] New website
+- [ ] Optimizations
 
 &nbsp;
 
 **Prerequisites**
-- [ ] [Python](https://www.python.org/)
-- [ ] [Discord.py](https://discordpy.readthedocs.io/en/latest/index.html)
-- [ ] [Discord-ext-Menus](https://github.com/Rapptz/discord-ext-menus)
-- [ ] Some other modules for commands
+- [Python](https://www.python.org/)
+- [Discord.py](https://discordpy.readthedocs.io/en/latest/index.html)
+- [Discord-ext-Menus](https://github.com/Rapptz/discord-ext-menus)
+- Some other modules for commands
