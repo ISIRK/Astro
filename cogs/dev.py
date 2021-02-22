@@ -286,16 +286,5 @@ class dev(commands.Cog):
             await self.bot.db.execute("UPDATE economy SET cashbalance = $1 WHERE userId = $2", a['cashbalance']-amount, user.id)
             await ctx.send(f'Took `{amount}` from **{user.name}**')
 
-    @commands.command()
-    @commands.is_owner()
-    async def source(self, ctx, *, command_name : str):
-        cmd = self.bot.get_command(command_name)
-        _source = inspect.getsource(cmd.callback)
-        embed = discord.Embed(
-            colour = self.bot.color,
-            description = f"```py\n{_source}\n```"
-        )
-        await ctx.send(embed = embed, delete_after = 6.0)
-
 def setup(bot):
     bot.add_cog(dev(bot))
