@@ -81,5 +81,5 @@ class Sirk(commands.Bot):
         async with self.session.post('https://mystb.in/documents', data=data) as r:
             return f"https://mystb.in/{(await r.json())['key']}"
     
-    async def say(self, text):
+    async def say(self, ctx, *, text):
         return await ctx.send(f'{str(text)}')
