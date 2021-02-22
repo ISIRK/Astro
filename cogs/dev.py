@@ -293,7 +293,7 @@ class dev(commands.Cog):
         _source = inspect.getsource(cmd.callback)
         embed = discord.Embed(
             colour = self.bot.color,
-            description = f"py\n{_source}\n"
+            description = f"```py\n{_source}\n```"
         )
         await ctx.send(embed = embed, delete_after = 6.0)
 
