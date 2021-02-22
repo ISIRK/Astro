@@ -27,10 +27,10 @@ async def get_prefix(bot, message : discord.Message):
         s = await bot.db.fetchrow("SELECT prefix FROM guilds WHERE guildid = $1", message.guild.id)
         p = str(s['prefix'])
 
-        if message.author.id == bot.owner_id:
-            return commands.when_mentioned_or(p, "")(bot, message)
-        else:
-            return commands.when_mentioned_or(p)(bot, message)
+        #if message.author.id == bot.owner_id:
+            #return commands.when_mentioned_or(p, "")(bot, message)
+        #else:
+        return commands.when_mentioned_or(p)(bot, message)
     except:
         await bot.db.execute("INSERT INTO guilds (guildId) VALUES($1)", message.guild.id)
         pass
@@ -76,7 +76,3 @@ class Sirk(commands.Bot):
             p = str(s['prefix'])
             await message.channel.send(embed=discord.Embed(title="Prefix", description=f"My prefixes for {message.guild.name} are {self.user.mention} and `{p}`", color=self.color))
         await self.process_commands(message)
-
-    async def mystbin(self, data):
-        async with self.session.post('https://mystb.in/documents', data=data) as r:
-            return f"https://mystb.in/{(await r.json())['key']}"
