@@ -64,7 +64,7 @@ class BasketballMenu(menus.Menu):
             three = random.choice([True, False])
             if three:
                 self.score += 3
-                d = 'You swished a three! Good job. +3 to your score.\nUse the reactions below to try and score
+                d = 'You swished a three! Good job. +3 to your score.\nUse the reactions below to try and score'
             else:
                 d = 'You made a jump shot! +2 to your score.\nUse the reactions below to try and score.'
                 self.score += 2
