@@ -75,7 +75,7 @@ class BasketballMenu(menus.Menu):
         await self.message.edit(embed=discord.Embed(title='Current Score', color=self.ctx.bot.color))
 
     @menus.button('❌')
-    async def stop(self, _):
+    async def do_end(self, _):
         self.stop()
     
 class games(commands.Cog):
