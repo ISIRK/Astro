@@ -50,7 +50,7 @@ def rps_winner(userOneChoice, userTwoChoice):
     else: return "error"
 
 class bmenu(menus.ListPageSource):
-    async def format_page(self, menu, item):
+    async def format_page(self, menu):
         embed = discord.Embed(title='test')
         return embed
     
