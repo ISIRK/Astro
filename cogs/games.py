@@ -55,7 +55,7 @@ class BasketballMenu(menus.Menu):
         self.score = 0
         
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
-        return await channel.send(embed=discord.Embed(title='Basketball!', description='Play basketball against an ai!\nUse the reactions below to play.\n\n🗑️ = Take a shot\n🏀 = Pass the ball\n⛹️ = Drive to get a layup\n📟 = See the score\n❌ = Stop the game\n\n**Note this command is a work in progress.**',color=self.ctx.bot.color))
+        return await channel.send(embed=discord.Embed(title='Basketball!', description='Play basketball against an AI!\nUse the reactions below to play.\n\n🗑️ = Take a shot\n🏀 = Pass the ball\n⛹️ = Drive to get a layup\n📟 = See the score\n❌ = Stop the game\n\n**Note this command is a work in progress.**',color=self.ctx.bot.color))
     
     @menus.button('🗑️')
     async def do_shot(self, _):
