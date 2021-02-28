@@ -110,6 +110,8 @@ class BasketballMenu(menus.Menu):
         
     if self.score >= 21:
         await self.message.edit(embed=discord.Embed(title='You reached 21!', color=self.ctx.bot.color)
+    else:
+        pass
     
 class games(commands.Cog):
     '''Game Commands'''
