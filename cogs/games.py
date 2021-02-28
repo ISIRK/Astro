@@ -56,6 +56,10 @@ class BasketballMenu(menus.Menu):
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
         return await channel.send('test')
     
+    @menus.button('\N{WHITE HEAVY CHECK MARK}')
+    async def do_shot(self):
+        await self.message.edit('test test')
+    
 class games(commands.Cog):
     '''Game Commands'''
     def __init__(self, bot):
