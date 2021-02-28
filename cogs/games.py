@@ -53,6 +53,7 @@ class BasketballMenu(menus.Menu):
     def __init__(self, **kwargs):
         super().__init__(delete_message_after=True, **kwargs)
         self.score = 0
+        self.footer = 'Use the reactions below to try and score'
         
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
         return await channel.send(embed=discord.Embed(title='Basketball!', description='Play basketball against an AI!\nUse the reactions below to play.\n\n🗑️ = Take a shot\n🏀 = Pass the ball\n⛹️ = Drive to get a layup\n📟 = See the score\n❓ = See this message\n❌ = Stop the game\n\n**Note this command is a work in progress.**',color=self.ctx.bot.color))
@@ -64,27 +65,34 @@ class BasketballMenu(menus.Menu):
             three = random.choice([True, False])
             if three:
                 self.score += 3
-                d = 'You swished a three! Good job. +3 to your score.\nUse the reactions below to try and score'
+                d = 'You swished a three! Good job. +3 to your score.'
             else:
-                d = 'You made a jump shot! +2 to your score.\nUse the reactions below to try and score.'
+                d = 'You made a jump shot! +2 to your score.'
                 self.score += 2
         else:
-            d = 'You missed.\nUse the reactions below to try and score.'
+            d = 'You missed.'
             pass
-        
-        await self.message.edit(embed=discord.Embed(title='Shot...', description=d, color=self.ctx.bot.color))
+        embed = discord.Embed(title='Shot...', description=d, color=self.ctx.bot.color)
+        embed.set_footer(text=self.footer)
+        await self.message.edit(embed = embed)
 
     @menus.button('🏀')
     async def do_pass(self, _):
-        await self.message.edit(embed=discord.Embed(title='Pass...', color=self.ctx.bot.color))
+        embed = discord.Embed(title='Pass...', color=self.ctx.bot.color)
+        embed.set_footer(text=self.footer)
+        await self.message.edit(embed = embed)
 
     @menus.button('⛹️')
     async def do_drive(self, _):
-        await self.message.edit(embed=discord.Embed(title='Drive...', color=self.ctx.bot.color))
+        embed = discord.Embed(title='Drive...', color=self.ctx.bot.color)
+        embed.set_footer(text=self.footer)
+        await self.message.edit(embed = embed)
 
     @menus.button('📟')
     async def do_score(self, _):
-        await self.message.edit(embed=discord.Embed(title='Current Score', description=f'**{self.ctx.author.name}** - {self.score}', color=self.ctx.bot.color))
+        embed = discord.Embed(title='Current Score', description=f'**{self.ctx.author.name}** - {self.score}', color=self.ctx.bot.color)
+        embed.set_footer(text=self.footer)
+        await self.message.edit(embed = embed)
 
     @menus.button('❓')
     async def do_help(self, _):
