@@ -51,7 +51,8 @@ def rps_winner(userOneChoice, userTwoChoice):
 
 class BasketballMenu(menus.Menu):
     def __init__(self, **kwargs):
-        super().__init__(delete_message_after=True, **kwargs)
+        kwargs.setdefault("delete_message_after", True)
+        super().__init__(**kwargs)
         self.score = 0
         
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
