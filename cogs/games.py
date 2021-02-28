@@ -48,11 +48,22 @@ def rps_winner(userOneChoice, userTwoChoice):
         if userTwoChoice == "\U0001faa8": return "You won!"
         if userTwoChoice == "\U0001f4f0": return "Tie!"
     else: return "error"
+
+class bmenu(menus.ListPageSource):
+    async def format_page(self, menu, item):
+        embed = discord.Embed(title='test')
+        return embed
     
 class games(commands.Cog):
     '''Game Commands'''
     def __init__(self, bot):
         self.bot = bot
+
+    @commands.command()
+    async def basketball(self, ctx):
+        '''Play basketball in a D&D style'''
+        menu = menus.MenuPages(bmenu())
+        await menu.start(ctx)
         
     @commands.max_concurrency(1, per=BucketType.channel, wait=False)
     @commands.command(aliases=['cb'])
