@@ -54,11 +54,11 @@ class BasketballMenu(menus.Menu):
         super().__init__(**kwargs)
         
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
-        return await channel.send('test')
+        return await channel.send(embed=discord.Embed(title='test'))
     
-    @menus.button('\N{WHITE HEAVY CHECK MARK}')
+    @menus.button('🗑️')
     async def do_shot(self):
-        await self.message.edit('test test')
+        await self.message.edit(embed=discord.Embed(title='test test'))
     
 class games(commands.Cog):
     '''Game Commands'''
