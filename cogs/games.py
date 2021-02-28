@@ -62,7 +62,7 @@ class BasketballMenu(menus.Menu):
     async def do_shot(self, _):
         if self.score >= 21:
             await self.message.edit(embed=discord.Embed(title='You reached 21!', description="Good job. Thats it for now. Come play again later.", color=self.ctx.bot.color))
-            self.clear_buttons(*, react=True)
+            self.clear_buttons(react=True)
         else:
             lucky = random.choice([True, False])
             if lucky:
