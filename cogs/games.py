@@ -53,8 +53,8 @@ class BasketballMenu(menus.Menu):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         
-    async def send_initial_message(self, ctx):
-        return await ctx.send('test')
+    async def send_initial_message(self, ctx, channel: discord.TextChannel):
+        return await channel.send('test')
     
 class games(commands.Cog):
     '''Game Commands'''
