@@ -62,7 +62,7 @@ class BasketballMenu(menus.Menu):
     async def do_shot(self, _):
         if self.score >= 21:
             await self.message.edit(embed=discord.Embed(title='You reached 21!', description="Good job. Thats it for now. Come play again later.", color=self.ctx.bot.color))
-            await asyncio.sleep(15)
+            await asyncio.sleep(5)
             self.stop()
         else:
             lucky = random.choice([True, False])
@@ -118,6 +118,7 @@ class games(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.max_concurrency(1, per=BucketType.channel, wait=False)
     @commands.command()
     async def basketball(self, ctx):
         '''Play basketball in a D&D style'''
