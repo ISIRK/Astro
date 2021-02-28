@@ -53,7 +53,7 @@ class BasketballMenu(menus.Menu):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.score = 0
-        self.color = self.ctx.bot.color
+        self.color = ctx.bot.color
         
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
         return await channel.send(embed=discord.Embed(title='Basketball!', color=self.color))
