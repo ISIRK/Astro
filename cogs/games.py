@@ -75,7 +75,7 @@ class BasketballMenu(menus.Menu):
 
     @menus.button('❓')
     async def do_help(self, _):
-        await self.message.edit(embed=title='Basketball!', description='Play basketball against an AI!\nUse the reactions below to play.\n\n🗑️ = Take a shot\n🏀 = Pass the ball\n⛹️ = Drive to get a layup\n📟 = See the score\n❓ = See this message\n❌ = Stop the game\n\n**Note this command is a work in progress.**',color=self.ctx.bot.color))
+        await self.message.edit(embed=discord.Embed(title='Basketball!', description='Play basketball against an AI!\nUse the reactions below to play.\n\n🗑️ = Take a shot\n🏀 = Pass the ball\n⛹️ = Drive to get a layup\n📟 = See the score\n❓ = See this message\n❌ = Stop the game\n\n**Note this command is a work in progress.**',color=self.ctx.bot.color))
 
     @menus.button('❌')
     async def do_end(self, _):
