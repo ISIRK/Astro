@@ -60,21 +60,24 @@ class BasketballMenu(menus.Menu):
     
     @menus.button('🗑️')
     async def do_shot(self, _):
-        lucky = random.choice([True, False])
-        if lucky:
-            three = random.choice([True, False])
-            if three:
-                self.score += 3
-                d = 'You swished a three! Good job. +3 to your score.'
-            else:
-                d = 'You made a jump shot! +2 to your score.'
-                self.score += 2
+        if self.score >= 21:
+            await self.message.edit(embed=discord.Embed(title='You reached 21!', color=self.ctx.bot.color)
         else:
-            d = 'You missed.'
-            pass
-        embed = discord.Embed(title='Shot...', description=d, color=self.ctx.bot.color)
-        embed.set_footer(text=self.footer)
-        await self.message.edit(embed = embed)
+            lucky = random.choice([True, False])
+            if lucky:
+                three = random.choice([True, False])
+                if three:
+                    self.score += 3
+                    d = 'You swished a three! Good job. +3 to your score.'
+                else:
+                    d = 'You made a jump shot! +2 to your score.'
+                    self.score += 2
+            else:
+                d = 'You missed.'
+                pass
+            embed = discord.Embed(title='Shot...', description=d, color=self.ctx.bot.color)
+            embed.set_footer(text=self.footer)
+            await self.message.edit(embed = embed)
 
     @menus.button('🏀')
     async def do_pass(self, _):
@@ -107,11 +110,6 @@ class BasketballMenu(menus.Menu):
     @menus.button('❌')
     async def do_end(self, _):
         self.stop()
-        
-    if self.score >= 21:
-        await self.message.edit(embed=discord.Embed(title='You reached 21!', color=self.ctx.bot.color)
-    else:
-        pass
     
 class games(commands.Cog):
     '''Game Commands'''
