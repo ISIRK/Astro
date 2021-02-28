@@ -73,6 +73,10 @@ class BasketballMenu(menus.Menu):
     async def do_score(self, _):
         await self.message.edit(embed=discord.Embed(title='Current Score', color=self.ctx.bot.color))
 
+    @menus.button('❓')
+    async def do_help(self, _):
+        await self.send_initial_message()
+
     @menus.button('❌')
     async def do_end(self, _):
         self.stop()
