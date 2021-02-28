@@ -50,7 +50,7 @@ def rps_winner(userOneChoice, userTwoChoice):
     else: return "error"
 
 class BasketballMenu(menus.Menu):
-    def __init__(self, **kwargs):
+    def __init__(self, delete_message_after = True, **kwargs):
         super().__init__(**kwargs)
         self.score = 0
         
