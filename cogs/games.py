@@ -59,7 +59,20 @@ class BasketballMenu(menus.Menu):
     
     @menus.button('🗑️')
     async def do_shot(self, _):
-        await self.message.edit(embed=discord.Embed(title='Shot...', color=self.ctx.bot.color))
+        lucky = random.choice([True, False])
+        if lucky:
+            three = random.choice([True, False])
+            if three:
+                self.score += 3
+                d = 'You swished a three! Good job. +3 to your score.\nUse the reactions below to try and score
+            else:
+                d = 'You made a jump shot! +2 to your score.\nUse the reactions below to try and score.'
+                self.score += 2
+        else:
+            d = 'You missed.\nUse the reactions below to try and score.'
+            pass
+        
+        await self.message.edit(embed=discord.Embed(title='Shot...', description=d, color=self.ctx.bot.color))
 
     @menus.button('🏀')
     async def do_pass(self, _):
