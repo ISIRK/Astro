@@ -64,7 +64,7 @@ class games(commands.Cog):
     @commands.command()
     async def basketball(self, ctx):
         '''Play basketball in a D&D style'''
-        await BasketballMenu.start(ctx)
+        await BasketballMenu().start(ctx)
         
     @commands.max_concurrency(1, per=BucketType.channel, wait=False)
     @commands.command(aliases=['cb'])
