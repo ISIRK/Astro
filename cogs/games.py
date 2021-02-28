@@ -70,7 +70,7 @@ class BasketballMenu(menus.Menu):
         await self.message.edit(embed=discord.Embed(title='Pass...', color=self.ctx.bot.color))
 
     @menus.button('❌')
-    async def stop(self, _):
+    async def do_stop(self, _):
         self.stop()
     
 class games(commands.Cog):
