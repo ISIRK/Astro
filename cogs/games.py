@@ -21,7 +21,7 @@ SOFTWARE.
 
 '''
 
-import discord, random, json, time, asyncio
+import discord, random, json, time, asyncio, random
 from discord.ext import commands, menus
 from discord.ext.commands.cooldowns import BucketType
 from copy import deepcopy as dc
@@ -52,9 +52,10 @@ def rps_winner(userOneChoice, userTwoChoice):
 class BasketballMenu(menus.Menu):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.score = 0
         
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
-        return await channel.send(embed=discord.Embed(title='test'))
+        return await channel.send(embed=discord.Embed(title='Basketball!', color=self.ctx.bot.color))
     
     @menus.button('🗑️')
     async def do_shot(self, _):
