@@ -66,8 +66,12 @@ class BasketballMenu(menus.Menu):
         await self.message.edit(embed=discord.Embed(title='Drive...', color=self.ctx.bot.color))
 
     @menus.button('🏀')
-    async def do_drive(self, _):
+    async def do_pass(self, _):
         await self.message.edit(embed=discord.Embed(title='Pass...', color=self.ctx.bot.color))
+
+    @menus.button('❌')
+    async def stop(self, _):
+        self.stop()
     
 class games(commands.Cog):
     '''Game Commands'''
