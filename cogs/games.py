@@ -60,6 +60,10 @@ class BasketballMenu(menus.Menu):
     @menus.button('🗑️')
     async def do_shot(self, _):
         await self.message.edit(embed=discord.Embed(title='Shot...', color=self.ctx.bot.color))
+        
+    @menus.button('⛹️')
+    async def do_drive(self, _):
+        await self.message.edit(embed=discord.Embed(title='Drive...', color=self.ctx.bot.color))
     
 class games(commands.Cog):
     '''Game Commands'''
