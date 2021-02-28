@@ -57,7 +57,7 @@ class BasketballMenu(menus.Menu):
         return await channel.send(embed=discord.Embed(title='test'))
     
     @menus.button('🗑️')
-    async def do_shot(self):
+    async def do_shot(self, _):
         await self.message.edit(embed=discord.Embed(title='test test'))
     
 class games(commands.Cog):
