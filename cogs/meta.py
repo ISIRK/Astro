@@ -42,8 +42,6 @@ import inspect, sys, multiprocessing, asyncio, humanize
 from collections import Counter
 import time, datetime
 
-from multiprocessing.connection import Client
-
 class meta(commands.Cog):
     '''Meta commands'''
     def __init__(self, bot):
