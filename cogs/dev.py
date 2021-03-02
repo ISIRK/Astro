@@ -28,6 +28,17 @@ from datetime import datetime
 import subprocess
 from jishaku import codeblocks
 
+class SourceMenu(menus.Menu):
+    def __init__(self, source: str, **kwargs):
+        super().__init__(delete_message_after=True, **kwargs)
+        
+    async def send_initial_message(self, ctx, channel: discord.TextChannel):
+        return await channel.send(embed=discord.Embed(description=source,color=self.ctx.bot.color))
+    
+    @menus.button('❌')
+    async def do_end(self, _):
+        self.stop()
+
 class dev(commands.Cog):
     '''Developer Commands'''
     def __init__(self, bot):
@@ -237,7 +248,7 @@ class dev(commands.Cog):
     async def source(self, ctx, cmd: str):
         cmd = self.bot.get_command(cmd)
         src = inspect.getsource(cmd.callback)
-        await ctx.send(embed=discord.Embed(description=f"```py\n{src}```", color=self.bot.color))
+        await SourceMenu(src).start()
             
     @commands.group(invoke_without_command=True)
     async def todo(self, ctx):
