@@ -16,10 +16,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 '''
 
-from random import randint
-import discord
-from discord.ext import commands, BucketType
-import random, json
+import discord, random, json
+from discord.ext import commands
+from discord.ext.commands import BucketType
 
 class economy(commands.Cog):
     '''Economy Commands'''
