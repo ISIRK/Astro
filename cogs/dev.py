@@ -248,7 +248,7 @@ class dev(commands.Cog):
     async def source(self, ctx, cmd: str):
         cmd = self.bot.get_command(cmd)
         src = inspect.getsource(cmd.callback)
-        await SourceMenu(src).start()
+        await SourceMenu(src).start(ctx)
             
     @commands.group(invoke_without_command=True)
     async def todo(self, ctx):
