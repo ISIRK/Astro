@@ -31,9 +31,10 @@ from jishaku import codeblocks
 class SourceMenu(menus.Menu):
     def __init__(self, source: str, **kwargs):
         super().__init__(delete_message_after=True, **kwargs)
+        self.source = source
         
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
-        return await channel.send(embed=discord.Embed(description=source,color=self.ctx.bot.color))
+        return await channel.send(embed=discord.Embed(description=self.source, color=self.ctx.bot.color))
     
     @menus.button('❌')
     async def do_end(self, _):
