@@ -18,9 +18,8 @@ SOFTWARE.
 
 from random import randint
 import discord
-from discord.ext import commands
+from discord.ext import commands, BucketType
 import random, json
-from discord.ext.commands.cooldowns import BucketType
 
 class economy(commands.Cog):
     '''Economy Commands'''
