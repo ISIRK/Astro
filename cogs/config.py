@@ -254,7 +254,7 @@ class config(commands.Cog):
 
     @logging.command()
     @commands.has_permissions(manage_guild=True)
-    async def reset(self, ctx: discord.Context):
+    async def reset(self, ctx: commands.Context):
         '''
         Remove the logging channel\n*Note: If this is removed, and logging is toggled on, it still will not log.*
         '''
