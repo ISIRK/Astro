@@ -234,7 +234,7 @@ class dev(commands.Cog):
         await self.bot.session.close()
 
     @commands.command(aliases=['src'])
-    async def source(self, ctx, cmd: commands.Command):
+    async def source(self, ctx, cmd: str):
         cmd = await self.bot.get_command(cmd)
         src = inspect.getsource(cmd.callback)
         await ctx.send(embed=discord.Embed(description=f"```py\n{src}```", color=self.bot.color))
