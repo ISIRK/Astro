@@ -221,7 +221,7 @@ class dev(commands.Cog):
         else:
             e = await self.bot.db.fetch(query)
             try:
-                p = self.bot.utils.Simple(entries=e, per_page=10)
+                p = self.bot.utils.SimpleMenu(entries=e, per_page=10)
                 await p.start(ctx)
             except menus.MenuError as f:
                 await ctx.send(f)
@@ -241,7 +241,7 @@ class dev(commands.Cog):
     async def todo(self, ctx):
         """Todo Commands"""
         s = await self.bot.db.fetch("SELECT * FROM todo")
-        p = self.bot.utils.Simple(entries=[x["todo"] for x in s], per_page=10)
+        p = self.bot.utils.SimpleMenu(entries=[x["todo"] for x in s], per_page=10)
         await p.start(ctx)
             
     @todo.command()
