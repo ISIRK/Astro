@@ -197,13 +197,13 @@ class config(commands.Cog):
         error = discord.Embed(title="⚠️ Error", description="There was a problem with getting your guilds data.\nThis means that your guild is not in my database.\nPlease [re-invite](https://discord.com/oauth2/authorize?client_id=751447995270168586&permissions=268823638&scope=bot) and run this command again.", color=self.bot.color)
         if not s: return await ctx.send(embed=error)
                  
-        channel, role, vchannel = s['channel'], s['role'], s['vchannel']
+        prefix, channel, role, vchannel = s['prefix'], s['channel'], s['role'], s['vchannel']
                  
         channel = ctx.guild.get_channel(channel)
         role = ctx.guild.get_role(role)
         vchannel = ctx.guild.get_channel(vchannel)
 
-        embed = discord.Embed(title=f"{ctx.guild} Settings", color=self.bot.color)
+        embed = discord.Embed(title=f"{ctx.guild} Settings", description=f"Prefix: `{prefix}`", color=self.bot.color)
         embed.add_field(name=f"**Logging:** {on if channel else off}", value=f"> {channel.mention if channel is not None else 'No Channel Set'}", inline=False)
         embed.add_field(name=f"**Verify:** {on if role and vchannel is not None else off}", value=f"> {role.mention} {vchannel.mention}" if role and vchannel is not None else '> No Channel or Role Set', inline=False)
         await ctx.send(embed=embed)
