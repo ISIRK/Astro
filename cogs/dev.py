@@ -34,7 +34,7 @@ class SourceMenu(menus.Menu):
         self.content = content
         
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
-        return await channel.send(embed=discord.Embed(description=content, color=self.ctx.bot.color))
+        return await channel.send(embed=discord.Embed(description=self.content, color=self.ctx.bot.color))
     
     @menus.button('❌')
     async def do_end(self, _):
