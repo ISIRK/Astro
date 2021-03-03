@@ -148,11 +148,12 @@ class dev(commands.Cog):
     async def screenshot(self, ctx, url):
         '''Screenshot given website'''
         embed = discord.Embed(title = f"Screenshot of {url}", color=self.bot.color)
-        async with self.bot.session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
-            res = await r.read()
-        embed.set_image(url="attachment://ss.png")
-        embed.set_footer(text=self.bot.footer)
-        await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
+        async with ctx.typing():
+            async with self.bot.session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
+                res = await r.read()
+            embed.set_image(url="attachment://ss.png")
+            embed.set_footer(text=self.bot.footer)
+            await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
     
     @commands.command()
     async def say(self, ctx, *, content:str):
