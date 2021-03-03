@@ -90,3 +90,15 @@ class EmbedConfirm(menus.Menu):
     async def prompt(self, ctx):
         await self.start(ctx, wait=True)
         return self.result
+
+class DeleteMenu(menus.Menu):
+    def __init__(self, content: str, **kwargs):
+        super().__init__(delete_message_after=True, **kwargs)
+        self.content = content
+        
+    async def send_initial_message(self, ctx, channel: discord.TextChannel):
+        return await channel.send(embed=discord.Embed(description=self.content, color=self.ctx.bot.color))
+    
+    @menus.button('❌')
+    async def do_end(self, _):
+        self.stop()
