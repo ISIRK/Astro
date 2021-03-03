@@ -206,6 +206,7 @@ class config(commands.Cog):
         embed = discord.Embed(title=f"{ctx.guild} Settings", description=f"**Prefix:** `{prefix}`", color=self.bot.color)
         embed.add_field(name=f"**Logging:** {on if channel else off}", value=f"> {channel.mention if channel is not None else 'No Channel Set'}", inline=False)
         embed.add_field(name=f"**Verify:** {on if role and vchannel is not None else off}", value=f"> {role.mention} {vchannel.mention}" if role and vchannel is not None else '> No Channel or Role Set', inline=False)
+        embed.set_footer(text=self.bot.footer)
         await ctx.send(embed=embed)
 
     @commands.command()
