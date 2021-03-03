@@ -62,7 +62,6 @@ class SimplePageSource(menus.ListPageSource):
         return menu.embed
 
 class SimpleMenu(Pages):
-
     def __init__(self, entries, *, per_page=12):
         super().__init__(SimplePageSource(entries, per_page=per_page))
         self.embed = discord.Embed(colour=7506394)
