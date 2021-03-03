@@ -29,12 +29,12 @@ import subprocess
 from jishaku import codeblocks
 
 class SourceMenu(menus.Menu):
-    def __init__(self, source: str, **kwargs):
+    def __init__(self, content: str, **kwargs):
         super().__init__(delete_message_after=True, **kwargs)
-        self.source = source
+        self.content = content
         
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
-        return await channel.send(embed=discord.Embed(description=f'```py\n{self.source}```', color=self.ctx.bot.color))
+        return await channel.send(embed=discord.Embed(description=content, color=self.ctx.bot.color))
     
     @menus.button('❌')
     async def do_end(self, _):
@@ -248,7 +248,7 @@ class dev(commands.Cog):
 
     @commands.command(aliases=['src'])
     async def source(self, ctx, cmd: str):
-        await SourceMenu(inspect.getsource(self.bot.get_command(cmd).callback)).start(ctx)
+        await SourceMenu(f"```py\n{inspect.getsource(self.bot.get_command(cmd).callback)}```").start(ctx)
             
     @commands.group(invoke_without_command=True)
     async def todo(self, ctx):
