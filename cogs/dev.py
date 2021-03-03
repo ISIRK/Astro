@@ -190,7 +190,6 @@ class dev(commands.Cog):
             return m.author == self.bot.user
 
         deleted = await channel.purge(limit=limit, check=is_me, bulk=False)
-        await channel.send(f"I have deleted `{len(deleted)}` out of the `{limit}` requested messages.", delete_after=10)
 
     @commands.command()
     async def get_invite(self, ctx, id: int):
