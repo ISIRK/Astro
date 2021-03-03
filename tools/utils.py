@@ -61,13 +61,13 @@ class SimplePageSource(menus.ListPageSource):
         menu.embed.description = '\n'.join(pages)
         return menu.embed
 
-class Simple(Pages):
+class SimpleMenu(Pages):
 
     def __init__(self, entries, *, per_page=12):
         super().__init__(SimplePageSource(entries, per_page=per_page))
         self.embed = discord.Embed(colour=7506394)
 
-class EmbedConfirm(menus.Menu):
+class ConfirmMenu(menus.Menu):
     def __init__(self, embed, *, timeout=120.0, delete_message_after=True, clear_reactions_after=False):
         super().__init__(
             timeout=timeout, delete_message_after=delete_message_after, clear_reactions_after=clear_reactions_after)
