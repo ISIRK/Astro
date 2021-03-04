@@ -91,7 +91,7 @@ class ConfirmMenu(menus.Menu):
         return self.result
 
 class DeleteMenu(menus.Menu):
-    def __init__(self, content: str = None, embed = None, file: discord.File = None, **kwargs):
+    def __init__(self, content: str = None, embed = None, file = None, **kwargs):
         super().__init__(delete_message_after=True, **kwargs)
         self.content = content
         self.embed = embed
