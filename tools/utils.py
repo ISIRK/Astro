@@ -98,12 +98,12 @@ class DeleteMenu(menus.Menu):
         self.file = file
         
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
-        if self.content is not None:
-            return await channel.send(embed=discord.Embed(description=self.content, color=self.ctx.bot.color))
+        if self.embed is not None and self.file is not None:
+            return await channel.send(file=self.file, embed=self.embed)
         elif self.embed is not None:
             return await channel.send(embed=self.embed)
-        elif self.embed is not None and self.file is not None:
-            return await channel.send(file=self.file, embed=self.embed)
+        elif self.content is not None:
+            return await channel.send(embed=discord.Embed(description=self.content, color=self.ctx.bot.color))
     
     @menus.button('❌')
     async def do_end(self, _):
