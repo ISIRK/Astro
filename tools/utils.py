@@ -97,7 +97,7 @@ class DeleteMenu(menus.Menu):
         self.embed = embed
         
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
-        if content is not None:
+        if self.content is not None:
             return await channel.send(embed=discord.Embed(description=self.content, color=self.ctx.bot.color))
         elif self.embed is not None:
             return await channel.send(embed=self.embed)
