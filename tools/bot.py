@@ -82,5 +82,8 @@ class Sirk(commands.Bot):
 
 class Context(commands.Context):
     '''
-    Custom COntext
+    Custom Cntext
     '''
+    
+    async def remove(self, content:str, **kwargs):
+            return await utils.DeleteMenu(content).start(self)
