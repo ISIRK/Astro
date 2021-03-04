@@ -102,7 +102,7 @@ class DeleteMenu(menus.Menu):
             return await channel.send(embed=discord.Embed(description=self.content, color=self.ctx.bot.color))
         elif self.embed is not None:
             return await channel.send(embed=self.embed)
-        elif self.embed and self.file is not None:
+        elif self.embed is not None and self.file is not None:
             return await channel.send(file=self.file, embed=self.embed)
     
     @menus.button('❌')
