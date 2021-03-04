@@ -87,6 +87,8 @@ class Context(commands.Context):
     
     async def remove(self, content:str = None, **kwargs):
         if kwargs.get('embed') is not None:
-            return await utils.DeleteMenu(embed = kwargs.get('embed')).start(self)
+            return await utils.DeleteMenu(embed=kwargs.get('embed')).start(self)
         elif content is not None:
             return await utils.DeleteMenu(content).start(self)
+        elif kwargs.get('embed') is not None and kwargs.get('file') is not None:
+            return await utils.DeleteMenu(file=kwargs.get('file'), embed=kwargs.get('embed').start(self)
