@@ -82,11 +82,11 @@ class Sirk(commands.Bot):
 
 class Context(commands.Context):
     '''
-    Custom Cntext
+    Custom Context
     '''
     
     async def remove(self, content:str = None, **kwargs):
         if kwargs.get('embed') is not None:
             return await utils.DeleteMenu(embed = kwargs.get('embed')).start(self)
-        else:
+        elif content is not None:
             return await utils.DeleteMenu(content).start(self)
