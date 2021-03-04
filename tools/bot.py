@@ -21,7 +21,7 @@ intents.members = True
 
 async def get_prefix(bot, message : discord.Message):
     '''
-    Get Prefix
+    Custom Prefix
     '''
     try:
         s = await bot.db.fetchrow("SELECT prefix FROM guilds WHERE guildid = $1", message.guild.id)
@@ -36,9 +36,9 @@ async def get_prefix(bot, message : discord.Message):
         pass
 
 class Sirk(commands.Bot):
-    """
-    Subclassed bot.
-    """
+    '''
+    Custom Bot
+    '''
     def __init__(self):
         super().__init__(        
             command_prefix=get_prefix,
@@ -76,3 +76,11 @@ class Sirk(commands.Bot):
             p = str(s['prefix'])
             await message.channel.send(embed=discord.Embed(title="Prefix", description=f"My prefixes for {message.guild.name} are {self.user.mention} and `{p}`", color=self.color))
         await self.process_commands(message)
+
+    async def get_context(self, message: discord.Message, *, cls=None):
+        return await super().get_context(message, cls=cls or Context)
+
+class Context(commands.Context):
+    '''
+    Custom COntext
+    '''
