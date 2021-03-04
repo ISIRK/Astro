@@ -235,7 +235,7 @@ class dev(commands.Cog):
 
     @commands.command(aliases=['src'])
     async def source(self, ctx, cmd: str):
-        await self.bot.utils.DeleteMenu(f"```py\n{inspect.getsource(self.bot.get_command(cmd).callback)}```").start(ctx)
+        await ctx.remove(f"```py\n{inspect.getsource(self.bot.get_command(cmd).callback)}```")
             
     @commands.group(invoke_without_command=True)
     async def todo(self, ctx):
