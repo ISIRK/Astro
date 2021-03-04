@@ -91,12 +91,16 @@ class ConfirmMenu(menus.Menu):
         return self.result
 
 class DeleteMenu(menus.Menu):
-    def __init__(self, content: str, **kwargs):
+    def __init__(self, content: str = None, embed = None, **kwargs):
         super().__init__(delete_message_after=True, **kwargs)
         self.content = content
+        self.embed = embed
         
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
-        return await channel.send(embed=discord.Embed(description=self.content, color=self.ctx.bot.color))
+        if content is not None:
+            return await channel.send(embed=discord.Embed(description=self.content, color=self.ctx.bot.color))
+        elif self.embed is not None:
+            return await channel.send(embed=self.embed)
     
     @menus.button('❌')
     async def do_end(self, _):
