@@ -93,7 +93,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Embossed Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://emboss.png")
-        await ctx.send(file=file)
+        await ctx.remove(file=file, embed=e)
 
     @commands.command()
     async def invert(self, ctx, *, member: discord.Member = None):
