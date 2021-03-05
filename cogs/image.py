@@ -113,7 +113,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Inverted Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://invert.png")
-        await ctx.send(file=file, embed=e)
+        await ctx.remove(file=file, embed=e)
 
     @commands.command()
     async def solarize(self, ctx, member: discord.Member = None):
@@ -133,7 +133,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Solarized Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://solarize.png")
-        await ctx.send(file=file, embed=e)
+        await ctx.remove(file=file, embed=e)
 
     @commands.command()
     async def pixel(self, ctx, *, member: discord.Member = None):
@@ -153,7 +153,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Pixelated Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://pixel.png")
-        await ctx.send(file=file, embed=e)
+        await ctx.remove(file=file, embed=e)
 
     @commands.command()
     async def text(self, ctx, *, text: str):
@@ -182,7 +182,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Sketched Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://sketch.png")
-        await ctx.send(file=file, embed=e)
+        await ctx.remove(file=file, embed=e)
 
     @commands.command()
     async def merge(self, ctx, m1: discord.Member, m2: discord.Member = None):
@@ -206,7 +206,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Merged Avatars", icon_url=m1.avatar_url)
         e.set_image(url="attachment://merge.png")
-        await ctx.send(file=file, embed=e)
+        await ctx.remove(file=file, embed=e)
 
     @commands.command()
     async def color(self, ctx, *, member: discord.Member = None):
@@ -222,7 +222,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Colored Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://quantize.gif")
-        await ctx.send(file=file, embed=e)
+        await ctx.remove(file=file, embed=e)
 
 def setup(bot):
     bot.add_cog(image(bot))
