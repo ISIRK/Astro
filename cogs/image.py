@@ -56,7 +56,6 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         with Image.open(img) as image:
             siz = 300
             newsize = (siz,siz)
-
             w, h = image.size
             if w > h:
                 the_key = w / siz
@@ -66,7 +65,6 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
                 image = image.resize((int(w / the_key),siz)).convert("RGBA")
             else:
                 image = image.resize(newsize).convert("RGBA")
-
             images1 = []
             for i in range(60):
                 try:
@@ -75,10 +73,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
                     images1.append(im)
                 except:
                     break
-
             images2 = list(reversed(images1))
             images = images1 + images2
-
             buffer = BytesIO()
             images[0].save(buffer,
                            format='gif',
@@ -94,7 +90,6 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         ele = numpy.pi/2.2
         azi = numpy.pi/4.
         dep = 10.
-
         with Image.open(img).convert('L') as img:
             a = numpy.asarray(img).astype('float')
             grad = numpy.gradient(a)
@@ -117,7 +112,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             buffer.seek(0)
             return buffer
 
-    @statidmethod
+    @staticmethod
     def do_invert(img):
         with Image.open(img).convert("RGB") as img:
             img = ImageOps.invert(img)
