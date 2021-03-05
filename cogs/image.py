@@ -133,7 +133,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             return buffer
         
     @staticmethod
-    def do_solarize(img)
+    def do_solarize(img):
         with Image.open(img).convert("RGB") as img:
             img = ImageOps.solarize(img, threshold=64)
             buffer = BytesIO()
