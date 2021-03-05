@@ -141,7 +141,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
-    async def ascii(self, ctx, *, member: discord.Member = None):
+    async def invert(self, ctx, *, member: discord.Member = None):
         '''Invert the avatar'''
         if not member:
             member = ctx.author
