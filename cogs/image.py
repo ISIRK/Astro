@@ -258,7 +258,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             buffer = await self.bot.loop.run_in_executor(None, self.do_merge, img1, img2)
         file=discord.File(buffer, filename="merge.png")
         e=discord.Embed(color=self.invis)
-        e.set_author(name="Merged Avatar", icon_url=member.avatar_url)
+        e.set_author(name="Merged Avatar", icon_url=m1.avatar_url)
         e.set_image(url="attachment://merge.png")
         await ctx.remove(file=file, embed=e)
 
