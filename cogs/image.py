@@ -11,6 +11,46 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         self.invis = 0x2F3136
 
     @staticmethod
+    def ascii_image(image):
+        sc = 0.1
+        gcf = 2
+        bgcolor = (13, 2, 8)
+        re_list = list(
+            r" .'`^\,:;Il!i><~+_-?][}{1)(|\/tfjrxn"
+            r"uvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
+        )
+        chars = np.asarray(re_list)
+        font = ImageFont.load_default()
+        letter_width = font.getsize("x")[0]
+        letter_height = font.getsize("x")[1]
+        wcf = letter_height / letter_width
+        img = image.convert("RGB")
+
+        width_by_letter = round(img.size[0] * sc * wcf)
+        height_by_letter = round(img.size[1] * sc)
+        s = (width_by_letter, height_by_letter)
+        img = img.resize(s)
+        img = np.sum(np.asarray(img), axis=2)
+        img -= img.min()
+        img = (1.0 - img / img.max()) ** gcf * (chars.size - 1)
+        lines = ("\n".join(
+            ("".join(r) for r in chars[img.astype(int)]))).split("\n")
+        new_img_width = letter_width * width_by_letter
+        new_img_height = letter_height * height_by_letter
+        new_img = Image.new("RGBA", (new_img_width, new_img_height), bgcolor)
+        draw = ImageDraw.Draw(new_img)
+        y = 0
+        line_idx = 0
+        for line in lines:
+            line_idx += 1
+            draw.text((0, y), line, (0, 255, 65), font=font)
+            y += letter_height
+        buffer = BytesIO()
+        new_img.save(buffer, format="PNG")
+        buffer.seek(0)
+        return buffer
+
+    @staticmethod
     def do_quantize(img):
         with Image.open(img) as image:
             siz = 300
@@ -222,6 +262,22 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Colored Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://quantize.gif")
+        await ctx.remove(file=file, embed=e)
+
+    @commands.command()
+    async def ascii(self, ctx, *, member: discord.Member = None):
+        '''Ascii the avatar'''
+        if not member:
+            member = ctx.author
+        url = member.avatar_url_as(size=512, format="png")
+        async with ctx.typing():
+            img = BytesIO(await url.read())
+            img.seek(0)
+            buffer = await self.bot.loop.run_in_executor(None, self.do_ascii, img)
+        file=discord.File(buffer, filename="ascii.png")
+        e=discord.Embed(color=self.invis)
+        e.set_author(name="Ascii Avatar", icon_url=member.avatar_url)
+        e.set_image(url="attachment://ascii.gif")
         await ctx.remove(file=file, embed=e)
 
 def setup(bot):
