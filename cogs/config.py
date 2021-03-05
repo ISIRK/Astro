@@ -1,6 +1,5 @@
- discord
+import discord, json, datetime, asyncio, datetime
 from discord.ext import commands
-import json, datetime, asyncio, datetime
 
 off = "<:off:801561937083105300>"
 on = "<:on:801561937472520201>"
