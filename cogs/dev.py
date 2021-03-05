@@ -192,6 +192,11 @@ class dev(commands.Cog):
         deleted = await channel.purge(limit=limit, check=is_me, bulk=False)
 
     @commands.command()
+    async def edit(self, ctx, id: int, *, content):
+        m = await ctx.channel.fetch_message(id)
+        await m.edit(content=content)
+
+    @commands.command()
     async def get_invite(self, ctx, id: int):
         guild = self.bot.get_guild(id)
 
@@ -232,11 +237,6 @@ class dev(commands.Cog):
         await self.bot.close()
         await self.bot.db.close()
         await self.bot.session.close()
-
-    @commands.command()
-    async def edit(self, ctx, id: int, *, content):
-        m = await channel.fetch_message(id)
-        await m.edit(content=content)
 
     @commands.command(aliases=['src'])
     async def source(self, ctx, cmd: str):
