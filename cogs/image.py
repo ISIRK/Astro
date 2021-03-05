@@ -11,7 +11,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         self.invis = 0x2F3136
 
     @staticmethod
-    def quantize(img):
+    def do_quantize(img):
         with Image.open(img) as image:
             siz = 300
             newsize = (siz,siz)
@@ -49,7 +49,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             return buffer
 
     @staticmethod
-    async def do_sketch(img):
+    def do_sketch(img):
         ele = numpy.pi/2.2
         azi = numpy.pi/4.
         dep = 10.
@@ -177,7 +177,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         async with ctx.typing():
             img = BytesIO(await url.read())
             img.seek(0)
-            buffer = await self.do_sketch(img)
+            buffer = await self.bot.loop.run_in_executor(None, do_sketch, img)
         file=discord.File(buffer, filename="sketch.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Sketched Avatar", icon_url=member.avatar_url)
@@ -217,7 +217,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         async with ctx.typing():
             img = BytesIO(await url.read())
             img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(self.quantize, img)
+            buffer = await self.bot.loop.run_in_executor(None, self.do_quantize, img)
         file=discord.File(buffer, filename="quantize.gif")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Colored Avatar", icon_url=member.avatar_url)
