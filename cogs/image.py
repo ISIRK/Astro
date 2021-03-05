@@ -117,6 +117,15 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             buffer.seek(0)
             return buffer
 
+    @statidmethod
+    def do_invert(img):
+        with Image.open(img).convert("RGB") as img:
+            img = ImageOps.invert(img)
+            buffer = BytesIO()
+            img.save(buffer, format="PNG")
+            buffer.seek(0)
+            return buffer
+
     @commands.command()
     async def emboss(self, ctx, *, member: discord.Member = None):
         '''Embosses the avatar'''
@@ -145,11 +154,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         avatar = BytesIO(await avatarUrl.read())
         image = Image.open(avatar)
         async with ctx.typing():
-            image = image.convert("RGB")
-            image = ImageOps.invert(image)
-            buffer = BytesIO()
-            image.save(buffer, format="PNG")
-            buffer.seek(0)
+            buffer = await self.bot.loop.run_in_executor(None, self.do_invert, image)
         file=discord.File(buffer, filename="invert.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Inverted Avatar", icon_url=member.avatar_url)
