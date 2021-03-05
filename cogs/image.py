@@ -121,23 +121,29 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             buffer.seek(0)
             return buffer
 
+    @staticmethod
+    def do_emboss(img):
+        with Image.open(img) as img:
+            img = img.filter(ImageFilter.EMBOSS)
+            buffer = BytesIO()
+            img.save(buffer, format="PNG")
+            buffer.seek(0)
+            return buffer
+
     @commands.command()
     async def emboss(self, ctx, *, member: discord.Member = None):
         '''Embosses the avatar'''
         if not member:
             member = ctx.author
-        avatarUrl = member.avatar_url_as(size=512, format="png")
-        avatar = BytesIO(await avatarUrl.read())
-        image = Image.open(avatar)
+        url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
-            image = image.filter(ImageFilter.EMBOSS)
-            buffer = BytesIO()
-            image.save(buffer, format="PNG")
-            buffer.seek(0)
-        file=discord.File(buffer, filename="emboss.png")
+            img = BytesIO(await url.read())
+            img.seek(0)
+            buffer = await self.bot.loop.run_in_executor(None, self.do_emboss, img)
+        file=discord.File(buffer, filename="embossed.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Embossed Avatar", icon_url=member.avatar_url)
-        e.set_image(url="attachment://emboss.png")
+        e.set_image(url="attachment://embossed.png")
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
