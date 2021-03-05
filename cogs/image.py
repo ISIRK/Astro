@@ -11,7 +11,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         self.invis = 0x2F3136
 
     @staticmethod
-    def ascii_image(image):
+    def do_ascii(image):
+        image = Image.open(image)
         sc = 0.1
         gcf = 2
         bgcolor = (13, 2, 8)
