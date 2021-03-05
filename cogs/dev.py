@@ -233,6 +233,11 @@ class dev(commands.Cog):
         await self.bot.db.close()
         await self.bot.session.close()
 
+    @commands.command()
+    async def edit(self, ctx, id: discord.TextChannel.id, *, content):
+        m = await channel.fetch_message(id)
+        await m.edit(content=content)
+
     @commands.command(aliases=['src'])
     async def source(self, ctx, cmd: str):
         await ctx.remove(embed=discord.Embed(description=f"```py\n{inspect.getsource(self.bot.get_command(cmd).callback)}```", color=self.bot.color))
