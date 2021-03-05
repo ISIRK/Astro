@@ -234,7 +234,7 @@ class dev(commands.Cog):
         await self.bot.session.close()
 
     @commands.command()
-    async def edit(self, ctx, id: discord.TextChannel.id, *, content):
+    async def edit(self, ctx, id: int, *, content):
         m = await channel.fetch_message(id)
         await m.edit(content=content)
 
