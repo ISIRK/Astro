@@ -115,6 +115,15 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             return buffer
 
     @staticmethod
+    def do_merge(img1, img2):
+        with Image.open(img1).convert("RGBA").resize((512, 512)) as img1 and Image.open(img2).convert("RGBA").resize((512, 512)) as img2:
+            out = Image.blend(img1, img2, 0.5)
+            buffer = BytesIO()
+            img.save(buffer, format="PNG")
+            buffer.seek(0)
+            return buffer
+
+    @staticmethod
     def do_invert(img):
         with Image.open(img).convert("RGB") as img:
             img = ImageOps.invert(img)
@@ -218,19 +227,6 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
-    async def text(self, ctx, *, text: str):
-        '''Display text on an image'''
-        async with ctx.typing():
-            img = Image.new('RGB', (200, 100), color = (114, 137, 218))
-            d = ImageDraw.Draw(img)
-            text = '\n'.join(textwrap.wrap(text, width=50))
-            d.text((10,10), text, fill='white')
-            buffer = BytesIO()
-            img.save(buffer, format="PNG")
-            buffer.seek(0)
-        await ctx.send(file=discord.File(buffer, filename="text.png"))
-
-    @commands.command()
     async def sketch(self, ctx, *, member: discord.Member = None):
         '''Sketches the avatar'''
         if not member:
@@ -254,19 +250,14 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         url1 = m1.avatar_url_as(size=512, format="png")
         url2 = m2.avatar_url_as(size=512, format="png")
         async with ctx.typing():
-            img1 = Image.open(BytesIO(await url1.read()))
-            img2 = Image.open(BytesIO(await url2.read()))
-            img1 = img1.resize((512, 512))
-            img1 = img1.convert("RGBA")
-            img2 = img2.resize((512, 512))
-            img2 = img2.convert("RGBA")
-            out = Image.blend(img1, img2, 0.5)
-            buffer = BytesIO()
-            out.save(buffer, format="PNG")
-            buffer.seek(0)
+            img1 = BytesIO(await url1.read())
+            img1.seek(0)
+            img2 = BytesIO(await url2.read())
+            img2.seek(0)
+            buffer = await self.bot.loop.run_in_executor(None, self.do_merge, img1, img2)
         file=discord.File(buffer, filename="merge.png")
         e=discord.Embed(color=self.invis)
-        e.set_author(name="Merged Avatars", icon_url=m1.avatar_url)
+        e.set_author(name="Merged Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://merge.png")
         await ctx.remove(file=file, embed=e)
 
