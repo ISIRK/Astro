@@ -9,6 +9,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
     def __init__(self, bot):
         self.bot = bot
         self.invis = 0x2F3136
+        
+    # Static Methods
 
     @staticmethod
     def do_ascii(image):
@@ -129,6 +131,17 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             img.save(buffer, format="PNG")
             buffer.seek(0)
             return buffer
+        
+    @staticmethod
+    def do_solarize(img)
+        with Image.open(img).convert("RGB") as img:
+            img = ImageOps.solarize(img, threshold=64)
+            buffer = BytesIO()
+            img.save(buffer, format="PNG")
+            buffer.seek(0)
+            return buffer
+        
+    # Commands
 
     @commands.command()
     async def emboss(self, ctx, *, member: discord.Member = None):
@@ -156,10 +169,10 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             img = BytesIO(await url.read())
             img.seek(0)
             buffer = await self.bot.loop.run_in_executor(None, self.do_invert, img)
-        file=discord.File(buffer, filename="inverted.png")
+        file=discord.File(buffer, filename="invert.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Inverted Avatar", icon_url=member.avatar_url)
-        e.set_image(url="attachment://inverted.png")
+        e.set_image(url="attachment://invert.png")
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
@@ -167,15 +180,11 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         '''Solarizes the avatar'''
         if not member:
             member = ctx.author
-        avatarUrl = member.avatar_url_as(size=512, format="png")
-        avatar = BytesIO(await avatarUrl.read())
-        image = Image.open(avatar)
+        url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
-            image = image.convert("RGB")
-            image = ImageOps.solarize(image, threshold=64)
-            buffer = BytesIO()
-            image.save(buffer, format="PNG")
-            buffer.seek(0)
+            img = BytesIO(await url.read())
+            img.seek(0)
+            buffer = await self.bot.loop.run_in_executor(None, self.do_solarize, img)
         file=discord.File(buffer, filename="solarize.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Solarized Avatar", icon_url=member.avatar_url)
