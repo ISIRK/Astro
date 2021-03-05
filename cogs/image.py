@@ -4,7 +4,7 @@ from discord.ext.commands.cooldowns import BucketType
 from PIL import Image, ImageFilter, ImageDraw, ImageOps, ImageFont
 from io import BytesIO
 
-class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, commands.BucketType.user)}):
+class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
     """Image manipulation commands"""
     def __init__(self, bot):
         self.bot = bot
