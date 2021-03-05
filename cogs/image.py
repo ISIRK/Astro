@@ -147,6 +147,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             img = img.resize((36, 36), resample=Image.BILINEAR)
             img = img.resize(img.size, Image.NEAREST)
             img.save(buffer, format="PNG")
+            buffer = BytesIO()
             buffer.seek(0)
             return buffer
         
