@@ -177,7 +177,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         async with ctx.typing():
             img = BytesIO(await url.read())
             img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, do_sketch, img)
+            buffer = await self.bot.loop.run_in_executor(None, self.do_sketch, img)
         file=discord.File(buffer, filename="sketch.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Sketched Avatar", icon_url=member.avatar_url)
