@@ -141,18 +141,19 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
-    async def invert(self, ctx, *, member: discord.Member = None):
-        '''Inverts the avatar'''
+    async def ascii(self, ctx, *, member: discord.Member = None):
+        '''Invert the avatar'''
         if not member:
             member = ctx.author
-        avatarUrl = member.avatar_url_as(size=512, format="png")
-        img = BytesIO(await avatarUrl.read())
+        url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
+            img = BytesIO(await url.read())
+            img.seek(0)
             buffer = await self.bot.loop.run_in_executor(None, self.do_invert, img)
-        file=discord.File(buffer, filename="invert.png")
+        file=discord.File(buffer, filename="inverted.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Inverted Avatar", icon_url=member.avatar_url)
-        e.set_image(url="attachment://invert.png")
+        e.set_image(url="attachment://inverted.png")
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
