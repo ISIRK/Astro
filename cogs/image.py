@@ -217,7 +217,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         async with ctx.typing():
             img = BytesIO(await url.read())
             img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(quantize, img)
+            buffer = await self.bot.loop.run_in_executor(None, quantize, img)
         file=discord.File(buffer, filename="quantize.gif")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Colored Avatar", icon_url=member.avatar_url)
