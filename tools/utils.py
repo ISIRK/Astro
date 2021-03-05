@@ -89,22 +89,3 @@ class ConfirmMenu(menus.Menu):
     async def prompt(self, ctx):
         await self.start(ctx, wait=True)
         return self.result
-
-class DeleteMenu(menus.Menu):
-    def __init__(self, content: str = None, embed = None, file = None, **kwargs):
-        super().__init__(delete_message_after=True, **kwargs)
-        self.content = content
-        self.embed = embed
-        self.file = file
-        
-    async def send_initial_message(self, ctx, channel: discord.TextChannel):
-        if self.embed is not None and self.file is not None:
-            return await channel.send(file=self.file, embed=self.embed)
-        elif self.embed is not None:
-            return await channel.send(embed=self.embed)
-        elif self.content is not None:
-            return await channel.send(embed=discord.Embed(description=self.content, color=self.ctx.bot.color))
-    
-    @menus.button('❌')
-    async def do_end(self, _):
-        self.stop()
