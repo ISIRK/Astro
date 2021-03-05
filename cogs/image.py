@@ -116,12 +116,13 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
 
     @staticmethod
     def do_merge(img1, img2):
-        with Image.open(img1).convert("RGBA").resize((512, 512)) as img1 and Image.open(img2).convert("RGBA").resize((512, 512)) as img2:
-            out = Image.blend(img1, img2, 0.5)
-            buffer = BytesIO()
-            img.save(buffer, format="PNG")
-            buffer.seek(0)
-            return buffer
+        img1 = Image.open(img1).convert("RGBA").resize((512, 512))
+        img2 = Image.open(img2).convert("RGBA").resize((512, 512))
+        out = Image.blend(img1, img2, 0.5)
+        buffer = BytesIO()
+        img.save(buffer, format="PNG")
+        buffer.seek(0)
+        return buffer
 
     @staticmethod
     def do_invert(img):
