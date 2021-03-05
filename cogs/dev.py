@@ -235,7 +235,7 @@ class dev(commands.Cog):
 
     @commands.command(aliases=['src'])
     async def source(self, ctx, cmd: str):
-        await ctx.remove(f"```py\n{inspect.getsource(self.bot.get_command(cmd).callback)}```")
+        await ctx.remove(embed=discord.Embed(description=f"```py\n{inspect.getsource(self.bot.get_command(cmd).callback)}```", color=self.bot.color))
             
     @commands.group(invoke_without_command=True)
     async def todo(self, ctx):
