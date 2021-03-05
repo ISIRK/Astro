@@ -118,7 +118,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
     def do_merge(img1, img2):
         img1 = Image.open(img1).convert("RGBA").resize((512, 512))
         img2 = Image.open(img2).convert("RGBA").resize((512, 512))
-        out = Image.blend(img1, img2, 0.5)
+        img = Image.blend(img1, img2, 0.5)
         buffer = BytesIO()
         img.save(buffer, format="PNG")
         buffer.seek(0)
