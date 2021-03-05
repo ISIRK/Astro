@@ -20,7 +20,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             r" .'`^\,:;Il!i><~+_-?][}{1)(|\/tfjrxn"
             r"uvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
         )
-        chars = np.asarray(re_list)
+        chars = numpy.asarray(re_list)
         font = ImageFont.load_default()
         letter_width = font.getsize("x")[0]
         letter_height = font.getsize("x")[1]
@@ -31,7 +31,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         height_by_letter = round(img.size[1] * sc)
         s = (width_by_letter, height_by_letter)
         img = img.resize(s)
-        img = np.sum(np.asarray(img), axis=2)
+        img = numpy.sum(numpy.asarray(img), axis=2)
         img -= img.min()
         img = (1.0 - img / img.max()) ** gcf * (chars.size - 1)
         lines = ("\n".join(
