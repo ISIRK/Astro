@@ -88,7 +88,7 @@ class Context(commands.Context):
         m = await self.send(*args, **kwargs)
         await m.add_reaction('🇽')
         try:
-            await self.bot.wait_for('reaction_add', check=lambda r, u: u.id == self.author.id and r.message.id == m.id and str(r.emoji) == '❌')
+            await self.bot.wait_for('reaction_add', check=lambda r, u: u.id == self.author.id and r.message.id == m.id and str(r.emoji) == '🇽')
             await m.delete()
         except asyncio.TimeoutError:
             pass
