@@ -1,5 +1,5 @@
 import discord, json
-from discord.ext import commands, menus
+from discord.ext import commands
 
 class HelpCommand(commands.HelpCommand):
     '''Help Command.'''
