@@ -277,7 +277,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             buffer = await self.bot.loop.run_in_executor(None, self.do_ascii, img)
         file=discord.File(buffer, filename="ascii.png")
         e=discord.Embed(color=self.invis)
-        #e.set_author(name="Ascii Avatar", icon_url=member.avatar_url)
+        e.set_author(name="Ascii Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://ascii.png")
         await ctx.remove(file=file, embed=e)
 
