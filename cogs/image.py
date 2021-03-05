@@ -146,10 +146,9 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         if not member:
             member = ctx.author
         avatarUrl = member.avatar_url_as(size=512, format="png")
-        avatar = BytesIO(await avatarUrl.read())
-        image = Image.open(avatar)
+        img = BytesIO(await avatarUrl.read())
         async with ctx.typing():
-            buffer = await self.bot.loop.run_in_executor(None, self.do_invert, image)
+            buffer = await self.bot.loop.run_in_executor(None, self.do_invert, img)
         file=discord.File(buffer, filename="invert.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Inverted Avatar", icon_url=member.avatar_url)
