@@ -1,4 +1,4 @@
-import discord, numpy, textwrap
+import discord, numpy, textwrap, requests
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
 from PIL import Image, ImageFilter, ImageDraw, ImageOps, ImageFont
@@ -74,7 +74,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             wra = WriteText(y)
             f = wra.write_text_box(
                 x_pos, -10, text, tv.size[0] - 40,
-                "app/image/assets/whitney-medium.ttf",
+                "cogs/assets/whitney-medium.ttf",
                 size, color=(0, 0, 0)
             )
             t = f
@@ -379,7 +379,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         elif ctx.message.attachments:
             url = ctx.message.attachments[0]
         else:
-            url = image
+            url = requests.get(img)
         async with ctx.typing():
             img = BytesIO(await url.read())
             img.seek(0)
