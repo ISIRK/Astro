@@ -13,6 +13,21 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     # Static Methods
 
     @staticmethod
+    def do_mc(txt):
+        image = Image.open(requests.get('https://i.imgur.com/JtNJFZy.png', stream=True).raw).convert("RGBA")
+        if len(txt) > 20:
+            txt = txt[:20] + " ..."
+
+        draw = ImageDraw.Draw(image)
+        font_path = "cogs/assets/minecraft.ttf"
+        font = ImageFont.truetype(font_path, 17)
+        draw.text((60, 30), txt, (255, 255, 255), font=font)
+        buffer = BytesIO()
+        new_img.save(buffer, format="PNG")
+        buffer.seek(0)
+        return buffer
+
+    @staticmethod
     def do_ascii(image):
         image = Image.open(image)
         sc = 0.1
@@ -292,6 +307,17 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Ascii Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://ascii.png")
+        await ctx.remove(file=file, embed=e)
+
+    @commands.command()
+    async def achievement(self, ctx, *, text: str):
+        '''Make a minecraft achievement'''
+        async with ctx.typing():
+            buffer = await self.bot.loop.run_in_executor(None, self.do_mc, text)
+        file=discord.File(buffer, filename="achievement.png")
+        e=discord.Embed(color=self.invis)
+        e.set_author(name="Achievement", icon_url=ctx.author.avatar_url)
+        e.set_image(url="attachment://achievement.png")
         await ctx.remove(file=file, embed=e)
 
 def setup(bot):
