@@ -41,8 +41,8 @@ class meta(commands.Cog):
         """Displays bot info"""
         mem = psutil.virtual_memory()
         r = await self.bot.session.get("https://api.github.com/repos/isirk/sirk/commits")
-        commits = await r.json()
-        commits = commits[:1]
+        commit = await r.json()
+        commit = commits[:1]
         embed = discord.Embed(title="Bot Info", color=self.bot.color)
         owner = self.bot.get_user(self.bot.owner_id)
         embed.set_author(name=str(owner), icon_url=owner.avatar_url)
