@@ -49,7 +49,7 @@ class meta(commands.Cog):
         embed.set_footer(text=self.bot.footer)
         embed.set_thumbnail(url=self.bot.user.avatar_url)
         embed.add_field(name="About",
-                        value=f"{self.bot.description}\n[`{commit['sha']}`]"
+                        value=f"{self.bot.description}\n{commit}"
                        )
         embed.add_field(name=f"Stats",
                         value=f"Servers: {len(self.bot.guilds)}\nUsers: {len(self.bot.users):,}\nCommands: {len(self.bot.commands)}"
