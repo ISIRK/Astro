@@ -375,7 +375,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     async def memegen(self, ctx, image, *, text):
         '''Memegen'''
         if "-u" in image:
-            url = ctx.author.member.avatar_url_as(size=512, format="png")
+            url = ctx.author.avatar_url_as(size=512, format="png")
         elif ctx.message.attachments:
             url = ctx.message.attachments[0]
         else:
@@ -386,7 +386,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             buffer = await self.bot.loop.run_in_executor(None, self.do_meme, img, text)
         file=discord.File(buffer, filename="meme.png")
         e=discord.Embed(color=self.invis)
-        e.set_author(name="Meme", icon_url=ctx.author.member.avatar_url)
+        e.set_author(name="Meme", icon_url=ctx.author.avatar_url)
         e.set_image(url="attachment://meme.png")
         await ctx.remove(file=file, embed=e)
 
