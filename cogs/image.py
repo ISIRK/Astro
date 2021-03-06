@@ -13,6 +13,83 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     # Static Methods
 
     @staticmethod
+    def do_meme(img, text: str):
+        with Image.open(img) as tv:
+            wid = tv.size[0]
+            hei = tv.size[0]
+            if 0 < wid < 200:
+                sfm = [25, 15, 10, 5]
+                mplier = 0.1
+                hply = 0.1
+            elif 400 > wid >= 200:
+                sfm = [30, 20, 10, 5]
+                mplier = 0.075
+                hply = 0.2
+            elif 400 <= wid < 600:
+                sfm = [50, 30, 20, 10]
+                mplier = 0.05
+                hply = 0.3
+            elif 800 > wid >= 600:
+                sfm = [70, 50, 30, 20]
+                mplier = 0.025
+                hply = 0.4
+            elif 1000 > wid >= 800:
+                sfm = [80, 60, 40, 30]
+                mplier = 0.01
+                hply = 0.5
+            elif 1500 > wid >= 1000:
+                sfm = [100, 80, 60, 40]
+                mplier = 0.01
+                hply = 0.6
+            elif 2000 > wid >= 1400:
+                sfm = [120, 100, 80, 60]
+                mplier = 0.01
+                hply = 0.6
+            elif 2000 <= wid < 3000:
+                sfm = [140, 120, 100, 80]
+                mplier = 0.01
+                hply = 0.6
+            elif wid >= 3000:
+                sfm = [180, 160, 140, 120]
+                mplier = 0.01
+                hply = 0.6
+            else:
+                raise ParameterError("Image is too large")
+            x_pos = int(mplier * wid)
+            y_pos = int(-1 * (mplier * hply * 10) * hei)
+            print(y_pos)
+            if 50 > len(text) > 0:
+                size = sfm[1]
+            elif 100 > len(text) > 50:
+                size = sfm[1]
+            elif 100 < len(text) < 250:
+                size = sfm[2]
+            elif len(text) > 250 and len(text) > 500:
+                size = sfm[3]
+            elif 500 < len(text) < 1000:
+                size = sfm[4]
+            else:
+                raise ParameterError("text is too long")
+            y = Image.new("RGBA", (tv.size[0], 800), (256, 256, 256))
+            wra = WriteText(y)
+            f = wra.write_text_box(
+                x_pos, -10, text, tv.size[0] - 40,
+                "app/image/assets/whitney-medium.ttf",
+                size, color=(0, 0, 0)
+            )
+            t = f
+            im = wra.ret_img()
+            # im = Image.open(bt)
+            ima = im.crop((0, 0, tv.size[0], t))
+            bcan = Image.new("RGBA", (tv.size[0], tv.size[1] + t), (0, 0, 0, 0))
+            bcan.paste(ima)
+            bcan.paste(tv, (0, t))
+            buffer = BytesIO()
+            bcan.save(buffer, format="PNG")
+            buffer.seek(0)
+            return buffer
+
+    @staticmethod
     def do_ascii(image):
         image = Image.open(image)
         sc = 0.1
@@ -292,6 +369,25 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Ascii Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://ascii.png")
+        await ctx.remove(file=file, embed=e)
+
+    @commands.command()
+    async def ascii(self, ctx, image, *, text):
+        '''Memegen'''
+        if "-u" in image:
+            url = member.avatar_url_as(size=512, format="png")
+        elif ctx.message.attachments:
+            url = ctx.message.attachments[0]
+        else:
+            url = image
+        async with ctx.typing():
+            img = BytesIO(await url.read())
+            img.seek(0)
+            buffer = await self.bot.loop.run_in_executor(None, self.do_meme, img, text)
+        file=discord.File(buffer, filename="meme.png")
+        e=discord.Embed(color=self.invis)
+        e.set_author(name="Meme", icon_url=member.avatar_url)
+        e.set_image(url="attachment://meme.png")
         await ctx.remove(file=file, embed=e)
 
 def setup(bot):
