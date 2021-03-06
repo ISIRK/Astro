@@ -379,7 +379,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         elif ctx.message.attachments:
             url = ctx.message.attachments[0]
         else:
-            url = requests.get(img)
+            url = requests.get(image)
         async with ctx.typing():
             img = BytesIO(await url.read())
             img.seek(0)
