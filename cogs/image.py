@@ -372,7 +372,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
-    async def ascii(self, ctx, image, *, text):
+    async def memegen(self, ctx, image, *, text):
         '''Memegen'''
         if "-u" in image:
             url = member.avatar_url_as(size=512, format="png")
