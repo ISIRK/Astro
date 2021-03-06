@@ -311,7 +311,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         '''Make a minecraft achievement'''
         async with ctx.typing():
             if len(text) > 20:
-                text = text[:20] + " ..."
+                text = text[:18] + " ..."
             buffer = await self.bot.loop.run_in_executor(None, self.do_mc, text)
         file=discord.File(buffer, filename="achievement.png")
         e=discord.Embed(color=self.invis)
