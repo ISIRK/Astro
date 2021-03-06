@@ -14,7 +14,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
 
     @staticmethod
     def do_meme(img, text: str):
-        with Image.open(img) as tv:
+        with Image.open(img).convert("RGBA") as tv:
             wid = tv.size[0]
             hei = tv.size[0]
             if 0 < wid < 200:
