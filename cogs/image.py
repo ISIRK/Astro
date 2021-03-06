@@ -57,7 +57,6 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
                 raise ParameterError("Image is too large")
             x_pos = int(mplier * wid)
             y_pos = int(-1 * (mplier * hply * 10) * hei)
-            print(y_pos)
             if 50 > len(text) > 0:
                 size = sfm[1]
             elif 100 > len(text) > 50:
