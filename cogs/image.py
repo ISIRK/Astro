@@ -23,7 +23,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         font = ImageFont.truetype(font_path, 17)
         draw.text((60, 30), txt, (255, 255, 255), font=font)
         buffer = BytesIO()
-        new_img.save(buffer, format="PNG")
+        image.save(buffer, format="PNG")
         buffer.seek(0)
         return buffer
 
