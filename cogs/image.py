@@ -15,9 +15,6 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @staticmethod
     def do_mc(txt):
         image = Image.open(requests.get('https://i.imgur.com/JtNJFZy.png', stream=True).raw).convert("RGBA")
-        if len(txt) > 20:
-            txt = txt[:20] + " ..."
-
         draw = ImageDraw.Draw(image)
         font_path = "cogs/assets/minecraft.ttf"
         font = ImageFont.truetype(font_path, 17)
@@ -313,6 +310,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     async def achievement(self, ctx, *, text: str):
         '''Make a minecraft achievement'''
         async with ctx.typing():
+            if len(text) > 20:
+                text = text[:20] + " ..."
             buffer = await self.bot.loop.run_in_executor(None, self.do_mc, text)
         file=discord.File(buffer, filename="achievement.png")
         e=discord.Embed(color=self.invis)
