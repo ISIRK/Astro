@@ -330,7 +330,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
-    async def wandtest(self, ctx):
+    async def wandtest(self, ctx, *, member: discord.Member = None):
         '''test'''
         if not member:
             member = ctx.author
