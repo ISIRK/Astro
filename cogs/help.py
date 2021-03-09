@@ -10,6 +10,9 @@ class HelpCommand(commands.HelpCommand):
             "aliases": ["h"]
         })
 
+    async def command_not_found(self, string):
+        return await self.context.send(embed=discord.Embed(title=f"The command/module {string} was not found."))
+
     async def send_bot_help(self, mapping):
         embed = discord.Embed(title='Help', description=self.context.bot.description, url="https://asksirk.com/bot/commands", colour=self.context.bot.color)
         
@@ -31,7 +34,7 @@ class HelpCommand(commands.HelpCommand):
                     embed.add_field(name=name.capitalize(), value=f'```{self.clean_prefix}{self.invoked_with} {name}```')
 
         embed.set_footer(text='Use {0}{1} [command|module] for more info.'.format(self.clean_prefix, self.invoked_with))#self.get_ending_note())
-        await self.get_destination().send(embed=embed)
+        return await self.context.send(embed=embed)
 
     async def send_command_help(self, command):
         embed = discord.Embed(title=f"{self.clean_prefix}{command.name} | {' | '.join(command.aliases)} {command.signature}" if len(command.aliases) > 0 else f'{self.clean_prefix}{command.name} {command.signature}',
