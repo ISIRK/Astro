@@ -290,10 +290,10 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             img = BytesIO(await url.read())
             img.seek(0)
             buffer = await self.bot.loop.run_in_executor(None, self.do_floor, img)
-        file=discord.File(buffer, filename="floor.png")
+        file=discord.File(buffer, filename="floor.gif")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Floored Avatar", icon_url=member.avatar_url)
-        e.set_image(url="attachment://floor.png")
+        e.set_image(url="attachment://floor.gif")
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
@@ -370,10 +370,10 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             if len(text) > 20:
                 text = text[:17] + "..."
             buffer = await self.bot.loop.run_in_executor(None, self.do_mc, text)
-        file=discord.File(buffer, filename="achievement.gif")
+        file=discord.File(buffer, filename="achievement.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Achievement", icon_url=ctx.author.avatar_url)
-        e.set_image(url="attachment://achievement.gif")
+        e.set_image(url="attachment://achievement.png")
         await ctx.remove(file=file, embed=e)
 
 def setup(bot):
