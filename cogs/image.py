@@ -11,7 +11,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         self.bot = bot
         self.invis = 0x2F3136
         
-    # Static Methods
+    # Pillow Image Manipulation
 
     @staticmethod
     def do_mc(txt):
@@ -174,6 +174,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             buffer.seek(0)
             return buffer
 
+    # Wand Image Manipulation
+
     @staticmethod
     def do_swirl(img):
         with WandImage(blob=img) as img:
@@ -330,8 +332,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
-    async def wandtest(self, ctx, *, member: discord.Member = None):
-        '''test'''
+    async def swirl(self, ctx, *, member: discord.Member = None):
+        '''Swirls the avatar'''
         if not member:
             member = ctx.author
         url = member.avatar_url_as(size=512, format="png")
