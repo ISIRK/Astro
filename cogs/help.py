@@ -10,9 +10,6 @@ class HelpCommand(commands.HelpCommand):
             "aliases": ["h"]
         })
 
-    async def command_not_found(self, string):
-        return discord.Embed(title=f"The command/module {string} was not found.")
-
     async def send_bot_help(self, mapping):
         embed = discord.Embed(title='Help', description=self.context.bot.description, url="https://asksirk.com/bot/commands", colour=self.context.bot.color)
         
