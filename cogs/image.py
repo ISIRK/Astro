@@ -1,8 +1,9 @@
 import discord, numpy, textwrap, requests
+from io import BytesIO
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
+from wand.image import Image as WandImage
 from PIL import Image, ImageFilter, ImageDraw, ImageOps, ImageFont
-from io import BytesIO
 
 class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, commands.BucketType.user)}):
     """Image manipulation commands"""
@@ -172,6 +173,15 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             img.save(buffer, format="PNG")
             buffer.seek(0)
             return buffer
+
+    @staticmethod
+    def do_swirl(img):
+        with WandImage(blob=img) as img:
+            img.swirl(degree =-90)
+            buffer = BytesIO()
+            img.save(buffer, format="PNG")
+            buffer.seek(0)
+            return buffer
         
     # Commands
 
@@ -317,6 +327,22 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Achievement", icon_url=ctx.author.avatar_url)
         e.set_image(url="attachment://achievement.png")
+        await ctx.remove(file=file, embed=e)
+
+    @commands.command()
+    async def wandtest(self, ctx):
+        '''test'''
+        if not member:
+            member = ctx.author
+        url = member.avatar_url_as(size=512, format="png")
+        async with ctx.typing():
+            img = BytesIO(await url.read())
+            img.seek(0)
+            buffer = await self.bot.loop.run_in_executor(None, self.do_swirl, img)
+        file=discord.File(buffer, filename="swirl.png")
+        e=discord.Embed(color=self.invis)
+        e.set_author(name="Swirled Avatar", icon_url=member.avatar_url)
+        e.set_image(url="attachment://swirl.png")
         await ctx.remove(file=file, embed=e)
 
 def setup(bot):
