@@ -186,9 +186,9 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             return buffer
 
     @staticmethod
-    def do_paint(img):
+    def do_polaroid(img):
         with WandImage(blob=img) as img:
-            img.oil_paint(sigma=3)
+            img.polaroid()
             buffer = BytesIO()
             img.save(buffer)
             buffer.seek(0)
@@ -290,8 +290,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
-    async def paint(self, ctx, *, member: discord.Member = None):
-        '''Paints the avatar'''
+    async def polaroid(self, ctx, *, member: discord.Member = None):
+        '''Polaroid the avatar'''
         if not member:
             member = ctx.author
         url = member.avatar_url_as(size=512, format="png")
@@ -299,10 +299,10 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             img = BytesIO(await url.read())
             img.seek(0)
             buffer = await self.bot.loop.run_in_executor(None, self.do_paint, img)
-        file=discord.File(buffer, filename="paint.png")
+        file=discord.File(buffer, filename="polaroid.png")
         e=discord.Embed(color=self.invis)
-        e.set_author(name="Painted Avatar", icon_url=member.avatar_url)
-        e.set_image(url="attachment://paint.png")
+        e.set_author(name="Polaroid Avatar", icon_url=member.avatar_url)
+        e.set_image(url="attachment://polaroid.png")
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
