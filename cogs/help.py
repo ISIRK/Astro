@@ -28,7 +28,7 @@ class HelpCommand(commands.HelpCommand):
                 filtered = await self.filter_commands(commands, sort=True)
                 if filtered:
                     name = cog.qualified_name
-                    embed.add_field(name=name.capitalize, value=f'```{self.clean_prefix}{self.invoked_with} {name}```')
+                    embed.add_field(name=name.capitalize(), value=f'```{self.clean_prefix}{self.invoked_with} {name}```')
 
         embed.set_footer(text='Use {0}{1} [command|module] for more info.'.format(self.clean_prefix, self.invoked_with))#self.get_ending_note())
         await self.get_destination().send(embed=embed)
