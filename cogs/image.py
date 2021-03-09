@@ -290,10 +290,10 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             img = BytesIO(await url.read())
             img.seek(0)
             buffer = await self.bot.loop.run_in_executor(None, self.do_floor, img)
-        file=discord.File(buffer, filename="floor.gif")
+        file=discord.File(buffer, filename="floor.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Floored Avatar", icon_url=member.avatar_url)
-        e.set_image(url="attachment://floor.gif")
+        e.set_image(url="attachment://floor.png")
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
