@@ -370,10 +370,10 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             if len(text) > 20:
                 text = text[:17] + "..."
             buffer = await self.bot.loop.run_in_executor(None, self.do_mc, text)
-        file=discord.File(buffer, filename="achievement.png")
+        file=discord.File(buffer, filename="achievement.gif")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Achievement", icon_url=ctx.author.avatar_url)
-        e.set_image(url="attachment://achievement.png")
+        e.set_image(url="attachment://achievement.gif")
         await ctx.remove(file=file, embed=e)
 
 def setup(bot):
