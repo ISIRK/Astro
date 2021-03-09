@@ -11,7 +11,7 @@ class HelpCommand(commands.HelpCommand):
         })
 
     async def command_not_found(self, string):
-        return await self.context.send(embed=discord.Embed(title=f"The command/module {string} was not found."))
+        return discord.Embed(title=f"The command/module {string} was not found.")
 
     async def send_bot_help(self, mapping):
         embed = discord.Embed(title='Help', description=self.context.bot.description, url="https://asksirk.com/bot/commands", colour=self.context.bot.color)
