@@ -21,8 +21,8 @@ class HelpCommand(commands.HelpCommand):
                 value = ' '.join(f'`{c.name}`' for c in commands)
                 embed.add_field(name=name, value=value, inline=False)
         '''
-        for cog in mapping.items():
-            name = cog.qualified_name
+        for cog, commands in mapping.items():
+            name = 'No Category' if cog is None else cog.qualified_name
             embed.add_field(name=name, value=f'```{self.clean_prefix}help {name}```')
 
         embed.set_footer(text='Use {0}{1} [command|module] for more info.'.format(self.clean_prefix, self.invoked_with))#self.get_ending_note())
