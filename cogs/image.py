@@ -298,7 +298,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         async with ctx.typing():
             img = BytesIO(await url.read())
             img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, self.do_swirl, img)
+            buffer = await self.bot.loop.run_in_executor(None, self.do_paint, img)
         file=discord.File(buffer, filename="paint.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Painted Avatar", icon_url=member.avatar_url)
