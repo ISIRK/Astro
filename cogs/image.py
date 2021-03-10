@@ -460,7 +460,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         file=discord.File(buffer, filename="wash.gif")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Washed Avatar", icon_url=member.avatar_url)
-        e.set_image(url="attachment://was.gif")
+        e.set_image(url="attachment://wash.gif")
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
