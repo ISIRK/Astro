@@ -103,12 +103,12 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @staticmethod
     def do_wash(img):
         with Image.open(img) as img:
-            images = []
+            images1 = []
             for i in range(60):
                 im = img.copy()
                 im = im.rotate(6 * i)
                 images.append(im)
-            images2 = list(reversed(images))
+            images2 = list(reversed(images1))
             images = images1 + images2
             buffer = BytesIO()
             images[0].save(buffer,
