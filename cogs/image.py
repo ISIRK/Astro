@@ -117,10 +117,11 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
                            loop=0)
             gif.seek(0)
             gif = Image.open(gif)
+            wash = Image.open("/cogs/assets/wash.png")
             frames = []
             for frame in ImageSequence.Iterator(gif):
                 frame = frame.copy()
-                frame.paste(transparent_foreground, mask=Image.open("/cogs/assets/wash.png"))
+                frame.paste(wash, mask=wash)
                 frames.append(frame)
             buffer = BytesIO()
             frames[0].save(buffer,
