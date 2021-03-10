@@ -1,4 +1,4 @@
-import discord, numpy, textwrap, requests
+import discord, numpy, textwrap, requests, wand
 from io import BytesIO
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
@@ -206,6 +206,45 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             img.save(buffer)
             buffer.seek(0)
             return buffer
+
+    @staticmethod
+    def do_cube(img):
+        with WandImage(blob=img) as image:
+            def s(x):
+                return int(x / 3)
+
+            image.resize(s(1000), s(860))
+            image.format = "png"
+            image.alpha_channel = 'opaque'
+
+            image1 = image
+            image2 = WandImage(image1)
+
+            out = WandImage(width=s(3000 - 450), height=s(860 - 100) * 3)
+            out.format = "png"
+
+            image1.shear(background=wand.color.Color("none"), x=-30)
+            image1.rotate(-30)
+            out.composite(image1, left=s(500 - 250), top=s(0 - 230) + s(118))
+            image1.close()
+
+            image2.shear(background=wand.color.Color("rgba(0,0,0,0)"), x=30)
+            image2.rotate(-30)
+            image3 = wand.image.Image(image2)
+            out.composite(image2, left=s(1000 - 250) - s(72), top=s(860 - 230))
+            image2.close()
+
+            image3.flip()
+            out.composite(image3, left=s(0 - 250) + s(68), top=s(860 - 230))
+            image3.close()
+
+            out.crop(left=80, top=40, right=665, bottom=710)
+
+            buffer = BytesIO()
+            out.save(buffer)
+            buffer.seek(0)
+            return buffer
+
         
     # Commands
 
