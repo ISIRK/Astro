@@ -108,7 +108,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
                 im = img.copy()
                 im = im.rotate(12 * i)
                 images.append(im)
-            images[0].save('output.gif', save_all=True, append_images=images[1:])
+            output = images[0].save('output.gif', save_all=True, append_images=images[1:])
+            output.seek(0)
             frames = []
             for frame in ImageSequence.Iterator('output.gif'):
                 frame = frame.copy()
