@@ -109,7 +109,12 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
                 im = im.rotate(12 * i)
                 images.append(im)
             gif = BytesIO()
-            images[0].save(gif, save_all=True, append_images=images[1:])
+            images[0].save(gif,
+                           format='gif',
+                           save_all=True,
+                           append_images=images,
+                           duration=1,
+                           loop=0)
             gif.seek(0)
             frames = []
             for frame in ImageSequence.Iterator(gif):
