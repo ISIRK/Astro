@@ -101,6 +101,26 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             return buffer
 
     @staticmethod
+    def do_wash(img):
+        with Image.open(img) as img:
+            images = []
+            for i in range(60):
+                im = img.copy()
+                im = im.rotate(6 * i)
+                images.append(im)
+            images2 = list(reversed(images))
+            images = images1 + images2
+            buffer = BytesIO()
+            images[0].save(buffer,
+                           format='gif',
+                           save_all=True,
+                           append_images=images[1:],
+                           duration=1,
+                           loop=0)
+            buffer.seek(0)
+            return buffer
+
+    @staticmethod
     def do_sketch(img):
         ele = numpy.pi/2.2
         azi = numpy.pi/4.
@@ -425,6 +445,22 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Colored Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://quantize.gif")
+        await ctx.remove(file=file, embed=e)
+
+    @commands.command()
+    async def wash(self, ctx, *, member: discord.Member = None):
+        '''Wash the avatar'''
+        if not member:
+            member = ctx.author
+        url = member.avatar_url_as(size=512, format="png")
+        async with ctx.typing():
+            img = BytesIO(await url.read())
+            img.seek(0)
+            buffer = await self.bot.loop.run_in_executor(None, self.do_wash, img)
+        file=discord.File(buffer, filename="wash.gif")
+        e=discord.Embed(color=self.invis)
+        e.set_author(name="Washed Avatar", icon_url=member.avatar_url)
+        e.set_image(url="attachment://was.gif")
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
