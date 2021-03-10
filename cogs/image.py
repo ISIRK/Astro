@@ -181,7 +181,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         with WandImage(blob=img) as img:
             img.swirl(degree=-90)
             buffer = BytesIO()
-            output.save(buffer)
+            img.save(buffer)
             buffer.seek(0)
             return buffer
 
