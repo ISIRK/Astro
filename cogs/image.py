@@ -119,7 +119,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             gif = Image.open(gif)
             wash = Image.open("cogs/assets/wash.png")
             frames = []
-            for i in range(30):
+            for frame in ImageSequence(gif):
                 frame = frame.copy()
                 frame.paste(wash) #, mask=wash
                 frames.append(frame)
