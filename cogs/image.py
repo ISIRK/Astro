@@ -108,7 +108,6 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
                 im = img.copy()
                 im = im.rotate(12 * i)
                 images.append(im)
-                gif = BytesIO()
                 images[0].save(gif,
                            format='gif',
                            save_all=True,
