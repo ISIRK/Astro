@@ -195,6 +195,15 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             return buffer
 
     @staticmethod
+    def do_rainbow(img)
+        with WandImage(blob=img) as img:
+            image.function('sinusoid', [3, -90, 0.2, 0.7])
+            buffer = BytesIO()
+            img.save(buffer)
+            buffer.seek(0)
+            return buffer
+
+    @staticmethod
     def do_floor(img):
         with WandImage(blob=img) as img:
             img.virtual_pixel = "tile"
