@@ -63,7 +63,7 @@ class meta(commands.Cog):
     @commands.command()
     async def credits(self, ctx):
         '''See the credits for Sirk'''
-        embed = discord.Embed(title="Credits", description="**Many thanks to these people who helped:**\n\nCraziiAce#0001, Cyrus#8315, Moksej#3335, Preselany#6969, Vaskel#6969, PB#4162", color=self.bot.color)
+        embed = discord.Embed(title="Credits", description="Many thanks to these people who helped:\nCraziiAce#0001, Cyrus#8315, Moksej#3335, Preselany#6969, Vaskel#6969, PB#4162", color=self.bot.color)
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         embed.set_footer(text=self.bot.footer)
         await ctx.send(embed=embed)
