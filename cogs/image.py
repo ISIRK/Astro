@@ -1,4 +1,4 @@
-import discord, numpy, textwrap, requests, wand
+import discord, numpy, textwrap, requests, math, wand
 from io import BytesIO
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
@@ -179,9 +179,23 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @staticmethod
     def do_swirl(img):
         with WandImage(blob=img) as img:
-            img.swirl(degree=-90)
+            img.sample(256, 256)
+
+            output = WandImage(width=img.width, height=img.height)
+            output.format = "GIF"
+            output.alpha_channel = "off"
+
+            for i, a in enumerate(numpy.linspace(0, math.pi * 2, 45)):
+                with img.clone() as frame:
+                    frame.swirl(math.sin(a) * int(280, 280))
+                    try:
+                        output.sequence[i] = frame
+                    except:
+                        output.sequence.append(frame)
+
+            img.close()
             buffer = BytesIO()
-            img.save(buffer)
+            output.save(buffer)
             buffer.seek(0)
             return buffer
 
