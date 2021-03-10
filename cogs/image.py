@@ -1,4 +1,4 @@
-import discord, numpy, textwrap, requests, math, wand
+import discord, numpy, textwrap, requests, wand
 from io import BytesIO
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
@@ -230,7 +230,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
 
             image2.shear(background=wand.color.Color("rgba(0,0,0,0)"), x=30)
             image2.rotate(-30)
-            image3 = wand.image.Image(image2)
+            image3 = WandImage(image2)
             out.composite(image2, left=s(1000 - 250) - s(72), top=s(860 - 230))
             image2.close()
 
