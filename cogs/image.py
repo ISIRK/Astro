@@ -188,7 +188,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @staticmethod
     def do_polaroid(img):
         with WandImage(blob=img) as img:
-            img.polaroid()
+            #img.polaroid()
+            img.posterize(2)
             buffer = BytesIO()
             img.save(buffer)
             buffer.seek(0)
