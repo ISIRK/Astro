@@ -179,21 +179,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @staticmethod
     def do_swirl(img):
         with WandImage(blob=img) as img:
-            img.sample(256, 256)
-
-            output = WandImage(width=img.width, height=img.height)
-            output.format = "GIF"
-            output.alpha_channel = "off"
-
-            for i, a in enumerate(numpy.linspace(0, math.pi * 2, 45)):
-                with img.clone() as frame:
-                    frame.swirl(math.sin(a) * int(280, 280))
-                    try:
-                        output.sequence[i] = frame
-                    except:
-                        output.sequence.append(frame)
-
-            img.close()
+            img.swirl(degree=-90)
             buffer = BytesIO()
             output.save(buffer)
             buffer.seek(0)
