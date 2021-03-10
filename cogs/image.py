@@ -121,7 +121,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             frames = []
             for frame in ImageSequence.Iterator(gif):
                 frame = frame.copy()
-                frame.paste(wash, mask=wash)
+                frame.paste(wash) #, mask=wash
                 frames.append(frame)
             buffer = BytesIO()
             frames[0].save(buffer,
