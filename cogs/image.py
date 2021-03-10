@@ -3,7 +3,7 @@ from io import BytesIO
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
 from wand.image import Image as WandImage
-from PIL import Image, ImageFilter, ImageDraw, ImageOps, ImageFont
+from PIL import Image, ImageFilter, ImageDraw, ImageOps, ImageFont, ImageSequence
 
 class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, commands.BucketType.user)}):
     """Image manipulation commands"""
@@ -108,8 +108,20 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
                 im = img.copy()
                 im = im.rotate(12 * i)
                 images.append(im)
+                gif = BytesIO()
+                images[0].save(gif,
+                           format='gif',
+                           save_all=True,
+                           append_images=images,
+                           duration=1,
+                           loop=0)
+            frames = []
+            for frame in ImageSequence.Iterator(gif):
+                frame = frame.copy()
+                frame.paste(transparent_foreground, mask=Image.open("/cogs/assets/wash.png"))
+                frames.append(frame)
             buffer = BytesIO()
-            images[0].save(buffer,
+            frames[0].save(buffer,
                            format='gif',
                            save_all=True,
                            append_images=images,
