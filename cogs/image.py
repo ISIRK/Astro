@@ -116,6 +116,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
                            duration=1,
                            loop=0)
             gif.seek(0)
+            gif = Image.open(gif)
             frames = []
             for frame in ImageSequence.Iterator(gif):
                 frame = frame.copy()
