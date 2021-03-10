@@ -195,7 +195,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             return buffer
 
     @staticmethod
-    def do_rainbow(img)
+    def do_rainbow(img):
         with WandImage(blob=img) as img:
             image.function('sinusoid', [3, -90, 0.2, 0.7])
             buffer = BytesIO()
