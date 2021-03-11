@@ -63,3 +63,7 @@ Syntax for Sirk:
 - [Discord.py](https://discordpy.readthedocs.io/en/latest/index.html)
 - [Discord-ext-Menus](https://github.com/Rapptz/discord-ext-menus)
 - Some other modules for commands
+
+&nbsp;
+
+Made with ❤️️ by isirk in python.
