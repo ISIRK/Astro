@@ -278,6 +278,34 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             buffer.seek(0)
             return buffer
 
+    @staticmethod
+    def do_spread(img):
+        with WandImage(blob=img) as img:
+            img.resize(256, 256)
+            img.alpha_channel = False
+
+            output = WandImage(width=img.width, height=img.height)
+            output.format = "GIF"
+
+            output.sequence[0] = img
+            output.sequence.extend(img for _ in range(0, 2))
+
+            for radius in range(0, 13):
+                with img.clone() as frame:
+                    frame.spread(radius=radius ** 2)
+                    output.sequence.append(frame)
+
+            output.sequence.extend(reversed(output.sequence))
+
+            img.close()
+
+            output.optimize_layers()
+            output.optimize_transparency()
+            buffer = BytesIO()
+            output.save(buffer)
+            buffer.seek(0)
+            return buffer
+
         
     # Commands
 
@@ -407,6 +435,22 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Cubed Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://cube.png")
+        await ctx.remove(file=file, embed=e)
+
+    @commands.command()
+    async def spread(self, ctx, *, member: discord.Member = None):
+        '''Spreads the avatar'''
+        if not member:
+            member = ctx.author
+        url = member.avatar_url_as(size=512, format="png")
+        async with ctx.typing():
+            img = BytesIO(await url.read())
+            img.seek(0)
+            buffer = await self.bot.loop.run_in_executor(None, self.do_spread, img)
+        file=discord.File(buffer, filename="spread.png")
+        e=discord.Embed(color=self.invis)
+        e.set_author(name="Spreaded Avatar", icon_url=member.avatar_url)
+        e.set_image(url="attachment://spread.png")
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
