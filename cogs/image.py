@@ -447,10 +447,10 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             img = BytesIO(await url.read())
             img.seek(0)
             buffer = await self.bot.loop.run_in_executor(None, self.do_spread, img)
-        file=discord.File(buffer, filename="spread.png")
+        file=discord.File(buffer, filename="spread.gif")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Spreaded Avatar", icon_url=member.avatar_url)
-        e.set_image(url="attachment://spread.png")
+        e.set_image(url="attachment://spread.gif")
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
