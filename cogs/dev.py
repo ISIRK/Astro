@@ -216,6 +216,11 @@ class dev(commands.Cog):
     @commands.command(aliases=['src'])
     async def source(self, ctx, cmd: str):
         await ctx.remove(embed=discord.Embed(description=f"```py\n{inspect.getsource(self.bot.get_command(cmd).callback)}```", color=self.bot.color))
+
+    @commands.command()
+    async def remind(self, ctx, time: int, *, thing: str):
+        await asyncio.sleep(time)
+        await ctx.send(f'{ctx.author.mention} --> **{thing}**')
             
     @commands.group(invoke_without_command=True)
     async def todo(self, ctx):
