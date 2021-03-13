@@ -69,19 +69,15 @@ class misc(commands.Cog):
         embed.set_footer(text=f"r/ProgrammerHumor | {self.bot.footer}")
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['mc'], enabled=False)
+    @commands.command(aliases=['mc'])
     @commands.cooldown(1,3,BucketType.user)
     async def minecraft(self, ctx, *, username):
         '''Get a minecraft users stats'''
         async with self.bot.session.get(f'https://api.mojang.com/users/profiles/minecraft/{username}?at=') as resp:
             resp = await resp.json()
-        embed=discord.Embed(title=f"Stats for {resp['name']}", description=f"ID: `{resp['id']}`", color=self.bot.color)
-        '''
+        embed=discord.Embed(title=resp['name'], description=f"ID: `{resp['id']}`", color=self.bot.color)
         embed.set_image(url=f"https://minotar.net/armor/body/{username}/100.png")
-        '''
-        embed.set_image(url=f"http://s.optifine.net/capes/{username}.png")
-        embed.set_thumbnail(url=f"https://minotar.net/helm/{username}/100.png")
-        embed.set_thumbnail(url=f"https://mc-heads.net/avatar/{username}/100.png")
+        embed.set_thumbnail(url=f"https://mc-heads.net/avatar/{username}/{username}.png")
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         embed.set_footer(text=self.bot.footer)
         await ctx.send(embed=embed)
