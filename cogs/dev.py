@@ -70,7 +70,7 @@ class dev(commands.Cog):
         await ctx.send(f"```{out.decode('utf-8')}```")
 
     @commands.command()
-    async def leaveguildanddontchokeisirk(self, ctx):
+    async def leaveguild(self, ctx):
         '''[Pain](https://canary.discord.com/channels/336642139381301249/381963689470984203/779527415307173909)'''
         embed=discord.Embed(title='Goodbye', color=self.bot.color)
         await ctx.send(embed=embed)
