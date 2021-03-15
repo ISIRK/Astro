@@ -183,8 +183,8 @@ class meta(commands.Cog):
     @commands.command()
     async def raw(self, ctx, id: discord.Message = None):
         '''Get the raw contents of a message.'''
-        id = id.id or ctx.message.id
-        raw = json.dumps(await self.bot.http.get_message(ctx.channel.id, id), indent=4)
+        msg = id or ctx.message
+        raw = json.dumps(await self.bot.http.get_message(ctx.channel.id, msg.id), indent=4)
         await ctx.send(embed = discord.Embed(description=f'```json\n{raw}```', color=self.bot.color))
                         
 def setup(bot):
