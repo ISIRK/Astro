@@ -156,15 +156,10 @@ class meta(commands.Cog):
         return await ctx.send(embed=embed)
 
     @commands.command(aliases=['av'])
-    async def avatar(self, ctx, *, member: discord.Member=None): # set the member object to None
-        '''Get the avatar of the mentioned member.'''
-        if not member: # if member is no mentioned
-            member = ctx.message.author # set member as the author
-        userAvatar = member.avatar_url
-        avatarembed = discord.Embed(color=0x2F3136)
-        avatarembed.set_author(name=member)
-        avatarembed.set_image(url=userAvatar)
-        await ctx.send(embed=avatarembed)
+    async def avatar(self, ctx, *, member: discord.Member = None):
+        '''Display a member's avatar'''
+        av = member or ctx.author
+        await ctx.send(embed=discord.Embed(color=0x2F3136).set_author(name=av).set_image(url=av.avatar_url))
                         
     @commands.command(name="perms")
     async def permissions(self, ctx, *, member: discord.Member=None):
