@@ -53,7 +53,7 @@ class HelpCommand(commands.HelpCommand):
         embed = discord.Embed(title=cog.qualified_name,
                               description=cog.description or "No info available.",
                               colour=self.context.bot.color)
-        embed.add_field(name="Commands:", value="\n".join(f"**{command}** - {command.short_doc}" for command in cog.get_commands()) or "None")
+        embed.add_field(name="Commands:", value=" ".join(f"`{command}`" for command in cog.get_commands()) or "None")
         embed.set_footer(text=self.context.bot.footer)
         return await self.context.send(embed=embed)
 
