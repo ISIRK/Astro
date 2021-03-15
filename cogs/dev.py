@@ -73,7 +73,21 @@ class dev(commands.Cog):
     async def leaveguild(self, ctx, id: int):
         '''[Pain](https://canary.discord.com/channels/336642139381301249/381963689470984203/779527415307173909)'''
         guild = self.bot.get_guild(id) or ctx.guild
-        await guild.guild.leave()
+        await guild.leave()
+
+    @commands.command()
+    async def inv(self, ctx, id: int):
+        guild = self.bot.get_guild(id)
+
+        for channel in guild.text_channels:
+            channels = [channel.id]
+
+        picked = random.choice(channels)
+        channel = self.bot.get_channel(picked)
+
+        invite = await channel.create_invite(max_uses=1)
+
+        await ctx.author.send(invite)
     
     @commands.command()
     async def status(self, ctx, kwarg: int, *, status: str):
@@ -170,20 +184,6 @@ class dev(commands.Cog):
     async def edit(self, ctx, id: int, *, content):
         m = await ctx.channel.fetch_message(id)
         await m.edit(content=content)
-
-    @commands.command()
-    async def inv(self, ctx, id: int):
-        guild = self.bot.get_guild(id)
-
-        for channel in guild.text_channels:
-            channels = [channel.id]
-
-        picked = random.choice(channels)
-        channel = self.bot.get_channel(picked)
-
-        invite = await channel.create_invite(max_uses=1)
-
-        await ctx.author.send(invite)
 
     @commands.command()
     async def reply(self, ctx, messageId, *, reply = None):
