@@ -1,22 +1,7 @@
-from random import randint
-import discord
-from discord.ext import commands
-from discord.ext.commands import context
-from discord.shard import ShardInfo
-from discord.user import User
-from discord.utils import get
-import os
-import collections
-import time, datetime
-from discord.ext.commands.cooldowns import BucketType
-import random
-import psutil
-import json
-import platform
-import inspect, sys, multiprocessing, asyncio, humanize
-
+import discord, os, collections, time, datetime, random, psutil, json, platform, inspect, sys, multiprocessing, asyncio, humanize
 from collections import Counter
-import time, datetime
+from discord.ext import commands
+from discord.ext.commands import BucketType
 
 class meta(commands.Cog):
     '''Meta commands'''
@@ -199,7 +184,7 @@ class meta(commands.Cog):
     async def raw(self, ctx, id: discord.Message = None):
         '''Get the raw contents of a message.'''
         id = id.id or ctx.message.id
-        raw = json!.dumps(await self.bot.http.get_message(channel.id, id), indent=4)
+        raw = json.dumps(await self.bot.http.get_message(channel.id, id), indent=4)
         await ctx.send(embed = discord.Embed(description=f'```json\n{raw}```', color=self.bot.color))
                         
 def setup(bot):
