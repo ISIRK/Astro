@@ -29,6 +29,11 @@ class misc(commands.Cog):
         translated = self.translator.translate(message, lang_tgt='en')
         embed = discord.Embed(title="Translate", description=f"Original: {message}\nTranslation: {translated}", color=self.bot.color)
         await ctx.send(embed=embed)
+
+    @commands.command()
+    async def choose(self, ctx, *choices):
+        '''Choose something'''
+        await ctx.send('Not enough choices to pick from' if len(choices) < 2 else random.choice(choices))
         
     @commands.command()
     @commands.cooldown(1,3,BucketType.user)
