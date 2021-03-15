@@ -119,9 +119,10 @@ class dev(commands.Cog):
             await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
     
     @commands.command()
-    async def say(self, ctx, *, content:str):
+    async def say(self, ctx, channel: int, *, content:str):
         '''Make the bot say something'''
-        await ctx.send(content)
+        c = ctx.channel if channel == 0 else ctx.guild.get_channel(channel)
+        await c.send(content)
           
     @commands.command(aliases=['e'])
     async def eval(self, ctx, *, code: str):
