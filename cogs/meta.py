@@ -185,7 +185,6 @@ class meta(commands.Cog):
     async def permissions(self, ctx, *, member: discord.Member=None):
         '''A simple command which checks a members Guild Permissions.
         If member is not provided, the author will be checked.'''
-
         if not member:
             member = ctx.author
 
@@ -195,6 +194,13 @@ class meta(commands.Cog):
         embed.set_author(icon_url=member.avatar_url, name=str(member))
         embed.set_footer(text=self.bot.footer)
         await ctx.send(content=None, embed=embed)
+
+    @commands.command()
+    async def raw(self, ctx, id: discord.Message = None):
+        '''Get the raw contents of a message.'''
+        id = id.id or ctx.message.id
+        raw = json!.dumps(await self.bot.http.get_message(channel.id, id), indent=4)
+        await ctx.send(embed = discord.Embed(description=f'```json\n{raw}```', color=self.bot.color))
                         
 def setup(bot):
     bot.add_cog(meta(bot))
