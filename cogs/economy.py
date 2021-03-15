@@ -31,7 +31,7 @@ class economy(commands.Cog):
                 await self.bot.db.execute("DELETE FROM economy WHERE userId = $1", ctx.author.id)
                 await confirm_embed.message.edit(embed=discord.Embed(title="Successfully closed your bank account.",colour=self.bot.color))
         if not s:
-            return await ctx.send(embed = discord.Embed(description = "You don't have an account!", color=self.bot.color))
+            return await ctx.send(embed = discord.Embed(description = f"You don't have an account! Type `{ctx.prefix}register` to make one", color=self.bot.color))
     
     @commands.command(aliases = ["bal"])
     async def balance(self, ctx, *, user: discord.Member = None):
@@ -39,7 +39,7 @@ class economy(commands.Cog):
         if not user: user = ctx.author
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", user.id)
         if not s:
-            await ctx.send("That user doesn't have a bank account!")
+            await ctx.send(f"That user doesn't have an account! Type `{ctx.prefix}register` to make one")
             ctx.command.reset_cooldown(ctx)
         else:
             bank, cash = s['bankbalance'], s['cashbalance']
@@ -63,7 +63,7 @@ class economy(commands.Cog):
         '''Work and get a random amount of money in between $1 and $100'''
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not s:
-            await ctx.send("That user doesn't have a bank account!")
+            await ctx.send(f"You don't have an account! Type `{ctx.prefix}register` to make one")
             ctx.command.reset_cooldown(ctx)
         else:
             bal = s['cashbalance']
@@ -86,10 +86,10 @@ class economy(commands.Cog):
         a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         u = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", user.id)
         if not a:
-            await ctx.send("You don't have a bank account!")
+            await ctx.send(f"You don't have an account! Type `{ctx.prefix}register` to make one")
             ctx.command.reset_cooldown(ctx)
         elif not u:
-            await ctx.send("That user doesn't have a bank account!")
+            await ctx.send(f"That user doesn't have an account!")
             ctx.command.reset_cooldown(ctx)
         else:        
             c = random.randint(100, 200)
@@ -113,7 +113,7 @@ class economy(commands.Cog):
         '''
         a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not a:
-            await ctx.send("You don't have a bank account!")
+            await ctx.send(f"You don't have an account! Type `{ctx.prefix}register` to make one")
             ctx.command.reset_cooldown(ctx)
         else:
             lucky = random.choice([False, True])
@@ -136,7 +136,7 @@ class economy(commands.Cog):
         '''
         a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not a:
-            await ctx.send("You don't have a bank account!")
+            await ctx.send(f"You don't have an account! Type `{ctx.prefix}register` to make one")
             ctx.command.reset_cooldown(ctx)
         else:
             slots = ['🎁', '⭐', '7️⃣']
@@ -166,7 +166,7 @@ class economy(commands.Cog):
         '''
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not s:
-            await ctx.send("That user doesn't have a bank account!")
+            await ctx.send(f"You don't have an account! Type `{ctx.prefix}register` to make one")
         else:
             cash = s['cashbalance']
             if cash == 0:
@@ -190,7 +190,7 @@ class economy(commands.Cog):
         '''
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not s: 
-            await ctx.send("That user doesn't have a bank account!")
+            await ctx.send(f"You don't have an account! Type `{ctx.prefix}register` to make one")
         else:
             bank = s['bankbalance']
             if bank == 0:
@@ -210,7 +210,7 @@ class economy(commands.Cog):
         '''Get daily coins.'''
         s = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not s: 
-            await ctx.send("That user doesn't have a bank account!")
+            await ctx.send(f"You don't have an account! Type `{ctx.prefix}register` to make one")
             ctx.command.reset_cooldown(ctx)
         else:
             await self.bot.db.execute("UPDATE economy SET cashbalance = cashbalance+1000 WHERE userId = $1", ctx.author.id)
@@ -250,7 +250,7 @@ class economy(commands.Cog):
         '''
         a = await self.bot.db.fetchrow("SELECT * FROM ECONOMY WHERE userid = $1", ctx.author.id)
         if not a:
-            await ctx.send("You don't have a bank account!")
+            await ctx.send(f"You don't have an account! Type `{ctx.prefix}register` to make one")
             ctx.command.reset_cooldown(ctx)
         else:
             product = product-1
