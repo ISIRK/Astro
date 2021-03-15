@@ -165,7 +165,7 @@ class dev(commands.Cog):
         def is_me(m):
             return m.author == self.bot.user
 
-        deleted = await channel.purge(limit=limit, check=is_me, bulk=False)
+        deleted = await channel.purge(limit=limit+1, check=is_me, bulk=False)
 
     @commands.command()
     async def edit(self, ctx, id: int, *, content):
