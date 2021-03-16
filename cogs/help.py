@@ -40,7 +40,7 @@ class HelpCommand(commands.HelpCommand):
         return await self.context.send(embed=embed)
 
     async def send_cog_help(self, cog):
-        embed = discord.Embed(title=cog.qualified_name,
+        embed = discord.Embed(title=cog.qualified_name.capitalize(),
                               description=cog.description or "No info available.",
                               colour=self.context.bot.color)
         embed.add_field(name="Commands:", value=" ".join(f"`{command}`" for command in cog.get_commands()) or "None")
@@ -48,7 +48,7 @@ class HelpCommand(commands.HelpCommand):
         return await self.context.send(embed=embed)
 
     async def send_group_help(self, group):
-        embed = discord.Embed(title=group.name,
+        embed = discord.Embed(title=group.name.capitalize(),
                               description=group.help or "No info available.",
                               colour=self.context.bot.color)
         if group.aliases:
