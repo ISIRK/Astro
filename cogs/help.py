@@ -53,7 +53,7 @@ class HelpCommand(commands.HelpCommand):
                               colour=self.context.bot.color)
         if group.aliases:
             embed.add_field(name="Aliases:", value="\n".join(group.aliases), inline=False)
-        embed.add_field(name="Commands:", value="\n".join(f"**{command}** - {command.short_doc}" for command in group.walk_commands()) or "None")
+        embed.add_field(name="Commands:", value=" ".join(f"`{command}`" for command in group.walk_commands()) or "None")
         embed.set_footer(text=self.context.bot.footer)
         return await self.context.send(embed=embed)
 
