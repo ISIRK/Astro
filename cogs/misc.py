@@ -81,7 +81,7 @@ class misc(commands.Cog):
         async with self.bot.session.get(f'https://api.mojang.com/users/profiles/minecraft/{username}?at=') as resp:
             resp = await resp.json()
         embed=discord.Embed(title=resp['name'], description=f"ID: `{resp['id']}`", color=self.bot.color)
-        embed.set_image(url=f"https://minotar.net/armor/body/{username}/100.png")
+        embed.set_image(url=f"https://minecraftskinstealer.com/api/v1/skin/render/fullbody/{username}/800")
         embed.set_thumbnail(url=f"https://mc-heads.net/avatar/{username}/{username}.png")
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         embed.set_footer(text=self.bot.footer)
