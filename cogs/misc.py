@@ -130,7 +130,7 @@ class misc(commands.Cog):
             if len(r['output']) > 1000:
                 await ctx.send('Output too long')
             else:
-                await ctx.remove(f"```{r['output']}```")
+                await ctx.remove(f"```{lang}\n{r['stdout']}```")
         except Exception as e:
             await ctx.send(f'There was an error running your code.\nError:\n```{e}```')
 
