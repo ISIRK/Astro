@@ -128,7 +128,7 @@ class misc(commands.Cog):
             async with ctx.typing():
                 r = await self.bot.session.post("https://emkc.org/api/v1/piston/execute", json={"language": lang, "source": code})
                 r = await r.json()
-                await ctx.remove(f"```{lang}\n{r['output']}```")
+            await ctx.remove(f"```{lang}\n{r['output']}```")
         except Exception as e:
             await ctx.send(f'There was an error running your code.\nError:\n```{e}```')
 
