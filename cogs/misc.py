@@ -128,13 +128,13 @@ class misc(commands.Cog):
             async with ctx.typing():
                 r = await self.bot.session.post("https://emkc.org/api/v1/piston/execute", json={"language": lang, "source": code})
                 r = await r.json()
-                await ctx.remove(f"```lang\n{r['output']}```")
+                await ctx.remove(f"```{lang}\n{r['output']}```")
         except Exception as e:
             await ctx.send(f'There was an error running your code.\nError:\n```{e}```')
 
     @commands.cooldown(1,10,BucketType.user)
     @commands.command()
-    async def weather(self, ctx, *, city_name:str):
+    async def weather(self, ctx, *, city_name:str):,
         """Get the weather of a city/town by its name. State code is US only."""
         url = "http://api.openweathermap.org/data/2.5/weather?q=" + city_name + "&appid=168ced82a72953d81d018f75eec64aa0&units=imperial"
         async with self.bot.session.get(url) as resp:
