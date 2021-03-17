@@ -124,7 +124,7 @@ class misc(commands.Cog):
     @commands.command()
     async def run(self, ctx, lang: str, *, code: str):
         '''Run code and get the output'''
-        if len(code) > 100:
+        if len(code) > 200:
             await ctx.send('Context too long')
         else:
             try:
