@@ -121,7 +121,7 @@ class misc(commands.Cog):
         await ctx.send(f"**{user.name}** is **{hot:.2f}%** hot {emoji}")
 
     @commands.cooldown(1, 15, BucketType.user)
-    @commands.command()
+    @commands.command(enabled=False)
     async def run(self, ctx, lang: str, *, code: str):
         '''Run code and get the output'''
         try:
