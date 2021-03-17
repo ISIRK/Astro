@@ -126,14 +126,16 @@ class misc(commands.Cog):
         '''Run code and get the output'''
         if len(code) > 100:
             await ctx.send('Context too long')
-        try:
-            r = await self.bot.session.post("https://emkc.org/api/v1/piston/execute", json={"language": lang, "source": code})
-            r = await r.json()
-            if len(r['output']) > 100:
-                await ctx.send('Output too long')
-            await ctx.remove(f"```{r['output']}```")
-        except Exception as e:
-            await ctx.send(f'There was an error running your code.\nError:\n```{e}```')
+        else:
+            try:
+                r = await self.bot.session.post("https://emkc.org/api/v1/piston/execute", json={"language": lang, "source": code})
+                r = await r.json()
+                if len(r['output']) > 500:
+                    await ctx.send('Output too long')
+                else:
+                    await ctx.remove(f"```{r['output']}```")
+            except Exception as e:
+                await ctx.send(f'There was an error running your code.\nError:\n```{e}```')
 
     @commands.cooldown(1,10,BucketType.user)
     @commands.command()
