@@ -120,6 +120,17 @@ class misc(commands.Cog):
 
         await ctx.send(f"**{user.name}** is **{hot:.2f}%** hot {emoji}")
 
+    @commands.cooldown(1, 15, BucketType.user)
+    @commands.command()
+    async def run(self, ctx, lang: str, *, code: str):
+        '''Run code and get the output'''
+        try:
+            r = await self.bot.session.post("https://emkc.org/api/v1/piston/execute", json={"language": lang, "source": code})
+            r = await r.json()
+            await ctx.remove(f"```lang\n{r['output']}```")
+        except Exception as e:
+            await ctx.send(f'There was an error running your code.\nError:\n```{e}```')
+
     @commands.cooldown(1,10,BucketType.user)
     @commands.command()
     async def weather(self, ctx, *, city_name:str):
