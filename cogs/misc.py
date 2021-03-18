@@ -120,10 +120,11 @@ class misc(commands.Cog):
 
         await ctx.send(f"**{user.name}** is **{hot:.2f}%** hot {emoji}")
 
+    '''
     @commands.cooldown(1, 15, BucketType.user)
     @commands.command()
     async def run(self, ctx, lang: str, *, code: str):
-        '''Run code and get the output'''
+        ''Run code and get the output''
         code = codeblocks.codeblock_converter(code)[1]
         try:
             r = await self.bot.session.post("https://emkc.org/api/v1/piston/execute", json={"language": lang, "source": code})
@@ -135,6 +136,7 @@ class misc(commands.Cog):
                 await ctx.remove(f"```{out}```")
         except Exception as e:
             await ctx.send(f'There was an error running your code.\nError:\n```{e}```')
+    '''
 
     @commands.cooldown(1,10,BucketType.user)
     @commands.command()
