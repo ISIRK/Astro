@@ -121,9 +121,10 @@ class misc(commands.Cog):
         await ctx.send(f"**{user.name}** is **{hot:.2f}%** hot {emoji}")
 
     @commands.cooldown(1, 15, BucketType.user)
-    @commands.command(enabled=False)
+    @commands.command()
     async def run(self, ctx, lang: str, *, code: str):
         '''Run code and get the output'''
+        code = codeblocks.codeblock_converter(code)[1]
         try:
             r = await self.bot.session.post("https://emkc.org/api/v1/piston/execute", json={"language": lang, "source": code})
             r = await r.json()
