@@ -254,7 +254,7 @@ class config(commands.Cog):
     @verify.command()
     @commands.has_permissions(manage_guild=True)
     @commands.bot_has_permissions(manage_roles=True)
-    async def setup(self, ctx, channel : discord.TextChannel, role : discord.Role):
+    async def create(self, ctx, channel : discord.TextChannel, role : discord.Role):
         '''
         Setup React-to-Verify\n#channel @role
         '''
