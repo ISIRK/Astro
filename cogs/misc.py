@@ -128,10 +128,11 @@ class misc(commands.Cog):
         try:
             r = await self.bot.session.post("https://emkc.org/api/v1/piston/execute", json={"language": lang, "source": code})
             r = await r.json()
+            out = r['stdout']
             if len(r['stdout']) > 1000:
                 await ctx.send('Output too long')
             else:
-                await ctx.remove(f"```{lang}\n{r['stdout']}```")
+                await ctx.remove(f"```{out}```")
         except Exception as e:
             await ctx.send(f'There was an error running your code.\nError:\n```{e}```')
 
