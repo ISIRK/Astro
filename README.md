@@ -30,7 +30,7 @@ Meta - Utility Commands
 
 Mod - Moderation Commands
 
-Config - Loogging Commands
+Config - Logging Commands
 
 Misc - Miscellaneous Commands
 
