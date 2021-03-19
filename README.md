@@ -30,13 +30,15 @@ Meta - Utility Commands
 
 Mod - Moderation Commands
 
-Config - Loogging Commands
+Config - Logging Commands
 
 Misc - Miscellaneous Commands
 
-Games - Game Commands
+Image - Image Commands
 
-Music - Music Commands
+Economy - Economy Commands
+
+Games - Game Gommands
 
 &nbsp;
 
