@@ -1,4 +1,4 @@
-import discord, json
+import discord, json, difflib
 from discord.ext import commands
 
 class HelpCommand(commands.HelpCommand):
@@ -11,14 +11,16 @@ class HelpCommand(commands.HelpCommand):
         })
 
     async def send_bot_help(self, mapping):
-        embed = discord.Embed(title='Help', description=self.context.bot.description, url="https://asksirk.com/bot/commands", colour=self.context.bot.color)
+        embed = discord.Embed(title='Help', description=f'{self.context.bot.description}\n\nUse `{self.clean_prefix}{self.invoked_with} <category>` for commands in that category.', url="https://asksirk.com/bot/commands", colour=self.context.bot.color)
+        cogs = []
         for cog, commands in mapping.items():
             if cog is None:
                 pass
             else:
                 filtered = await self.filter_commands(commands, sort=True)
                 if filtered:
-                    embed.add_field(name=cog.qualified_name.capitalize(), value=f'```{self.clean_prefix}{self.invoked_with} {cog.qualified_name}```')
+                    cogs.append(cog.qualified_name)
+        embed.add_field(name='Categories', value='\n'.join(cogs))
 
         embed.set_footer(text='Use {0}{1} [command|module] for more info.'.format(self.clean_prefix, self.invoked_with))#self.get_ending_note())
         return await self.context.send(embed=embed)
@@ -56,6 +58,14 @@ class HelpCommand(commands.HelpCommand):
         embed.add_field(name="Commands:", value=" ".join(f"`{command}`" for command in group.walk_commands()) or "None")
         embed.set_footer(text=self.context.bot.footer)
         return await self.context.send(embed=embed)
+
+    async def command_not_found(self, string):
+        command_names = [str(x) for x in self.context.bot.commands]
+        matches = difflib.get_close_matches(string, command_names)
+        if matches:
+            return f"The command `{string}` was not found, did you mean... `{matches[0]}`?"
+        else:
+            return f"The command `{string}` was not found."
 
     
 def setup(bot):

@@ -1,4 +1,4 @@
-import discord, os, io, datetime, time, json, asyncio, random, collections, mystbin
+import discord, os, io, datetime, time, json, asyncio, random, collections, mystbin, humanize
 from discord.user import User
 from discord.utils import get
 from jishaku import codeblocks
@@ -47,32 +47,32 @@ class misc(commands.Cog):
             await ctx.send(resp['binary'])
         
     @commands.command()
-    @commands.cooldown(1,3,BucketType.user) 
-    async def meme(self, ctx):
-        '''Get a random meme'''
-        async with self.bot.session.get('https://meme-api.herokuapp.com/gimme/dankmemes') as resp:
-            resp = await resp.json()
-            
-        if resp['nsfw'] == True and not ctx.channel.is_nsfw():
-            return await ctx.send("⚠️ This meme is marked as NSFW and I can't post it in a non-nsfw channel.")
-        else:
-            embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=self.bot.color)
-            embed.set_image(url=resp['url'])
-            embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-            embed.set_footer(text=f"r/Dankmemes | {self.bot.footer}")
-            await ctx.send(embed=embed)
+    @commands.cooldown(1,5,BucketType.user)
+    async def reddit(self, ctx, *, subreddit: str):
+        '''Get content from a subreddit'''
+        async with self.bot.session.get(f"https://www.reddit.com/r/{subreddit}/new.json") as resp:
+            r = await resp.json()
+        if r.get("error", None) is not None:
+            return await ctx.send("Couldn't find a subreddit with that name.")
 
-    @commands.command(aliases=['ph'])
-    @commands.cooldown(1,3,BucketType.user) 
-    async def programmerhumor(self, ctx):
-        '''Get a programmer humor meme'''
-        async with self.bot.session.get('https://meme-api.herokuapp.com/gimme/ProgrammerHumor') as resp:
-            resp = await resp.json()
-        embed = discord.Embed(title=resp['title'], url=resp['postLink'], color=self.bot.color)
-        embed.set_image(url=resp['url'])
+        posts = r["data"]["children"]
+        if not posts:
+            return await ctx.send("Apparently there are no posts in this subreddit...")
+        random_post = random.choice(posts)["data"]
+        posted_when = datetime.datetime.now() - datetime.datetime.fromtimestamp(random_post["created"])
+
+        embed = discord.Embed(
+            title = random_post["title"], url=random_post["url"],
+            description = f"Posted by `u/{random_post['author']}` {humanize.naturaldelta(posted_when)} ago",
+            colour = self.bot.color)
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-        embed.set_footer(text=f"r/ProgrammerHumor | {self.bot.footer}")
-        await ctx.send(embed=embed)
+        embed.set_image(url=random_post["url"])
+        embed.set_footer(text=random_post['subreddit_name_prefixed'])
+
+        if random_post["over_18"] and ctx.channel.is_nsfw:
+            await ctx.send('⚠️ You cannot see nsfw content in a non-nsfw channel.')
+        else:
+            await ctx.send(embed=embed)
 
     @commands.command(aliases=['mc'])
     @commands.cooldown(1,3,BucketType.user)

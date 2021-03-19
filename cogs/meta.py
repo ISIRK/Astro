@@ -1,4 +1,4 @@
-import discord, os, collections, time, datetime, random, psutil, json, platform, inspect, sys, multiprocessing, asyncio, humanize
+import discord, os, collections, time, datetime, random, psutil, json, platform, inspect, sys, multiprocessing, asyncio, humanize, typing
 from collections import Counter
 from discord.ext import commands
 from discord.ext.commands import BucketType
@@ -7,19 +7,6 @@ class meta(commands.Cog):
     '''Meta commands'''
     def __init__(self, bot):
         self.bot = bot
-
-    @commands.command()
-    async def stats(self, ctx):
-        '''Get statistics about the bot.'''
-        embed = discord.Embed(title="<a:loading:737722827112972449> Gathering Stats", color=self.bot.color)
-        msg = await ctx.send(embed=embed)
-        channel_types = Counter(type(c) for c in self.bot.get_all_channels())
-        voice = channel_types[discord.channel.VoiceChannel]
-        text = channel_types[discord.channel.TextChannel]
-        infoembed = discord.Embed(title="<a:settings:768181060734812230> Stats", description=f"<:member:758139554652749835> Member Count: `{len(self.bot.users):,}`\n<:discord:765251798629220382> Servers: `{len(self.bot.guilds)}`\n<:code:758447982688862238> Commands: `{len(self.bot.commands)}`\n<:textchannel:724637677395116072> Channels: `{text}`\n<:voicechannel:724637677130875001> Voice Channels: `{voice}`\n<:dpy:779749503216648233> DPY Version: `{discord.__version__}`\n<:python:758139554670313493> Python Version: `{platform.python_version()}`\n<:server:765946903803854898> Server: `{platform.system()}`\n> Ping:  `{round(self.bot.latency * 1000)}ms`\n> CPU Count: `{multiprocessing.cpu_count()}`\n> CPU Usage: `{psutil.cpu_percent()}%`\n> RAM: `{psutil.virtual_memory().percent}%`", color=self.bot.color)
-        infoembed.set_footer(text=self.bot.footer)
-        await asyncio.sleep(2)
-        await msg.edit(embed=infoembed)
 
     @commands.command(aliases=['info'])
     async def about(self, ctx):
@@ -75,11 +62,6 @@ class meta(commands.Cog):
         '''See the bots privacy policy'''
         embed = discord.Embed(title="Privacy Policy for Sirk Bot", url="https://asksirk.com/bot/privacy/", color=self.bot.color)
         await ctx.send(embed=embed)
-        
-    @commands.command()
-    async def donate(self, ctx):
-        message = "Thank you for choosing to donate. It is greatly appreciated."
-        await ctx.send(embed=discord.Embed(title=message, url=f"https://donatebot.io/checkout/743121194911531110?buyer={ctx.author.id}", color=self.bot.color))
 
     @commands.command()
     async def ping(self, ctx):
@@ -170,7 +152,7 @@ class meta(commands.Cog):
 
         perms = '\n'.join(perm for perm, value in member.guild_permissions if value)
 
-        embed = discord.Embed(title='Permissions', description=f"```yaml\n{perms}```", colour=self.bot.color)
+        embed = discord.Embed(title='Permissions', description=f"```md\n{perms}```", colour=self.bot.color)
         embed.set_author(icon_url=member.avatar_url, name=str(member))
         embed.set_footer(text=self.bot.footer)
         await ctx.send(content=None, embed=embed)
@@ -181,6 +163,11 @@ class meta(commands.Cog):
         msg = id or ctx.message
         raw = json.dumps(await self.bot.http.get_message(ctx.channel.id, msg.id), indent=4)
         await ctx.send(embed = discord.Embed(description=f'```json\n{raw}```', color=self.bot.color))
+
+    @commands.command()
+    async def id(self, ctx, *, thing: typing.Union[discord.PartialEmoji, discord.Role, discord.Member, discord.TextChannel, discord.Emoji]):
+        '''Get the id for something'''
+        await ctx.send(f"{thing.id}")
                         
 def setup(bot):
     bot.add_cog(meta(bot))
