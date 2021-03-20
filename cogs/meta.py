@@ -165,7 +165,7 @@ class meta(commands.Cog):
         await ctx.send(embed = discord.Embed(description=f'```json\n{raw}```', color=self.bot.color))
 
     @commands.command()
-    async def id(self, ctx, *, thing: typing.Union[discord.PartialEmoji, discord.Role, discord.Member, discord.TextChannel, discord.Emoji]):
+    async def id(self, ctx, *, thing: typing.Union[discord.PartialEmoji, discord.Role, discord.Member, discord.TextChannel, discord.VoiceChannel, discord.Emoji]):
         '''Get the id for something'''
         await ctx.send(f"{thing.id}")
                         
