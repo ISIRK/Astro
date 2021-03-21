@@ -636,7 +636,9 @@ class games(commands.Cog):
     async def tictactoe(self, ctx, user: discord.Member):
         """ Tic Tac Toe """
         if user == ctx.author:
-            return await ctx.send("Can't play yourself wyd")
+            return await ctx.send("Can't play yourself")
+        elif user.bot:
+            return await ctx.send("Can't play against bots")
 
         winner = await self.start_game(ctx.author, user, ctx.channel)
         if not winner:
@@ -759,7 +761,7 @@ class games(commands.Cog):
                 return player if letters[node] == opp else opp
 
             if board[keys[choice.content.lower()]] is not None:
-                await channel.send("This spot has been taken god ur dumb")
+                await channel.send("This spot has been taken")
                 continue
 
             board[keys[choice.content.lower()]] = node
