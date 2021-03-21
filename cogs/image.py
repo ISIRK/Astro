@@ -1,4 +1,4 @@
-import discord, numpy, textwrap, requests, wand
+import discord, numpy, requests, wand, datetime, humanize, textwrap, asyncio
 from io import BytesIO
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
@@ -14,7 +14,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     # Pillow Image Manipulation
 
     @staticmethod
-    def do_mc(txt):
+    def do_mc(txt) -> BytesIO:
         image = Image.open(requests.get('https://i.imgur.com/JtNJFZy.png', stream=True).raw).convert("RGBA")
         draw = ImageDraw.Draw(image)
         font_path = "cogs/assets/minecraft.ttf"
@@ -26,7 +26,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         return buffer
 
     @staticmethod
-    def do_ascii(image):
+    def do_ascii(image) -> BytesIO:
         image = Image.open(image)
         sc = 0.1
         gcf = 2
@@ -67,7 +67,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         return buffer
 
     @staticmethod
-    def do_quantize(img):
+    def do_quantize(img) -> BytesIO:
         with Image.open(img) as image:
             siz = 300
             newsize = (siz,siz)
@@ -101,7 +101,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             return buffer
 
     @staticmethod
-    def do_wash(img):
+    def do_wash(img) -> BytesIO:
         with Image.open(img) as img:
             images = []
             for i in range(30):
@@ -134,7 +134,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             return buffer
 
     @staticmethod
-    def do_sketch(img):
+    def do_sketch(img) -> BytesIO:
         ele = numpy.pi/2.2
         azi = numpy.pi/4.
         dep = 10.
@@ -161,7 +161,33 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             return buffer
 
     @staticmethod
-    def do_merge(img1, img2):
+    def do_tr(text: str) -> BytesIO:
+        #text = '\n'.join(textwrap.wrap(text, width=15))
+        font = ImageFont.truetype("cogs/assets/Ubuntu.ttf", 30)
+        width, height = font.getsize(text)
+        width += 20
+        height += 20
+
+        image = Image.new("RGBA", (width, height), color=0)
+        draw = ImageDraw.Draw(image)
+
+        w, h = draw.textsize(text, font=font)
+        draw.text(
+            ((width - w) / 2, (height - h) / 2),
+            text=text,
+            fill="white",
+            font=font,
+            stroke_width=1,
+            stroke_color=(255, 255, 255),
+        )
+
+        buffer = BytesIO()
+        image.save(buffer, format="PNG")
+        buffer.seek(0)
+        return buffer, text
+
+    @staticmethod
+    def do_merge(img1, img2) -> BytesIO:
         img1 = Image.open(img1).convert("RGBA").resize((512, 512))
         img2 = Image.open(img2).convert("RGBA").resize((512, 512))
         img = Image.blend(img1, img2, 0.5)
@@ -171,7 +197,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         return buffer
 
     @staticmethod
-    def do_invert(img):
+    def do_invert(img) -> BytesIO:
         with Image.open(img).convert("RGB") as img:
             img = ImageOps.invert(img)
             buffer = BytesIO()
@@ -180,7 +206,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             return buffer
 
     @staticmethod
-    def do_emboss(img):
+    def do_emboss(img) -> BytesIO:
         with Image.open(img) as img:
             img = img.filter(ImageFilter.EMBOSS)
             buffer = BytesIO()
@@ -189,7 +215,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             return buffer
         
     @staticmethod
-    def do_solarize(img):
+    def do_solarize(img) -> BytesIO:
         with Image.open(img).convert("RGB") as img:
             img = ImageOps.solarize(img, threshold=64)
             buffer = BytesIO()
@@ -198,7 +224,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             return buffer
 
     @staticmethod
-    def do_pixel(img):
+    def do_pixel(img) -> BytesIO:
         with Image.open(img) as img:
             img = img.resize((36, 36), resample=Image.BILINEAR)
             img = img.resize(img.size, Image.NEAREST)
@@ -210,7 +236,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     # Wand Image Manipulation
 
     @staticmethod
-    def do_swirl(img):
+    def do_swirl(img) -> BytesIO:
         with WandImage(blob=img) as img:
             img.swirl(degree=-90)
             buffer = BytesIO()
@@ -219,7 +245,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             return buffer
 
     @staticmethod
-    def do_polaroid(img):
+    def do_polaroid(img) -> BytesIO:
         with WandImage(blob=img) as img:
             img.polaroid()
             buffer = BytesIO()
@@ -228,7 +254,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             return buffer
 
     @staticmethod
-    def do_floor(img):
+    def do_floor(img) -> BytesIO:
         with WandImage(blob=img) as img:
             img.virtual_pixel = "tile"
             img.resize(300, 300)
@@ -241,7 +267,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             return buffer
 
     @staticmethod
-    def do_cube(img):
+    def do_cube(img) -> BytesIO:
         with WandImage(blob=img) as image:
             def s(x):
                 return int(x / 3)
@@ -279,7 +305,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             return buffer
 
     @staticmethod
-    def do_spread(img):
+    def do_spread(img) -> BytesIO:
         with WandImage(blob=img) as img:
             img.resize(256, 256)
             img.alpha_channel = False
@@ -372,6 +398,31 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         e.set_author(name="Pixelated Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://pixel.png")
         await ctx.remove(file=file, embed=e)
+
+    @commands.max_concurrency(1, per=BucketType.channel, wait=False)
+    @commands.command(aliases=['tr'])
+    async def typeracer(self, ctx):
+        '''See who can type the fastest'''
+        r = await self.bot.session.get("https://api.quotable.io/random?maxLength=100")
+        resp = await r.json()
+        buffer, text = await self.bot.loop.run_in_executor(None, self.do_tr, resp['content'])
+        file=discord.File(buffer, filename="typeracer.png")
+        e=discord.Embed(title='Type this quote', color=self.invis).set_footer(text=resp['author'])
+        e.set_image(url="attachment://typeracer.png")
+        await ctx.send(file=file, embed=e)
+        start = datetime.datetime.now()
+        going = True
+        while going:
+            try:
+                m = await self.bot.wait_for('message', timeout=60, check=lambda m:(ctx.channel == m.channel))
+            except asyncio.TimeoutError:
+                await ctx.send('Took too long')
+                going = False
+            else:
+                if m.content == resp['content']:
+                    end = datetime.datetime.now()
+                    await ctx.send(f'{m.author.mention} typed it correct in **`{humanize.precisedelta((end - start).total_seconds())}`**')
+                    going = False
 
     @commands.command()
     async def swirl(self, ctx, *, member: discord.Member = None):
