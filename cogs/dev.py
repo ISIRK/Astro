@@ -215,7 +215,11 @@ class dev(commands.Cog):
 
     @commands.command(aliases=['src'])
     async def source(self, ctx, cmd: str):
-        await ctx.remove(embed=discord.Embed(description=f"```py\n{inspect.getsource(self.bot.get_command(cmd).callback)}```", color=self.bot.color))
+        if self.bot.get_command(cmd):
+            src = inspect.getsource(self.bot.get_command(cmd).callback)
+        else:
+            src = inspect.getsource(cmd)
+        await ctx.remove(embed=discord.Embed(description=f"```py\n{src}```", color=self.bot.color))
 
     @commands.command()
     async def remind(self, ctx, time: int, *, thing: str):
