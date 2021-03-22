@@ -67,7 +67,7 @@ class dev(commands.Cog):
     async def sync(self, ctx):
         """Sync with GitHub"""
         out = subprocess.check_output("git pull", shell=True)
-        await ctx.send(f"```{out.decode('utf-8')}```")
+        await ctx.remove(f"```{out.decode('utf-8')}```")
 
     @commands.command()
     async def leaveguild(self, ctx, id: int):
@@ -123,13 +123,13 @@ class dev(commands.Cog):
     @commands.command(aliases = ["ss"])
     async def screenshot(self, ctx, url):
         '''Screenshot given website'''
-        embed = discord.Embed(title = f"Screenshot of {url}", color=self.bot.color)
+        embed = discord.Embed(color=self.bot.color)
         async with ctx.typing():
             async with self.bot.session.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/{url}') as r:
                 res = await r.read()
             embed.set_image(url="attachment://ss.png")
             embed.set_footer(text=self.bot.footer)
-            await ctx.send(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
+            await ctx.remove(file=discord.File(io.BytesIO(res), filename="ss.png"), embed=embed)
     
     @commands.command()
     async def say(self, ctx, channel: int, *, content:str):
