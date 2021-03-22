@@ -226,8 +226,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @staticmethod
     def do_pixel(img) -> BytesIO:
         with Image.open(img) as img:
-            img = img.resize((36, 36), resample=Image.BILINEAR)
-            img = img.resize(img.size, Image.NEAREST)
+            img1 = img.resize((36, 36), resample=Image.BILINEAR)
+            img = img1.resize(img1.size, Image.NEAREST)
             buffer = BytesIO()
             img.save(buffer, format="PNG")
             buffer.seek(0)
