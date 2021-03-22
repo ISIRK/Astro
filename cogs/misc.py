@@ -30,7 +30,8 @@ class misc(commands.Cog):
             if ctx.message.reference.cached_message:
                 message = ctx.message.reference.cached_message.content
             else:
-                message = await ctx.channel.fetch_message(ctx.message.reference.message_id).content
+                message = await ctx.channel.fetch_message(ctx.message.reference.message_id)
+                message = message.content
         translated = self.translator.translate(message, lang_tgt='en')
         embed = discord.Embed(title="Translate", description=f"Original: {message}\nTranslation: {translated}", color=self.bot.color)
         await ctx.send(embed=embed)
