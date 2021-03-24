@@ -164,11 +164,7 @@ class dev(commands.Cog):
         
     @commands.command()
     async def cogs(self, ctx):
-        s = ""
-        for cog in self.bot.cogs.keys():
-            s += f"\n {cog}"
-        embed = discord.Embed(title = "Active Cogs:", description = f"```yaml\n{s}```", color=self.bot.color)
-        embed.set_footer(text=self.bot.footer)
+        embed = discord.Embed(title = "Active Cogs:", description = '\n'.join([cog for cog in self.bot.cogs]), color=self.bot.color).set_footer(text=self.bot.footer)
         await ctx.send(embed=embed)
       
     @commands.command(aliases=['bp'])
