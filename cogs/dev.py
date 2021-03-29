@@ -235,8 +235,8 @@ class dev(commands.Cog):
     @todo.command()
     async def add(self, ctx, *, thing:str):
         '''Add something to the todo list'''
-        s = await self.bot.db.fetch("SELECT * FROM todo WHERE id = $1", ctx.author.id)
-        list = s['things']
+        s = await self.bot.db.fetch("SELECT things FROM todo WHERE id = $1", ctx.author.id)
+        list = s
         await ctx.send(f'{list}')
         '''if s:
             try:
