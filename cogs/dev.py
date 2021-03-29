@@ -229,7 +229,7 @@ class dev(commands.Cog):
                 p = self.bot.utils.SimpleMenu(entries=entries, per_page=10)
                 await p.start(ctx)
             except Exception as e:
-                await ctx.send('No todo items')
+                await ctx.send(f'{e}')
         else:
             await self.bot.db.execute("INSERT INTO todo(id) VALUES ($1)", ctx.author.id)
             await ctx.send("Registered a todo list for you.")
