@@ -236,12 +236,13 @@ class dev(commands.Cog):
     async def add(self, ctx, *, thing:str):
         '''Add something to the todo list'''
         s = await self.bot.db.fetch("SELECT * FROM todo WHERE id = $1", ctx.author.id)
-        if s:
+        await ctx.send(f"{s}")
+        '''if s:
             try:
                 await self.bot.db.execute("INSERT INTO todo(things) VALUES ($1) WHERE id = $2", s['things'].append(thing), ctx.author.id)
                 await ctx.send(f'Added {thing} to your todo list!')
             except Exception as e:
-                return await ctx.send(e)
+                return await ctx.send(e)'''
 
     @todo.command(aliases=['remove'])
     async def delete(self, ctx, *, thing:str):
