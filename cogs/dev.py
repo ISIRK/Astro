@@ -221,9 +221,9 @@ class dev(commands.Cog):
     @commands.group(invoke_without_command=True)
     async def todo(self, ctx):
         """Todo Commands"""
-        s = await self.bot.db.fetch("SELECT things FROM todo WHERE id = $1", ctx.author.id)
+        s = await self.bot.db.fetch("SELECT * FROM todo WHERE id = $1", ctx.author.id)
         if s:
-            p = self.bot.utils.SimpleMenu(entries=s or ['None'], per_page=10)
+            p = self.bot.utils.SimpleMenu(entries=s['things'] or ['None'], per_page=10)
             await p.start(ctx)
         else:
             await self.bot.db.execute("INSERT INTO todo(id) VALUES ($1)", ctx.author.id)
