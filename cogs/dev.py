@@ -223,7 +223,7 @@ class dev(commands.Cog):
         """Todo Commands"""
         s = await self.bot.db.fetch("SELECT things FROM todo WHERE id = $1", ctx.author.id)
         if s:
-            p = self.bot.utils.SimpleMenu(entries=s["things"] or ['None'], per_page=10)
+            p = self.bot.utils.SimpleMenu(entries=s or ['None'], per_page=10)
             await p.start(ctx)
         else:
             await self.bot.db.execute("INSERT INTO todo(id) VALUES ($1)", ctx.author.id)
@@ -235,7 +235,7 @@ class dev(commands.Cog):
         s = await self.bot.db.fetch("SELECT things FROM todo WHERE id = $1", ctx.author.id)
         if s:
             try:
-                await self.bot.db.execute("INSERT INTO todo(things) VALUES ($1) WHERE id = $2", s['things'].append(thing), ctx.author.id)
+                await self.bot.db.execute("INSERT INTO todo(things) VALUES ($1) WHERE id = $2", s.append(thing), ctx.author.id)
                 await ctx.send(f'Added {thing} to your todo list!')
             except Exception as e:
                 return await ctx.send(e)
