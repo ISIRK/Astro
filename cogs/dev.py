@@ -221,12 +221,10 @@ class dev(commands.Cog):
     @commands.group(invoke_without_command=True)
     async def todo(self, ctx):
         """Todo Commands"""
-        s = await self.bot.db.fetch("SELECT * FROM todo WHERE id = $1", ctx.author.id)
+        s = await self.bot.db.fetch("SELECT things FROM todo WHERE id = $1", ctx.author.id)
         if s:
             try:
-                list = s['things']
-                entries = [item for item in list]
-                p = self.bot.utils.SimpleMenu(entries=list, per_page=10)
+                p = self.bot.utils.SimpleMenu(entries=s, per_page=10)
                 await p.start(ctx)
             except Exception as e:
                 await ctx.send(f'{e}')
