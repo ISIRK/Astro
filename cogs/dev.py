@@ -226,7 +226,7 @@ class dev(commands.Cog):
             try:
                 list = s['things']
                 entries = [item for item in list]
-                p = self.bot.utils.SimpleMenu(entries=entries, per_page=10)
+                p = self.bot.utils.SimpleMenu(entries=list, per_page=10)
                 await p.start(ctx)
             except Exception as e:
                 await ctx.send(f'{e}')
