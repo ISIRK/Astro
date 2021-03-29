@@ -224,7 +224,8 @@ class dev(commands.Cog):
         s = await self.bot.db.fetch("SELECT * FROM todo WHERE id = $1", ctx.author.id)
         if s:
             try:
-                p = self.bot.utils.SimpleMenu(entries=s['things'], per_page=10)
+                entries = [item for item in s['things']]
+                p = self.bot.utils.SimpleMenu(entries=entries, per_page=10)
                 await p.start(ctx)
             except Exception as e:
                 await ctx.send('No todo items')
