@@ -237,6 +237,7 @@ class dev(commands.Cog):
         '''Add something to the todo list'''
         s = await self.bot.db.fetch("SELECT * FROM todo WHERE id = $1", ctx.author.id)
         list = s['things']
+        await ctx.send(f'{list}')
         if s:
             try:
                 await self.bot.db.execute("INSERT INTO todo(things) VALUES ($1) WHERE id = $2", list.append(thing), ctx.author.id)
