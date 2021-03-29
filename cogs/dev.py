@@ -221,13 +221,13 @@ class dev(commands.Cog):
     @commands.group(invoke_without_command=True)
     async def todo(self, ctx):
         """Todo Commands"""
-            s = await self.bot.db.fetch("SELECT things FROM todo WHERE id = $1", ctx.author.id)
-            if s:
-                p = self.bot.utils.SimpleMenu(entries=[x["todo"] for x in s], per_page=10)
-                await p.start(ctx)
-            else:
-                await self.bot.db.execute("INSERT INTO todo(id) VALUES ($1)", ctx.author.id)
-                await ctx.send("Registered a todo list for you.")
+        s = await self.bot.db.fetch("SELECT things FROM todo WHERE id = $1", ctx.author.id)
+        if s:
+            p = self.bot.utils.SimpleMenu(entries=[x["todo"] for x in s], per_page=10)
+            await p.start(ctx)
+        else:
+            await self.bot.db.execute("INSERT INTO todo(id) VALUES ($1)", ctx.author.id)
+            await ctx.send("Registered a todo list for you.")
             
     @todo.command()
     async def add(self, ctx, *, thing:str):
