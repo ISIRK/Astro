@@ -246,13 +246,17 @@ class dev(commands.Cog):
                 return await ctx.send(e)
 
     @todo.command(aliases=['remove'])
-    async def delete(self, ctx, *, thing:str):
+    async def delete(self, ctx, *, thing):
         '''Delete an item from your todo list'''
-        try:
-            await self.bot.db.execute("DELETE FROM todo WHERE todo = $1", thing)
-            await ctx.send(f'Removed {thing} from your todo list!')
-        except Exception as e:
-            return await ctx.send(e)
+        s = await self.bot.db.fetchrow("SELECT * FROM todo WHERE id = $1", ctx.author.id)
+        list = s['things']
+        if s:
+            try:
+                list.remove(thing)
+                await self.bot.db.execute("UPDATE todo SET things = $1 WHERE id = $2", list, ctx.author.id)
+                await ctx.send(f'Removed {thing} from your todo list!')
+            except Exception as e:
+                return await ctx.send(e)
 
     @commands.command()
     @commands.is_owner()
