@@ -252,8 +252,8 @@ class dev(commands.Cog):
         list = s['things']
         if s:
             try:
-                if int(thing):
-                    del list[int(thing-1)]
+                if thing.isdigit():
+                    list.pop(thing-1)
                 else:
                     list.remove(thing)
                 await self.bot.db.execute("UPDATE todo SET things = $1 WHERE id = $2", list, ctx.author.id)
