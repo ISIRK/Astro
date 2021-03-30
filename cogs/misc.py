@@ -214,6 +214,49 @@ class misc(commands.Cog):
     @commands.command()
     async def bossbadi(self, ctx):
         await ctx.reply('bossbadi is a cool dude and a great bot dev')
+
+    @commands.group(invoke_without_command=True)
+    async def todo(self, ctx):
+        """Todo Commands"""
+        s = await self.bot.db.fetchrow("SELECT things FROM todo WHERE id = $1", ctx.author.id)
+        if s:
+            try:
+                p = self.bot.utils.SimpleMenu(entries=s['things'], per_page=10)
+                await p.start(ctx)
+            except Exception as e:
+                await ctx.send(f'{e}')
+        else:
+            await self.bot.db.execute("INSERT INTO todo(id) VALUES ($1)", ctx.author.id)
+            await ctx.send("Registered a todo list for you.")
+            
+    @todo.command()
+    async def add(self, ctx, *, thing:str):
+        '''Add something to the todo list'''
+        s = await self.bot.db.fetchrow("SELECT * FROM todo WHERE id = $1", ctx.author.id)
+        list = s['things']
+        if s:
+            try:
+                list.append(thing)
+                await self.bot.db.execute("UPDATE todo SET things = $1 WHERE id = $2", list, ctx.author.id)
+                await ctx.send(f'Added `{thing}` to your todo list!')
+            except Exception as e:
+                return await ctx.send(e)
+
+    @todo.command(aliases=['remove'])
+    async def delete(self, ctx, *, thing):
+        '''Delete an item from your todo list'''
+        s = await self.bot.db.fetchrow("SELECT * FROM todo WHERE id = $1", ctx.author.id)
+        list = s['things']
+        if s:
+            try:
+                if thing.isdigit():
+                    list.pop(int(thing)-1)
+                else:
+                    list.remove(thing)
+                await self.bot.db.execute("UPDATE todo SET things = $1 WHERE id = $2", list, ctx.author.id)
+                await ctx.send(f'Removed `{thing}` from your todo list!')
+            except Exception as e:
+                return await ctx.send(e)
                                      
 def setup(bot):
     bot.add_cog(misc(bot))
