@@ -252,7 +252,7 @@ class dev(commands.Cog):
         list = s['things']
         if s:
             try:
-                if int(thing) = thing:
+                if int(thing) == thing:
                     list.pop(thing+1)
                 else:
                     list.remove(thing)
