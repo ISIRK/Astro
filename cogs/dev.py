@@ -252,7 +252,7 @@ class dev(commands.Cog):
         list = s['things']
         if s:
             try:
-                if thing.isdigit():
+                if int(thing).isdigit():
                     del list[int(thing-1)]
                 else:
                     list.remove(thing)
