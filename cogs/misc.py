@@ -213,7 +213,7 @@ class misc(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
         s = await self.bot.db.fetchrow("SELECT things FROM todo WHERE id = $1", ctx.author.id)
         if s:
             try:
-                p = self.bot.utils.SimpleMenu(entries=s['things'], per_page=10)
+                p = self.bot.utils.SimpleMenu(entries=s['things'] or ['No todos'], per_page=10)
                 await p.start(ctx)
             except Exception as e:
                 await ctx.send(f'{e}')
