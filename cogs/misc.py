@@ -252,7 +252,7 @@ class misc(commands.Cog):
         s = await self.bot.db.fetchrow("SELECT * FROM todo WHERE id = $1", ctx.author.id)
         list = s['things']
         if s:
-            if thing in list:
+            if not thing in list:
                 await ctx.send('Item not found.')
             elif thing.isdigit():
                 list.pop(int(thing)-1)
