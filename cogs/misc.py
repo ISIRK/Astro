@@ -263,9 +263,9 @@ class misc(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
             confirm = await confirm_embed.prompt(ctx)
             if confirm:
                 await self.bot.db.execute("DELETE FROM todo WHERE id = $1", ctx.author.id)
-                await confirm_embed.message.edit(embed=discord.Embed(title="Successfully closed your bank account.", colour=self.bot.color))
+                await confirm_embed.message.edit(embed=discord.Embed(title="Successfully cleared your todos.", colour=self.bot.color))
             else:
-                await ctx.send('Cancelled')
+                await confirm_embed.message.edit(embed=discord.Embed(title="Cancelled", colour=self.bot.color))
                                      
 def setup(bot):
     bot.add_cog(misc(bot))
