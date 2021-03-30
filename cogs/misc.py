@@ -235,12 +235,16 @@ class misc(commands.Cog):
         s = await self.bot.db.fetchrow("SELECT * FROM todo WHERE id = $1", ctx.author.id)
         list = s['things']
         if s:
-            try:
+            if len(list) > 25:
+                await ctx.send('Currently you can only have 25 todo items.')
+            elif thing in list:
+                await ctx.send('Thats already in your list.')
+            elif len(thing) > 25:
+                await ctx.send('Please shorten your task.')
+            else:
                 list.append(thing)
                 await self.bot.db.execute("UPDATE todo SET things = $1 WHERE id = $2", list, ctx.author.id)
                 await ctx.send(f'Added `{thing}` to your todo list!')
-            except Exception as e:
-                return await ctx.send(e)
 
     @todo.command(aliases=['remove'])
     async def delete(self, ctx, *, thing):
@@ -248,15 +252,14 @@ class misc(commands.Cog):
         s = await self.bot.db.fetchrow("SELECT * FROM todo WHERE id = $1", ctx.author.id)
         list = s['things']
         if s:
-            try:
-                if thing.isdigit():
-                    list.pop(int(thing)-1)
-                else:
-                    list.remove(thing)
-                await self.bot.db.execute("UPDATE todo SET things = $1 WHERE id = $2", list, ctx.author.id)
-                await ctx.send(f'Removed `{thing}` from your todo list!')
-            except Exception as e:
-                return await ctx.send(e)
+            if thing in list:
+                await ctx.send('Item not found.')
+            elif thing.isdigit():
+                list.pop(int(thing)-1)
+            else:
+                list.remove(thing)
+            await self.bot.db.execute("UPDATE todo SET things = $1 WHERE id = $2", list, ctx.author.id)
+            await ctx.send(f'Removed `{thing}` from your todo list!')
                                      
 def setup(bot):
     bot.add_cog(misc(bot))
