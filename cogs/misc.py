@@ -253,6 +253,19 @@ class misc(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
                     list.remove(thing)
                 await self.bot.db.execute("UPDATE todo SET things = $1 WHERE id = $2", list, ctx.author.id)
                 await ctx.send(f'Removed `{thing}` from your todo list!')
+
+    @todo.command()
+    async def clear(self, ctx):
+        '''Clears your todo list'''
+        s = await self.bot.db.fetchrow("SELECT * FROM todo WHERE id = $1", ctx.author.id)
+        if s:
+            confirm_embed = self.bot.utils.ConfirmMenu(discord.Embed(title="Are you sure you want to clear your todos?", colour=ctx.bot.color), delete_message_after=False)
+            confirm = await confirm_embed.prompt(ctx)
+            if confirm:
+                await self.bot.db.execute("DELETE FROM todo WHERE id = $1", ctx.author.id)
+                await confirm_embed.message.edit(embed=discord.Embed(title="Successfully closed your bank account.",colour=self.bot.color)
+            else:
+                await ctx.send('Cancelled')
                                      
 def setup(bot):
     bot.add_cog(misc(bot))
