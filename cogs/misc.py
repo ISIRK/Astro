@@ -8,7 +8,7 @@ from discord.ext.commands import context
 from google_trans_new import google_translator
 from discord.ext.commands.cooldowns import BucketType
 
-class misc(commands.Cog):
+class misc(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, commands.BucketType.user)}):
     '''Miscellaneous Commands'''
     def __init__(self, bot):
         self.bot = bot
@@ -42,7 +42,6 @@ class misc(commands.Cog):
         await ctx.send('Not enough choices to pick from' if len(choices) < 2 else random.choice(choices))
         
     @commands.command()
-    @commands.cooldown(1,3,BucketType.user)
     async def binary(self, ctx, *, text: str):
         '''Change text into binary'''
         if len(text) > 25:
@@ -53,7 +52,6 @@ class misc(commands.Cog):
             await ctx.send(resp['binary'])
         
     @commands.command()
-    @commands.cooldown(1,5,BucketType.user)
     async def reddit(self, ctx, *, subreddit: str):
         '''Get content from a subreddit'''
         async with self.bot.session.get(f"https://www.reddit.com/r/{subreddit}/new.json") as resp:
@@ -81,7 +79,6 @@ class misc(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['mc'])
-    @commands.cooldown(1,3,BucketType.user)
     async def minecraft(self, ctx, *, username):
         '''Get a minecraft users stats'''
         async with self.bot.session.get(f'https://api.mojang.com/users/profiles/minecraft/{username}?at=') as resp:
@@ -94,7 +91,6 @@ class misc(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['mcs'])
-    @commands.cooldown(1,3,BucketType.user)
     async def minecraftserver(self, ctx, *, server):
         '''Get a minecraft servers stats'''
         async with self.bot.session.get(f'http://mcapi.xdefcon.com/server/{server}/full/json') as resp:
@@ -106,7 +102,6 @@ class misc(commands.Cog):
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-    @commands.cooldown(1,3,BucketType.user)
     @commands.command()
     async def hot(self, ctx, *, user: discord.Member = None):
         """ Returns a random percent for how hot is a discord user """
@@ -176,13 +171,11 @@ class misc(commands.Cog):
                     await ctx.send(embed=embed)
 
     @commands.command()
-    @commands.cooldown(1,3,BucketType.user)
     async def replace(self, ctx, char, *, text):
       '''Send a message with an emoji in between each word'''
       await ctx.send(text.replace(" ", f" {char} "))
 
     @commands.command()
-    @commands.cooldown(1,3,BucketType.user)
     async def poll(self, ctx, title, *options):
         '''Make a quick poll'''
         reactions = {1: "1️⃣", 2: "2️⃣", 3: "3️⃣", 4: "4️⃣", 5: "5️⃣", 6: "6️⃣", 7: "7️⃣", 8: "8️⃣", 9: "9️⃣", 10: "🔟"}
@@ -201,7 +194,6 @@ class misc(commands.Cog):
         for i in range(1, len(options) + 1): await msg.add_reaction(reactions[i])
 
     @commands.command(aliases = ["myst", "paste"])
-    @commands.cooldown(1,3,BucketType.user)
     async def mystbin(self, ctx, *, code):
         """Post code to mystbin."""
         code = codeblocks.codeblock_converter(code)
