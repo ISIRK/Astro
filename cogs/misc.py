@@ -254,10 +254,11 @@ class misc(commands.Cog):
         if s:
             if not thing in list:
                 await ctx.send('Item not found.')
-            elif thing.isdigit():
-                list.pop(int(thing)-1)
             else:
-                list.remove(thing)
+                if thing.isdigit():
+                    list.pop(int(thing)-1)
+                else:
+                    list.remove(thing)
                 await self.bot.db.execute("UPDATE todo SET things = $1 WHERE id = $2", list, ctx.author.id)
                 await ctx.send(f'Removed `{thing}` from your todo list!')
                                      
