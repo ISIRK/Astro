@@ -241,7 +241,7 @@ class dev(commands.Cog):
             try:
                 list.append(thing)
                 await self.bot.db.execute("UPDATE todo SET things = $1 WHERE id = $2", list, ctx.author.id)
-                await ctx.send(f'Added {thing} to your todo list!')
+                await ctx.send(f'Added `{thing}` to your todo list!')
             except Exception as e:
                 return await ctx.send(e)
 
@@ -257,7 +257,7 @@ class dev(commands.Cog):
                 else:
                     list.remove(thing)
                 await self.bot.db.execute("UPDATE todo SET things = $1 WHERE id = $2", list, ctx.author.id)
-                await ctx.send(f'Removed {thing} from your todo list!')
+                await ctx.send(f'Removed `{thing}` from your todo list!')
             except Exception as e:
                 return await ctx.send(e)
 
