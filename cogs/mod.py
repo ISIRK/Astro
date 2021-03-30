@@ -152,10 +152,7 @@ class mod(commands.Cog):
 
         Example: ```{"title" : "This is the title","description" : "This is the description", "author" : {"name" : "The Author"}, "color" : 7506394, "footer" : {"text" : "This is the footer"}, "fields" : [{"name" : "Field Title", "value" : "Field Description", "inline" : false}]}```
         '''
-        try:
-         await ctx.send(embed=discord.Embed().from_dict(code))
-        except Exception as e:
-            await ctx.send(f'There was an error making the embed, use `{ctx.prefix}help {ctx.command}` for proper use.')
+        await ctx.send(embed=discord.Embed().from_dict(code))
 
 def setup(bot):
     bot.add_cog(mod(bot))
