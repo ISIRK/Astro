@@ -202,6 +202,11 @@ class dev(commands.Cog):
             except menus.MenuError as f:
                 await ctx.send(f)
 
+    @commands.command()
+    async def tables(self, ctx):
+        '''Shows the active tables'''
+        await self.bot.utils.SimpleMenu(entries=await self.bot.db.fetch("SELECT table_name FROM information_schema.tables WHERE table_schema='public'"), per_page=10).start(ctx)
+
     @commands.command(aliases=['logout'])
     async def shutdown(self, ctx):
         await ctx.send("Shutting Down")
