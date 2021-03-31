@@ -244,15 +244,15 @@ class misc(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
         s = await self.bot.db.fetchrow("SELECT * FROM todo WHERE id = $1", ctx.author.id)
         list = s['things']
         if s:
-            if not thing in list:
-                await ctx.send('Item not found.')
+            if thing.isdigit():
+                list.pop(int(thing)-1)
             else:
-                if thing.isdigit():
-                    list.pop(int(thing)-1)
+                if not thing in list:
+                    await ctx.send('Item not found.')
                 else:
                     list.remove(thing)
-                await self.bot.db.execute("UPDATE todo SET things = $1 WHERE id = $2", list, ctx.author.id)
-                await ctx.send(f'Removed `{thing}` from your todo list!')
+            await self.bot.db.execute("UPDATE todo SET things = $1 WHERE id = $2", list, ctx.author.id)
+            await ctx.send(f'Removed `{thing}` from your todo list!')
 
     @todo.command()
     async def clear(self, ctx):
