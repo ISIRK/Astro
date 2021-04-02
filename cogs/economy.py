@@ -58,6 +58,9 @@ class economy(commands.Cog):
                 pass
             await ctx.send(embed = embed)
 
+    @commands.command(hidden=True)
+    async def newbal(self, ctx):
+
     @commands.cooldown(1,120,BucketType.user)
     @commands.command()
     async def work(self, ctx):
