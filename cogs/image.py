@@ -376,7 +376,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             buffer = await self.bot.loop.run_in_executor(None, self.do_emboss, img)
         file=discord.File(buffer, filename="embossed.png")
         '''
-        file = await self.manip(ctx, member or ctx.author, self.do_emboss)
+        file = await self.manip(ctx, member or ctx.author, self.do_emboss, "embossed.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Embossed Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://embossed.png")
