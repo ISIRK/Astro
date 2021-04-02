@@ -7,15 +7,9 @@ def guild_check(_custom_commands):
         return _custom_commands.get(ctx.command.qualified_name) and ctx.guild.id in _custom_commands.get(ctx.command.qualified_name)
     return commands.check(predicate)
 
-class cc(commands.Cog):
+class custom(commands.Cog):
 
     """ Each entry in _custom_commands will look like this:
-    {
-        "command_name": {
-            guild_id: "This guild's output",
-            guild_id2: "This other guild's output",
-        }
-    }
     """
     _custom_commands = {}
 
@@ -58,4 +52,4 @@ class cc(commands.Cog):
         await ctx.send(f"Removed a command called {name}")
 
 def setup(bot):
-    bot.add_cog(cc(bot))
+    bot.add_cog(custom(bot))
