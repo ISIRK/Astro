@@ -233,6 +233,26 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             buffer.seek(0)
             return buffer
 
+    @staticmethod
+    def do_comic(img) -> BytesIO:
+        with Image.open(img).convert("RGB") as img:
+            width, height = img.size
+            pix = img.load()
+            for w in range(width):
+                for h in range(height):
+                    r, g, b = pix[w, h]
+                    pix[w, h] = tuple(map(lambda i: min(255, i),
+                                          [
+                        abs(g - b + g + r) * r // 256,
+                        abs(b - g + b + r) * r // 256,
+                        abs(b - g + b + r) * r // 256]))
+                    
+            img.convert('L')
+            buffer = BytesIO()
+            img.save(buffer, format="PNG")
+            buffer.seek(0)
+            return buffer
+
     # Wand Image Manipulation
 
     @staticmethod
@@ -508,6 +528,21 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         e=discord.Embed(color=self.invis)
         e.set_author(name="Sketched Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://sketch.png")
+        await ctx.remove(file=file, embed=e)
+
+    @commands.command()
+    async def comic(self, ctx, *, member: discord.Member = None):
+        '''Turn the avatar into a comic'''
+        member = member or ctx.author
+        url = member.avatar_url_as(size=512, format="png")
+        async with ctx.typing():
+            img = BytesIO(await url.read())
+            img.seek(0)
+            buffer = await self.bot.loop.run_in_executor(None, self.do_comic, img)
+        file=discord.File(buffer, filename="comic.png")
+        e=discord.Embed(color=self.invis)
+        e.set_author(name="Comic Avatar", icon_url=member.avatar_url)
+        e.set_image(url="attachment://comic.png")
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
