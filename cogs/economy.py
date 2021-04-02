@@ -50,7 +50,7 @@ class economy(commands.Cog):
                 description = f"💰 Cash: ${cash:,}\n🏦 Bank: ${bank:,}",
                 color = self.bot.color
             )
-            embed.set_thumbnail(icon=user.avatar_url)
+            embed.set_thumbnail(url=user.avatar_url)
             if s['inv']:
                 inventory = s['inv']
                 embed.add_field(name="Inventory", value=''.join([f'\n{item}' for item in inventory]), inline=False)
