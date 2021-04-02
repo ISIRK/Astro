@@ -338,8 +338,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def emboss(self, ctx, *, member: discord.Member = None):
         '''Embosses the avatar'''
-        if not member:
-            member = ctx.author
+        member = member or ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
             img = BytesIO(await url.read())
@@ -354,8 +353,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def invert(self, ctx, *, member: discord.Member = None):
         '''Invert the avatar'''
-        if not member:
-            member = ctx.author
+        member = member or ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
             img = BytesIO(await url.read())
@@ -370,8 +368,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def solarize(self, ctx, *, member: discord.Member = None):
         '''Solarizes the avatar'''
-        if not member:
-            member = ctx.author
+        member = member or ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
             img = BytesIO(await url.read())
@@ -386,8 +383,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def pixel(self, ctx, *, member: discord.Member = None):
         '''Pixelizes the avatar'''
-        if not member:
-            member = ctx.author
+        member = member or ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
             img = BytesIO(await url.read())
@@ -427,8 +423,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def swirl(self, ctx, *, member: discord.Member = None):
         '''Swirls the avatar'''
-        if not member:
-            member = ctx.author
+        member = member or ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
             img = BytesIO(await url.read())
@@ -443,8 +438,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def polaroid(self, ctx, *, member: discord.Member = None):
         '''Polaroid the avatar'''
-        if not member:
-            member = ctx.author
+        member = member or ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
             img = BytesIO(await url.read())
@@ -459,8 +453,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def floor(self, ctx, *, member: discord.Member = None):
         '''Floor the avatar'''
-        if not member:
-            member = ctx.author
+        member = member or ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
             img = BytesIO(await url.read())
@@ -475,8 +468,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def cube(self, ctx, *, member: discord.Member = None):
         '''Cube the avatar'''
-        if not member:
-            member = ctx.author
+        member = member or ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
             img = BytesIO(await url.read())
@@ -491,8 +483,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def spread(self, ctx, *, member: discord.Member = None):
         '''Spreads the avatar'''
-        if not member:
-            member = ctx.author
+        member = member or ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
             img = BytesIO(await url.read())
@@ -507,8 +498,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def sketch(self, ctx, *, member: discord.Member = None):
         '''Sketches the avatar'''
-        if not member:
-            member = ctx.author
+        member = member or ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
             img = BytesIO(await url.read())
@@ -523,8 +513,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def merge(self, ctx, m1: discord.Member, m2: discord.Member = None):
         '''Merge two avatars together'''
-        if not m2:
-            m2 = ctx.author
+        m2 = m2 or ctx.author
         url1 = m1.avatar_url_as(size=512, format="png")
         url2 = m2.avatar_url_as(size=512, format="png")
         async with ctx.typing():
@@ -542,8 +531,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def color(self, ctx, *, member: discord.Member = None):
         '''Colors the avatar'''
-        if not member:
-            member = ctx.author
+        member = member or ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
             img = BytesIO(await url.read())
@@ -558,8 +546,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def wash(self, ctx, *, member: discord.Member = None):
         '''Wash the avatar'''
-        if not member:
-            member = ctx.author
+        member = member or ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
             img = BytesIO(await url.read())
@@ -574,8 +561,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def ascii(self, ctx, *, member: discord.Member = None):
         '''Ascii the avatar'''
-        if not member:
-            member = ctx.author
+        member = member or ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
             img = BytesIO(await url.read())
