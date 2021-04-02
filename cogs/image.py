@@ -433,12 +433,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     async def swirl(self, ctx, *, member: discord.Member = None):
         '''Swirls the avatar'''
         member = member or ctx.author
-        url = member.avatar_url_as(size=512, format="png")
-        async with ctx.typing():
-            img = BytesIO(await url.read())
-            img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, self.do_swirl, img)
-        file=discord.File(buffer, filename="swirl.png")
+        file = await self.manip(ctx, member, self.do_swirl, "swirl.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Swirled Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://swirl.png")
@@ -448,12 +443,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     async def polaroid(self, ctx, *, member: discord.Member = None):
         '''Polaroid the avatar'''
         member = member or ctx.author
-        url = member.avatar_url_as(size=512, format="png")
-        async with ctx.typing():
-            img = BytesIO(await url.read())
-            img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, self.do_polaroid, img)
-        file=discord.File(buffer, filename="polaroid.png")
+        file = await self.manip(ctx, member, self.do_polaroid, "polaroid.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Polaroid Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://polaroid.png")
@@ -463,12 +453,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     async def floor(self, ctx, *, member: discord.Member = None):
         '''Floor the avatar'''
         member = member or ctx.author
-        url = member.avatar_url_as(size=512, format="png")
-        async with ctx.typing():
-            img = BytesIO(await url.read())
-            img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, self.do_floor, img)
-        file=discord.File(buffer, filename="floor.png")
+        file = await self.manip(ctx, member, self.do_floor, "floor.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Floored Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://floor.png")
@@ -478,12 +463,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     async def cube(self, ctx, *, member: discord.Member = None):
         '''Cube the avatar'''
         member = member or ctx.author
-        url = member.avatar_url_as(size=512, format="png")
-        async with ctx.typing():
-            img = BytesIO(await url.read())
-            img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, self.do_cube, img)
-        file=discord.File(buffer, filename="cube.png")
+        file = await self.manip(ctx, member, self.do_cube, "cube.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Cubed Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://cube.png")
@@ -493,12 +473,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     async def spread(self, ctx, *, member: discord.Member = None):
         '''Spreads the avatar'''
         member = member or ctx.author
-        url = member.avatar_url_as(size=512, format="png")
-        async with ctx.typing():
-            img = BytesIO(await url.read())
-            img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, self.do_spread, img)
-        file=discord.File(buffer, filename="spread.gif")
+        file = await self.manip(ctx, member, self.do_spread, "spread.gif")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Spreaded Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://spread.gif")
@@ -508,12 +483,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     async def sketch(self, ctx, *, member: discord.Member = None):
         '''Sketches the avatar'''
         member = member or ctx.author
-        url = member.avatar_url_as(size=512, format="png")
-        async with ctx.typing():
-            img = BytesIO(await url.read())
-            img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, self.do_sketch, img)
-        file=discord.File(buffer, filename="sketch.png")
+        file = await self.manip(ctx, member, self.do_sketch, "sketch.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Sketched Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://sketch.png")
@@ -523,12 +493,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     async def comic(self, ctx, *, member: discord.Member = None):
         '''Turn the avatar into a comic'''
         member = member or ctx.author
-        url = member.avatar_url_as(size=512, format="png")
-        async with ctx.typing():
-            img = BytesIO(await url.read())
-            img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, self.do_comic, img)
-        file=discord.File(buffer, filename="comic.png")
+        file = await self.manip(ctx, member, self.do_comic, "comic.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Comic Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://comic.png")
@@ -556,12 +521,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     async def color(self, ctx, *, member: discord.Member = None):
         '''Colors the avatar'''
         member = member or ctx.author
-        url = member.avatar_url_as(size=512, format="png")
-        async with ctx.typing():
-            img = BytesIO(await url.read())
-            img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, self.do_quantize, img)
-        file=discord.File(buffer, filename="quantize.gif")
+        file = await self.manip(ctx, member, self.do_quantize, "quantize.gif")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Colored Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://quantize.gif")
@@ -571,27 +531,17 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     async def wash(self, ctx, *, member: discord.Member = None):
         '''Wash the avatar'''
         member = member or ctx.author
-        url = member.avatar_url_as(size=512, format="png")
-        async with ctx.typing():
-            img = BytesIO(await url.read())
-            img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, self.do_wash, img)
-        file=discord.File(buffer, filename="wash.gif")
+        file = await self.manip(ctx, member, self.do_was, "wash.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Washed Avatar", icon_url=member.avatar_url)
-        e.set_image(url="attachment://wash.gif")
+        e.set_image(url="attachment://wash.png")
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
     async def ascii(self, ctx, *, member: discord.Member = None):
         '''Ascii the avatar'''
         member = member or ctx.author
-        url = member.avatar_url_as(size=512, format="png")
-        async with ctx.typing():
-            img = BytesIO(await url.read())
-            img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, self.do_ascii, img)
-        file=discord.File(buffer, filename="ascii.png")
+        file = await self.manip(ctx, member, self.do_ascii, "ascii.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Ascii Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://ascii.png")
