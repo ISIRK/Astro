@@ -11,6 +11,15 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         self.bot = bot
         self.invis = 0x2F3136
         
+    async def manip(self, ctx, image, func, filename:str, *args, **kwargs):
+        url = image.avatar_url_as(size=512, format="png")
+        async with ctx.typing():
+            img = BytesIO(await url.read())
+            img.seek(0)
+            buffer = await self.bot.loop.run_in_executor(None, function, image, *args, **kwargs)
+            file=discord.File(buffer, filename=filename)
+            return file
+        
     # Pillow Image Manipulation
 
     @staticmethod
@@ -358,6 +367,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def emboss(self, ctx, *, member: discord.Member = None):
         '''Embosses the avatar'''
+        '''
         member = member or ctx.author
         url = member.avatar_url_as(size=512, format="png")
         async with ctx.typing():
@@ -365,6 +375,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             img.seek(0)
             buffer = await self.bot.loop.run_in_executor(None, self.do_emboss, img)
         file=discord.File(buffer, filename="embossed.png")
+        '''
+        file = await self.manip(ctx, member or ctx.author, self.do_emboss)
         e=discord.Embed(color=self.invis)
         e.set_author(name="Embossed Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://embossed.png")
