@@ -531,7 +531,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     async def wash(self, ctx, *, member: discord.Member = None):
         '''Wash the avatar'''
         member = member or ctx.author
-        file = await self.manip(ctx, member, self.do_was, "wash.png")
+        file = await self.manip(ctx, member, self.do_wash, "wash.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Washed Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://wash.png")
