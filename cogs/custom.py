@@ -8,9 +8,7 @@ def guild_check(_custom_commands):
     return commands.check(predicate)
 
 class custom(commands.Cog):
-
-    """ Each entry in _custom_commands will look like this:
-    """
+    """Custom Commands"""
     _custom_commands = {}
 
     @commands.is_owner()
