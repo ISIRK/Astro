@@ -25,7 +25,7 @@ class custom(commands.Cog):
             self._custom_commands[name][ctx.guild.id] = output
         # Otherwise, we need to create the command object
         else:
-            @commands.is_owner()
+            #@commands.is_owner()
             @commands.command(name=name, help=f"Custom command: Outputs your custom provided output")
             @guild_check(self._custom_commands)
             async def cmd(self, ctx):
