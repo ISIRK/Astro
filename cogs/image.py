@@ -367,15 +367,6 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     @commands.command()
     async def emboss(self, ctx, *, member: discord.Member = None):
         '''Embosses the avatar'''
-        '''
-        member = member or ctx.author
-        url = member.avatar_url_as(size=512, format="png")
-        async with ctx.typing():
-            img = BytesIO(await url.read())
-            img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, self.do_emboss, img)
-        file=discord.File(buffer, filename="embossed.png")
-        '''
         member = member or ctx.author
         file = await self.manip(ctx, member, self.do_emboss, "embossed.png")
         e=discord.Embed(color=self.invis)
@@ -387,42 +378,27 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
     async def invert(self, ctx, *, member: discord.Member = None):
         '''Invert the avatar'''
         member = member or ctx.author
-        url = member.avatar_url_as(size=512, format="png")
-        async with ctx.typing():
-            img = BytesIO(await url.read())
-            img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, self.do_invert, img)
-        file=discord.File(buffer, filename="invert.png")
+        file = await self.manip(ctx, member, self.do_invert, "inverted.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Inverted Avatar", icon_url=member.avatar_url)
-        e.set_image(url="attachment://invert.png")
+        e.set_image(url="attachment://inverted.png")
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
     async def solarize(self, ctx, *, member: discord.Member = None):
         '''Solarizes the avatar'''
         member = member or ctx.author
-        url = member.avatar_url_as(size=512, format="png")
-        async with ctx.typing():
-            img = BytesIO(await url.read())
-            img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, self.do_solarize, img)
-        file=discord.File(buffer, filename="solarize.png")
+        file = await self.manip(ctx, member, self.do_solarize, "solarized.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Solarized Avatar", icon_url=member.avatar_url)
-        e.set_image(url="attachment://solarize.png")
+        e.set_image(url="attachment://solarized.png")
         await ctx.remove(file=file, embed=e)
 
     @commands.command()
     async def pixel(self, ctx, *, member: discord.Member = None):
         '''Pixelizes the avatar'''
         member = member or ctx.author
-        url = member.avatar_url_as(size=512, format="png")
-        async with ctx.typing():
-            img = BytesIO(await url.read())
-            img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, self.do_pixel, img)
-        file=discord.File(buffer, filename="pixel.png")
+        file = await self.manip(ctx, member, self.do_pixel, "pixel.png")
         e=discord.Embed(color=self.invis)
         e.set_author(name="Pixelated Avatar", icon_url=member.avatar_url)
         e.set_image(url="attachment://pixel.png")
