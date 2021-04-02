@@ -16,7 +16,7 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         async with ctx.typing():
             img = BytesIO(await url.read())
             img.seek(0)
-            buffer = await self.bot.loop.run_in_executor(None, function, image, *args, **kwargs)
+            buffer = await self.bot.loop.run_in_executor(None, func, image, *args, **kwargs)
             file=discord.File(buffer, filename=filename)
             return file
         
