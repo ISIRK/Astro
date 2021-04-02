@@ -113,8 +113,7 @@ class meta(commands.Cog):
     @commands.command(aliases=['whois', 'ui'])
     async def user(self, ctx, *, member: discord.Member = None):
         '''Get information about the mentioned user.'''
-        if member is None:
-            member = ctx.author
+        member = member or ctx.author
             
         roles = ' '.join([r.mention for r in member.roles[:10] if r != ctx.guild.default_role] or ['None'])
         shared = sum(g.get_member(member.id) is not None for g in self.bot.guilds)
@@ -147,8 +146,7 @@ class meta(commands.Cog):
     async def permissions(self, ctx, *, member: discord.Member=None):
         '''A simple command which checks a members Guild Permissions.
         If member is not provided, the author will be checked.'''
-        if not member:
-            member = ctx.author
+        member = member or ctx.author
 
         perms = '\n'.join(perm for perm, value in member.guild_permissions if value)
 
