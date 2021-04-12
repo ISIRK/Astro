@@ -22,7 +22,7 @@ class misc(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
             resp = await r.json()
         await ctx.send(resp['joke'])
         
-    @commands.command()
+    @commands.command(enabled=False)
     async def translate(self, ctx, lang: str, *, message: str = None):
         '''Translate text to english.'''
         if ctx.message.reference:
