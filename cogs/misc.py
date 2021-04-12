@@ -31,7 +31,7 @@ class misc(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
             else:
                 message = await ctx.channel.fetch_message(ctx.message.reference.message_id)
                 message = message.content
-        await ctx.send(embed=discord.Embed(title="Translate", description=f"Original: {message}\nLanguage: {lang}\nTranslation: {self.gs.translate(message, lang)}", color=self.bot.color))
+        await ctx.send(embed=discord.Embed(title="Translate", description=f"Original: {message}\nTranslation: {self.gs.translate(message, lang)}", color=self.bot.color).set_footer(text=f"Translated to {self.gs.get_languages()[lang]}"))
 
     @commands.command()
     async def choose(self, ctx, *choices):
