@@ -1,4 +1,4 @@
-import discord, os, io, datetime, time, json, asyncio, random, collections, mystbin, humanize
+import discord, os, io, datetime, time, json, asyncio, random, collections, mystbin, humanize, goslate
 from discord.user import User
 from discord.utils import get
 from jishaku import codeblocks
@@ -12,8 +12,7 @@ class misc(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
     '''Miscellaneous Commands'''
     def __init__(self, bot):
         self.bot = bot
-        self.myst = mystbin.Client()
-        self.translator = google_translator()
+        self.gs = goslate.Goslate()
         
     @commands.command()
     @commands.cooldown(1,5,BucketType.user)
@@ -24,7 +23,7 @@ class misc(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
         await ctx.send(resp['joke'])
         
     @commands.command()
-    async def translate(self, ctx, *, message: str = None):
+    async def translate(self, ctx, lang: str, *, message: str = None):
         '''Translate text to english.'''
         if ctx.message.reference:
             if ctx.message.reference.cached_message:
@@ -32,9 +31,7 @@ class misc(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
             else:
                 message = await ctx.channel.fetch_message(ctx.message.reference.message_id)
                 message = message.content
-        translated = self.translator.translate(message, lang_tgt='en')
-        embed = discord.Embed(title="Translate", description=f"Original: {message}\nTranslation: {translated}", color=self.bot.color)
-        await ctx.send(embed=embed)
+        await ctx.send(embed=discord.Embed(title="Translate", description=f"Original: {message}\nLanguage: {lang}\nTranslation: {self.gs.translate(message, lang)}", color=self.bot.color))
 
     @commands.command()
     async def choose(self, ctx, *choices):
@@ -192,16 +189,6 @@ class misc(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
             pass
         msg = await ctx.send(embed=embed)
         for i in range(1, len(options) + 1): await msg.add_reaction(reactions[i])
-
-    @commands.command(aliases = ["myst", "paste"])
-    async def mystbin(self, ctx, *, code):
-        """Post code to mystbin."""
-        code = codeblocks.codeblock_converter(code)
-        language = ""
-        if code[0]: language = code[0]
-        elif not code[0]: language = "txt"
-        url = await self.myst.post(code[1], syntax = language)
-        await ctx.send(f"{ctx.author.mention} Here is your code <:join:736719688956117043> {str(url)}")
 
     @commands.command()
     async def bossbadi(self, ctx):
