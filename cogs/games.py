@@ -32,7 +32,7 @@ class BasketballMenu(menus.Menu):
         self.score = 0
         self.footer = 'Use the reactions below to try and score'
         
-    async def makeEmbed(self, title, *, description):
+    async def makeEmbed(self, title, description):
         if self.score >= 21:
             await self.message.edit(embed=discord.Embed(title='You reached 21!', description="Good job. Thats it for now. Come play again later.", color=self.ctx.bot.color))
             self.stop()
@@ -63,9 +63,7 @@ class BasketballMenu(menus.Menu):
             else:
                 d = 'You missed.'
                 pass
-            embed = discord.Embed(title='Shot...', description=d, color=self.ctx.bot.color)
-            embed.set_footer(text=self.footer)
-            await self.message.edit(embed = embed)
+            await makeEmbed('Shot...', d)
 
     @menus.button('🏀')
     async def do_pass(self, _):
@@ -75,24 +73,20 @@ class BasketballMenu(menus.Menu):
             d = f'Nice give and go! You passed the ball to **{p}** and they scored a layup. +2 to your score.'
         else:
             d = f'You passed the ball to **{p}** but they dropped it.'
-        embed = discord.Embed(title='Pass...', description=d, color=self.ctx.bot.color)
-        embed.set_footer(text=self.footer)
-        await self.message.edit(embed = embed)
+        await makeEmbed('Pass...', d)
 
     @menus.button('⛹️')
     async def do_drive(self, _):
-        await self.makeEmbed(title="Drive...", description="Test")
+        await self.makeEmbed("Drive...", "Test")
 
     @menus.button('📟')
     async def do_score(self, _):
-        embed = discord.Embed(title='Current Score', description=f'**{self.ctx.author.name}** - {self.score}', color=self.ctx.bot.color)
-        embed.set_footer(text=self.footer)
-        await self.message.edit(embed = embed)
+        await makeEmbed('Score', f'**{self.ctx.author.name}** - {self.score}')
 
     @menus.button('❓')
     async def do_help(self, _):
-        await self.message.edit(embed=discord.Embed(title='Basketball!', description='Play basketball against an AI!\n\nUse the reactions below to play:\n\n🗑️ = Take a shot\n🏀 = Pass the ball\n⛹️ = Drive to get a layup\n📟 = See the score\n❓ = See this message\n❌ = Stop the game\n\n**Note this command is a work in progress.**',color=self.ctx.bot.color))
-
+        await makeEmbed('Basketball!', 'Play basketball against an AI!\n\nUse the reactions below to play:\n\n🗑️ = Take a shot\n🏀 = Pass the ball\n⛹️ = Drive to get a layup\n📟 = See the score\n❓ = See this message\n❌ = Stop the game\n\n**Note this command is a work in progress.**')
+    
     @menus.button('❌')
     async def do_end(self, _):
         self.stop()
