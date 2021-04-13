@@ -32,6 +32,15 @@ class BasketballMenu(menus.Menu):
         self.score = 0
         self.footer = 'Use the reactions below to try and score'
         
+    async def makeEmbed(self, title, *, description):
+        if self.score >= 21:
+            return discord.Embed(title='You reached 21!', description="Good job. Thats it for now. Come play again later.", color=self.ctx.bot.color))
+            await asyncio.sleep(5)
+            self.stop()
+        else:
+            embed = discord.Embed(title=title description=description, color=self.ctx.bot.color)
+            embed.set_footer(text=self.footer)
+
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
         return await channel.send(embed=discord.Embed(title='Basketball!', description='Play basketball against an AI!\n\nUse the reactions below to play:\n\n🗑️ = Take a shot\n🏀 = Pass the ball\n⛹️ = Drive to get a layup\n📟 = See the score\n❓ = See this message\n❌ = Stop the game\n\n**Note this command is a work in progress.**',color=self.ctx.bot.color))
     
@@ -74,7 +83,7 @@ class BasketballMenu(menus.Menu):
     async def do_drive(self, _):
         embed = discord.Embed(title='Drive...', color=self.ctx.bot.color)
         embed.set_footer(text=self.footer)
-        await self.message.edit(embed = embed)
+        await self.message.edit(embed = makeEmbed("Drive...", "Test")
 
     @menus.button('📟')
     async def do_score(self, _):
