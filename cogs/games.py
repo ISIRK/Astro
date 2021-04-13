@@ -32,7 +32,7 @@ class BasketballMenu(menus.Menu):
         self.score = 0
         self.footer = 'Use the reactions below to try and score'
         
-    async def makeEmbed(self, title, *, description):
+    def makeEmbed(self, title, *, description):
         if self.score >= 21:
             return discord.Embed(title='You reached 21!', description="Good job. Thats it for now. Come play again later.", color=self.ctx.bot.color)
             await asyncio.sleep(5)
