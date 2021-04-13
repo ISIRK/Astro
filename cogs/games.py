@@ -28,7 +28,7 @@ def rps_winner(userOneChoice, userTwoChoice):
 
 class BasketballMenu(menus.Menu):
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super().__init__(delete_message_after=True, **kwargs)
         self.score = 0
         self.footer = 'Use the reactions below to try and score'
         
@@ -96,6 +96,7 @@ class BasketballMenu(menus.Menu):
     @menus.button('❌')
     async def do_end(self, _):
         self.stop()
+        await self.ctx.send(f'Game over. You had **`{self.score}`** points!')
     
 class games(commands.Cog):
     '''Game Commands'''
