@@ -82,9 +82,7 @@ class BasketballMenu(menus.Menu):
 
     @menus.button('⛹️')
     async def do_drive(self, _):
-        embed = discord.Embed(title='Drive...', color=self.ctx.bot.color)
-        embed.set_footer(text=self.footer)
-        await self.message.edit(embed = makeEmbed("Drive...", "Test"))
+        await self.message.edit(embed = self.makeEmbed("Drive...", "Test"))
 
     @menus.button('📟')
     async def do_score(self, _):
