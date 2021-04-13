@@ -28,14 +28,13 @@ def rps_winner(userOneChoice, userTwoChoice):
 
 class BasketballMenu(menus.Menu):
     def __init__(self, **kwargs):
-        super().__init__(delete_message_after=True, **kwargs)
+        super().__init__(**kwargs)
         self.score = 0
         self.footer = 'Use the reactions below to try and score'
         
     def makeEmbed(self, title, *, description):
         if self.score >= 21:
             return discord.Embed(title='You reached 21!', description="Good job. Thats it for now. Come play again later.", color=self.ctx.bot.color)
-            await asyncio.sleep(5)
             self.stop()
         else:
             embed = discord.Embed(title=title, description=description, color=self.ctx.bot.color)
