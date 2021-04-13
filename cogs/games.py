@@ -81,7 +81,7 @@ class BasketballMenu(menus.Menu):
 
     @menus.button('⛹️')
     async def do_drive(self, _):
-        await self.makeEmbed("Drive...", "Test")
+        await self.makeEmbed(title="Drive...", description="Test")
 
     @menus.button('📟')
     async def do_score(self, _):
@@ -95,7 +95,6 @@ class BasketballMenu(menus.Menu):
 
     @menus.button('❌')
     async def do_end(self, _):
-        await self.do_score()
         self.stop()
     
 class games(commands.Cog):
