@@ -42,7 +42,7 @@ class BasketballMenu(menus.Menu):
             await self.message.edit(embed=embed)
 
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
-        return await channel.send(embed=discord.Embed(title='Basketball!', description='Play basketball against an AI!\n\nUse the reactions below to play:\n\n🗑️ = Take a shot\n🏀 = Pass the ball\n⛹️ = Drive to get a layup\n📟 = See the score\n❓ = See this message\n❌ = Stop the game\n\n**Note this command is a work in progress.**',color=self.ctx.bot.color))
+        return await channel.send(embed=discord.Embed(title='Basketball!', description='Play basketball!\nRight now there isnt any competition so its just for fun.\n\nUse the reactions below to play:\n\n🗑️ = Take a shot\n🏀 = Pass the ball\n⛹️ = Drive to get a layup\n📟 = See the score\n❓ = See this message\n❌ = Stop the game\n\n**Note this command is a work in progress.**',color=self.ctx.bot.color))
     
     @menus.button('🗑️')
     async def do_shot(self, _):
@@ -66,13 +66,25 @@ class BasketballMenu(menus.Menu):
         lucky = random.choice([True, False])
         if lucky:
             d = f'Nice give and go! You passed the ball to **{p}** and they scored a layup. +2 to your score.'
+            self.score += 2
         else:
             d = f'You passed the ball to **{p}** but they dropped it.'
         await self.makeEmbed("Pass...", d)
 
     @menus.button('⛹️')
     async def do_drive(self, _):
-        await self.makeEmbed("Drive...", "Test")
+        make = random.choice([True, False])
+        if make:
+            block = random.choice([True, False])
+            if block:
+                d = 'You got blocked.'
+            else:
+                d = 'You made a layup! +2 to your score.'
+                self.score += 2
+        else:
+            d = 'You missed.'
+            pass
+        await self.makeEmbed("Drive...", d)
 
     @menus.button('📟')
     async def do_score(self, _):
@@ -80,7 +92,7 @@ class BasketballMenu(menus.Menu):
 
     @menus.button('❓')
     async def do_help(self, _):
-        await self.makeEmbed("Basketball!", "Play basketball against an AI!\n\nUse the reactions below to play:\n\n🗑️ = Take a shot\n🏀 = Pass the ball\n⛹️ = Drive to get a layup\n📟 = See the score\n❓ = See this message\n❌ = Stop the game\n\n**Note this command is a work in progress.**")
+        await self.makeEmbed("Basketball!", "Play basketball!\nRight now there isnt any competition so its just for fun.\n\nUse the reactions below to play:\n\n🗑️ = Take a shot\n🏀 = Pass the ball\n⛹️ = Drive to get a layup\n📟 = See the score\n❓ = See this message\n❌ = Stop the game\n\n**Note this command is a work in progress.**")
     
     @menus.button('❌')
     async def do_end(self, _):
