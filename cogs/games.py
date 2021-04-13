@@ -95,7 +95,7 @@ class BasketballMenu(menus.Menu):
 
     @menus.button('❌')
     async def do_end(self, _):
-        await do_score()
+        await self.do_score()
         self.stop()
     
 class games(commands.Cog):
