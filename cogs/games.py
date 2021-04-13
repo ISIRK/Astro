@@ -65,7 +65,7 @@ class BasketballMenu(menus.Menu):
         p = random.choice(['Bob', 'Joe', 'Tim', 'Jordan', 'Jokic'])
         lucky = random.choice([True, False])
         if lucky:
-            d = f'Nice give and go! You passed the ball to **{p}** and they scored a layup. +2 to your score.'
+            d = f'You passed the ball to **{p}** and they scored a layup. +2 to your score.'
             self.score += 2
         else:
             d = f'You passed the ball to **{p}** but they dropped it.'
