@@ -34,8 +34,8 @@ class BasketballMenu(menus.Menu):
         
     async def makeEmbed(self, title, description):
         if self.score >= 21:
-            await self.message.edit(embed=discord.Embed(title='You reached 21!', description="Good job. Thats it for now. Come play again later.", color=self.ctx.bot.color))
             self.stop()
+            await self.ctx.send(embed=discord.Embed(title='You reached 21!', description="Good job. Thats it for now. Come play again later.", color=self.ctx.bot.color)
         else:
             embed = discord.Embed(title=title, description=description, color=self.ctx.bot.color)
             embed.set_footer(text=self.footer)
