@@ -37,7 +37,7 @@ class BasketballMenu(menus.Menu):
             await self.message.edit(embed=discord.Embed(title='You reached 21!', description="Good job. Thats it for now. Come play again later.", color=self.ctx.bot.color))
             self.stop()
         else:
-            embed = discord.Embed(title=title, description=description, color=self.ctx.bot.color)
+            embed = discord.Embed(title=title, description=str(description), color=self.ctx.bot.color)
             embed.set_footer(text=self.footer)
             await self.message.edit(embed=embed)
 
