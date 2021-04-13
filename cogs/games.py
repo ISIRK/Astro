@@ -40,6 +40,7 @@ class BasketballMenu(menus.Menu):
         else:
             embed = discord.Embed(title=title, description=description, color=self.ctx.bot.color)
             embed.set_footer(text=self.footer)
+            return embed
 
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
         return await channel.send(embed=discord.Embed(title='Basketball!', description='Play basketball against an AI!\n\nUse the reactions below to play:\n\n🗑️ = Take a shot\n🏀 = Pass the ball\n⛹️ = Drive to get a layup\n📟 = See the score\n❓ = See this message\n❌ = Stop the game\n\n**Note this command is a work in progress.**',color=self.ctx.bot.color))
