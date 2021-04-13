@@ -38,7 +38,7 @@ class BasketballMenu(menus.Menu):
             await asyncio.sleep(5)
             self.stop()
         else:
-            embed = discord.Embed(title=title description=description, color=self.ctx.bot.color)
+            embed = discord.Embed(title=title, description=description, color=self.ctx.bot.color)
             embed.set_footer(text=self.footer)
 
     async def send_initial_message(self, ctx, channel: discord.TextChannel):
