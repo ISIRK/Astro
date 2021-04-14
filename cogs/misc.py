@@ -5,7 +5,6 @@ from jishaku import codeblocks
 from discord.ext import commands
 from discord.shard import ShardInfo
 from discord.ext.commands import context
-from google_trans_new import google_translator
 from discord.ext.commands.cooldowns import BucketType
 
 class misc(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, commands.BucketType.user)}):
