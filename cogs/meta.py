@@ -150,7 +150,7 @@ class meta(commands.Cog):
 
         perms = '\n'.join(perm for perm, value in member.guild_permissions if value)
 
-        embed = discord.Embed(title='Permissions', description=f"```md\n{perms}```", colour=self.bot.color)
+        embed = discord.Embed(title='Permissions', description=f"\```md\n{perms}```", colour=self.bot.color)
         embed.set_author(icon_url=member.avatar_url, name=str(member))
         embed.set_footer(text=self.bot.footer)
         await ctx.send(content=None, embed=embed)
