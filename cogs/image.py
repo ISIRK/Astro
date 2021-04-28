@@ -426,7 +426,8 @@ class image(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
             else:
                 if m.content == resp['content']:
                     end = datetime.datetime.now()
-                    await ctx.send(f'{m.author.mention} typed it correct in **`{humanize.precisedelta((end - start).total_seconds())}`**')
+                    time = humanize.precisedelta((end - start).total_seconds())
+                    await ctx.send(f'{m.author.mention} typed it correct in `{time}` with **{time/len(resp['content'])/5}** wpm.')
                     going = False
 
     @commands.command()
