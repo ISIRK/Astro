@@ -55,7 +55,7 @@ class Sirk(commands.Bot):
         async def global_check(ctx):
             bl = await self.db.fetchrow("SELECT * FROM blacklist WHERE id = $1", message.author.id)
             if bl:
-                await ctx.send(embed=discord.Embed(description=f"You have been blacklisted for `{bl['reason']}`")
+                await ctx.send(embed=discord.Embed(description=f"You have been blacklisted for `{bl['reason']}`",color=discord.Color.red()))
                 return False
 
     async def on_ready(self):
