@@ -56,7 +56,7 @@ class Sirk(commands.Bot):
             bl = await self.db.fetchrow("SELECT * FROM blacklist WHERE id = $1", ctx.author.id)
             if bl:
                 await ctx.send(embed=discord.Embed(description=f"You have been blacklisted for `{bl['reason']}`",color=discord.Color.red()))
-                return True
+                return False
 
     async def on_ready(self):
         print(f"Logged in as {self.user}")
