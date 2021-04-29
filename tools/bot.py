@@ -61,10 +61,13 @@ class Sirk(commands.Bot):
             await self.process_commands(after)
 
     async def on_message(self, message: discord.Message):
+        bl = await self.db.fetchrow("SELECT id FROM blacklist")
         if message.author.bot:
             return
+        elif message.author.id in bl:
+            return
         elif not message.guild:
-            pass
+            return
         elif (
             message.content == f"<@!{self.user.id}>"
             or message.content == f"<@{self.user.id}>"
