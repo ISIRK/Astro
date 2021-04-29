@@ -61,11 +61,11 @@ class Sirk(commands.Bot):
             await self.process_commands(after)
 
     async def on_message(self, message: discord.Message):
-        bl = await self.db.fetchrow("SELECT id FROM blacklist")
+        bl = await self.db.fetchrow("SELECT * FROM blacklist WHERE id = $1", message.author.id)
         if message.author.bot:
             return
-        elif message.author.id in bl:
-            return
+        elif bl:
+            await message.channel.send(f"You are blacklisted for `{bl['reason']}`")
         elif not message.guild:
             return
         elif (
