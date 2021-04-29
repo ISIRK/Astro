@@ -51,6 +51,7 @@ class Sirk(commands.Bot):
         self.color = 0x7289DA
         self.utils = utils
 
+        '''
         @self.check
         async def global_check(ctx):
             bl = await self.db.fetchrow("SELECT * FROM blacklist WHERE id = $1", ctx.author.id)
@@ -59,6 +60,7 @@ class Sirk(commands.Bot):
                 return False
             else:
                 pass
+        '''
 
     async def on_ready(self):
         print(f"Logged in as {self.user}")
