@@ -57,6 +57,8 @@ class Sirk(commands.Bot):
             if bl:
                 await ctx.send(embed=discord.Embed(description=f"You have been blacklisted for `{bl['reason']}`",color=discord.Color.red()))
                 return False
+            else:
+                pass
 
     async def on_ready(self):
         print(f"Logged in as {self.user}")
