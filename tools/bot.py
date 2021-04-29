@@ -51,6 +51,13 @@ class Sirk(commands.Bot):
         self.color = 0x7289DA
         self.utils = utils
 
+        @self.check
+        async def global_check(ctx):
+            bl = await self.db.fetchrow("SELECT * FROM blacklist WHERE id = $1", message.author.id)
+            if bl:
+                await ctx.send(embed=discord.Embed(description=f"You have been blacklisted for `{bl['reason']}`")
+                return False
+
     async def on_ready(self):
         print(f"Logged in as {self.user}")
 
@@ -61,11 +68,8 @@ class Sirk(commands.Bot):
             await self.process_commands(after)
 
     async def on_message(self, message: discord.Message):
-        bl = await self.db.fetchrow("SELECT * FROM blacklist WHERE id = $1", message.author.id)
         if message.author.bot:
             return
-        elif bl:
-            await message.channel.send(f"You are blacklisted for `{bl['reason']}`")
         elif not message.guild:
             return
         elif (
